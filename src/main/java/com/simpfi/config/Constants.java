@@ -1,6 +1,6 @@
 package com.simpfi.config;
 
-public class Config {
+public class Constants {
 	// We want to define all the option command here
 
 	// For example the command of BUTTON
