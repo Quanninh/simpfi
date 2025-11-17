@@ -31,6 +31,6 @@ public class App {
 		
 		myFrame.setVisible(true);
 		
-		XMLReader xmlReader = new XMLReader("src/main/resources/helloWorld.net.xml");
+		XMLReader xmlReader = new XMLReader("src/main/resources/simpfi.net.xml");
     }
 }
