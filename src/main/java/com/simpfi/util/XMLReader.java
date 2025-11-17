@@ -1,63 +1,65 @@
 package com.simpfi.util;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.simpfi.object.Edge;
+import com.simpfi.object.Junction;
+import com.simpfi.object.Lane;
 
 public class XMLReader {
 
-	public XMLReader(String fileAddress) throws Exception {
+	public List<Edge> parse(String fileAddress) throws Exception {
 		File file = new File(fileAddress);
-		
+
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		
-		Document doc = builder.parse(file);
-		
-		NodeList edgeList = doc.getElementsByTagName("edge");
-		
-		for (int i = 0; i < edgeList.getLength(); i++) {
-	        Element edge = (Element) edgeList.item(i);
 
-	        String edgeId = edge.getAttribute("id");
-	        String from = edge.getAttribute("from");
-	        String to = edge.getAttribute("to");
+		Document document = builder.parse(file);
 
-	        System.out.println("EDGE ID: " + edgeId);
-	        System.out.println("  from: " + from);
-	        System.out.println("  to  : " + to);
+		NodeList edgeNodeList = document.getElementsByTagName("edge");
 
-	        // Now read its lanes
-	        NodeList lanes = edge.getElementsByTagName("lane");
-	        for (int j = 0; j < lanes.getLength(); j++) {
-	            Element lane = (Element) lanes.item(j);
+		List<Edge> edges = new ArrayList<>();
 
-	            String laneId = lane.getAttribute("id");
-	            String shape = lane.getAttribute("shape");   // **positions here!!**
+		for (int i = 0; i < edgeNodeList.getLength(); i++) {
+			Element edge = (Element) edgeNodeList.item(i);
 
-	            System.out.println("    LANE ID: " + laneId);
-	            System.out.println("    SHAPE:   " + shape);
+			NodeList lanes = edge.getElementsByTagName("lane");
+			Lane[] laneArr = new Lane[lanes.getLength()];
 
-	            // Optional: Parse coordinates into usable numbers
-	            String[] points = shape.split(" ");
+			for (int j = 0; j < lanes.getLength(); j++) {
+				Element lane = (Element) lanes.item(j);
 
-	            for (String p : points) {
-	                String[] xy = p.split(",");
-	                double x = Double.parseDouble(xy[0]);
-	                double y = Double.parseDouble(xy[1]);
+				String shape = lane.getAttribute("shape");
+				String[] points = shape.split(" ");
+				Point[] pointArr = new Point[points.length];
 
-	                System.out.println("      -> x: " + x + ", y: " + y);
-	            }
-	        }
+				for (int k = 0; k < points.length; k++) {
+					String[] point = points[k].split(",");
 
-	        System.out.println("---------------------------------------------");
-	    }
+					pointArr[k] = new Point(Double.parseDouble(point[0]), Double.parseDouble(point[1]));
+				}
+
+				laneArr[j] = new Lane(lane.getAttribute("id"), pointArr);
+			}
+
+			String id = edge.getAttribute("id");
+			Junction from = new Junction(edge.getAttribute("from"));
+			Junction to = new Junction(edge.getAttribute("to"));
+
+			Edge e = new Edge(id, from, to, laneArr);
+			edges.add(e);
+		}
+
+		return edges;
 	}
-	
+
 }
