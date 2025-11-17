@@ -32,7 +32,6 @@ public class App {
 
 		myFrame.setVisible(true);
 
-		XMLReader xmlReader = new XMLReader();
-		xmlReader.parse(Constants.NETWORK);
+		
 	}
 }
