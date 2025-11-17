@@ -8,14 +8,18 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.io.ObjectInputFilter.Config;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.simpfi.config.Constants;
+
 public class Frame extends JFrame {
+
+	
+	private static final long serialVersionUID = 1L;
 
 	public Frame() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,17 +51,17 @@ public class Frame extends JFrame {
 		this.add(panelCenter, BorderLayout.CENTER);
 
 		// Add new button in panelTop
-		JButton btn1 = new JButton("Btn 1");
+		Button btn1 = new Button("Btn 1");
 		btn1.addActionListener(evt -> Test_Button(evt));
-		btn1.setActionCommand(com.simpfi.config.Config.BUTTON1);
+		btn1.setActionCommand(Constants.BUTTON1);
 		panelTop.add(btn1);
-		JButton btn2 = new JButton("Btn 2");
+		Button btn2 = new Button("Btn 2");
 		btn2.addActionListener(evt -> Test_Button(evt));
-		btn2.setActionCommand(com.simpfi.config.Config.BUTTON2);
+		btn2.setActionCommand(Constants.BUTTON2);
 		panelTop.add(btn2);
-		JButton btn3 = new JButton("Btn 3");
+		Button btn3 = new Button("Btn 3");
 		btn3.addActionListener(evt -> Test_Button(evt));
-		btn3.setActionCommand(com.simpfi.config.Config.BUTTON3);
+		btn3.setActionCommand(Constants.BUTTON3);
 		panelTop.add(btn3);
 
 		// Show the information in panelRight
