@@ -75,14 +75,6 @@ public class Frame extends JFrame {
 
 	}
 
-//	public void paint(Graphics g)
-//	{
-//		Graphics2D g2D = (Graphics2D) g;
-//		g2D.setColor(Color.BLACK);
-//        g2D.drawLine(10, 10, 80, 80);
-//        g2D.drawRect(20, 20, 60, 40);
-//		this.setVisible(true);
-//	}
 
 	// Define your custom panel
 	class DrawingPanel extends JPanel {
