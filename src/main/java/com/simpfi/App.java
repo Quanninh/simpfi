@@ -31,7 +31,5 @@ public class App {
 		mapPanel.setBackground(Color.WHITE);
 
 		myFrame.setVisible(true);
-
-		
 	}
 }

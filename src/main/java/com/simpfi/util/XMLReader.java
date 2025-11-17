@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,14 +18,20 @@ import com.simpfi.object.Lane;
 
 public class XMLReader {
 
-	public List<Edge> parseEdge(String fileAddress, List<Junction> junctions)
+	private File file;
+	private DocumentBuilderFactory factory;
+	private DocumentBuilder builder;
+	private Document document;
+
+	public XMLReader(String fileAddress) throws Exception {
+		file = new File(fileAddress);
+		factory = DocumentBuilderFactory.newInstance();
+		builder = factory.newDocumentBuilder();
+		document = builder.parse(file);
+	}
+
+	public List<Edge> parseEdge(List<Junction> junctions)
 		throws Exception {
-		File file = new File(fileAddress);
-
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = factory.newDocumentBuilder();
-
-		Document document = builder.parse(file);
 
 		NodeList edgeNodeList = document.getElementsByTagName("edge");
 
@@ -40,17 +47,8 @@ public class XMLReader {
 				Element lane = (Element) lanes.item(j);
 
 				String shape = lane.getAttribute("shape");
-				String[] points = shape.split(" ");
-				Point[] pointArr = new Point[points.length];
 
-				for (int k = 0; k < points.length; k++) {
-					String[] point = points[k].split(",");
-
-					pointArr[k] = new Point(Double.parseDouble(point[0]),
-						Double.parseDouble(point[1]));
-				}
-
-				laneArr[j] = new Lane(lane.getAttribute("id"), pointArr);
+				laneArr[j] = new Lane(lane.getAttribute("id"), extractPoints(shape));
 			}
 
 			Junction from = searchForJunction(edge.getAttribute("from"),
@@ -64,13 +62,7 @@ public class XMLReader {
 		return edges;
 	}
 
-	public List<Junction> parseJunction(String fileAddress) throws Exception {
-		File file = new File(fileAddress);
-
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = factory.newDocumentBuilder();
-
-		Document document = builder.parse(file);
+	public List<Junction> parseJunction() throws Exception {
 
 		NodeList edgeNodeList = document.getElementsByTagName("junction");
 
@@ -88,21 +80,26 @@ public class XMLReader {
 			}
 
 			String shape = junction.getAttribute("shape");
-			String[] points = shape.split(" ");
-			Point[] pointArr = new Point[points.length];
 
-			for (int k = 0; k < points.length; k++) {
-				String[] point = points[k].split(",");
-
-				pointArr[k] = new Point(Double.parseDouble(point[0]),
-					Double.parseDouble(point[1]));
-			}
-
-			Junction j = new Junction(junctionId, junctionType, pointArr);
+			Junction j = new Junction(junctionId, junctionType, extractPoints(shape));
 			junctions.add(j);
 		}
 
 		return junctions;
+	}
+	
+	private Point[] extractPoints(String shape) {
+		String[] points = shape.split(" ");
+		Point[] pointArr = new Point[points.length];
+
+		for (int k = 0; k < points.length; k++) {
+			String[] point = points[k].split(",");
+
+			pointArr[k] = new Point(Double.parseDouble(point[0]),
+				Double.parseDouble(point[1]));
+		}
+		
+		return pointArr;
 	}
 
 	public Junction searchForJunction(String id, List<Junction> junctions) {

@@ -20,6 +20,7 @@ public class MapPanel extends Panel {
 
 	private double scale = 3;
 	private Point topLeftPos = new Point(-800, -200);
+	private float strokeSize = 2;
 
 	public MapPanel() {
 
@@ -30,15 +31,16 @@ public class MapPanel extends Panel {
 		// Clear
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D) g;
-		g2D.setStroke(new BasicStroke(2));
+		g2D.setStroke(new BasicStroke(strokeSize));
 
-		XMLReader xmlReader = new XMLReader();
-
+		XMLReader xmlReader = null;
 		List<Edge> edges = new ArrayList<>();
 		List<Junction> junctions = new ArrayList<>();
+
 		try {
-			junctions = xmlReader.parseJunction(Constants.NETWORK);
-			edges = xmlReader.parseEdge(Constants.NETWORK, junctions);
+			xmlReader = new XMLReader(Constants.NETWORK);
+			junctions = xmlReader.parseJunction();
+			edges = xmlReader.parseEdge(junctions);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,14 +53,15 @@ public class MapPanel extends Panel {
 		}
 	}
 
+	// Draw Edge
 	private void drawObject(Graphics2D g, Edge e) {
 		for (int i = 0; i < e.getLanesSize(); i++) {
 			drawObject(g, e.getLanes()[i]);
 		}
 	}
 
+	// Draw Lane
 	private void drawObject(Graphics2D g, Lane l) {
-		// if (l.getLaneId().charAt(0) != ':') return;
 		Point[] shape = l.getShape();
 		int size = l.getShapeSize();
 
@@ -69,16 +72,15 @@ public class MapPanel extends Panel {
 		for (int i = 0; i < size - 1; i++) {
 			Point p1 = translateCoords(shape[i]);
 			Point p2 = translateCoords(shape[i + 1]);
-			g.setColor(Color.BLUE);
-			g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(),
-				(int) p2.getY());
-			g.setColor(Color.BLACK);
+			
+			drawLine(g, p1, p2, Color.BLUE);
+			
 			System.out.println("Drawing Lane: " + l.getLaneId());
 		}
 	}
 
+	// Draw Junction
 	private void drawObject(Graphics2D g, Junction j) {
-		// if (l.getLaneId().charAt(0) != ':') return;
 		Point[] shape = j.getShape();
 		int size = j.getShapeSize();
 
@@ -94,13 +96,17 @@ public class MapPanel extends Panel {
 			} else {
 				p2 = translateCoords(shape[0]);
 			}
-			
-			g.setColor(Color.RED);
-			g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(),
-				(int) p2.getY());
-			g.setColor(Color.BLACK);
+
+			drawLine(g, p1, p2, Color.RED);
 			System.out.println("Drawing Junction: " + j.getId());
 		}
+	}
+	
+	private void drawLine(Graphics2D g, Point p1, Point p2, Color color) {
+		g.setColor(color);
+		g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(),
+			(int) p2.getY());
+		g.setColor(Color.BLACK);
 	}
 
 	private Point translateCoords(Point before) {
