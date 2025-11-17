@@ -9,10 +9,10 @@ public class Button extends JButton {
 
 	private static final long serialVersionUID = 1L;
 	
-	Button(String text) {
+	public Button(String text) {
 		this.setText(text);
 		this.setBackground(new Color(251, 232, 237));
-		//this.setFont(new Font("Arial", , ));
+		this.setFont(new Font("Arial", Font.PLAIN, 18));
 	}
 
 }
