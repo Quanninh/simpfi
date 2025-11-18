@@ -73,7 +73,7 @@ public class XMLReader {
 
 			String junctionId = junction.getAttribute("id");
 			String junctionType = junction.getAttribute("type");
-			System.out.println("Reading Junction: " + junctionId);
+			// System.out.println("Reading Junction: " + junctionId);
 
 			if (junctionType.equals("internal")) {
 				continue;

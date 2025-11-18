@@ -10,6 +10,8 @@ import com.simpfi.config.Constants;
 import com.simpfi.ui.Frame;
 import com.simpfi.ui.MapPanel;
 import com.simpfi.ui.Panel;
+import com.simpfi.ui.TextBox;
+import com.simpfi.ui.TextBox.SettingsType;
 import com.simpfi.util.XMLReader;
 
 public class App {
@@ -30,6 +32,19 @@ public class App {
 		infoPanel.setBackground(Color.GREEN);
 		mapPanel.setBackground(Color.WHITE);
 
+		TextBox scaleTB = new TextBox(true, SettingsType.SCALE, Constants.DEFAULT_SCALE);
+		TextBox offsetXTB = new TextBox(true,SettingsType.OFFSET_X, -800);
+		TextBox offsetYTB = new TextBox(true,SettingsType.OFFSET_Y, -200);
+		
+		controlPanel.add(scaleTB);
+		controlPanel.add(offsetXTB);
+		controlPanel.add(offsetYTB);
+		
+		// ALWAYS PUT THIS AT THE END
 		myFrame.setVisible(true);
+		
+		while (true) {
+			mapPanel.repaint();
+		}
 	}
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.simpfi.config.Constants;
+import com.simpfi.config.Settings;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
@@ -20,7 +21,6 @@ public class MapPanel extends Panel {
 
 	private double scale = 3;
 	private Point topLeftPos = new Point(-800, -200);
-	private float strokeSize = 2;
 
 	public MapPanel() {
 
@@ -31,7 +31,11 @@ public class MapPanel extends Panel {
 		// Clear
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D) g;
-		g2D.setStroke(new BasicStroke(strokeSize));
+		g2D.setStroke(new BasicStroke(Constants.STROKE_SIZE));
+		
+		scale = Settings.SETTINGS_SCALE;
+		topLeftPos = Settings.SETTINGS_OFFSET;
+		//System.out.println("Current Scale: " + topLeftPos.getX() + " " + topLeftPos.getY());
 
 		XMLReader xmlReader = null;
 		List<Edge> edges = new ArrayList<>();
@@ -51,6 +55,8 @@ public class MapPanel extends Panel {
 		for (Junction j : junctions) {
 			drawObject(g2D, j);
 		}
+		
+		//System.out.println("Drawing Complete");
 	}
 
 	// Draw Edge
@@ -75,7 +81,7 @@ public class MapPanel extends Panel {
 			
 			drawLine(g, p1, p2, Color.BLUE);
 			
-			System.out.println("Drawing Lane: " + l.getLaneId());
+			//System.out.println("Drawing Lane: " + l.getLaneId());
 		}
 	}
 
@@ -98,7 +104,7 @@ public class MapPanel extends Panel {
 			}
 
 			drawLine(g, p1, p2, Color.RED);
-			System.out.println("Drawing Junction: " + j.getId());
+			//System.out.println("Drawing Junction: " + j.getId());
 		}
 	}
 	
