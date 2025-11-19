@@ -8,6 +8,7 @@ import com.simpfi.config.Constants;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.sumo.wrapper.VehicleController;
+import com.simpfi.ui.Button;
 import com.simpfi.ui.Frame;
 import com.simpfi.ui.MapPanel;
 import com.simpfi.ui.Panel;
@@ -25,20 +26,16 @@ public class App {
 		}
 	}
 
-	private static SumoConnectionManager establishConnection()
-		throws Exception {
-		SumoConnectionManager sim = new SumoConnectionManager(
-			Constants.SUMO_CONFIG);
+	private static SumoConnectionManager establishConnection() throws Exception {
+		SumoConnectionManager sim = new SumoConnectionManager(Constants.SUMO_CONFIG);
 		return sim;
 	}
 
-	private static void retrieveData(SumoConnectionManager sim)
-		throws Exception {
+	private static void retrieveData(SumoConnectionManager sim) throws Exception {
 		double stepLen = 0.1;
 		long stepMs = (long) (stepLen * 1000);
 		VehicleController vehicleController = new VehicleController(sim);
-		TrafficLightController trafficLightController = new TrafficLightController(
-			sim);
+		TrafficLightController trafficLightController = new TrafficLightController(sim);
 
 		try {
 			long next = System.currentTimeMillis();
@@ -54,8 +51,7 @@ public class App {
 					String edge = vehicleController.getRoadID(vid);
 					// System.out.printf("t=%.1fs id=%s v=%.2f m/s edge=%s%n",
 					// time, vid, speed, edge);
-					System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed,
-						edge);
+					System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed, edge);
 				}
 
 				next += stepMs;
@@ -88,12 +84,25 @@ public class App {
 
 		TextBox scaleTB = new TextBox(true, SettingsType.SCALE,
 			Constants.DEFAULT_SCALE);
-		TextBox offsetXTB = new TextBox(true, SettingsType.OFFSET_X, -800);
+		TextBox offsetXTB = new TextBox(true, SettingsType.OFFSET_X, -500);
 		TextBox offsetYTB = new TextBox(true, SettingsType.OFFSET_Y, -200);
 
 		controlPanel.add(scaleTB);
 		controlPanel.add(offsetXTB);
 		controlPanel.add(offsetYTB);
+		
+		// Implement button for increasing the button
+		Button button1 = new Button("Increasing");
+		button1.addActionListener(e -> button1.increasingScale());
+		controlPanel.add(button1);
+		scaleTB.setText(""+ button1.getValueScale());
+		
+		Button button2 = new Button("Decreasing");
+		button2.addActionListener(e -> button2.decreasingScale());
+		controlPanel.add(button2);
+		scaleTB.setText("" + button2.getValueScale());
+		
+		
 
 		// ALWAYS PUT THIS AT THE END
 		myFrame.setVisible(true);

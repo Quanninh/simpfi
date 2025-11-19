@@ -69,6 +69,8 @@ public class TextBox extends JTextField {
 		if (type == SettingsType.OFFSET_Y) {
 			Settings.SETTINGS_OFFSET.setY(value);
 		}
+		
+		
 	}
 
 }
