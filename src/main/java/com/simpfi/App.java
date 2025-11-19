@@ -84,7 +84,7 @@ public class App {
 
 		TextBox scaleTB = new TextBox(true, SettingsType.SCALE,
 			Constants.DEFAULT_SCALE);
-		TextBox offsetXTB = new TextBox(true, SettingsType.OFFSET_X, -500);
+		TextBox offsetXTB = new TextBox(true, SettingsType.OFFSET_X, -800);
 		TextBox offsetYTB = new TextBox(true, SettingsType.OFFSET_Y, -200);
 
 		controlPanel.add(scaleTB);
