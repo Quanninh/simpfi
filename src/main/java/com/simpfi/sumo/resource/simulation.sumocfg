@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Network file -->
+    <input>
+        <net-file value="network.net.xml"/>
+        <route-files value="routes.rou.xml"/>
+    </input>
+
+    <!-- Simulation options -->
+    <time>
+        <begin value="0"/>
+        <end value="1000"/>
+        <step-length value="0.1"/>
+    </time>
+
+    <report>
+        <verbose value="true"/>
+        <no-step-log value="true"/>
+    </report>
+</configuration>
+
