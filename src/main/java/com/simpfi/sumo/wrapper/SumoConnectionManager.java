@@ -8,8 +8,8 @@ public class SumoConnectionManager {
 
 	public SumoConnectionManager(String cfg) throws Exception {
 		// Launch SUMO externally using default PATH
-		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg,
-			"--remote-port", "9999", "--step-length", "0.1");
+		ProcessBuilder pb = new ProcessBuilder("sumo-gui", "-c", cfg,
+			"--start", "--remote-port", "9999", "--step-length", "0.1");
 		pb.inheritIO();
 		pb.start();
 
