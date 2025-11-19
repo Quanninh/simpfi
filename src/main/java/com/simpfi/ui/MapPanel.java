@@ -42,7 +42,7 @@ public class MapPanel extends Panel {
 		List<Junction> junctions = new ArrayList<>();
 
 		try {
-			xmlReader = new XMLReader(Constants.NETWORK);
+			xmlReader = new XMLReader(Constants.SUMO_NETWORK);
 			junctions = xmlReader.parseJunction();
 			edges = xmlReader.parseEdge(junctions);
 		} catch (Exception e) {
