@@ -16,6 +16,7 @@ import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 import com.simpfi.util.XMLReader;
 import com.simpfi.util.reader.NetworkXMLReader;
+import com.simpfi.util.reader.RouteXMLReader;
 
 public class MapPanel extends Panel {
 
@@ -39,18 +40,22 @@ public class MapPanel extends Panel {
 		topLeftPos = Settings.SETTINGS_OFFSET;
 		//System.out.println("Current Scale: " + topLeftPos.getX() + " " + topLeftPos.getY());
 
-		NetworkXMLReader networlXmlReader = null;
+		NetworkXMLReader networkXmlReader = null;
 		List<Edge> edges = new ArrayList<>();
 		List<Junction> junctions = new ArrayList<>();
 
 		try {
-			networlXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
-			junctions = networlXmlReader.parseJunction();
-			edges = networlXmlReader.parseEdge(junctions);
+			networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
+			junctions = networkXmlReader.parseJunction();
+			edges = networkXmlReader.parseEdge(junctions);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+//		System.out.println("Edges:");
+//		System.out.println(edges.toString());
+//		System.out.println("Junctions:");
+//		System.out.println(junctions.toString());
 		for (Edge e : edges) {
 			drawObject(g2D, e);
 		}

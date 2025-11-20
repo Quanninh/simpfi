@@ -1,5 +1,7 @@
 package com.simpfi.object;
 
+import java.util.Arrays;
+
 import com.simpfi.util.Point;
 
 public class Lane {
@@ -24,6 +26,12 @@ public class Lane {
 
 	public int getShapeSize() {
 		return shapeSize;
+	}
+
+	@Override
+	public String toString() {
+		return "Lane [laneId=" + laneId + ", shape=" + Arrays.toString(shape)
+			+ "]";
 	}
 	
 }

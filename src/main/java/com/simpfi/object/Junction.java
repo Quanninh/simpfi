@@ -1,5 +1,7 @@
 package com.simpfi.object;
 
+import java.util.Arrays;
+
 import com.simpfi.util.Point;
 
 public class Junction {
@@ -33,6 +35,12 @@ public class Junction {
 
 	public int getShapeSize() {
 		return shapeSize;
+	}
+
+	@Override
+	public String toString() {
+		return "Junction [id=" + id + ", type=" + type + ", shape="
+			+ Arrays.toString(shape) + "]";
 	}
 
 }

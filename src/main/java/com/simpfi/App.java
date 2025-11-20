@@ -18,12 +18,18 @@ import com.simpfi.ui.MapPanel;
 import com.simpfi.ui.Panel;
 import com.simpfi.ui.TextBox;
 import com.simpfi.ui.TextBox.SettingsType;
+import com.simpfi.util.reader.RouteXMLReader;
 
 public class App {
 	public static void main(String[] args) throws Exception {
 		MapPanel mapPanel = generateUI();
 		SumoConnectionManager sim = establishConnection();
 
+
+		RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
+		System.out.println(routeXmlReader.parseRoute().toString());
+		System.out.println(routeXmlReader.parseVehicleType().toString());
+		
 		while (true) {
 			//retrieveData(sim);
 			mapPanel.repaint();

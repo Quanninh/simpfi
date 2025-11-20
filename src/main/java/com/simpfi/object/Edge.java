@@ -34,7 +34,7 @@ public class Edge {
 	public String toString() {
 		return "Edge [edgeId=" + id + ", conjunctionFrom=" + conjunctionFrom
 			+ ", conjunctinTo=" + conjunctinTo + ", lanes="
-			+ Arrays.toString(lanes) + ", lanesSize=" + lanesSize + "]";
+			+ Arrays.toString(lanes) + "]";
 	}
 
 }
