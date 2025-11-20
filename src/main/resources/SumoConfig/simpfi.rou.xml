@@ -44,6 +44,12 @@
     <vType id="drone" vClass="drone"/>
 
     <!-- Routes -->
-    <route id="r_1" edges="E0 E11 E16"/>
+    <route id="r_0" edges="-E7 -E6 -E5 -E4 -E3 -E2 -E1 E1 E2 E3 E4 E5 E6 E7"/>
+    <route id="r_1" edges="-E20"/>
+    <route id="r_2" edges="-E7 -E6 E13 E16"/>
+    <route id="r_3" edges="-E7 -E6 -E5 -E4 E11. E11 E16"/>
+    <route id="r_4" edges="-E7 E14 E22 E21 -E20"/>
+    <route id="r_5" edges="E8"/>
+    <route id="r_6" edges="-E7 -E6 -E5 -E4 -E3 -E2 E9 E0 E11 E16"/>
     <!-- Vehicles, persons and containers (sorted by depart) -->
 </routes>
