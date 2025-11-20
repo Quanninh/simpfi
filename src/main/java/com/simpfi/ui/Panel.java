@@ -9,7 +9,7 @@ public class Panel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	public Panel() {
-		this.setPreferredSize(new Dimension(100, 100));
+		//this.setPreferredSize(new Dimension(100, 100));
 	}
 
 }

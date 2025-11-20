@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import com.simpfi.config.Constants;
+import com.simpfi.config.Settings;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.sumo.wrapper.VehicleController;
@@ -24,7 +25,7 @@ public class App {
 		SumoConnectionManager sim = establishConnection();
 
 		while (true) {
-			retrieveData(sim);
+			//retrieveData(sim);
 			mapPanel.repaint();
 		}
 	}
@@ -106,8 +107,8 @@ public class App {
 		// Implement button for increasing the button
 		Button ButtonIncreasingScale = new Button("+");
 		ButtonIncreasingScale.addActionListener(e -> {
-			ButtonIncreasingScale.increasingScale();
-			scaleTB.setText("" + ButtonIncreasingScale.getValueScale());
+			Settings.modifyScale(0.1);
+			scaleTB.setText("" + Settings.SETTINGS_SCALE);
 		});
 		
 //		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -117,8 +118,8 @@ public class App {
 
 		Button ButtonDecreasingScale = new Button("-");
 		ButtonDecreasingScale.addActionListener(e -> {
-			ButtonDecreasingScale.decreasingScale();
-			scaleTB.setText("" + ButtonDecreasingScale.getValueScale());
+			Settings.modifyScale(-0.1);
+			scaleTB.setText("" + Settings.SETTINGS_SCALE);
 		});
 		
 //		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -126,34 +127,50 @@ public class App {
 //		controlPanel.add(ButtonDecreasingScale, gbc);	
 		controlPanel.add(ButtonDecreasingScale);
 		
-		Button ButtonMoveUp = new Button("Up");
+		Panel moveMapPanel = new Panel();
+		moveMapPanel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(0, 0, 0, 0);
+		gbc.anchor = GridBagConstraints.WEST;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		
+		Button ButtonMoveUp = new Button("↑");
 		ButtonMoveUp.addActionListener(e -> {
-			ButtonMoveUp.moveUp();
-			offsetYTB.setText("" + ButtonMoveUp.getValueY());
+			Settings.modifyOffsetY(10);
+			offsetYTB.setText("" + Settings.SETTINGS_OFFSET.getY());
 		});
-		controlPanel.add(ButtonMoveUp);
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		moveMapPanel.add(ButtonMoveUp, gbc);
 
-		Button ButtonMoveDown = new Button("Down");
+		Button ButtonMoveDown = new Button("↓");
 		ButtonMoveDown.addActionListener(e -> {
-			ButtonMoveDown.moveDown();
-			offsetYTB.setText("" + ButtonMoveDown.getValueY());
+			Settings.modifyOffsetY(-10);
+			offsetYTB.setText("" + Settings.SETTINGS_OFFSET.getY());
 		});
-		controlPanel.add(ButtonMoveDown);
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		moveMapPanel.add(ButtonMoveDown, gbc);
 		
-		Button ButtonMoveRight = new Button("Right");
-		ButtonMoveRight.addActionListener(e -> {
-			ButtonMoveRight.moveRight();
-			offsetXTB.setText("" + ButtonMoveRight.getValueX());
-		});
-		controlPanel.add(ButtonMoveRight);
-		
-		Button ButtonMoveLeft = new Button("Left");
+		Button ButtonMoveLeft = new Button("←");
 		ButtonMoveLeft.addActionListener(e -> {
-			ButtonMoveLeft.moveLeft();
-			offsetXTB.setText("" + ButtonMoveLeft.getValueX());
+			Settings.modifyOffsetX(10);
+			offsetXTB.setText("" + Settings.SETTINGS_OFFSET.getX());
 		});
-		controlPanel.add(ButtonMoveLeft);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		moveMapPanel.add(ButtonMoveLeft, gbc);
 		
+		Button ButtonMoveRight = new Button("→");
+		ButtonMoveRight.addActionListener(e -> {
+			Settings.modifyOffsetX(-10);
+			offsetXTB.setText("" + Settings.SETTINGS_OFFSET.getX());
+		});
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		moveMapPanel.add(ButtonMoveRight, gbc);
+		
+		controlPanel.add(moveMapPanel);
 
 		
 		// ALWAYS PUT THIS AT THE END

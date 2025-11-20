@@ -41,7 +41,6 @@ public class TextBox extends JTextField {
 
 		this.setText("" + defaultValue);
 		this.setColumns(16);
-		// this.setSize(80, 100);
 	}
 
 	public void onTextChange() {
@@ -53,24 +52,20 @@ public class TextBox extends JTextField {
 		try {
 			value = Double.parseDouble(this.getText());
 		} catch (Exception e) {
-			System.out.println("Wrong Input");
 			value = defaultValue;
 		}
 
 		if (type == SettingsType.SCALE) {
-			Settings.SETTINGS_SCALE = value;
+			Settings.changeScale(value);
 		}
 
 		if (type == SettingsType.OFFSET_X) {
-			Settings.SETTINGS_OFFSET.setX(value);
-
+			Settings.changeOffsetX(value);
 		}
 
 		if (type == SettingsType.OFFSET_Y) {
-			Settings.SETTINGS_OFFSET.setY(value);
+			Settings.changeOffsetY(value);
 		}
-		
-		
 	}
 
 }
