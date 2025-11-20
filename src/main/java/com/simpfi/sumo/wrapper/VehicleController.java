@@ -29,4 +29,15 @@ public class VehicleController {
 	public double[] getPosition(String vId) throws Exception {
 		return (double[]) conn.do_job_get(Vehicle.getPosition(vId));
 	}
+	
+	public void addVehicle(String vType, String routeID) {
+		//
+	}
+	
+	/*
+	 * add vehicle
+	 * tl: set state
+	 * 
+	 */
+
 }

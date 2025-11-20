@@ -7,16 +7,13 @@ public class SumoConnectionManager {
 	private SumoTraciConnection conn;
 
 	public SumoConnectionManager(String cfg) throws Exception {
-		// Launch SUMO externally using default PATH
-		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg,
-			"--start", "--quit-on-end", "--remote-port", "9999", "--step-length", "0.1");
+		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg, "--start",
+			"--quit-on-end", "--remote-port", "9999", "--step-length", "0.1");
 		pb.inheritIO();
 		pb.start();
 
-		// Wait for SUMO to open TraCI port
 		Thread.sleep(6000);
 
-		// Connect TraCI client to running SUMO
 		conn = new SumoTraciConnection(9999);
 
 		conn.runServer();

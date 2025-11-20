@@ -1,23 +1,25 @@
 package com.simpfi.object;
 
+import java.util.Arrays;
+
 public class Edge {
 
-	String edgeId;
+	String id;
 	Junction conjunctionFrom;
 	Junction conjunctinTo;
 	Lane[] lanes;
 	int lanesSize;
 
-	public Edge(String edgeId, Junction from, Junction to, Lane[] lanes) {
-		this.edgeId = edgeId;
+	public Edge(String id, Junction from, Junction to, Lane[] lanes) {
+		this.id = id;
 		this.conjunctionFrom = from;
 		this.conjunctinTo = to;
 		this.lanes = lanes;
 		this.lanesSize = this.lanes.length;
 	}
 
-	public String getEdgeId() {
-		return edgeId;
+	public String getId() {
+		return id;
 	}
 
 	public Lane[] getLanes() {
@@ -26,6 +28,13 @@ public class Edge {
 
 	public int getLanesSize() {
 		return lanesSize;
+	}
+
+	@Override
+	public String toString() {
+		return "Edge [edgeId=" + id + ", conjunctionFrom=" + conjunctionFrom
+			+ ", conjunctinTo=" + conjunctinTo + ", lanes="
+			+ Arrays.toString(lanes) + ", lanesSize=" + lanesSize + "]";
 	}
 
 }

@@ -21,7 +21,7 @@ public class Constants {
 	/**
 	 * MAP DRAWING
 	 */
-	public static final float STROKE_SIZE = 3;
+	public static final float STROKE_SIZE = 10;
 	public static final double DEFAULT_SCALE = 3;
 
 }

@@ -77,12 +77,6 @@ public class App {
 		MapPanel mapPanel = new MapPanel();
 
 		controlPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-//		controlPanel.setLayout(new GridBagLayout());
-//		GridBagConstraints gbc = new GridBagConstraints();
-//		gbc.insets = new Insets(10, 0, 0, 0);
-//		gbc.anchor = GridBagConstraints.WEST;
-//		gbc.fill = GridBagConstraints.NONE;
-
 
 		myFrame.add(controlPanel, BorderLayout.NORTH);
 		myFrame.add(infoPanel, BorderLayout.EAST);
@@ -96,24 +90,16 @@ public class App {
 		TextBox offsetXTB = new TextBox(true, SettingsType.OFFSET_X, -800);
 		TextBox offsetYTB = new TextBox(true, SettingsType.OFFSET_Y, -200);
 
-//		gbc.fill = GridBagConstraints.HORIZONTAL;
-//		gbc.gridx = 1;
-//		gbc.gridy = 0;
-//		controlPanel.add(scaleTB, gbc);
 		controlPanel.add(scaleTB);
 		controlPanel.add(offsetXTB);
 		controlPanel.add(offsetYTB);
 
-		// Implement button for increasing the button
 		Button ButtonIncreasingScale = new Button("+");
 		ButtonIncreasingScale.addActionListener(e -> {
 			Settings.modifyScale(0.1);
 			scaleTB.setText("" + Settings.SETTINGS_SCALE);
 		});
 		
-//		gbc.fill = GridBagConstraints.HORIZONTAL;
-//		gbc.gridx = 2;
-//		controlPanel.add(ButtonIncreasingScale, gbc);
 		controlPanel.add(ButtonIncreasingScale);
 
 		Button ButtonDecreasingScale = new Button("-");
@@ -122,9 +108,6 @@ public class App {
 			scaleTB.setText("" + Settings.SETTINGS_SCALE);
 		});
 		
-//		gbc.fill = GridBagConstraints.HORIZONTAL;
-//		gbc.gridx = 0;
-//		controlPanel.add(ButtonDecreasingScale, gbc);	
 		controlPanel.add(ButtonDecreasingScale);
 		
 		Panel moveMapPanel = new Panel();

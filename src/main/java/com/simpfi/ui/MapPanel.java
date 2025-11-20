@@ -12,8 +12,10 @@ import com.simpfi.config.Settings;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
+import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 import com.simpfi.util.XMLReader;
+import com.simpfi.util.reader.NetworkXMLReader;
 
 public class MapPanel extends Panel {
 
@@ -37,14 +39,14 @@ public class MapPanel extends Panel {
 		topLeftPos = Settings.SETTINGS_OFFSET;
 		//System.out.println("Current Scale: " + topLeftPos.getX() + " " + topLeftPos.getY());
 
-		XMLReader xmlReader = null;
+		NetworkXMLReader networlXmlReader = null;
 		List<Edge> edges = new ArrayList<>();
 		List<Junction> junctions = new ArrayList<>();
 
 		try {
-			xmlReader = new XMLReader(Constants.SUMO_NETWORK);
-			junctions = xmlReader.parseJunction();
-			edges = xmlReader.parseEdge(junctions);
+			networlXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
+			junctions = networlXmlReader.parseJunction();
+			edges = networlXmlReader.parseEdge(junctions);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,6 +59,10 @@ public class MapPanel extends Panel {
 		}
 		
 		//System.out.println("Drawing Complete");
+	}
+	
+	private void drawObject(Graphics2D g, Vehicle v) {
+		
 	}
 
 	// Draw Edge
@@ -79,7 +85,7 @@ public class MapPanel extends Panel {
 			Point p1 = translateCoords(shape[i]);
 			Point p2 = translateCoords(shape[i + 1]);
 			
-			drawLine(g, p1, p2, Color.BLUE);
+			drawLine(g, p1, p2, Color.BLACK);
 			
 			//System.out.println("Drawing Lane: " + l.getLaneId());
 		}
