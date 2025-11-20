@@ -3,6 +3,9 @@ package com.simpfi;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import com.simpfi.config.Constants;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
@@ -73,6 +76,12 @@ public class App {
 		MapPanel mapPanel = new MapPanel();
 
 		controlPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+//		controlPanel.setLayout(new GridBagLayout());
+//		GridBagConstraints gbc = new GridBagConstraints();
+//		gbc.insets = new Insets(10, 0, 0, 0);
+//		gbc.anchor = GridBagConstraints.WEST;
+//		gbc.fill = GridBagConstraints.NONE;
+
 
 		myFrame.add(controlPanel, BorderLayout.NORTH);
 		myFrame.add(infoPanel, BorderLayout.EAST);
@@ -82,28 +91,71 @@ public class App {
 		infoPanel.setBackground(Color.GREEN);
 		mapPanel.setBackground(Color.WHITE);
 
-		TextBox scaleTB = new TextBox(true, SettingsType.SCALE,
-			Constants.DEFAULT_SCALE);
+		TextBox scaleTB = new TextBox(true, SettingsType.SCALE, Constants.DEFAULT_SCALE);
 		TextBox offsetXTB = new TextBox(true, SettingsType.OFFSET_X, -800);
 		TextBox offsetYTB = new TextBox(true, SettingsType.OFFSET_Y, -200);
 
+//		gbc.fill = GridBagConstraints.HORIZONTAL;
+//		gbc.gridx = 1;
+//		gbc.gridy = 0;
+//		controlPanel.add(scaleTB, gbc);
 		controlPanel.add(scaleTB);
 		controlPanel.add(offsetXTB);
 		controlPanel.add(offsetYTB);
-		
+
 		// Implement button for increasing the button
-		Button button1 = new Button("Increasing");
-		button1.addActionListener(e -> button1.increasingScale());
-		controlPanel.add(button1);
-		scaleTB.setText(""+ button1.getValueScale());
+		Button ButtonIncreasingScale = new Button("+");
+		ButtonIncreasingScale.addActionListener(e -> {
+			ButtonIncreasingScale.increasingScale();
+			scaleTB.setText("" + ButtonIncreasingScale.getValueScale());
+		});
 		
-		Button button2 = new Button("Decreasing");
-		button2.addActionListener(e -> button2.decreasingScale());
-		controlPanel.add(button2);
-		scaleTB.setText("" + button2.getValueScale());
+//		gbc.fill = GridBagConstraints.HORIZONTAL;
+//		gbc.gridx = 2;
+//		controlPanel.add(ButtonIncreasingScale, gbc);
+		controlPanel.add(ButtonIncreasingScale);
+
+		Button ButtonDecreasingScale = new Button("-");
+		ButtonDecreasingScale.addActionListener(e -> {
+			ButtonDecreasingScale.decreasingScale();
+			scaleTB.setText("" + ButtonDecreasingScale.getValueScale());
+		});
 		
+//		gbc.fill = GridBagConstraints.HORIZONTAL;
+//		gbc.gridx = 0;
+//		controlPanel.add(ButtonDecreasingScale, gbc);	
+		controlPanel.add(ButtonDecreasingScale);
+		
+		Button ButtonMoveUp = new Button("Up");
+		ButtonMoveUp.addActionListener(e -> {
+			ButtonMoveUp.moveUp();
+			offsetYTB.setText("" + ButtonMoveUp.getValueY());
+		});
+		controlPanel.add(ButtonMoveUp);
+
+		Button ButtonMoveDown = new Button("Down");
+		ButtonMoveDown.addActionListener(e -> {
+			ButtonMoveDown.moveDown();
+			offsetYTB.setText("" + ButtonMoveDown.getValueY());
+		});
+		controlPanel.add(ButtonMoveDown);
+		
+		Button ButtonMoveRight = new Button("Right");
+		ButtonMoveRight.addActionListener(e -> {
+			ButtonMoveRight.moveRight();
+			offsetXTB.setText("" + ButtonMoveRight.getValueX());
+		});
+		controlPanel.add(ButtonMoveRight);
+		
+		Button ButtonMoveLeft = new Button("Left");
+		ButtonMoveLeft.addActionListener(e -> {
+			ButtonMoveLeft.moveLeft();
+			offsetXTB.setText("" + ButtonMoveLeft.getValueX());
+		});
+		controlPanel.add(ButtonMoveLeft);
 		
 
+		
 		// ALWAYS PUT THIS AT THE END
 		myFrame.setVisible(true);
 
