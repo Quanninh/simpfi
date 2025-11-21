@@ -15,6 +15,7 @@ import com.simpfi.object.Lane;
 import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.NetworkXMLReader;
+import java.util.Map;
 
 public class MapPanel extends Panel {
 
@@ -66,8 +67,59 @@ public class MapPanel extends Panel {
 	}
 
 	private void drawObject(Graphics2D g, Vehicle v) {
+		// Draw real-world vehicle shapes
+	private static final Map<String, double[]> vehicle_dimension = Map.of(
+		"private", new double[]{1.8, 4.5},
+		"truck", new double[]{2.5, 12.0},
+		"bus", new double[]{2.5, 12.0},
+		"motorcycle", new double[]{0.8, 2.2},
+		"emergency", new double[]{1.8, 4.5}
+	);
+	private void drawObject(Graphics2D g, Vehicle v) {
+		if (v == null){
+			return;
+		}
+		Point pos = translateCoords(new Point(v.getPosition()[0], v.getPosition()[1]));
+		double[] dims = vehicle_dimension.getOrDefault(v.getType(), new double[]{1.8, 4.5});
+		int width = (int)(dims[0] * scale);
+		int length = (int)(dims[1] * scale);
 
+		Color color;
+		switch(v.getType()){
+			case "truck":
+				color = Color.GRAY;
+				break;
+			case "bus":
+				color = Color.YELLOW;
+				break;
+			case "motorcycle":
+				color = Color.MAGENTA;
+				break;
+			case "emergency":
+				color = Color.RED;
+				break;
+			default:
+				color = Color.GREEN;
+				break;
+		}
+		g.setColor(color);
+
+		double angle = 0;
+		try {
+			angle = v.getAngle();
+		}catch (Exception e){
+
+		}
+		g.rotate(Math.toRadians(-angle), pos.getX(), pos.getY());
+		g.fillRect((int) pos.getX() - width/2, (int) pos.getY() - length/2, width, length);
+
+		g.setColor(color);
+		g.drawRect((int) pos.getX() - width/2, (int) pos.getY() - length/2, width, length);
+
+		// Reset rotation
+		g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
 	}
+	
 
 	// Draw Edge
 	private void drawObject(Graphics2D g, Edge e) {
