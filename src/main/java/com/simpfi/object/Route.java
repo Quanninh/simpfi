@@ -3,10 +3,10 @@ package com.simpfi.object;
 import java.util.Arrays;
 
 public class Route {
-	
+
 	private String id;
 	private Edge[] edges;
-	
+
 	public Route(String id, Edge[] edges) {
 		this.id = id;
 		this.edges = edges;

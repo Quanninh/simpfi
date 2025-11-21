@@ -9,7 +9,7 @@ public class Lane {
 	private String laneId;
 	private Point[] shape;
 	private int shapeSize;
-	
+
 	public Lane(String laneId, Point[] shape) {
 		this.laneId = laneId;
 		this.shape = shape;
@@ -33,5 +33,5 @@ public class Lane {
 		return "Lane [laneId=" + laneId + ", shape=" + Arrays.toString(shape)
 			+ "]";
 	}
-	
+
 }

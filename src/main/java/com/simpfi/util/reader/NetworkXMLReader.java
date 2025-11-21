@@ -17,13 +17,12 @@ public class NetworkXMLReader extends XMLReader {
 		super(fileAddress);
 	}
 
-	public List<Edge> parseEdge(List<Junction> junctions)
-		throws Exception {
+	public List<Edge> parseEdge(List<Junction> junctions) throws Exception {
 
 		NodeList edgeNodeList = document.getElementsByTagName("edge");
 
 		List<Edge> edges = new ArrayList<>();
-		
+
 		for (int i = 0; i < edgeNodeList.getLength(); i++) {
 			Element edge = (Element) edgeNodeList.item(i);
 
@@ -35,7 +34,8 @@ public class NetworkXMLReader extends XMLReader {
 
 				String shape = lane.getAttribute("shape");
 
-				laneArr[j] = new Lane(lane.getAttribute("id"), extractPoints(shape));
+				laneArr[j] = new Lane(lane.getAttribute("id"),
+					extractPoints(shape));
 			}
 
 			Junction from = searchForJunction(edge.getAttribute("from"),
@@ -48,7 +48,7 @@ public class NetworkXMLReader extends XMLReader {
 
 		return edges;
 	}
-	
+
 	public List<Junction> parseJunction() throws Exception {
 
 		NodeList edgeNodeList = document.getElementsByTagName("junction");
@@ -67,13 +67,14 @@ public class NetworkXMLReader extends XMLReader {
 
 			String shape = junction.getAttribute("shape");
 
-			Junction j = new Junction(junctionId, junctionType, extractPoints(shape));
+			Junction j = new Junction(junctionId, junctionType,
+				extractPoints(shape));
 			junctions.add(j);
 		}
 
 		return junctions;
 	}
-	
+
 	public Junction searchForJunction(String id, List<Junction> junctions) {
 		for (int i = 0; i < junctions.size(); i++) {
 			if (junctions.get(i).getId().equals(id)) {
@@ -82,7 +83,7 @@ public class NetworkXMLReader extends XMLReader {
 		}
 		return null;
 	}
-	
+
 	public Edge searchForEdge(String id, List<Edge> edges) {
 		for (int i = 0; i < edges.size(); i++) {
 			if (edges.get(i).getId().equals(id)) {
@@ -91,5 +92,5 @@ public class NetworkXMLReader extends XMLReader {
 		}
 		return null;
 	}
-	
+
 }

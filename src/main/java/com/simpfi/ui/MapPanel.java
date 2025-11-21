@@ -14,9 +14,7 @@ import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
 import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
-import com.simpfi.util.XMLReader;
 import com.simpfi.util.reader.NetworkXMLReader;
-import com.simpfi.util.reader.RouteXMLReader;
 
 public class MapPanel extends Panel {
 
@@ -35,10 +33,11 @@ public class MapPanel extends Panel {
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setStroke(new BasicStroke(Constants.STROKE_SIZE));
-		
+
 		scale = Settings.SETTINGS_SCALE;
 		topLeftPos = Settings.SETTINGS_OFFSET;
-		//System.out.println("Current Scale: " + topLeftPos.getX() + " " + topLeftPos.getY());
+		// System.out.println("Current Scale: " + topLeftPos.getX() + " " +
+		// topLeftPos.getY());
 
 		NetworkXMLReader networkXmlReader = null;
 		List<Edge> edges = new ArrayList<>();
@@ -62,12 +61,12 @@ public class MapPanel extends Panel {
 		for (Junction j : junctions) {
 			drawObject(g2D, j);
 		}
-		
-		//System.out.println("Drawing Complete");
+
+		// System.out.println("Drawing Complete");
 	}
-	
+
 	private void drawObject(Graphics2D g, Vehicle v) {
-		
+
 	}
 
 	// Draw Edge
@@ -89,10 +88,10 @@ public class MapPanel extends Panel {
 		for (int i = 0; i < size - 1; i++) {
 			Point p1 = translateCoords(shape[i]);
 			Point p2 = translateCoords(shape[i + 1]);
-			
+
 			drawLine(g, p1, p2, Color.BLACK);
-			
-			//System.out.println("Drawing Lane: " + l.getLaneId());
+
+			// System.out.println("Drawing Lane: " + l.getLaneId());
 		}
 	}
 
@@ -115,10 +114,10 @@ public class MapPanel extends Panel {
 			}
 
 			drawLine(g, p1, p2, Color.RED);
-			//System.out.println("Drawing Junction: " + j.getId());
+			// System.out.println("Drawing Junction: " + j.getId());
 		}
 	}
-	
+
 	private void drawLine(Graphics2D g, Point p1, Point p2, Color color) {
 		g.setColor(color);
 		g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(),

@@ -2,23 +2,15 @@ package com.simpfi;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 
 import com.simpfi.config.Constants;
-import com.simpfi.config.Settings;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.sumo.wrapper.VehicleController;
-import com.simpfi.ui.Button;
 import com.simpfi.ui.ControlPanel;
 import com.simpfi.ui.Frame;
 import com.simpfi.ui.MapPanel;
 import com.simpfi.ui.Panel;
-import com.simpfi.ui.TextBox;
-import com.simpfi.ui.TextBox.SettingsType;
 import com.simpfi.util.reader.RouteXMLReader;
 
 public class App {
@@ -26,27 +18,31 @@ public class App {
 		MapPanel mapPanel = generateUI();
 		SumoConnectionManager sim = establishConnection();
 
-
-		RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
+		RouteXMLReader routeXmlReader = new RouteXMLReader(
+			Constants.SUMO_ROUTE);
 		System.out.println(routeXmlReader.parseRoute().toString());
 		System.out.println(routeXmlReader.parseVehicleType().toString());
-		
+
 		while (true) {
-			//retrieveData(sim);
+			// retrieveData(sim);
 			mapPanel.repaint();
 		}
 	}
 
-	private static SumoConnectionManager establishConnection() throws Exception {
-		SumoConnectionManager sim = new SumoConnectionManager(Constants.SUMO_CONFIG);
+	private static SumoConnectionManager establishConnection()
+		throws Exception {
+		SumoConnectionManager sim = new SumoConnectionManager(
+			Constants.SUMO_CONFIG);
 		return sim;
 	}
 
-	private static void retrieveData(SumoConnectionManager sim) throws Exception {
+	private static void retrieveData(SumoConnectionManager sim)
+		throws Exception {
 		double stepLen = 0.1;
 		long stepMs = (long) (stepLen * 1000);
 		VehicleController vehicleController = new VehicleController(sim);
-		TrafficLightController trafficLightController = new TrafficLightController(sim);
+		TrafficLightController trafficLightController = new TrafficLightController(
+			sim);
 
 		try {
 			long next = System.currentTimeMillis();
@@ -62,7 +58,8 @@ public class App {
 					String edge = vehicleController.getRoadID(vid);
 					// System.out.printf("t=%.1fs id=%s v=%.2f m/s edge=%s%n",
 					// time, vid, speed, edge);
-					System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed, edge);
+					System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed,
+						edge);
 				}
 
 				next += stepMs;
@@ -89,7 +86,7 @@ public class App {
 
 		infoPanel.setBackground(Color.GREEN);
 		mapPanel.setBackground(Color.WHITE);
-		
+
 		// ALWAYS PUT THIS AT THE END
 		myFrame.setVisible(true);
 

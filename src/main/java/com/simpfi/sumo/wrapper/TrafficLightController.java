@@ -4,7 +4,7 @@ import it.polito.appeal.traci.SumoTraciConnection;
 import de.tudresden.sumo.cmd.Trafficlight;
 
 public class TrafficLightController {
-	
+
 	private final SumoTraciConnection conn;
 
 	public TrafficLightController(SumoConnectionManager conn) {
@@ -15,5 +15,5 @@ public class TrafficLightController {
 		return (String) conn
 			.do_job_get(Trafficlight.getRedYellowGreenState(tlId));
 	}
-	
+
 }
