@@ -30,9 +30,9 @@ public class VehicleController {
 		return (double[]) conn.do_job_get(Vehicle.getPosition(vId));
 	}
 	
-	public void addVehicle(String vType, String vID, String routeID, double depart) {
+	public void addVehicle(String vType, String routeID) {
 		// Add vehicle to network
-		conn.do_job_get(Vehicle.add(vType, vID, routeID, depart));
+		conn.do_job_get(Vehicle.add(vType, routeID));
 	}
 	
 	/*
