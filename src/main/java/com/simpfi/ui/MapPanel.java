@@ -66,8 +66,7 @@ public class MapPanel extends Panel {
 		// System.out.println("Drawing Complete");
 	}
 
-	private void drawObject(Graphics2D g, Vehicle v) {
-		// Draw real-world vehicle shapes
+	// Draw real-world vehicle shapes
 	private static final Map<String, double[]> vehicle_dimension = Map.of(
 		"private", new double[]{1.8, 4.5},
 		"truck", new double[]{2.5, 12.0},
