@@ -1,5 +1,7 @@
 package com.simpfi.config;
-
+/** 
+ * Defines fixed values for file paths and drawing properties to ensure consistency when plotting maps and running programs.
+*/
 public class Constants {
 
 	/**
