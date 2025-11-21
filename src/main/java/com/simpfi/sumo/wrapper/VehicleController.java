@@ -30,9 +30,10 @@ public class VehicleController {
 		return (double[]) conn.do_job_get(Vehicle.getPosition(vId));
 	}
 	
-	public void addVehicle(String vType, String routeID) {
+	public void addVehicle(String vehicleID, String routeID, String vType) throws Exception {
 		// Add vehicle to network
-		conn.do_job_get(Vehicle.add(vType, routeID));
+		//double now = conn.do_job_get(SumoTraciConnection.getCurrentTime());
+		conn.do_job_get(Vehicle.add(vehicleID, vType, routeID, 0, 0.0, 0.0, (byte) 0));
 	}
 	
 	/*
