@@ -18,7 +18,7 @@ import javax.swing.KeyStroke;
 import javax.swing.RootPaneContainer;
 import javax.swing.plaf.RootPaneUI;
 
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+//import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
