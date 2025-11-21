@@ -12,18 +12,19 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
-import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-import javax.swing.RootPaneContainer;
-import javax.swing.plaf.RootPaneUI;
-
-//import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.ui.TextBox.SettingsType;
-
+/**
+ * Custom ControlPanel class that inherits {@link com.simpfi.ui.Panel}.
+ * The control panel has three main sets of components:
+ * 1. Three textboxes correspond to scale, coordinate x and y.
+ * 2. Buttons and keyboard shortcuts to zoom in, zoom out.
+ * 3. Buttons and keyboard shortcuts to move in four directions: Left, Right, Up, Down.
+ */
 public class ControlPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
