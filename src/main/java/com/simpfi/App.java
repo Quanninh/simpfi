@@ -63,6 +63,11 @@ public class App {
 						edge);
 				}
 
+				for (String tl : trafficLightController.getIDList()){
+					String light_state = trafficLightController.getState(tl);
+					System.out.printf("light state=%s", light_state);
+				}
+
 				next += stepMs;
 				// long sleep = next - System.currentTimeMillis();
 				// if (sleep > 0) Thread.sleep(sleep);
