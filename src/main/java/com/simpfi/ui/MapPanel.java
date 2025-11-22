@@ -52,22 +52,23 @@ public class MapPanel extends Panel {
 		NetworkXMLReader networkXmlReader = null;
 		List<Edge> edges = new ArrayList<>();
 		List<Junction> junctions = new ArrayList<>();
-
-		SumoConnectionManager scm = new SumoConnectionManager(Constants.SUMO_CONFIG);
-		VehicleController vID = new VehicleController(scm);
 		List<Vehicle> vehicles = new ArrayList<>();
+
 
 		try {
 			networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
 			junctions = networkXmlReader.parseJunction();
 			edges = networkXmlReader.parseEdge(junctions);
 
+			SumoConnectionManager scm = new SumoConnectionManager(Constants.SUMO_CONFIG);
+			VehicleController vID = new VehicleController(scm);
+
 			for (String id : vID.getAllVehicleIDs()){
-				Point pos = id.getPosition(id);
-				double speed = id.getSpeed(id);
-				String roadID = id.getRoadID(id);
-				double angle = id.getAngle(id);
-				String type = id.getType(id);
+				Point pos = vID.getPosition(id);
+				double speed = vID.getSpeed(id);
+				String roadID = vID.getRoadID(id);
+				double angle = vID.getAngle(id);
+				String type = vID.getTypeID(id);
 				
 				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
 				vehicles.add(v);

@@ -24,7 +24,7 @@ public class Settings {
 	public static int vehicleCounter = 0;
 
 	public static void updateVehicleCounter(){
-		this.vehicleCounter = MapPanel.counter;
+		vehicleCounter = MapPanel.counter;
 	}
 
 	public static void modifyScale(double change) {
@@ -68,7 +68,7 @@ public class Settings {
 
 	public static List<String> generate_vID(){
 		List<String> vehicle_ids = new ArrayList<>();
-		for (int i = 0; i < this.vehicleCounter; i++){
+		for (int i = 0; i < vehicleCounter; i++){
 			String id = "v_" + i;
 			vehicle_ids.add(id);
 		}
