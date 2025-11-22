@@ -35,6 +35,14 @@ public class MapPanel extends Panel {
 	private List<Junction> junctions = new ArrayList<>();
 	private List<Vehicle> vehicles = new ArrayList<>();
 
+	private static final Map<String, double[]> vehicle_dimension = Map.of(
+		"private", new double[]{1.8, 4.5},
+		"truck", new double[]{2.5, 12.0},
+		"bus", new double[]{2.5, 12.0},
+		"motorcycle", new double[]{0.8, 2.2},
+		"emergency", new double[]{1.8, 4.5}
+	);
+
 	public MapPanel() {
 		try {
 			NetworkXMLReader networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
@@ -76,7 +84,7 @@ public class MapPanel extends Panel {
 		topLeftPos = Settings.SETTINGS_OFFSET;
 		// System.out.println("Current Scale: " + topLeftPos.getX() + " " +
 		// topLeftPos.getY());
-		
+
 
 //		System.out.println("Edges:");
 //		System.out.println(edges.toString());
@@ -98,20 +106,15 @@ public class MapPanel extends Panel {
 
 
 
-	// Draw real-world vehicle shapes
-	private static final Map<String, double[]> vehicle_dimension = Map.of(
-		"private", new double[]{1.8, 4.5},
-		"truck", new double[]{2.5, 12.0},
-		"bus", new double[]{2.5, 12.0},
-		"motorcycle", new double[]{0.8, 2.2},
-		"emergency", new double[]{1.8, 4.5}
-	);
 	/**
 	 * Used to draw a Vehicle on the User Interface.
 	 * @param g where the vehicle is drawn on.
 	 * @param v the vehicle that is passed to the method.
 	 */
+
 	// Apply Function Overloading for drawObject to draw Vehicle, Edge, Lane, Junction
+	// Draw real-world vehicle shapes
+	
 	private void drawObject(Graphics2D g, Vehicle v) {
 		if (v == null){
 			return;
