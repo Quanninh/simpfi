@@ -17,6 +17,7 @@ import com.simpfi.object.Lane;
 import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.NetworkXMLReader;
+import com.simpfi.sumo.wrapper.VehicleController;
 
 public class MapPanel extends Panel {
 
@@ -45,10 +46,25 @@ public class MapPanel extends Panel {
 		List<Edge> edges = new ArrayList<>();
 		List<Junction> junctions = new ArrayList<>();
 
+		SumoConnectionManager scm = new SumoConnectionManager(SUMO_CONFIG);
+		VehicleController vID = new VehicleController(scm);
+		List<Vehicle> vehicles = new ArrayList<>();
+
 		try {
 			networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
 			junctions = networkXmlReader.parseJunction();
 			edges = networkXmlReader.parseEdge(junctions);
+
+			for (String id : vID.getAllVehicleIDs()){
+				double[] pos = id.getPosition(id);
+				double speed = id.getSpeed(id);
+				double roadID = id.getRoadID(id);
+				double angle = id.getAngle(id);
+				String type = id.getType(id);
+				
+				Vehicle v = new Vehicle(id, pos[0], pos[1], speed, roadID, type, angle);
+				vehicles.add(v);
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,6 +78,10 @@ public class MapPanel extends Panel {
 		}
 		for (Junction j : junctions) {
 			drawObject(g2D, j);
+		}
+
+		for (Vehicle v : vehicles){
+			drawObject(g2D, v);
 		}
 
 		// System.out.println("Drawing Complete");
