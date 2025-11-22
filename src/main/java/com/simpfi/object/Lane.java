@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import com.simpfi.util.Point;
 /**
- * Creates Lane class (may inherits {@link de.tudresden.sumo.cmd.Lane} in the future)
+ * Creates Lane class (may includes {@link de.tudresden.sumo.cmd.Lane} in the future)
  */
 public class Lane {
 
