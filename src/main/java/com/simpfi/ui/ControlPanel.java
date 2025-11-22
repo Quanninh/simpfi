@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.KeyStroke;
+
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.ui.TextBox.SettingsType;
