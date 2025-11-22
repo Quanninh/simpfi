@@ -3,7 +3,9 @@ package com.simpfi.object;
 import java.util.Arrays;
 
 import com.simpfi.util.Point;
-
+/**
+ * Creates Junction class (may includes {@link de.tudresden.sumo.cmd.Junction} in the future).
+ */
 public class Junction {
 
 	private String id;
@@ -36,7 +38,9 @@ public class Junction {
 	public int getShapeSize() {
 		return shapeSize;
 	}
-
+	/**
+	 * Overrides the built-in method toString() to provide a human-readable representation of Junction.
+	 */
 	@Override
 	public String toString() {
 		return "Junction [id=" + id + ", type=" + type + ", shape="

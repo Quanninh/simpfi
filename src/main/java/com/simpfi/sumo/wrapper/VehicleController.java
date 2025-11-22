@@ -2,6 +2,7 @@ package com.simpfi.sumo.wrapper;
 
 import it.polito.appeal.traci.SumoTraciConnection;
 import de.tudresden.sumo.cmd.Vehicle;
+import com.simpfi.util.Point;
 
 import java.util.List;
 
@@ -19,19 +20,30 @@ public class VehicleController {
 	}
 
 	public double getSpeed(String vId) throws Exception {
-		return (Double) conn.do_job_get(Vehicle.getSpeed(vId));
+		return (double) conn.do_job_get(Vehicle.getSpeed(vId));
 	}
 
 	public String getRoadID(String vId) throws Exception {
 		return (String) conn.do_job_get(Vehicle.getRoadID(vId));
 	}
 
-	public double[] getPosition(String vId) throws Exception {
-		return (double[]) conn.do_job_get(Vehicle.getPosition(vId));
+	public Point getPosition(String vId) throws Exception {
+		double[] points = (double[])conn.do_job_get(Vehicle.getPosition(vId));
+		return new Point(points[0], points[1]);
+	}
+
+	public double getAngle(String vId) throws Exception {
+		return (double) conn.do_job_get(Vehicle.getAngle(vId));
+	}
+
+	public String getTypeID(String vId) throws Exception {
+		return (String) conn.do_job_get(Vehicle.getTypeID(vId));
 	}
 	
-	public void addVehicle(String vType, String routeID) {
-		//
+	public void addVehicle(String vehicleID, String routeID, String vType) throws Exception {
+		// Add vehicle to network
+		//double now = conn.do_job_get(SumoTraciConnection.getCurrentTime());
+		conn.do_job_get(Vehicle.add(vehicleID, vType, routeID, 0, 0.0, 0.0, (byte) 0));
 	}
 	
 	/*

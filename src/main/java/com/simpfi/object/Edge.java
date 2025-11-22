@@ -1,7 +1,9 @@
 package com.simpfi.object;
 
 import java.util.Arrays;
-
+/**
+ * Creates Edge class (may includes {@link de.tudresden.sumo.cmd.Edge} in the future).
+ */
 public class Edge {
 
 	String id;
@@ -29,7 +31,9 @@ public class Edge {
 	public int getLanesSize() {
 		return lanesSize;
 	}
-
+	/**
+	 * Overrides the built-in method toString() to provide a human-readable representation of Edge.
+	 */
 	@Override
 	public String toString() {
 		return "Edge [edgeId=" + id + ", conjunctionFrom=" + conjunctionFrom
