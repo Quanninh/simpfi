@@ -26,6 +26,8 @@ public class MapPanel extends Panel {
 	private double scale = 3;
 	private Point topLeftPos = new Point(-800, -200);
 
+	public static int counter = 0;
+
 	public MapPanel() {
 
 	}
@@ -56,14 +58,15 @@ public class MapPanel extends Panel {
 			edges = networkXmlReader.parseEdge(junctions);
 
 			for (String id : vID.getAllVehicleIDs()){
-				double[] pos = id.getPosition(id);
+				Point pos = id.getPosition(id);
 				double speed = id.getSpeed(id);
-				double roadID = id.getRoadID(id);
+				String roadID = id.getRoadID(id);
 				double angle = id.getAngle(id);
 				String type = id.getType(id);
 				
-				Vehicle v = new Vehicle(id, pos[0], pos[1], speed, roadID, type, angle);
+				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
 				vehicles.add(v);
+				counter += 1;
 		}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,6 +90,8 @@ public class MapPanel extends Panel {
 		// System.out.println("Drawing Complete");
 	}
 
+
+
 	// Draw real-world vehicle shapes
 	private static final Map<String, double[]> vehicle_dimension = Map.of(
 		"private", new double[]{1.8, 4.5},
@@ -99,7 +104,7 @@ public class MapPanel extends Panel {
 		if (v == null){
 			return;
 		}
-		Point pos = translateCoords(new Point(v.getPosition()[0], v.getPosition()[1]));
+		Point pos = translateCoords(v.getPosition());
 		double[] dims = vehicle_dimension.getOrDefault(v.getType(), new double[]{1.8, 4.5});
 		int width = (int)(dims[0] * scale);
 		int length = (int)(dims[1] * scale);
