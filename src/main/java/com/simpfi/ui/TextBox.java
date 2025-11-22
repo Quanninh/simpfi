@@ -24,7 +24,6 @@ public class TextBox extends JTextField {
 	 * Constructor for TextBox: In addition to attributes assignment, it: 
 	 * Adds a document listener to update changes when users interact with values in Textboxes.
 	 * Sets the inside text to defaultValue and defined value to column width.
-	 * 
 	 * @param mustBeDouble states wheter users enter double values or not.
 	 * @param type specifies the type of the textbox(SCALE, OFFSET_X, OFFSET_Y).
 	 * @param defaultValue initilizes the value displayed in the text box.

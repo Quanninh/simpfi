@@ -1,16 +1,10 @@
 package com.simpfi.config;
 
-import com.simpfi.util.Point;
-
-	/**
-	 * Creates Settings Class used to initialize and update changes to scale and offset settings of the software.
-	 * @see {@link com.simpfi.ui.MapPanel}, {@link com.simpfi.ui.ControlPanel}, {@link com.simpfi.ui.TextBox}.
-	 */
-
-import com.simpfi.sumo.wrapper.VehicleController;
-import com.simpfi.ui.MapPanel;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.simpfi.ui.MapPanel;
+import com.simpfi.util.Point;
 
 
 public class Settings {

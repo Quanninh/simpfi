@@ -20,15 +20,19 @@ import com.simpfi.config.Settings;
 import com.simpfi.ui.TextBox.SettingsType;
 /**
  * Custom ControlPanel class that inherits {@link com.simpfi.ui.Panel}.
- * The control panel has three main sets of components:
- * 1. Three textboxes correspond to scale, coordinate x and y.
- * 2. Buttons and keyboard shortcuts to zoom in, zoom out.
- * 3. Buttons and keyboard shortcuts to move in four directions: Left, Right, Up, Down.
  */
 public class ControlPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * Constructor used to create the control panel displayed in the user interface.
+	 * Run the program for visualization.
+	 * The control panel has three main sets of components:
+	 * 1. Three textboxes correspond to scale, coordinate x and y.
+	 * 2. Buttons and keyboard shortcuts to zoom in, zoom out.
+	 * 3. Buttons and keyboard shortcuts to move in four directions: Left, Right, Up, Down.
+	 * <b>Note<b>: May update in the future.
+	 */
 	public ControlPanel() {
 		this.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
