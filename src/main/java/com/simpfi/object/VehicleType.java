@@ -1,5 +1,7 @@
 package com.simpfi.object;
-
+/**
+ * Creates Vehicle Type class.
+ */
 public class VehicleType {
 
 	private String id;
@@ -17,7 +19,9 @@ public class VehicleType {
 	public String getvClass() {
 		return vClass;
 	}
-
+	/**
+	 * Overrides the built-in method toString() to provide a human-readable representation of Vehicle Type.
+	 */
 	@Override
 	public String toString() {
 		return "VehicleType [id=" + id + ", vClass=" + vClass + "]";
