@@ -14,6 +14,7 @@ import com.simpfi.ui.Panel;
 import com.simpfi.util.reader.RouteXMLReader;
 
 public class App {
+	
 	public static void main(String[] args) throws Exception {
 		MapPanel mapPanel = generateUI();
 		SumoConnectionManager sim = establishConnection();
@@ -60,6 +61,11 @@ public class App {
 					// time, vid, speed, edge);
 					System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed,
 						edge);
+				}
+
+				for (String tl : trafficLightController.getIDList()){
+					String light_state = trafficLightController.getState(tl);
+					System.out.printf("light state=%s", light_state);
 				}
 
 				next += stepMs;
