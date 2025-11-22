@@ -18,7 +18,7 @@ import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.NetworkXMLReader;
 import com.simpfi.sumo.wrapper.VehicleController;
-import com.simpfi.sumo.wrapper.ConnectionManager;
+import com.simpfi.sumo.wrapper.SumoConnectionManager;
 
 public class MapPanel extends Panel {
 
