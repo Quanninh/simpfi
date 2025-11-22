@@ -2,10 +2,14 @@ package com.simpfi.config;
 
 import com.simpfi.util.Point;
 
+import com.simpfi.sumo.wrapper.VehicleController;
+import com.simpfi.ui.MapPanel;
+
 public class Settings {
 
 	public static double SETTINGS_SCALE = Constants.DEFAULT_SCALE;
 	public static Point SETTINGS_OFFSET = new Point();
+	public static int vehicleCounter = MapPanel.counter;
 
 	public static void modifyScale(double change) {
 		SETTINGS_SCALE += change;
@@ -31,4 +35,8 @@ public class Settings {
 		SETTINGS_OFFSET.setY(newValue);
 	}
 
+	public void generate_vID(MapPanel.vehicleCounter){
+		System.out.println()
+	}
+	
 }

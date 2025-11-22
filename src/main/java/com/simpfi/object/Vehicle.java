@@ -1,12 +1,12 @@
 package com.simpfi.object;
+import com.simpfi.util.Point;
 /**
  * Creates Vehicle class.
  */
 public class Vehicle {
 
 	private String id;
-	private double x;
-	private double y;
+	private Point p;
 	private double speed;
 	private String roadID;
 	private String type;
@@ -14,8 +14,7 @@ public class Vehicle {
 
 	public Vehicle(String id, double x, double y, double speed, String roadID, String type, double angle){
 		this.id = id;
-		this.x = x;
-		this.y = y;
+		p = new Point(x, y);
 		this.speed = speed;
 		this.roadID = roadID;
 		this.type = type;
@@ -26,9 +25,8 @@ public class Vehicle {
 		return this.id;
 	}
 
-	public double[] getPosition(){
-		double[] coordinate = {this.x, this.y};
-		return coordinate;
+	public Point getPosition(){
+		return p;
 	}
 
 	public double getSpeed(){
