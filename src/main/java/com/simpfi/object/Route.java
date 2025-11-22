@@ -2,7 +2,7 @@ package com.simpfi.object;
 
 import java.util.Arrays;
 /**
- * Creates Route class (may includes {@link de.tudresden.sumo.cmd.Route} in the future)
+ * Creates Route class (may includes {@link de.tudresden.sumo.cmd.Route} in the future).
  */
 public class Route {
 

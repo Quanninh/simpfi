@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import com.simpfi.util.Point;
 /**
- * Creates Junction class (may includes {@link de.tudresden.sumo.cmd.Junction} in the future)
+ * Creates Junction class (may includes {@link de.tudresden.sumo.cmd.Junction} in the future).
  */
 public class Junction {
 

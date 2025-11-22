@@ -1,5 +1,7 @@
 package com.simpfi.object;
-
+/**
+ * Creates Vehicle class.
+ */
 public class Vehicle {
 
 	private String id;

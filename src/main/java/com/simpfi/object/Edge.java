@@ -2,7 +2,7 @@ package com.simpfi.object;
 
 import java.util.Arrays;
 /**
- * Creates Edge class (may includes {@link de.tudresden.sumo.cmd.Edge} in the future)
+ * Creates Edge class (may includes {@link de.tudresden.sumo.cmd.Edge} in the future).
  */
 public class Edge {
 
