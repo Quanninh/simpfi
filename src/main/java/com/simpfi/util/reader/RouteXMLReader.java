@@ -11,13 +11,19 @@ import com.simpfi.object.Edge;
 import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
 import com.simpfi.util.XMLReader;
-
+/**
+ * Creates class {@code RouteXMLReader} that inherits {@link com.simpfi.util.XMLReader} used to parse route components such as Route and VehicleType.
+ */
 public class RouteXMLReader extends XMLReader {
 
 	public RouteXMLReader(String fileAddress) throws Exception {
 		super(fileAddress);
 	}
-
+	/**
+	 * Used to parse vehicle types by leveraging methods from {@link org.w3c.dom.Element}.
+	 * @return list of vehicle types from the XML file.
+	 * @throws Exception if the XML structure is invalid.
+	 */
 	public List<VehicleType> parseVehicleType() throws Exception {
 		NodeList typeNodeList = document.getElementsByTagName("vType");
 
@@ -32,7 +38,12 @@ public class RouteXMLReader extends XMLReader {
 		}
 		return types;
 	}
-
+	/**
+	 * Used to parse routes by leveraging methods from {@link org.w3c.dom.Element}.
+	 * Get the {@code edges} attribute of Route by using an instance of {@link com.simpfi.util.reader.NetworkXMLReader}.
+	 * @return list of routes from the XML file.
+	 * @throws Exception if the XML structure is invalid.
+	 */
 	public List<Route> parseRoute() throws Exception {
 		NodeList typeNodeList = document.getElementsByTagName("route");
 
