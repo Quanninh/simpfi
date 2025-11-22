@@ -19,7 +19,7 @@ public class VehicleController {
 	}
 
 	public double getSpeed(String vId) throws Exception {
-		return (Double) conn.do_job_get(Vehicle.getSpeed(vId));
+		return (double) conn.do_job_get(Vehicle.getSpeed(vId));
 	}
 
 	public String getRoadID(String vId) throws Exception {
@@ -28,6 +28,14 @@ public class VehicleController {
 
 	public double[] getPosition(String vId) throws Exception {
 		return (double[]) conn.do_job_get(Vehicle.getPosition(vId));
+	}
+
+	public double getAngle(String vId) throws Exception {
+		return (double) conn.do_job_get(Vehicle.getAngle(vId));
+	}
+
+	public String getType(String vId) throws Exception {
+		return (String) conn.do_job_get(Vehicle.getType(vId));
 	}
 	
 	public void addVehicle(String vehicleID, String routeID, String vType) throws Exception {

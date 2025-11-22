@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
@@ -15,7 +17,6 @@ import com.simpfi.object.Lane;
 import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.NetworkXMLReader;
-import java.util.Map;
 
 public class MapPanel extends Panel {
 
