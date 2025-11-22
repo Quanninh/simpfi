@@ -6,7 +6,10 @@ import java.util.List;
 import com.simpfi.ui.MapPanel;
 import com.simpfi.util.Point;
 
-
+/**
+ * Creates Settings Class used to initialize and update changes to scale and offset settings of the software.
+ * @see {@link com.simpfi.ui.MapPanel}, {@link com.simpfi.ui.ControlPanel}, {@link com.simpfi.ui.TextBox}.
+ */
 public class Settings {
 
 	public static double SETTINGS_SCALE = Constants.DEFAULT_SCALE;
