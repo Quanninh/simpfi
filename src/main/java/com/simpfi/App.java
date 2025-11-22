@@ -14,6 +14,7 @@ import com.simpfi.ui.Panel;
 import com.simpfi.util.reader.RouteXMLReader;
 
 public class App {
+	
 	public static void main(String[] args) throws Exception {
 		MapPanel mapPanel = generateUI();
 		SumoConnectionManager sim = establishConnection();

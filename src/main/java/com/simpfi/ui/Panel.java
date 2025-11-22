@@ -1,6 +1,7 @@
 package com.simpfi.ui;
 
 import javax.swing.JPanel;
+
 /**
  * Custom Panel class that inherits {@link javax.swing.JPanel}.
  */
