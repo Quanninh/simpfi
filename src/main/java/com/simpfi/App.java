@@ -12,7 +12,14 @@ import com.simpfi.ui.Frame;
 import com.simpfi.ui.MapPanel;
 import com.simpfi.ui.Panel;
 import com.simpfi.util.reader.RouteXMLReader;
-
+/**
+ * App Class contains the {@code main} function and is used to run the software.
+ * Flow of actions:
+ * 1. Initialize the User Interface.
+ * 2. Establish the TraCI connection.
+ * 3. Read XML files and parse essential components of the traffic.
+ * 4. Start the simulation loop.
+ */
 public class App {
 	
 	public static void main(String[] args) throws Exception {
