@@ -18,6 +18,7 @@ import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.NetworkXMLReader;
 import com.simpfi.sumo.wrapper.VehicleController;
+import com.simpfi.sumo.wrapper.ConnectionManager;
 
 public class MapPanel extends Panel {
 
@@ -48,7 +49,7 @@ public class MapPanel extends Panel {
 		List<Edge> edges = new ArrayList<>();
 		List<Junction> junctions = new ArrayList<>();
 
-		SumoConnectionManager scm = new SumoConnectionManager(SUMO_CONFIG);
+		SumoConnectionManager scm = new SumoConnectionManager(Constants.SUMO_CONFIG);
 		VehicleController vID = new VehicleController(scm);
 		List<Vehicle> vehicles = new ArrayList<>();
 

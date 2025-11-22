@@ -1,10 +1,18 @@
 package com.simpfi.config;
 
 import com.simpfi.util.Point;
+
 	/**
 	 * Creates Settings Class used to initialize and update changes to scale and offset settings of the software.
 	 * @see {@link com.simpfi.ui.MapPanel}, {@link com.simpfi.ui.ControlPanel}, {@link com.simpfi.ui.TextBox}.
 	 */
+
+import com.simpfi.sumo.wrapper.VehicleController;
+import com.simpfi.ui.MapPanel;
+import java.util.List;
+import java.util.ArrayList;
+
+
 public class Settings {
 
 	public static double SETTINGS_SCALE = Constants.DEFAULT_SCALE;
@@ -13,6 +21,12 @@ public class Settings {
 	 * Adds a value to the scale.
 	 * @param change the value users want to add.
 	 */
+	public static int vehicleCounter = 0;
+
+	public static void updateVehicleCounter(){
+		this.vehicleCounter = MapPanel.counter;
+	}
+
 	public static void modifyScale(double change) {
 		SETTINGS_SCALE += change;
 	}
@@ -52,8 +66,13 @@ public class Settings {
 		SETTINGS_OFFSET.setY(newValue);
 	}
 
-	public void generate_vID(MapPanel.vehicleCounter){
-		System.out.println()
+	public static List<String> generate_vID(){
+		List<String> vehicle_ids = new ArrayList<>();
+		for (int i = 0; i < this.vehicleCounter; i++){
+			String id = "v_" + i;
+			vehicle_ids.add(id);
+		}
+		return vehicle_ids;
 	}
 	
 }
