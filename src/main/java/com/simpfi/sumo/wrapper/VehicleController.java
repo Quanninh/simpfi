@@ -2,6 +2,7 @@ package com.simpfi.sumo.wrapper;
 
 import it.polito.appeal.traci.SumoTraciConnection;
 import de.tudresden.sumo.cmd.Vehicle;
+import com.simpfi.util.Point
 
 import java.util.List;
 
@@ -26,8 +27,9 @@ public class VehicleController {
 		return (String) conn.do_job_get(Vehicle.getRoadID(vId));
 	}
 
-	public double[] getPosition(String vId) throws Exception {
-		return (double[]) conn.do_job_get(Vehicle.getPosition(vId));
+	public Point getPosition(String vId) throws Exception {
+		double[] points = conn.do_job_get(Vehicle.getPosition(vId));
+		return new Point(points[0], points[1]);
 	}
 
 	public double getAngle(String vId) throws Exception {

@@ -58,13 +58,13 @@ public class MapPanel extends Panel {
 			edges = networkXmlReader.parseEdge(junctions);
 
 			for (String id : vID.getAllVehicleIDs()){
-				double[] pos = id.getPosition(id);
+				Point pos = id.getPosition(id);
 				double speed = id.getSpeed(id);
 				String roadID = id.getRoadID(id);
 				double angle = id.getAngle(id);
 				String type = id.getType(id);
 				
-				Vehicle v = new Vehicle(id, pos[0], pos[1], speed, roadID, type, angle);
+				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
 				vehicles.add(v);
 				counter += 1;
 		}

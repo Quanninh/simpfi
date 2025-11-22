@@ -12,9 +12,9 @@ public class Vehicle {
 	private String type;
 	private double angle;
 
-	public Vehicle(String id, double x, double y, double speed, String roadID, String type, double angle){
+	public Vehicle(String id, Point point, double speed, String roadID, String type, double angle){
 		this.id = id;
-		p = new Point(x, y);
+		this.p = point;
 		this.speed = speed;
 		this.roadID = roadID;
 		this.type = type;
@@ -26,7 +26,7 @@ public class Vehicle {
 	}
 
 	public Point getPosition(){
-		return p;
+		return this.p;
 	}
 
 	public double getSpeed(){
