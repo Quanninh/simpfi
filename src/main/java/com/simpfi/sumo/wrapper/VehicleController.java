@@ -41,7 +41,12 @@ public class VehicleController {
 	public String getTypeID(String vId) throws Exception {
 		return (String) conn.do_job_get(Vehicle.getTypeID(vId));
 	}
-	
+	/**
+	 * Used to add a new vehicle to the list.
+	 * @param vehicleID id of the new vehicle, must be unique.
+	 * @param routID id of the route that the new vehicle is on.
+	 * @param vType the type of the new vehicle.
+	 */
 	public void addVehicle(String vehicleID, String routeID, String vType) throws Exception {
 		// Add vehicle to network
 		// double now = conn.do_job_get(SumoTraciConnection.getCurrentTime());
