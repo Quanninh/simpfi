@@ -14,16 +14,17 @@ public class Settings {
 
 	public static double SETTINGS_SCALE = Constants.DEFAULT_SCALE;
 	public static Point SETTINGS_OFFSET = new Point();
-	/**
-	 * Adds a value to the scale.
-	 * @param change the value users want to add.
-	 */
 	public static int vehicleCounter = 0;
 
 	public static void updateVehicleCounter(){
 		vehicleCounter = MapPanel.counter;
 	}
 
+
+    /**
+	 * Adds a value to the scale.
+	 * @param change the value users want to add.
+	 */
 	public static void modifyScale(double change) {
 		SETTINGS_SCALE += change;
 	}
