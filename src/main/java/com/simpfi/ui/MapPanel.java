@@ -32,35 +32,13 @@ public class MapPanel extends Panel {
 
 	public static int counter = 0;
 
+	private List<Edge> edges = new ArrayList<>();
+	private List<Junction> junctions = new ArrayList<>();
+	private List<Vehicle> vehicles = new ArrayList<>();
+
 	public MapPanel() {
-
-	}
-	/**
-	 * Overrides paint method from {@link java.awt.Component}.
-	 * Parses objects in the XML files and draw them on the panel.
-	 * Graphics is replaced by Graphics2D for more advanced drawing features.
-	 * @param g where elements are drawn.
-	 */
-	@Override
-	public void paint(Graphics g) {
-		// Clear
-		super.paintComponent(g);
-		Graphics2D g2D = (Graphics2D) g;
-		g2D.setStroke(new BasicStroke(Constants.STROKE_SIZE));
-
-		scale = Settings.SETTINGS_SCALE;
-		topLeftPos = Settings.SETTINGS_OFFSET;
-		// System.out.println("Current Scale: " + topLeftPos.getX() + " " +
-		// topLeftPos.getY());
-
-		NetworkXMLReader networkXmlReader = null;
-		List<Edge> edges = new ArrayList<>();
-		List<Junction> junctions = new ArrayList<>();
-		List<Vehicle> vehicles = new ArrayList<>();
-
-
 		try {
-			networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
+			NetworkXMLReader networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
 			junctions = networkXmlReader.parseJunction();
 			edges = networkXmlReader.parseEdge(junctions);
 
@@ -81,6 +59,25 @@ public class MapPanel extends Panel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * Overrides paint method from {@link java.awt.Component}.
+	 * Parses objects in the XML files and draw them on the panel.
+	 * Graphics is replaced by Graphics2D for more advanced drawing features.
+	 * @param g where elements are drawn.
+	 */
+	@Override
+	public void paint(Graphics g) {
+		// Clear
+		super.paintComponent(g);
+		Graphics2D g2D = (Graphics2D) g;
+		g2D.setStroke(new BasicStroke(Constants.STROKE_SIZE));
+
+		scale = Settings.SETTINGS_SCALE;
+		topLeftPos = Settings.SETTINGS_OFFSET;
+		// System.out.println("Current Scale: " + topLeftPos.getX() + " " +
+		// topLeftPos.getY());
+		
 
 //		System.out.println("Edges:");
 //		System.out.println(edges.toString());
