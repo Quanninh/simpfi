@@ -18,7 +18,6 @@ import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.NetworkXMLReader;
 import com.simpfi.sumo.wrapper.VehicleController;
-import com.simpfi.sumo.wrapper.SumoConnectionManager;
 
 public class MapPanel extends Panel {
 
@@ -32,7 +31,12 @@ public class MapPanel extends Panel {
 	public MapPanel() {
 
 	}
-
+	/**
+	 * Overrides paint method from {@link java.awt.Component}.
+	 * Parses objects in the XML files and draw them on the panel.
+	 * Graphics is replaced by Graphics2D for more advanced drawing features.
+	 * @param g where elements are drawn.
+	 */
 	@Override
 	public void paint(Graphics g) {
 		// Clear
@@ -101,6 +105,12 @@ public class MapPanel extends Panel {
 		"motorcycle", new double[]{0.8, 2.2},
 		"emergency", new double[]{1.8, 4.5}
 	);
+	/**
+	 * Used to draw a Vehicle on the User Interface.
+	 * @param g where the vehicle is drawn on.
+	 * @param v the vehicle that is passed to the method.
+	 */
+	// Apply Function Overloading for drawObject to draw Vehicle, Edge, Lane, Junction
 	private void drawObject(Graphics2D g, Vehicle v) {
 		if (v == null){
 			return;
@@ -136,24 +146,35 @@ public class MapPanel extends Panel {
 		}catch (Exception e){
 
 		}
+		// Rotate g so that we can draw the vehicle in the right direction
 		g.rotate(Math.toRadians(-angle), pos.getX(), pos.getY());
+		// Fill the rectangle with chosen color
 		g.fillRect((int) pos.getX() - width/2, (int) pos.getY() - length/2, width, length);
 
 		g.setColor(color);
+		// Draw the outline of the rectangle
 		g.drawRect((int) pos.getX() - width/2, (int) pos.getY() - length/2, width, length);
 
 		// Reset rotation
 		g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
 	}
 	
-
+	/**
+	 * Used to draw an Edge on the User Interface.
+	 * @param g where the edge is drawn on.
+	 * @param e the edge that is passed to the method.
+	 */
 	// Draw Edge
 	private void drawObject(Graphics2D g, Edge e) {
 		for (int i = 0; i < e.getLanesSize(); i++) {
 			drawObject(g, e.getLanes()[i]);
 		}
 	}
-
+	/**
+	 * Used to draw a Lane on the User Interface.
+	 * @param g where the lane is drawn on.
+	 * @param l the lane that is passed to the method.
+	 */
 	// Draw Lane
 	private void drawObject(Graphics2D g, Lane l) {
 		Point[] shape = l.getShape();
@@ -172,7 +193,11 @@ public class MapPanel extends Panel {
 			// System.out.println("Drawing Lane: " + l.getLaneId());
 		}
 	}
-
+	/**
+	 * Used to draw a Junction on the User Interface.
+	 * @param g where the junction is drawn on.
+	 * @param j the junction that is passed to the method.
+	 */
 	// Draw Junction
 	private void drawObject(Graphics2D g, Junction j) {
 		Point[] shape = j.getShape();
@@ -195,17 +220,28 @@ public class MapPanel extends Panel {
 			// System.out.println("Drawing Junction: " + j.getId());
 		}
 	}
-
+	/**
+	 * Used to draw a line on the User Interface.
+	 * @param g where the line is drawn on.
+	 * @param p1 start coordinate of the line.
+	 * @param p2 end coordinate of the line.
+	 * @param color the color of the line.
+	 */
 	private void drawLine(Graphics2D g, Point p1, Point p2, Color color) {
 		g.setColor(color);
 		g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(),
 			(int) p2.getY());
 		g.setColor(Color.BLACK);
 	}
-
+	/**
+	 * Used to convert the real-world coordinate to the graphics coordinate.
+	 * @param before the real-world coordinate.
+	 * @return the graphics coordinate value.
+	 */
 	private Point translateCoords(Point before) {
 		Point after = new Point();
 		after.setX(before.getX() * scale - topLeftPos.getX());
+		// -1 here to flip the Y-axis, because Y increases downward in graphics coordinates
 		after.setY(before.getY() * scale * -1 - topLeftPos.getY());
 		return after;
 	}
