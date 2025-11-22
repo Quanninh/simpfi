@@ -18,6 +18,7 @@ import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.NetworkXMLReader;
 import com.simpfi.sumo.wrapper.VehicleController;
+import com.simpfi.sumo.wrapper.SumoConnectionManager;
 /**
  * Custom MapPanel class that inherits {@link com.simpfi.ui.Panel}.
  * Used to draw objects on the user interface such as vehicles, edges, lanes, etc.
