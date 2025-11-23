@@ -23,67 +23,68 @@ import com.simpfi.util.reader.RouteXMLReader;
 public class App {
 	
 	public static void main(String[] args) throws Exception {
-		MapPanel mapPanel = generateUI();
-		SumoConnectionManager sim = establishConnection();
+		SumoConnectionManager sim = null;
+		try {
+		    MapPanel mapPanel = generateUI();
+		    sim = establishConnection();
 
-		RouteXMLReader routeXmlReader = new RouteXMLReader(
-			Constants.SUMO_ROUTE);
-		System.out.println(routeXmlReader.parseRoute().toString());
-		System.out.println(routeXmlReader.parseVehicleType().toString());
+		    RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
+		    System.out.println(routeXmlReader.parseRoute().toString());
+		    System.out.println(routeXmlReader.parseVehicleType().toString());
 
-		while (true) {
-			// retrieveData(sim);
-			mapPanel.repaint();
+		    while (true) {
+			    do_step(sim);
+			    retrieveData(sim);
+			    mapPanel.repaint();
+		    }
+	    }
+		catch (Exception e){
+			e.printStackTrace();
+		}finally {
+			if (sim != null){
+				sim.close();
+			}
 		}
+	}
+	private static void do_step(SumoConnectionManager sim) throws Exception {
+		sim.doStep();
 	}
 
 	private static SumoConnectionManager establishConnection()
 		throws Exception {
-		SumoConnectionManager sim = new SumoConnectionManager(
-			Constants.SUMO_CONFIG);
+		SumoConnectionManager sim = new SumoConnectionManager(Constants.SUMO_CONFIG);
 		return sim;
 	}
 
-	private static void retrieveData(SumoConnectionManager sim)
-		throws Exception {
+	private static void retrieveData(SumoConnectionManager sim) throws Exception {
 		double stepLen = 0.1;
 		long stepMs = (long) (stepLen * 1000);
 		VehicleController vehicleController = new VehicleController(sim);
-		TrafficLightController trafficLightController = new TrafficLightController(
-			sim);
+		TrafficLightController trafficLightController = new TrafficLightController(sim);
 
-		try {
-			long next = System.currentTimeMillis();
-			for (int k = 0; k < 600; k++) {
+		
+		long next = System.currentTimeMillis();
 
-				sim.doStep(); // <-- now works
+		// double time = ((Double) sim.getConnection()
+		// .do_job_get(Simulation.getCurrentTime())) / 1000.0;
 
-				// double time = ((Double) sim.getConnection()
-				// .do_job_get(Simulation.getCurrentTime())) / 1000.0;
-
-				for (String vid : vehicleController.getAllVehicleIDs()) {
-					double speed = vehicleController.getSpeed(vid);
-					String edge = vehicleController.getRoadID(vid);
-					// System.out.printf("t=%.1fs id=%s v=%.2f m/s edge=%s%n",
-					// time, vid, speed, edge);
-					System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed,
-						edge);
-				}
-
-				for (String tl : trafficLightController.getIDList()){
-					String light_state = trafficLightController.getState(tl);
-					System.out.printf("light state=%s", light_state);
-				}
-
-				next += stepMs;
-				// long sleep = next - System.currentTimeMillis();
-				// if (sleep > 0) Thread.sleep(sleep);
-				Thread.sleep(100);
-			}
-
-		} finally {
-			sim.close();
+		for (String vid : vehicleController.getAllVehicleIDs()) {
+			double speed = vehicleController.getSpeed(vid);
+			String edge = vehicleController.getRoadID(vid);
+			// System.out.printf("t=%.1fs id=%s v=%.2f m/s edge=%s%n",
+			// time, vid, speed, edge);
+			System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed,edge);
 		}
+
+		for (String tl : trafficLightController.getIDList()){
+			String light_state = trafficLightController.getState(tl);
+			System.out.printf("light state=%s", light_state);
+		}
+
+		next += stepMs;
+		// long sleep = next - System.currentTimeMillis();
+		// if (sleep > 0) Thread.sleep(sleep);
+		Thread.sleep(100);
 	}
 
 	private static MapPanel generateUI() {
