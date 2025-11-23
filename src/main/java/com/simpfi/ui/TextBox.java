@@ -89,7 +89,13 @@ public class TextBox extends JTextField {
 			Settings.changeOffsetY(value);
 		}
 	}
-
+/**
+ * Converts a double value into a formatted string using a pattern:
+ * shows max 6 digits after the decimal point
+ *
+ * @param value the double value to be formatted
+ * @return string representing the formatted value
+ * */
 	public String ValueTextBox(double value) {
 		DecimalFormat df = new DecimalFormat("0.######");
 		return df.format(value);

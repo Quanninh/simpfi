@@ -16,9 +16,10 @@ import com.simpfi.object.VehicleType;
 
 
 /**
- * Creates Settings Class used to initialize and update changes to scale and
- * offset settings of the software.
- * 
+ *
+ * Settings Class loads and stores all network and route information required for SUMO and is also
+ * used to initialize and update changes to scale and offset settings of the software.
+ *
  * @see {@link com.simpfi.ui.MapPanel}, {@link com.simpfi.ui.ControlPanel},
  *      {@link com.simpfi.ui.TextBox}.
  */
@@ -32,7 +33,14 @@ public class Settings {
 	private List<Junction> parse_junction;
 	private List<VehicleType> parse_vehicleType;
 	private List<Route> parse_route;
+	private List<String> parse_vid;
 
+    /**
+     * Constructor loads all network and route data defined in {@link Constants}
+     *
+     * Parsing of all junctions and edges using {@link NetworkXMLReader}
+     * Parsing of vehicle types, routes, and IDs using {@link RouteXMLReader}
+     * */
 	public Settings (){
 		try {
 		    NetworkXMLReader networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
@@ -41,26 +49,51 @@ public class Settings {
 		    this.parse_edge = networkXmlReader.parseEdge(this.parse_junction);
 		    this.parse_vehicleType = routeXmlReader.parseVehicleType();
 		    this.parse_route = routeXmlReader.parseRoute();
+			//this.parse_vid = routeXmlReader.parseVehicleID();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+    /**
+     * Getter for {@link Junction} objects.
+     *
+     * @return all parsed Junctions
+     */
 	public List<Junction> getJunctions(){
 		return this.parse_junction;
 	}
 
+    /**
+     * Getter for {@link Edge} objects.
+     *
+     * @return all parsed Edges
+     * */
 	public List<Edge> getEdges(){
 		return this.parse_edge;
 	}
 
+    /**
+     * Getter for {@link VehicleType} objects.
+     *
+     * @return all parsed vehicle types
+     * */
 	public List<VehicleType> getVehicleType(){
 		return this.parse_vehicleType;
 	}
 
+    /**
+     * Getter for {@link Route} objects.
+     *
+     * @return all parsed routes
+     * */
 	public List<Route> getRoutes() {
 		return this.parse_route;
 	}
+
+	// public List<String> getVehicleIDs(){
+	// 	return this.parse_vid;
+	// }
 
 	/**
 	 * Adds a value to the scale.
@@ -116,13 +149,13 @@ public class Settings {
 		SETTINGS_OFFSET.setY(newValue);
 	}
 
-	public static List<String> generate_vID() {
-		List<String> vehicle_ids = new ArrayList<>();
-		for (int i = 0; i < vehicleCounter; i++) {
-			String id = "v_" + i;
-			vehicle_ids.add(id);
-		}
-		return vehicle_ids;
-	}
+	// public static List<String> generate_vID() {
+	// 	List<String> vehicle_ids = new ArrayList<>();
+	// 	for (int i = 0; i < vehicleCounter; i++) {
+	// 		String id = "v_" + i;
+	// 		vehicle_ids.add(id);
+	// 	}
+	// 	return vehicle_ids;
+	// }
 
 }

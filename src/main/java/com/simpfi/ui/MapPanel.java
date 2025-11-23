@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Edge;
@@ -88,6 +87,16 @@ public class MapPanel extends Panel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static List<String> generate_vID() {
+		Settings setting = new Settings();
+		List<String> vehicle_ids = new ArrayList<>();
+		for (int i = 0; i < setting.vehicleCounter; i++) {
+			String id = "v_" + i;
+			vehicle_ids.add(id);
+		}
+		return vehicle_ids;
 	}
 
 	/**
@@ -257,7 +266,17 @@ public class MapPanel extends Panel {
 		}
 	}
 
+<<<<<<< HEAD
 	// Draw TrafficLight, replaceTrafficLight to drawObject
+=======
+    /**
+     * Used to draw a traffic light on the User Interface.
+     *
+     * @param g where the traffic light is drawn on.
+     * @param tl traffic light object that is passed to the method.
+     * */
+	// Draw TrafficLight
+>>>>>>> c511d6af8264764b3223786255dfee56d616b42d
 	private void drawTrafficLight(Graphics2D g, TrafficLight tl) {
 
 		// This one is Logic of the Phase So this logic should be place another class :)))
