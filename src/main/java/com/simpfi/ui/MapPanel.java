@@ -30,10 +30,9 @@ public class MapPanel extends Panel {
 	private double scale = 3;
 	private Point topLeftPos = new Point(-800, -200);
 
-	public static int counter = 0;
 
-	private List<Edge> edges = new ArrayList<>();
-	private List<Junction> junctions = new ArrayList<>();
+	// private List<Edge> edges = new ArrayList<>();
+	// private List<Junction> junctions = new ArrayList<>();
 	private List<Vehicle> vehicles = new ArrayList<>();
 
 	private static final Map<String, double[]> vehicle_dimension = Map.of(
@@ -44,13 +43,13 @@ public class MapPanel extends Panel {
 
 	public MapPanel() {
 		try {
-			NetworkXMLReader networkXmlReader = new NetworkXMLReader(
-				Constants.SUMO_NETWORK);
-			junctions = networkXmlReader.parseJunction();
-			edges = networkXmlReader.parseEdge(junctions);
+			// NetworkXMLReader networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
+			// junctions = networkXmlReader.parseJunction();
+			// edges = networkXmlReader.parseEdge(junctions);
 
-			SumoConnectionManager scm = new SumoConnectionManager(
-				Constants.SUMO_CONFIG);
+			Settings setting = new Settings();
+
+			SumoConnectionManager scm = new SumoConnectionManager(Constants.SUMO_CONFIG);
 			VehicleController vID = new VehicleController(scm);
 
 			for (String id : vID.getAllVehicleIDs()) {
@@ -62,7 +61,7 @@ public class MapPanel extends Panel {
 
 				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
 				vehicles.add(v);
-				counter += 1;
+				Settings.vehicleCountercounter += 1;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,10 +85,10 @@ public class MapPanel extends Panel {
 		scale = Settings.SETTINGS_SCALE;
 		topLeftPos = Settings.SETTINGS_OFFSET;
 
-		for (Edge e : edges) {
+		for (Edge e : setting.getEdges()) {
 			drawObject(g2D, e);
 		}
-		for (Junction j : junctions) {
+		for (Junction j : setting.getJunctions()) {
 			drawObject(g2D, j);
 		}
 

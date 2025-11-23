@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.simpfi.ui.MapPanel;
 import com.simpfi.util.Point;
+import com.simpfi.util.reader.NetworkXMLReader;
+import com.simpfi.util.reader.RouteXMLReader;
 
 /**
  * Creates Settings Class used to initialize and update changes to scale and
@@ -19,8 +21,38 @@ public class Settings {
 	public static Point SETTINGS_OFFSET = new Point();
 	public static int vehicleCounter = 0;
 
-	public static void updateVehicleCounter() {
-		vehicleCounter = MapPanel.counter;
+	private List<Edge> parse_edge;
+	private List<Junction> parse_junction;
+	private List<VehicleType> parse_vehicleType;
+	private List<Route> parse_route;
+
+	public Settings (){
+		try {
+		    NetworkXMLReader networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
+		    RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
+		    this.parse_junction = networkXmlReader.parseJunction();
+		    this.parse_edge = networkXmlReader.parseEdge(this.parse_junction);
+		    this.parse_vehicleType = routeXmlReader.parseVehicleType();
+		    this.parse_route = routeXmlReader.parseRoute();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<Junction> getJunctions(){
+		return this.parse_junction;
+	}
+
+	public List<Edge> getEdges(){
+		return this.parse_edge;
+	}
+
+	public List<VehicleType> getVehicleType(){
+		return this.parse_vehicleType;
+	}
+
+	public List<Route> getRoutes() {
+		return this.parse_route;
 	}
 
 	/**
