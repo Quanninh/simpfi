@@ -2,8 +2,11 @@ package com.simpfi;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.simpfi.config.Constants;
+import com.simpfi.object.Vehicle;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.sumo.wrapper.VehicleController;
@@ -11,6 +14,7 @@ import com.simpfi.ui.ControlPanel;
 import com.simpfi.ui.Frame;
 import com.simpfi.ui.MapPanel;
 import com.simpfi.ui.Panel;
+import com.simpfi.util.Point;
 import com.simpfi.util.reader.RouteXMLReader;
 /**
  * App Class contains the {@code main} function and is used to run the software.
@@ -21,11 +25,11 @@ import com.simpfi.util.reader.RouteXMLReader;
  * 4. Start the simulation loop.
  */
 public class App {
-	
+	private static MapPanel mapPanel;
 	public static void main(String[] args) throws Exception {
 		SumoConnectionManager sim = null;
 		try {
-		    MapPanel mapPanel = generateUI();
+		    mapPanel = generateUI();
 		    sim = establishConnection();
 
 		    RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
@@ -67,17 +71,31 @@ public class App {
 
 		// double time = ((Double) sim.getConnection()
 		// .do_job_get(Simulation.getCurrentTime())) / 1000.0;
-
+		List<Vehicle> updatedVehicles = new ArrayList<Vehicle>();
+		
 		for (String vid : vehicleController.getAllVehicleIDs()) {
+			// Khanh change something here but I don't remember the original one :)))
+			Point pos = vehicleController.getPosition(vid);
 			double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
+			double angle = vehicleController.getAngle(vid);
+		    String type = vehicleController.getTypeID(vid);
+
 			// System.out.printf("t=%.1fs id=%s v=%.2f m/s edge=%s%n",
 			// time, vid, speed, edge);
+		    Vehicle v = new Vehicle(vid, pos, speed, edge, type, angle);
+		    updatedVehicles.add(v);
+		    
+		    
+
 			System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed,edge);
 		}
+//		mapPanel.updateVehicles(updatedVehicles);
+
 
 		for (String tl : trafficLightController.getIDList()){
 			String light_state = trafficLightController.getState(tl);
+			mapPanel.updateTrafficLightState(tl, light_state); // It should be TrafficLightController
 			System.out.printf("light state=%s", light_state);
 		}
 

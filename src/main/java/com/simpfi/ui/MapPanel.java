@@ -5,10 +5,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.graph.Network;
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Edge;
@@ -36,7 +36,17 @@ public class MapPanel extends Panel {
 
 	// private List<Edge> edges = new ArrayList<>();
 	// private List<Junction> junctions = new ArrayList<>();
-	private List<Vehicle> vehicles = new ArrayList<>();
+	private Map<String, String> liveTrafficLightStates = new HashMap<>();
+
+	public void updateTrafficLightState(String id, String state) {
+	    liveTrafficLightStates.put(id, state);
+	}
+
+	
+	private static List<Vehicle> vehicles = new ArrayList<>();
+//	public void updateVehicles(List<Vehicle> newVehicles) {
+//	    this.vehicles = new ArrayList<>(newVehicles);
+//	}
 
 	private static final Map<String, double[]> vehicle_dimension = Map.of(
 		"private", new double[] { 1.8, 4.5 }, "truck",
@@ -54,7 +64,10 @@ public class MapPanel extends Panel {
 
 			SumoConnectionManager scm = new SumoConnectionManager(Constants.SUMO_CONFIG);
 			VehicleController vID = new VehicleController(scm);
-
+//			Vehicle v1 = new Vehicle("private", new Point(1.8, 4.5), 0, "r_0", "private", 0);
+//			Vehicle v2 = new Vehicle("bus", new Point(1.8, 4.5), 0, "r_1", "bus", 0);
+//			vehicles.add(v1);
+//			vehicles.add(v2);
 			for (String id : vID.getAllVehicleIDs()) {
 				Point pos = vID.getPosition(id);
 				double speed = vID.getSpeed(id);
@@ -63,9 +76,15 @@ public class MapPanel extends Panel {
 				String type = vID.getTypeID(id);
 
 				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
+				
+//				vehicles.add(v1);
 				vehicles.add(v);
+//				System.out.println("hehe:");
+//				System.out.println(vehicles);
 				Settings.vehicleCounter += 1;
 			}
+//			System.out.println("hehe:");
+//			System.out.println(vehicles.get(0));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,6 +144,8 @@ public class MapPanel extends Panel {
 		}
 
 		// System.out.println("Drawing Complete");
+//		System.out.println("hahahaha");
+//		System.out.println(vehicles);
 		for (Vehicle v : vehicles) {
 			drawObject(g2D, v);
 		}
@@ -147,6 +168,7 @@ public class MapPanel extends Panel {
 			return;
 		}
 		Point pos = translateCoords(v.getPosition());
+		System.out.println("jajajja");
 		double[] dims = vehicle_dimension.getOrDefault(v.getType(),
 			new double[] { 1.8, 4.5 });
 		int width = (int) (dims[0] * scale);
@@ -171,6 +193,8 @@ public class MapPanel extends Panel {
 			break;
 		}
 		g.setColor(color);
+		
+		System.out.println(color);
 
 		double angle = 0;
 		try {
@@ -192,6 +216,7 @@ public class MapPanel extends Panel {
 		// Reset rotation
 		g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
 		g.setColor(Color.BLACK);
+
 	}
 
 	/**
@@ -232,29 +257,14 @@ public class MapPanel extends Panel {
 		}
 	}
 
-	// Draw TrafficLight
+	// Draw TrafficLight, replaceTrafficLight to drawObject
 	private void drawTrafficLight(Graphics2D g, TrafficLight tl) {
 
-		Junction junction = tl.getJunction();
-		Phase currentPhase = tl.getPhase()[0];
-		String state = currentPhase.getState();
-//
-//	    List<String> laneIds = junction.getIncomingLane();
-//
-//	    for (int i = 0; i < laneIds.size(); i++) {
-//
-//	        String laneId = laneIds.get(i);
-//	        String edgeId = laneId.split("_")[0];
-//	        
-//	        Edge edge = 
-//
-//	        Lane lane = findLaneById(laneId);
-//
-//	        if (lane == null) {
-//	            System.out.println("Warning: Lane not found: " + laneId);
-//	            continue;
-//	        }
-
+		// This one is Logic of the Phase So this logic should be place another class :)))
+		Phase firstPhase = tl.getPhase()[0];	
+		String firstState = firstPhase.getState();
+		String state = liveTrafficLightStates.getOrDefault(tl.getJunction().getId(), firstState);
+		
 		Lane[] lanes = tl.getLanes();
 
 		for (int i = 0; i < lanes.length; i++) {
