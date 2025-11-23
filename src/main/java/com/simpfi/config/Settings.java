@@ -122,13 +122,13 @@ public class Settings {
 		SETTINGS_OFFSET.setY(newValue);
 	}
 
-	public static List<String> generate_vID() {
-		List<String> vehicle_ids = new ArrayList<>();
-		for (int i = 0; i < vehicleCounter; i++) {
-			String id = "v_" + i;
-			vehicle_ids.add(id);
-		}
-		return vehicle_ids;
-	}
+	// public static List<String> generate_vID() {
+	// 	List<String> vehicle_ids = new ArrayList<>();
+	// 	for (int i = 0; i < vehicleCounter; i++) {
+	// 		String id = "v_" + i;
+	// 		vehicle_ids.add(id);
+	// 	}
+	// 	return vehicle_ids;
+	// }
 
 }

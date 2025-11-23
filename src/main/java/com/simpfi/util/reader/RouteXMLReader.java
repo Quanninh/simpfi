@@ -24,16 +24,16 @@ public class RouteXMLReader extends XMLReader {
 		super(fileAddress);
 	}
 
-	public List<String> parseVehicleID() throws Exception {
-		NodeList typeNodeList = document.getElementsByTagName("vehicle");
+	// public List<String> parseVehicleID() throws Exception {
+	// 	NodeList typeNodeList = document.getElementsByTagName("vehicle");
 
-		List<String> vehicle_ids = new ArrayList<>();
-		for (int i = 0; i < typeNodeList.getLength(); i++){
-			Element vehicle = (Element) typeNodeList.item(i);
-			vehicle_ids.add(vehicle.getAttribute("id"));
-		}
-		return vehicle_ids;
-	}
+	// 	List<String> vehicle_ids = new ArrayList<>();
+	// 	for (int i = 0; i < typeNodeList.getLength(); i++){
+	// 		Element vehicle = (Element) typeNodeList.item(i);
+	// 		vehicle_ids.add(vehicle.getAttribute("id"));
+	// 	}
+	// 	return vehicle_ids;
+	// }
 
 	/**
 	 * Used to parse vehicle types by leveraging methods from

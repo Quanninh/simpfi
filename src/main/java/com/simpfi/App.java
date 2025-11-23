@@ -33,12 +33,14 @@ public class App {
 		    MapPanel mapPanel = generateUI();
 		    sim = establishConnection();
 
+			MapPanel mp = new MapPanel();
+
 		    RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
 		    System.out.println(routeXmlReader.parseRoute().toString());
 		    System.out.println(routeXmlReader.parseVehicleType().toString());
 
 			Settings st = new Settings();
-			List<String> vehicle_ids = st.getVehicleIDs();
+			List<String> vehicle_ids = mp.generate_vID();
 			List<VehicleType> vType = st.getVehicleType();
 			List<Route> route = st.getRoutes();
 
