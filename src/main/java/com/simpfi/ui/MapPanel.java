@@ -232,6 +232,12 @@ public class MapPanel extends Panel {
 		}
 	}
 
+    /**
+     * Used to draw a traffic light on the User Interface.
+     *
+     * @param g where the traffic light is drawn on.
+     * @param tl traffic light object that is passed to the method.
+     * */
 	// Draw TrafficLight
 	private void drawTrafficLight(Graphics2D g, TrafficLight tl) {
 
