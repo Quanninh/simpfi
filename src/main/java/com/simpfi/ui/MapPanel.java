@@ -61,7 +61,7 @@ public class MapPanel extends Panel {
 
 				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
 				vehicles.add(v);
-				Settings.vehicleCountercounter += 1;
+				Settings.vehicleCounter += 1;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
