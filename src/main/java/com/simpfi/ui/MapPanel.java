@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.graph.Network;
+//import com.google.common.graph.Network;
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Edge;
@@ -69,6 +69,16 @@ public class MapPanel extends Panel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static List<String> generate_vID() {
+		Settings setting = new Settings();
+		List<String> vehicle_ids = new ArrayList<>();
+		for (int i = 0; i < setting.vehicleCounter; i++) {
+			String id = "v_" + i;
+			vehicle_ids.add(id);
+		}
+		return vehicle_ids;
 	}
 
 	/**

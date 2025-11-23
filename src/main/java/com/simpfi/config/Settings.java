@@ -49,7 +49,7 @@ public class Settings {
 		    this.parse_edge = networkXmlReader.parseEdge(this.parse_junction);
 		    this.parse_vehicleType = routeXmlReader.parseVehicleType();
 		    this.parse_route = routeXmlReader.parseRoute();
-			this.parse_vid = routeXmlReader.parseVehicleID();
+			//this.parse_vid = routeXmlReader.parseVehicleID();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -91,9 +91,9 @@ public class Settings {
 		return this.parse_route;
 	}
 
-	public List<String> getVehicleIDs(){
-		return this.parse_vid;
-	}
+	// public List<String> getVehicleIDs(){
+	// 	return this.parse_vid;
+	// }
 
 	/**
 	 * Adds a value to the scale.
@@ -149,13 +149,13 @@ public class Settings {
 		SETTINGS_OFFSET.setY(newValue);
 	}
 
-	public static List<String> generate_vID() {
-		List<String> vehicle_ids = new ArrayList<>();
-		for (int i = 0; i < vehicleCounter; i++) {
-			String id = "v_" + i;
-			vehicle_ids.add(id);
-		}
-		return vehicle_ids;
-	}
+	// public static List<String> generate_vID() {
+	// 	List<String> vehicle_ids = new ArrayList<>();
+	// 	for (int i = 0; i < vehicleCounter; i++) {
+	// 		String id = "v_" + i;
+	// 		vehicle_ids.add(id);
+	// 	}
+	// 	return vehicle_ids;
+	// }
 
 }
