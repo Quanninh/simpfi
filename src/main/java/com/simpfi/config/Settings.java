@@ -32,6 +32,7 @@ public class Settings {
 	private List<Junction> parse_junction;
 	private List<VehicleType> parse_vehicleType;
 	private List<Route> parse_route;
+	private List<String> parse_vid;
 
 	public Settings (){
 		try {
@@ -41,6 +42,7 @@ public class Settings {
 		    this.parse_edge = networkXmlReader.parseEdge(this.parse_junction);
 		    this.parse_vehicleType = routeXmlReader.parseVehicleType();
 		    this.parse_route = routeXmlReader.parseRoute();
+			this.parse_vid = routeXmlReader.parseVehicleID();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -60,6 +62,10 @@ public class Settings {
 
 	public List<Route> getRoutes() {
 		return this.parse_route;
+	}
+
+	public List<String> getVehicleIDs(){
+		return this.parse_vid;
 	}
 
 	/**

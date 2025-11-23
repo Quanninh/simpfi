@@ -3,6 +3,9 @@ package com.simpfi;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import com.simpfi.object.Route;
+import com.simpfi.object.VehicleType;
+import com.simpfi.config.Settings;
 import com.simpfi.config.Constants;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
@@ -12,6 +15,8 @@ import com.simpfi.ui.Frame;
 import com.simpfi.ui.MapPanel;
 import com.simpfi.ui.Panel;
 import com.simpfi.util.reader.RouteXMLReader;
+
+import java.util.List;
 /**
  * App Class contains the {@code main} function and is used to run the software.
  * Flow of actions:
@@ -31,6 +36,21 @@ public class App {
 		    RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
 		    System.out.println(routeXmlReader.parseRoute().toString());
 		    System.out.println(routeXmlReader.parseVehicleType().toString());
+
+			Settings st = new Settings();
+			List<String> vehicle_ids = st.getVehicleIDs();
+			List<VehicleType> vType = st.getVehicleType();
+			List<Route> route = st.getRoutes();
+
+			VehicleController vehicle_control = new VehicleController(sim);
+
+			for (int i = 0 ; i < vehicle_ids.size(); i++){
+				String v = vehicle_ids.get(i);
+				String vt = vType.get(i).getId();
+				String r = route.get(i).getId();
+
+				vehicle_control.addVehicle(v, vt, r);
+			}
 
 		    while (true) {
 			    do_step(sim);
