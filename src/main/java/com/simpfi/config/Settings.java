@@ -42,7 +42,7 @@ public class Settings {
 		    this.parse_edge = networkXmlReader.parseEdge(this.parse_junction);
 		    this.parse_vehicleType = routeXmlReader.parseVehicleType();
 		    this.parse_route = routeXmlReader.parseRoute();
-			this.parse_vid = routeXmlReader.parseVehicleID();
+			//this.parse_vid = routeXmlReader.parseVehicleID();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -64,9 +64,9 @@ public class Settings {
 		return this.parse_route;
 	}
 
-	public List<String> getVehicleIDs(){
-		return this.parse_vid;
-	}
+	// public List<String> getVehicleIDs(){
+	// 	return this.parse_vid;
+	// }
 
 	/**
 	 * Adds a value to the scale.
