@@ -31,6 +31,8 @@ public class MapPanel extends Panel {
 
 	private double scale = 3;
 	private Point topLeftPos = new Point(-800, -200);
+	private static List<Vehicle> vehicles = new ArrayList<>();
+
 
 
 	// private List<Edge> edges = new ArrayList<>();
@@ -41,11 +43,13 @@ public class MapPanel extends Panel {
 	    liveTrafficLightStates.put(id, state);
 	}
 
-	
-	private static List<Vehicle> vehicles = new ArrayList<>();
 //	public void updateVehicles(List<Vehicle> newVehicles) {
 //	    this.vehicles = new ArrayList<>(newVehicles);
 //	}
+
+	private List<Vehicle> vehicles = new ArrayList<>();
+	private VehicleController vehicleController;
+
 
 	private static final Map<String, double[]> vehicle_dimension = Map.of(
 		"private", new double[] { 1.8, 4.5 }, "truck",
@@ -53,41 +57,59 @@ public class MapPanel extends Panel {
 		"motorcycle", new double[] { 0.8, 2.2 }, "emergency",
 		new double[] { 1.8, 4.5 });
 
-	public MapPanel() {
-		try {
-			// NetworkXMLReader networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
-			// junctions = networkXmlReader.parseJunction();
-			// edges = networkXmlReader.parseEdge(junctions);
+	public MapPanel(SumoConnectionManager scm) {
+        try {
+            vehicleController = new VehicleController(scm);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-			Settings setting = new Settings();
-
-			SumoConnectionManager scm = new SumoConnectionManager(Constants.SUMO_CONFIG);
-			VehicleController vID = new VehicleController(scm);
-//			Vehicle v1 = new Vehicle("private", new Point(1.8, 4.5), 0, "r_0", "private", 0);
-//			Vehicle v2 = new Vehicle("bus", new Point(1.8, 4.5), 0, "r_1", "bus", 0);
-//			vehicles.add(v1);
-//			vehicles.add(v2);
-			for (String id : vID.getAllVehicleIDs()) {
-				Point pos = vID.getPosition(id);
-				double speed = vID.getSpeed(id);
-				String roadID = vID.getRoadID(id);
-				double angle = vID.getAngle(id);
-				String type = vID.getTypeID(id);
-
+	public void updateVehicles() {
+        try {
+            vehicles.clear();
+            List<String> ids = vehicleController.getAllVehicleIDs();
+            for (String id : ids) {
+                Point pos = vehicleController.getPosition(id);
+                double speed = vehicleController.getSpeed(id);
+                double angle = vehicleController.getAngle(id);
+                String roadID = vehicleController.getRoadID(id);
+                String type = vehicleController.getTypeID(id);
 				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
+                vehicles.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    } 	
+
+// 			SumoConnectionManager scm = new SumoConnectionManager(Constants.SUMO_CONFIG);
+// 			VehicleController vID = new VehicleController(scm);
+// //			Vehicle v1 = new Vehicle("private", new Point(1.8, 4.5), 0, "r_0", "private", 0);
+// //			Vehicle v2 = new Vehicle("bus", new Point(1.8, 4.5), 0, "r_1", "bus", 0);
+// //			vehicles.add(v1);
+// //			vehicles.add(v2);
+// 			for (String id : vID.getAllVehicleIDs()) {
+// 				Point pos = vID.getPosition(id);
+// 				double speed = vID.getSpeed(id);
+// 				String roadID = vID.getRoadID(id);
+// 				double angle = vID.getAngle(id);
+// 				String type = vID.getTypeID(id);
+
+// 				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
 				
-//				vehicles.add(v1);
-				vehicles.add(v);
-//				System.out.println("hehe:");
-//				System.out.println(vehicles);
-				Settings.vehicleCounter += 1;
-			}
-//			System.out.println("hehe:");
-//			System.out.println(vehicles.get(0));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+// //				vehicles.add(v1);
+// 				vehicles.add(v);
+// //				System.out.println("hehe:");
+// //				System.out.println(vehicles);
+// 				Settings.vehicleCounter += 1;
+// 			}
+// //			System.out.println("hehe:");
+// //			System.out.println(vehicles.get(0));
+// 		} catch (Exception e) {
+// 			e.printStackTrace();
+// 		}
+// 	}
 
 	public static List<String> generate_vID() {
 		Settings setting = new Settings();
@@ -98,6 +120,17 @@ public class MapPanel extends Panel {
 		}
 		return vehicle_ids;
 	}
+               
+
+	// public static List<String> generate_vID() {
+	// 	Settings setting = new Settings();
+	// 	List<String> vehicle_ids = new ArrayList<>();
+	// 	for (int i = 1; i < setting.vehicleCounter; i++) {
+	// 		String id = "v_" + i;
+	// 		vehicle_ids.add(id);
+	// 	}
+	// 	return vehicle_ids;
+	// }
 
 	/**
 	 * Overrides paint method from {@link java.awt.Component}. Parses objects in

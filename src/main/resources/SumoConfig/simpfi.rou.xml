@@ -6,42 +6,13 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
     <!-- VTypes -->
     <!-- Core vehicle classes -->
-    <vType id="ignoring" vClass="ignoring"/>
     <vType id="private" vClass="private"/>
     <vType id="emergency" vClass="emergency"/>
-    <vType id="authority" vClass="authority"/>
-    <vType id="army" vClass="army"/>
-    <vType id="vip" vClass="vip"/>
-    <vType id="pedestrian" vClass="pedestrian"/>
-    <vType id="passenger" vClass="passenger"/>
-    <vType id="hov" vClass="hov"/>
-    <vType id="taxi" vClass="taxi"/>
     <vType id="bus" vClass="bus"/>
-    <vType id="coach" vClass="coach"/>
-    <vType id="delivery" vClass="delivery"/>
     <vType id="truck" vClass="truck"/>
-    <vType id="trailer" vClass="trailer"/>
     <vType id="motorcycle" vClass="motorcycle"/>
-    <vType id="moped" vClass="moped"/>
-    <vType id="bicycle" vClass="bicycle"/>
-    <vType id="evehicle" vClass="passenger"/> <!-- electric passenger car -->
 
-    <!-- Rail and transit -->
-    <vType id="tram" vClass="tram"/>
-    <vType id="rail_urban" vClass="rail_urban"/>
-    <vType id="rail" vClass="rail"/>
-    <vType id="rail_electric" vClass="rail_electric"/>
-    <vType id="rail_fast" vClass="rail_fast"/>
-    <vType id="subway" vClass="rail_urban"/>
-
-    <!-- Other transport modes -->
-    <vType id="ship" vClass="ship"/>
-    <vType id="container" vClass="container"/>
-    <vType id="cable_car" vClass="cable_car"/>
-    <vType id="aircraft" vClass="aircraft"/>
-    <vType id="wheelchair" vClass="wheelchair"/>
-    <vType id="scooter" vClass="moped"/>
-    <vType id="drone" vClass="drone"/>
+    
 
     <!-- Routes -->
     <route id="r_0" edges="-E7 -E6 -E5 -E4 -E3 -E2 -E1 E1 E2 E3 E4 E5 E6 E7"/>

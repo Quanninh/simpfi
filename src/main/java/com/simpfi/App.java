@@ -34,17 +34,16 @@ public class App {
 	public static void main(String[] args) throws Exception {
 		SumoConnectionManager sim = null;
 		try {
-		    mapPanel = generateUI();
 		    sim = establishConnection();
+			MapPanel mapPanel = generateUI(sim);
 
-			MapPanel mp = new MapPanel();
 
 		    RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
 		    System.out.println(routeXmlReader.parseRoute().toString());
 		    System.out.println(routeXmlReader.parseVehicleType().toString());
 
 			Settings st = new Settings();
-			List<String> vehicle_ids = mp.generate_vID();
+			List<String> vehicle_ids = st.generateVehicleIDs();
 			List<VehicleType> vType = st.getVehicleType();
 			List<Route> route = st.getRoutes();
 
@@ -55,11 +54,12 @@ public class App {
 				String vt = vType.get(i).getId();
 				String r = route.get(i).getId();
 
-				vehicle_control.addVehicle(v, vt, r);
+				vehicle_control.addVehicle(v, r, vt);
 			}
 
 		    while (true) {
 			    do_step(sim);
+				mapPanel.updateVehicles();       
 			    retrieveData(sim);
 			    mapPanel.repaint();
 		    }
@@ -127,12 +127,12 @@ public class App {
 		Thread.sleep(100);
 	}
 
-	private static MapPanel generateUI() {
+	private static MapPanel generateUI(SumoConnectionManager sim) {
 		Frame myFrame = new Frame();
 
 		ControlPanel controlPanel = new ControlPanel();
 		Panel infoPanel = new Panel();
-		MapPanel mapPanel = new MapPanel();
+		MapPanel mapPanel = new MapPanel(sim);
 
 		myFrame.add(controlPanel, BorderLayout.NORTH);
 		myFrame.add(infoPanel, BorderLayout.EAST);

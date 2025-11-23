@@ -51,7 +51,7 @@ public class VehicleController {
 		// Add vehicle to network
 		// double now = conn.do_job_get(SumoTraciConnection.getCurrentTime());
 		conn.do_job_get(
-			Vehicle.add(vehicleID, vType, routeID, 0, 0.0, 0.0, (byte) 0));
+			Vehicle.add(vehicleID, routeID, vType, 0, 0.0, 0.0, (byte) 0));
 	}
 
 	/*
