@@ -8,6 +8,12 @@ import javax.swing.event.DocumentListener;
 
 import com.simpfi.config.Settings;
 
+
+/**
+ * Custom TextBox class that inherits {@link javax.swing.JTextField}. The class
+ * is created to mainly provide three types of textboxes: scale, coordinate x
+ * and y.
+ */
 public class TextBox extends JTextField {
 
 	public enum SettingsType {
@@ -20,6 +26,17 @@ public class TextBox extends JTextField {
 	private Boolean mustBeDouble;
 	private SettingsType type;
 
+	/**
+	 * Constructor for TextBox: In addition to attributes assignment, it: Adds a
+	 * document listener to update changes when users interact with values in
+	 * Textboxes. Sets the inside text to defaultValue and defined value to
+	 * column width.
+	 * 
+	 * @param mustBeDouble states wheter users enter double values or not.
+	 * @param type         specifies the type of the textbox(SCALE, OFFSET_X,
+	 *                     OFFSET_Y).
+	 * @param defaultValue initilizes the value displayed in the text box.
+	 */
 	public TextBox(Boolean mustBeDouble, SettingsType type,
 		double defaultValue) {
 		this.mustBeDouble = mustBeDouble;
@@ -44,6 +61,10 @@ public class TextBox extends JTextField {
 		this.setColumns(16);
 	}
 
+	/**
+	 * Make changes to the required value(SETTINGS_SCALE, SETTINGS_OFFSET) if
+	 * mustBeDouble is set to true.
+	 */
 	public void onTextChange() {
 		if (!mustBeDouble) {
 			return;

@@ -1,9 +1,12 @@
 package com.simpfi.object;
 
 import java.util.Arrays;
-
 import com.simpfi.util.Point;
 
+/**
+ * Creates Lane class (may includes {@link de.tudresden.sumo.cmd.Lane} in the
+ * future).
+ */
 public class Lane {
 
 	private String laneId;
@@ -28,6 +31,10 @@ public class Lane {
 		return shapeSize;
 	}
 
+	/**
+	 * Overrides the built-in method toString() to provide a human-readable
+	 * representation of Lane.
+	 */
 	@Override
 	public String toString() {
 		return "Lane [laneId=" + laneId + ", shape=" + Arrays.toString(shape)

@@ -1,10 +1,15 @@
 package com.simpfi.util;
 
 import java.io.File;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 
+/**
+ * Creates XMLReader used to read and parse XML files.
+ */
 public class XMLReader {
 
 	protected File file;
@@ -12,6 +17,11 @@ public class XMLReader {
 	private DocumentBuilder builder;
 	protected Document document;
 
+	/**
+	 * Constructor used to initialize and parse XML files.
+	 * 
+	 * @param fileAddress directory of the XML file
+	 */
 	public XMLReader(String fileAddress) throws Exception {
 		file = new File(fileAddress);
 		factory = DocumentBuilderFactory.newInstance();
@@ -19,6 +29,14 @@ public class XMLReader {
 		document = builder.parse(file);
 	}
 
+	/**
+	 * Used to convert a String of multiple pairs of coordinates to an array of
+	 * Point.
+	 * 
+	 * @param shape the String that contains pairs of coordinates with the
+	 *              format: "x,y u,t a,b ...".
+	 * @return Array of Points.
+	 */
 	protected Point[] extractPoints(String shape) {
 		String[] points = shape.split(" ");
 		Point[] pointArr = new Point[points.length];

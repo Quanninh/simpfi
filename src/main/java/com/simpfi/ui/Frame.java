@@ -3,14 +3,20 @@ package com.simpfi.ui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 
+/**
+ * Custom Frame class that inherits <@link javax.swing.JFrame>.
+ */
 public class Frame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Constructor customed to match our software's style and place the frame in
+	 * the center.
+	 */
 	public Frame() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1120, 660);
@@ -25,11 +31,4 @@ public class Frame extends JFrame {
 		setVisible(true);
 	}
 
-	public void Test_Button(ActionEvent evt) {
-		System.out.println(evt.getActionCommand());
-	}
-
-	public void ShowInformation(ActionEvent evt) {
-
-	}
 }
