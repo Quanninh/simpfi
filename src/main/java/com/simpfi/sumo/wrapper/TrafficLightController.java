@@ -15,5 +15,10 @@ public class TrafficLightController {
 		return (String) conn
 			.do_job_get(Trafficlight.getRedYellowGreenState(tlId));
 	}
-
+	
+	public String setDuration(String tlId, double duration) throws Exception {
+		return (String) conn
+			.do_job_get(Trafficlight.setPhaseDuration(tlId, duration));
+	}
+	
 }

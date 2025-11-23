@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-11-17 15:21:01 by Eclipse SUMO netedit Version 1.24.0
+<!-- generated on 2025-11-23 15:32:02 by Eclipse SUMO netedit Version 1.24.0
 <neteditConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
 
     <input>
-        <route-files value="D:\Winter 2025 2026\OOP Java\SUMO project\TestSUMO\route_deadline.rou.xml"/>
-        <sumo-net-file value="D:\Winter 2025 2026\OOP Java\SUMO project\TestSUMO\deadline.net.xml"/>
+        <sumo-net-file value="C:\Users\khanh\git\simpfi3\src\main\resources\SumoConfig\simpfi.net.xml"/>
     </input>
 
     <output>
-        <output-file value="D:\Winter 2025 2026\OOP Java\SUMO project\TestSUMO\deadline.net.xml"/>
+        <output-file value="C:\Users\khanh\git\simpfi3\src\main\resources\SumoConfig\simpfi.net.xml"/>
     </output>
 
     <processing>
@@ -296,11 +295,6 @@
         <lane id="E9_0" index="0" speed="13.89" length="23.20" shape="-221.28,11.49 -221.17,34.69"/>
     </edge>
 
-    <tlLogic id="J1" type="static" programID="0" offset="0">
-        <phase duration="82" state="G"/>
-        <phase duration="3"  state="y"/>
-        <phase duration="5"  state="r"/>
-    </tlLogic>
     <tlLogic id="J10" type="static" programID="0" offset="0">
         <phase duration="82" state="GGgGGG"/>
         <phase duration="3"  state="yyyyyy"/>
@@ -321,10 +315,10 @@
         <phase duration="3"  state="yyyyyy"/>
         <phase duration="5"  state="rrrrrr"/>
     </tlLogic>
-    <tlLogic id="J8" type="static" programID="0" offset="0">
-        <phase duration="82" state="GGgGGGr"/>
-        <phase duration="3"  state="yyyyyyr"/>
-        <phase duration="5"  state="rrrrrrr"/>
+    <tlLogic id="J8" type="delay_based" programID="0" offset="0">
+        <phase duration="82" state="GGgGGG"/>
+        <phase duration="3"  state="yyyyyy"/>
+        <phase duration="5"  state="rrrrrr"/>
     </tlLogic>
     <tlLogic id="J9" type="static" programID="0" offset="0">
         <phase duration="82" state="GGGGGg"/>
@@ -347,7 +341,7 @@
     <junction id="J0" type="priority" x="-257.61" y="1.09" incLanes="-E1_0 -E1_1 -E1_2" intLanes=":J0_0_0" shape="-256.07,9.49 -256.08,-7.31 -256.91,-7.48 -257.20,-7.69 -257.41,-7.98 -257.53,-8.35 -257.57,-8.81 -260.77,-8.82 -260.66,-3.23 -260.28,1.35 -259.63,4.91 -258.71,7.46 -257.53,8.98">
         <request index="0" response="0" foes="0" cont="0"/>
     </junction>
-    <junction id="J1" type="traffic_light" x="29.19" y="1.11" incLanes="E7_0 E7_1 E7_2" intLanes=":J1_0_0" shape="27.69,-7.29 27.67,9.51 28.50,9.68 28.79,9.88 29.00,10.18 29.12,10.55 29.16,11.01 32.36,11.02 32.25,5.43 31.87,0.85 31.22,-2.71 30.31,-5.25 29.13,-6.78">
+    <junction id="J1" type="priority" x="29.19" y="1.11" incLanes="E7_0 E7_1 E7_2" intLanes=":J1_0_0" shape="27.69,-7.29 27.67,9.51 28.50,9.68 28.79,9.88 29.00,10.18 29.12,10.55 29.16,11.01 32.36,11.02 32.25,5.43 31.87,0.85 31.22,-2.71 30.31,-5.25 29.13,-6.78">
         <request index="0" response="0" foes="0" cont="0"/>
     </junction>
     <junction id="J10" type="traffic_light" x="-119.69" y="1.06" incLanes="-E5_0 -E5_1 -E5_2 E4_0 E4_1 E4_2" intLanes=":J10_0_0 :J10_0_1 :J10_6_0 :J10_3_0 :J10_4_0 :J10_4_1" shape="-117.87,9.48 -117.71,-7.32 -118.82,-7.56 -119.21,-7.84 -119.49,-8.23 -119.66,-8.73 -119.71,-9.35 -122.91,-9.34 -123.13,-8.23 -123.41,-7.84 -123.80,-7.56 -124.30,-7.39 -124.91,-7.34 -124.91,9.46">
@@ -464,7 +458,7 @@
     <connection from="E6" to="E14" fromLane="1" toLane="0" via=":J2_3_0" tl="J2" linkIndex="3" dir="r" state="O"/>
     <connection from="E6" to="E7" fromLane="1" toLane="1" via=":J2_4_0" tl="J2" linkIndex="4" dir="s" state="O"/>
     <connection from="E6" to="E7" fromLane="2" toLane="2" via=":J2_4_1" tl="J2" linkIndex="5" dir="s" state="O"/>
-    <connection from="E7" to="E15" fromLane="1" toLane="0" via=":J1_0_0" tl="J1" linkIndex="0" dir="l" state="O"/>
+    <connection from="E7" to="E15" fromLane="1" toLane="0" via=":J1_0_0" dir="l" state="M"/>
     <connection from="E9" to="E0" fromLane="0" toLane="1" via=":U1_0_0" dir="r" state="M"/>
 
     <connection from=":D2_0" to="-E20" fromLane="0" toLane="1" dir="s" state="M"/>

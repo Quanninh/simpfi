@@ -1,5 +1,7 @@
 package com.simpfi.ui;
 
+import java.text.DecimalFormat;
+
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -38,7 +40,7 @@ public class TextBox extends JTextField {
 
 		});
 
-		this.setText("" + defaultValue);
+		this.setText(ValueTextBox(defaultValue));
 		this.setColumns(16);
 	}
 
@@ -67,4 +69,8 @@ public class TextBox extends JTextField {
 		}
 	}
 
+	public String ValueTextBox(double value) {
+		DecimalFormat df = new DecimalFormat("0.######");
+		return df.format(value);
+	}
 }

@@ -1,7 +1,9 @@
 package com.simpfi.util.reader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -9,6 +11,9 @@ import org.w3c.dom.NodeList;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
+import com.simpfi.object.Phase;
+import com.simpfi.object.TrafficLight;
+import com.simpfi.util.Point;
 import com.simpfi.util.XMLReader;
 
 public class NetworkXMLReader extends XMLReader {
@@ -17,9 +22,13 @@ public class NetworkXMLReader extends XMLReader {
 		super(fileAddress);
 	}
 
+	//  I accidentally added this map, but I forgot the original code. Please try to recreate it.
+	private Map<String, Lane> laneMap = new HashMap<String, Lane>();
+
 	public List<Edge> parseEdge(List<Junction> junctions) throws Exception {
 
 		NodeList edgeNodeList = document.getElementsByTagName("edge");
+		laneMap.clear();
 
 		List<Edge> edges = new ArrayList<>();
 
@@ -34,12 +43,11 @@ public class NetworkXMLReader extends XMLReader {
 
 				String shape = lane.getAttribute("shape");
 
-				laneArr[j] = new Lane(lane.getAttribute("id"),
-					extractPoints(shape));
+				laneArr[j] = new Lane(lane.getAttribute("id"), extractPoints(shape));
+				laneMap.put(laneArr[j].getLaneId(), laneArr[j]);// // THIS MAP I ACCIENTIDENTLY PUT IT BUT I FORGOT THE ORGINIAL CODE, PLEASE TRY TO RECREATE THIS ONE
 			}
 
-			Junction from = searchForJunction(edge.getAttribute("from"),
-				junctions);
+			Junction from = searchForJunction(edge.getAttribute("from"), junctions);
 			Junction to = searchForJunction(edge.getAttribute("to"), junctions);
 
 			Edge e = new Edge(edge.getAttribute("id"), from, to, laneArr);
@@ -51,12 +59,12 @@ public class NetworkXMLReader extends XMLReader {
 
 	public List<Junction> parseJunction() throws Exception {
 
-		NodeList edgeNodeList = document.getElementsByTagName("junction");
+		NodeList junctionNodeList = document.getElementsByTagName("junction");
 
 		List<Junction> junctions = new ArrayList<>();
 
-		for (int i = 0; i < edgeNodeList.getLength(); i++) {
-			Element junction = (Element) edgeNodeList.item(i);
+		for (int i = 0; i < junctionNodeList.getLength(); i++) {
+			Element junction = (Element) junctionNodeList.item(i);
 
 			String junctionId = junction.getAttribute("id");
 			String junctionType = junction.getAttribute("type");
@@ -67,12 +75,67 @@ public class NetworkXMLReader extends XMLReader {
 
 			String shape = junction.getAttribute("shape");
 
-			Junction j = new Junction(junctionId, junctionType,
-				extractPoints(shape));
+			Junction j = new Junction(junctionId, junctionType, extractPoints(shape));
+
+			String[] incomingLaneIds = junction.getAttribute("incLanes").trim().split("\\s+");
+
+			for (String id : incomingLaneIds) {
+				j.addIncomingLane(id);
+			}
 			junctions.add(j);
 		}
-
 		return junctions;
+
+	}
+
+	public List<TrafficLight> parseTrafficLight(List<Junction> junctions, List<Edge> edges) throws Exception {
+
+		List<TrafficLight> trafficLights = new ArrayList<TrafficLight>();
+
+		NodeList trafficLightLogic = document.getElementsByTagName("tlLogic");
+
+		for (int i = 0; i < trafficLightLogic.getLength(); i++) {
+
+			Element traffcLight = (Element) trafficLightLogic.item(i);
+
+			String idJunction = traffcLight.getAttribute("id");
+
+			NodeList phaseNodeList = traffcLight.getElementsByTagName("phase");
+			Phase[] listOfPhase = new Phase[phaseNodeList.getLength()];
+
+			for (int j = 0; j < phaseNodeList.getLength(); j++) {
+				Element phase = (Element) phaseNodeList.item(j);
+
+				Double duration = Double.parseDouble(phase.getAttribute("duration"));
+				String state = phase.getAttribute("state");
+
+				listOfPhase[j] = new Phase(duration, state);
+			}
+
+			Junction junction = searchForJunction(idJunction, junctions);
+
+			String junctionType = junction.getType();
+
+			if (!junctionType.equals("traffic_light")) {
+				continue;
+			}
+			
+			List<String> incomingLanes = junction.getIncomingLane();
+			
+			Lane[] lanes = new Lane[incomingLanes.size()];
+			
+			for (int k = 0; k < incomingLanes.size(); k++) {
+				Lane lane = searchForLane(incomingLanes.get(k), edges);
+				lanes[k] = lane;
+			}
+
+			TrafficLight tl = new TrafficLight(junction, "static", lanes);
+			tl.setPhase(listOfPhase);
+			trafficLights.add(tl);
+			
+
+		}
+		return trafficLights;
 	}
 
 	public Junction searchForJunction(String id, List<Junction> junctions) {
@@ -88,6 +151,18 @@ public class NetworkXMLReader extends XMLReader {
 		for (int i = 0; i < edges.size(); i++) {
 			if (edges.get(i).getId().equals(id)) {
 				return edges.get(i);
+			}
+		}
+		return null;
+	}
+
+	public Lane searchForLane(String id, List<Edge> edges) {
+		String edgeId = id.split("_")[0];
+		Edge edge = searchForEdge(edgeId, edges);
+		Lane[] lanes = edge.getLanes();
+		for (int i = 0; i < lanes.length; i++) {
+			if (lanes[i].getLaneId().equals(id)) {
+				return lanes[i];
 			}
 		}
 		return null;

@@ -40,15 +40,25 @@ public class ControlPanel extends Panel {
 		this.add(scaleTB);
 		this.add(offsetXTB);
 		this.add(offsetYTB);
-		
+
 		InputMap inputMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap actionMap = this.getActionMap();
 
-		KeyStroke zoomInKey = KeyStroke.getKeyStroke(KeyEvent.VK_EQUALS, InputEvent.CTRL_DOWN_MASK); // Only for US keyboard
+		KeyStroke zoomInKey = KeyStroke.getKeyStroke(KeyEvent.VK_EQUALS, InputEvent.CTRL_DOWN_MASK); // Only for US
+																										// keyboard
 		KeyStroke zoomOutKey = KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, InputEvent.CTRL_DOWN_MASK);
+		KeyStroke moveUpKey = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0); // Or InputEvent.CTRL_DOWN_MASK if you want
+																			// ctrl + Up
+		KeyStroke moveDownKey = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
+		KeyStroke moveRightKey = KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0);
+		KeyStroke moveLeftKey = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0);
 
 		inputMap.put(zoomInKey, "zoomIn");
 		inputMap.put(zoomOutKey, "zoomOut");
+		inputMap.put(moveUpKey, "moveUp");
+		inputMap.put(moveDownKey, "moveDown");
+		inputMap.put(moveLeftKey, "moveLeft");
+		inputMap.put(moveRightKey, "moveRight");
 
 		actionMap.put("zoomIn", new AbstractAction() {
 
@@ -56,7 +66,7 @@ public class ControlPanel extends Panel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Settings.modifyScale(0.1);
-				System.out.println("Action work");
+				scaleTB.setText(scaleTB.ValueTextBox(Settings.SETTINGS_SCALE));
 			}
 		});
 
@@ -66,70 +76,110 @@ public class ControlPanel extends Panel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Settings.modifyScale(-0.1);
-				System.out.print("Action work");
+				scaleTB.setText(scaleTB.ValueTextBox(Settings.SETTINGS_SCALE));
 			}
 		});
-		
-		Button buttonIncreasingScale = new Button("+");
-		buttonIncreasingScale.addActionListener(e -> {
-			Settings.modifyScale(0.1);
-			scaleTB.setText("" + Settings.SETTINGS_SCALE);
+
+		actionMap.put("moveUp", new AbstractAction() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Settings.modifyOffsetY(10);
+				offsetYTB.setText(offsetYTB.ValueTextBox(Settings.SETTINGS_OFFSET.getY()));
+			}
 		});
 
-		this.add(buttonIncreasingScale);
+		actionMap.put("moveDown", new AbstractAction() {
 
-		Button buttonDecreasingScale = new Button("-");
-		buttonDecreasingScale.addActionListener(e -> {
-			Settings.modifyScale(-0.1);
-			scaleTB.setText("" + Settings.SETTINGS_SCALE);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Settings.modifyOffsetY(-10);
+				offsetYTB.setText(offsetYTB.ValueTextBox(Settings.SETTINGS_OFFSET.getY()));
+			}
 		});
 
-		this.add(buttonDecreasingScale);
+		actionMap.put("moveRight", new AbstractAction() {
 
-		Panel moveMapPanel = new Panel();
-		moveMapPanel.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.insets = new Insets(0, 0, 0, 0);
-		gbc.anchor = GridBagConstraints.WEST;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-
-		Button buttonMoveUp = new Button("↑");
-		buttonMoveUp.addActionListener(e -> {
-			Settings.modifyOffsetY(10);
-			offsetYTB.setText("" + Settings.SETTINGS_OFFSET.getY());
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Settings.modifyOffsetX(-10);
+				offsetXTB.setText(offsetXTB.ValueTextBox(Settings.SETTINGS_OFFSET.getX()));
+			}
 		});
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		moveMapPanel.add(buttonMoveUp, gbc);
 
-		Button buttonMoveDown = new Button("↓");
-		buttonMoveDown.addActionListener(e -> {
-			Settings.modifyOffsetY(-10);
-			offsetYTB.setText("" + Settings.SETTINGS_OFFSET.getY());
-		});
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		moveMapPanel.add(buttonMoveDown, gbc);
+		actionMap.put("moveLeft", new AbstractAction() {
 
-		Button buttonMoveLeft = new Button("←");
-		buttonMoveLeft.addActionListener(e -> {
-			Settings.modifyOffsetX(10);
-			offsetXTB.setText("" + Settings.SETTINGS_OFFSET.getX());
-		});
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		moveMapPanel.add(buttonMoveLeft, gbc);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Settings.modifyOffsetX(10);
+				offsetXTB.setText(offsetXTB.ValueTextBox(Settings.SETTINGS_OFFSET.getX()));
+			}
+		});	
 
-		Button buttonMoveRight = new Button("→");
-		buttonMoveRight.addActionListener(e -> {
-			Settings.modifyOffsetX(-10);
-			offsetXTB.setText("" + Settings.SETTINGS_OFFSET.getX());
-		});
-		gbc.gridx = 2;
-		gbc.gridy = 1;
-		moveMapPanel.add(buttonMoveRight, gbc);
+//		Button buttonIncreasingScale = new Button("+");
+//		buttonIncreasingScale.addActionListener(e -> {
+//			Settings.modifyScale(0.1);
+//			scaleTB.setText("" + Settings.SETTINGS_SCALE);
+//		});
+//
+//		this.add(buttonIncreasingScale);
+//
+//		Button buttonDecreasingScale = new Button("-");
+//		buttonDecreasingScale.addActionListener(e -> {
+//			Settings.modifyScale(-0.1);
+//			scaleTB.setText("" + Settings.SETTINGS_SCALE);
+//		});
+//
+//		this.add(buttonDecreasingScale);
 
-		this.add(moveMapPanel);
+//		Panel moveMapPanel = new Panel();
+//		moveMapPanel.setLayout(new GridBagLayout());
+//		GridBagConstraints gbc = new GridBagConstraints();
+//		gbc.insets = new Insets(0, 0, 0, 0);
+//		gbc.anchor = GridBagConstraints.WEST;
+//		gbc.fill = GridBagConstraints.HORIZONTAL;
+//
+//		Button buttonMoveUp = new Button("↑");
+//		buttonMoveUp.addActionListener(e -> {
+//			Settings.modifyOffsetY(10);
+//			offsetYTB.setText("" + Settings.SETTINGS_OFFSET.getY());
+//		});
+//		gbc.gridx = 1;
+//		gbc.gridy = 0;
+//		moveMapPanel.add(buttonMoveUp, gbc);
+//
+//		Button buttonMoveDown = new Button("↓");
+//		buttonMoveDown.addActionListener(e -> {
+//			Settings.modifyOffsetY(-10);
+//			offsetYTB.setText("" + Settings.SETTINGS_OFFSET.getY());
+//		});
+//		gbc.gridx = 1;
+//		gbc.gridy = 2;
+//		moveMapPanel.add(buttonMoveDown, gbc);
+//
+//		Button buttonMoveLeft = new Button("←");
+//		buttonMoveLeft.addActionListener(e -> {
+//			Settings.modifyOffsetX(10);
+//			offsetXTB.setText("" + Settings.SETTINGS_OFFSET.getX());
+//		});
+//		gbc.gridx = 0;
+//		gbc.gridy = 1;
+//		moveMapPanel.add(buttonMoveLeft, gbc);
+//
+//		Button buttonMoveRight = new Button("→");
+//		buttonMoveRight.addActionListener(e -> {
+//			Settings.modifyOffsetX(-10);
+//			offsetXTB.setText("" + Settings.SETTINGS_OFFSET.getX());
+//		});
+//		gbc.gridx = 2;
+//		gbc.gridy = 1;
+//		moveMapPanel.add(buttonMoveRight, gbc);
+//
+//		this.add(moveMapPanel);
 	}
 
 }
