@@ -91,11 +91,6 @@ public class Settings {
 		return this.parse_route;
 	}
 
-    /**
-     * Getter for VehicleID objects.
-     *
-     * @return all parsed vids
-     * */
 	public List<String> getVehicleIDs(){
 		return this.parse_vid;
 	}
