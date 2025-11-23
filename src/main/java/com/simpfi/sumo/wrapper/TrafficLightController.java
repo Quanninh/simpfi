@@ -2,6 +2,7 @@ package com.simpfi.sumo.wrapper;
 
 import it.polito.appeal.traci.SumoTraciConnection;
 import de.tudresden.sumo.cmd.Trafficlight;
+import java.util.List;
 /**
  * Wrapper Class for {@link de.tudresden.sumo.cmd.Trafficlight}.
  */

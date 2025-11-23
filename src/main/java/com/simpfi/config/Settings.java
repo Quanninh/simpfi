@@ -7,6 +7,13 @@ import com.simpfi.ui.MapPanel;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.NetworkXMLReader;
 import com.simpfi.util.reader.RouteXMLReader;
+import com.simpfi.object.Edge;
+import com.simpfi.object.Junction;
+import com.simpfi.object.Route;
+import com.simpfi.object.VehicleType;
+
+
+
 
 /**
  * Creates Settings Class used to initialize and update changes to scale and
