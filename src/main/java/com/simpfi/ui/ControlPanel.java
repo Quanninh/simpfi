@@ -2,14 +2,10 @@ package com.simpfi.ui;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Robot;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
@@ -18,16 +14,11 @@ import javax.swing.InputMap;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.KeyStroke;
-
 import javax.swing.KeyStroke;
 
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Route;
-import com.simpfi.object.Vehicle;
 import com.simpfi.object.VehicleType;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.VehicleController;
@@ -54,7 +45,7 @@ public class ControlPanel extends Panel {
 	 * 3. Buttons and keyboard shortcuts to move in four directions: Left, Right,
 	 * Up, Down.
 	 * 
-	 * <b>Note<b>: May update in the future.
+	 * <b>Note</b>: May update in the future.
 	 */
 	public ControlPanel(SumoConnectionManager conn) {
 

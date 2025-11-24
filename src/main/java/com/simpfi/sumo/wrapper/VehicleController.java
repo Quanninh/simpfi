@@ -1,12 +1,12 @@
 package com.simpfi.sumo.wrapper;
 
-import it.polito.appeal.traci.SumoTraciConnection;
-import de.tudresden.sumo.cmd.Vehicle;
-import de.tudresden.sumo.objects.SumoPosition2D;
+import java.util.List;
 
 import com.simpfi.util.Point;
 
-import java.util.List;
+import de.tudresden.sumo.cmd.Vehicle;
+import de.tudresden.sumo.objects.SumoPosition2D;
+import it.polito.appeal.traci.SumoTraciConnection;
 
 /**
  * Wrapper Class for {@link de.tudresden.sumo.cmd.Vehicle}.
@@ -50,7 +50,7 @@ public class VehicleController {
 	 * Used to add a new vehicle to the list.
 	 * 
 	 * @param vehicleID id of the new vehicle, must be unique.
-	 * @param routID    id of the route that the new vehicle is on.
+	 * @param routeID    id of the route that the new vehicle is on.
 	 * @param vType     the type of the new vehicle.
 	 */
 	public void addVehicle(String vehicleID, String routeID, String vType)

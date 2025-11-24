@@ -1,5 +1,8 @@
 package com.simpfi.object;
 
+/**
+ * Creates Phase class for {@link TrafficLight}.
+ * */
 public class Phase {
 	private double duration;
 	private String state;
@@ -26,6 +29,10 @@ public class Phase {
 		this.state = state;
 	}
 
+    /**
+     * Overrides the built-in method toString() to provide a human-readable
+     * representation of Phase.
+     */
 	@Override
 	public String toString() {
 		return "Phase [duration=" + duration + ", state=" + state + "]";

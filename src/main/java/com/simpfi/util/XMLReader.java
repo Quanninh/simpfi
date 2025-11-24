@@ -21,6 +21,7 @@ public class XMLReader {
 	 * Constructor used to initialize and parse XML files.
 	 * 
 	 * @param fileAddress directory of the XML file
+	 * @throws Exception if the file address is invalid.
 	 */
 	public XMLReader(String fileAddress) throws Exception {
 		file = new File(fileAddress);
