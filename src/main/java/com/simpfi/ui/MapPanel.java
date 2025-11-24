@@ -211,7 +211,7 @@ public class MapPanel extends Panel {
 		g.fillRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
 
 		// Draw border
-        g.setColor(Color.BLACK);
+        g.setColor(color);
         g.drawRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
 
 		// double angle = 0;
