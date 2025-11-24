@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-11-23 15:32:02 by Eclipse SUMO netedit Version 1.24.0
+<!-- generated on 2025-11-24 14:34:49 by Eclipse SUMO netedit Version 1.24.0
 <neteditConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
 
     <input>
+        <sumocfg-file value="C:\Users\khanh\git\simpfi3\src\main\resources\SumoConfig\simpfi.sumocfg"/>
+        <route-files value="C:\Users\khanh\git\simpfi3\src\main\resources\SumoConfig\simpfi.rou.xml"/>
         <sumo-net-file value="C:\Users\khanh\git\simpfi3\src\main\resources\SumoConfig\simpfi.net.xml"/>
     </input>
 
@@ -296,32 +298,32 @@
     </edge>
 
     <tlLogic id="J10" type="static" programID="0" offset="0">
-        <phase duration="82" state="GGgGGG"/>
+        <phase duration="10" state="GGgGGG"/>
         <phase duration="3"  state="yyyyyy"/>
         <phase duration="5"  state="rrrrrr"/>
     </tlLogic>
     <tlLogic id="J11" type="static" programID="0" offset="0">
-        <phase duration="82" state="GGGGGg"/>
+        <phase duration="10" state="GGGGGg"/>
         <phase duration="3"  state="yyyyyy"/>
         <phase duration="5"  state="rrrrrr"/>
     </tlLogic>
     <tlLogic id="J2" type="static" programID="0" offset="0">
-        <phase duration="82" state="GGgGGG"/>
+        <phase duration="10" state="GGgGGG"/>
         <phase duration="3"  state="yyyyyy"/>
         <phase duration="5"  state="rrrrrr"/>
     </tlLogic>
     <tlLogic id="J7" type="static" programID="0" offset="0">
-        <phase duration="82" state="GGGGGg"/>
+        <phase duration="10" state="GGGGGg"/>
         <phase duration="3"  state="yyyyyy"/>
         <phase duration="5"  state="rrrrrr"/>
     </tlLogic>
     <tlLogic id="J8" type="delay_based" programID="0" offset="0">
-        <phase duration="82" state="GGgGGG"/>
+        <phase duration="10" state="GGgGGG"/>
         <phase duration="3"  state="yyyyyy"/>
         <phase duration="5"  state="rrrrrr"/>
     </tlLogic>
     <tlLogic id="J9" type="static" programID="0" offset="0">
-        <phase duration="82" state="GGGGGg"/>
+        <phase duration="10" state="GGGGGg"/>
         <phase duration="3"  state="yyyyyy"/>
         <phase duration="5"  state="rrrrrr"/>
     </tlLogic>
