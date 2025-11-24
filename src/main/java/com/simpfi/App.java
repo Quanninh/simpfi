@@ -48,25 +48,31 @@ public class App {
 		SumoConnectionManager sim = null;
 		try {
 			sim = establishConnection();
-			generateUI();
+			generateUI(sim);
 
 			RouteXMLReader routeXmlReader = new RouteXMLReader(
 				Constants.SUMO_ROUTE);
 			System.out.println(routeXmlReader.parseRoute().toString());
 			System.out.println(routeXmlReader.parseVehicleType().toString());
-			List<String> vehicleIds = Settings.generateVehicleIDs();
+			String vehicleIds = Settings.generateVehicleIDs();
 			List<VehicleType> vehicleTypes = Settings.getVehicleTypes();
 			List<Route> routes = Settings.getRoutes();
 
 			VehicleController vehicle_control = new VehicleController(sim);
 
-			for (int i = 0; i < vehicleIds.size(); i++) {
-				String v = vehicleIds.get(i);
-				String vt = vehicleTypes.get(i).getId();
-				String r = routes.get(i).getId();
-
-				vehicle_control.addVehicle(v, r, vt);
-			}
+//			for (int i = 0; i < vehicleIds.size(); i++) {
+//				String v = vehicleIds.get(i);
+//				String vt = vehicleTypes.get(i).getId();
+//				String r = routes.get(i).getId();
+//
+//				vehicle_control.addVehicle(v, r, vt);
+//			}
+			
+			int vehicleCounter = Settings.vehicleCounter - 1;
+			String vt = vehicleTypes.get(vehicleCounter).getId();
+			String r = routes.get(vehicleCounter).getId();
+			
+			vehicle_control.addVehicle(vehicleIds, r, vt);
 
 			long next = System.currentTimeMillis();
 			while (true) {
@@ -131,10 +137,10 @@ public class App {
 		}
 	}
 
-	private static void generateUI() {
+	private static void generateUI(SumoConnectionManager conn) {
 		Frame myFrame = new Frame();
 
-		ControlPanel controlPanel = new ControlPanel();
+		ControlPanel controlPanel = new ControlPanel(conn);
 		Panel infoPanel = new Panel();
 		mapPanel = new MapPanel();
 

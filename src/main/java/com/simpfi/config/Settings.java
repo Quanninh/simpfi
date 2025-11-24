@@ -173,15 +173,19 @@ public class Settings {
 	// return vehicle_ids;
 	// }
 
-	public static List<String> generateVehicleIDs() {
+	public static String generateVehicleIDs() {
 		List<VehicleType> types = getVehicleTypes();
 		List<Route> routes = getRoutes();
-		int n = Math.min(types == null ? 0 : types.size(),
-			routes == null ? 0 : routes.size());
-		List<String> ids = new ArrayList<>();
-		for (int i = 0; i < n; i++) {
-			ids.add("v_" + i);
-		}
+		
+//		int n = Math.min(types == null ? 0 : types.size(),
+////			routes == null ? 0 : routes.size());
+//		
+////		List<String> ids = new ArrayList<>();
+////		for (int i = 0; i < vehicleCounter; i++) {
+////			ids.add("v_" + i);
+//		}
+		String ids = "v_" + vehicleCounter;
+		vehicleCounter ++;
 		return ids;
 	}
 
