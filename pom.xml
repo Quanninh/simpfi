@@ -6,9 +6,9 @@
 
   <groupId>com.simpfi</groupId>
   <artifactId>Simpfi</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
 
-  <name>SumoProject</name>
+  <name>Simpfi</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
