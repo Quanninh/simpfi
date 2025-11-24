@@ -2,6 +2,9 @@ package com.simpfi.object;
 
 import java.util.Arrays;
 
+/**
+ * Creates TrafficLight class.
+ */
 public class TrafficLight {
 	private String type;
 	private Junction junction;
@@ -49,6 +52,11 @@ public class TrafficLight {
 		this.junction = junction;
 	}
 
+
+    /**
+     * Overrides the built-in method toString() to provide a human-readable
+     * representation of TrafficLight.
+     */
 	@Override
 	public String toString() {
 		return "TrafficLight [type=" + type + ", junction=" + junction + ", lanes=" + Arrays.toString(lanes)
