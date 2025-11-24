@@ -56,11 +56,11 @@
       <artifactId>sumo</artifactId>
       <version>2026.0-2025w38</version>
     </dependency>
-    <dependency>
+    <!--<dependency>
     <groupId>it.polito.appeal</groupId>
     <artifactId>traci</artifactId>
     <version>1.0</version>
-    </dependency>
+    </dependency>-->
   </dependencies>
 
   <build>

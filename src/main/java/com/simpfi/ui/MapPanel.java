@@ -143,20 +143,6 @@ public class MapPanel extends Panel {
 		scale = Settings.SETTINGS_SCALE;
 		topLeftPos = Settings.SETTINGS_OFFSET;
 
-//		NetworkXMLReader networkXmlReader = null;
-//		List<Edge> edges = new ArrayList<>();
-//		List<Junction> junctions = new ArrayList<>();
-//		List<TrafficLight> trafficLights = new ArrayList<>();
-
-//		try {
-//			networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
-//			junctions = networkXmlReader.parseJunction();
-//			edges = networkXmlReader.parseEdge(junctions);
-//			trafficLights = networkXmlReader.parseTrafficLight(junctions, edges);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-
 		for (Edge e : Settings.getEdges()) {
 			drawObject(g2D, e);
 		}
@@ -168,7 +154,6 @@ public class MapPanel extends Panel {
 			try {
 				drawTrafficLight(g2D, tl);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -222,7 +207,7 @@ public class MapPanel extends Panel {
 		}
 		g.setColor(color);
 		
-		System.out.println(color);
+		//System.out.println(color);
 		g.fillRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
 
 		// Draw border

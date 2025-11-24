@@ -26,6 +26,9 @@ public class Settings {
 
 	public static double SETTINGS_SCALE = Constants.DEFAULT_SCALE;
 	public static Point SETTINGS_OFFSET = new Point();
+	public static double TIMESTEP = 0.1;
+	public static double SIMULATION_SPEED = 2;
+	
 	public static int vehicleCounter = 0;
 
 	private static List<Edge> parsedEdges;
@@ -33,7 +36,7 @@ public class Settings {
 	private static List<VehicleType> parsedVehicleTypes;
 	private static List<Route> parsedRoutes;
 	private static List<TrafficLight> parsedTrafficLights;
-	private static List<String> parsedVehicleIds;
+//	private static List<String> parsedVehicleIds;
 
 	/**
 	 * Constructor loads all network and route data defined in {@link Constants}

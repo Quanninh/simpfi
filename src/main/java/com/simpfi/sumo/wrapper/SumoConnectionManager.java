@@ -1,23 +1,30 @@
 package com.simpfi.sumo.wrapper;
 
+import com.simpfi.config.Settings;
+
 import it.polito.appeal.traci.SumoTraciConnection;
+
 /**
- * Creates SumoConnectionManager class used to establish the connection between Java programs and SUMO via TraCI.
+ * Creates SumoConnectionManager class used to establish the connection between
+ * Java programs and SUMO via TraCI.
  */
 public class SumoConnectionManager {
 
 	private SumoTraciConnection conn;
+
 	/**
 	 * Constructor used to initialize the Sumo Connection Manager.
+	 * 
 	 * @param cfg path to SUMO configuration file(.sumocfg).
 	 * @throws Exception if the TraCI connection fails.
 	 */
 	public SumoConnectionManager(String cfg) throws Exception {
-		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg, "--start",
-			"--quit-on-end", "--remote-port", "9999", "--step-length", "0.1");
+		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg, "--start", "--quit-on-end", "--remote-port", "9999",
+				"--step-length", String.valueOf(Settings.TIMESTEP));
 		pb.inheritIO();
 		pb.start();
 
+		// Wait 6 seconds for SUMO to start
 		Thread.sleep(6000);
 
 		conn = new SumoTraciConnection(9999);
@@ -27,16 +34,21 @@ public class SumoConnectionManager {
 
 		System.out.println("SUMO launched and TraCI connected.");
 	}
+
 	/**
-	 * Updates states of objects in SUMO so that movements such as car running can be observed.
+	 * Updates states of objects in SUMO so that movements such as car running can
+	 * be observed.
+	 * 
 	 * @throws Exception if the TraCI connection fails.
 	 */
 	public void doStep() throws Exception {
 		conn.do_timestep();
 	}
+
 	public SumoTraciConnection getConnection() {
 		return conn;
 	}
+
 	/**
 	 * Close the TraCI connection.
 	 */

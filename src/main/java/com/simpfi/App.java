@@ -41,9 +41,7 @@ public class App {
 	private static MapPanel mapPanel;
 
 	public static void main(String[] args) throws Exception {
-
-		double stepLen = 0.1;
-		long stepMs = (long) (stepLen * 1000);
+		long stepMs = (long) (Settings.TIMESTEP * 1000);
 
 		SumoConnectionManager sim = null;
 		try {
@@ -54,25 +52,6 @@ public class App {
 				Constants.SUMO_ROUTE);
 			System.out.println(routeXmlReader.parseRoute().toString());
 			System.out.println(routeXmlReader.parseVehicleType().toString());
-			String vehicleIds = Settings.generateVehicleIDs();
-			List<VehicleType> vehicleTypes = Settings.getVehicleTypes();
-			List<Route> routes = Settings.getRoutes();
-
-			VehicleController vehicle_control = new VehicleController(sim);
-
-//			for (int i = 0; i < vehicleIds.size(); i++) {
-//				String v = vehicleIds.get(i);
-//				String vt = vehicleTypes.get(i).getId();
-//				String r = routes.get(i).getId();
-//
-//				vehicle_control.addVehicle(v, r, vt);
-//			}
-			
-			int vehicleCounter = Settings.vehicleCounter - 1;
-			String vt = vehicleTypes.get(vehicleCounter).getId();
-			String r = routes.get(vehicleCounter).getId();
-			
-			vehicle_control.addVehicle(vehicleIds, r, vt);
 
 			long next = System.currentTimeMillis();
 			while (true) {
@@ -84,8 +63,8 @@ public class App {
 				next += stepMs;
 				long sleep = next - System.currentTimeMillis();
 				if (sleep > 0)
-					Thread.sleep(sleep);
-				Thread.sleep(100);
+					Thread.sleep((long) (sleep / Settings.SIMULATION_SPEED));
+				//Thread.sleep(100);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -120,9 +99,7 @@ public class App {
 			String edge = vehicleController.getRoadID(vid);
 			// double angle = vehicleController.getAngle(vid);
 			String type = vehicleController.getTypeID(vid);
-
-			// System.out.printf("t=%.1fs id=%s v=%.2f m/s edge=%s%n",
-			// time, vid, speed, edge);
+			
 			Vehicle v = new Vehicle(vid, pos, edge, type);
 
 			updatedVehicles.add(v);
@@ -133,7 +110,7 @@ public class App {
 			String light_state = trafficLightController.getState(tl);
 			mapPanel.updateTrafficLightState(tl, light_state); // It should be
 																// TrafficLightController
-			System.out.printf("light state=%s", light_state);
+			//System.out.printf("light state=%s", light_state);
 		}
 	}
 
