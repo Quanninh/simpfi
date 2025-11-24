@@ -35,7 +35,7 @@ public class App {
 		SumoConnectionManager sim = null;
 		try {
 		    sim = establishConnection();
-			MapPanel mapPanel = generateUI(sim);
+			MapPanel mapPanel = generateUI();
 
 
 		    RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
@@ -59,8 +59,8 @@ public class App {
 
 		    while (true) {
 			    do_step(sim);
-				mapPanel.updateVehicles();       
-			    retrieveData(sim);
+				retrieveData(sim);
+				//mapPanel.updateVehicles();       
 			    mapPanel.repaint();
 		    }
 	    }
@@ -89,7 +89,7 @@ public class App {
 		TrafficLightController trafficLightController = new TrafficLightController(sim);
 
 		
-		long next = System.currentTimeMillis();
+		//long next = System.currentTimeMillis();
 
 		// double time = ((Double) sim.getConnection()
 		// .do_job_get(Simulation.getCurrentTime())) / 1000.0;
@@ -98,20 +98,26 @@ public class App {
 		for (String vid : vehicleController.getAllVehicleIDs()) {
 			// Khanh change something here but I don't remember the original one :)))
 			Point pos = vehicleController.getPosition(vid);
-			double speed = vehicleController.getSpeed(vid);
+			//double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
-			double angle = vehicleController.getAngle(vid);
+			//double angle = vehicleController.getAngle(vid);
 		    String type = vehicleController.getTypeID(vid);
 
 			// System.out.printf("t=%.1fs id=%s v=%.2f m/s edge=%s%n",
 			// time, vid, speed, edge);
-		    Vehicle v = new Vehicle(vid, pos, speed, edge, type, angle);
+		    Vehicle v = new Vehicle(vid, pos, edge, type);
+
 		    updatedVehicles.add(v);
+			mapPanel.updateVehicles(updatedVehicles);
+
+		}
+			//mp.updateVehicles(updatedVehicles);
+
 		    
 		    
 
-			System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed,edge);
-		}
+			//System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed,edge);
+		//}
 //		mapPanel.updateVehicles(updatedVehicles);
 
 
@@ -121,18 +127,18 @@ public class App {
 			System.out.printf("light state=%s", light_state);
 		}
 
-		next += stepMs;
+		//next += stepMs;
 		// long sleep = next - System.currentTimeMillis();
 		// if (sleep > 0) Thread.sleep(sleep);
-		Thread.sleep(100);
+		//Thread.sleep(100);
 	}
 
-	private static MapPanel generateUI(SumoConnectionManager sim) {
+	private static MapPanel generateUI() {
 		Frame myFrame = new Frame();
 
 		ControlPanel controlPanel = new ControlPanel();
 		Panel infoPanel = new Panel();
-		MapPanel mapPanel = new MapPanel(sim);
+		MapPanel mapPanel = new MapPanel();
 
 		myFrame.add(controlPanel, BorderLayout.NORTH);
 		myFrame.add(infoPanel, BorderLayout.EAST);

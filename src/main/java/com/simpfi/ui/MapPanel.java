@@ -34,7 +34,13 @@ public class MapPanel extends Panel {
 	private static List<Vehicle> vehicles = new ArrayList<>();
 
 
-
+	public MapPanel(){
+		// try{
+		// 	sim = new SumoConnectionManager(Constants.SUMO_CONFIG);
+		// }catch (Exception e){
+		// 	e.printStackTrace();
+		// }
+	}
 	// private List<Edge> edges = new ArrayList<>();
 	// private List<Junction> junctions = new ArrayList<>();
 	private Map<String, String> liveTrafficLightStates = new HashMap<>();
@@ -47,40 +53,41 @@ public class MapPanel extends Panel {
 //	    this.vehicles = new ArrayList<>(newVehicles);
 //	}
 
-	private List<Vehicle> vehicles = new ArrayList<>();
+	//private List<Vehicle> vehicles = new ArrayList<>();
 	private VehicleController vehicleController;
 
 
-	private static final Map<String, double[]> vehicle_dimension = Map.of(
-		"private", new double[] { 1.8, 4.5 }, "truck",
-		new double[] { 2.5, 12.0 }, "bus", new double[] { 2.5, 12.0 },
-		"motorcycle", new double[] { 0.8, 2.2 }, "emergency",
-		new double[] { 1.8, 4.5 });
+	// private static final Map<String, double[]> vehicle_dimension = Map.of(
+	// 	"private", new double[] { 1.8, 4.5 }, "truck",
+	// 	new double[] { 2.5, 12.0 }, "bus", new double[] { 2.5, 12.0 },
+	// 	"motorcycle", new double[] { 0.8, 2.2 }, "emergency",
+	// 	new double[] { 1.8, 4.5 });
 
-	public MapPanel(SumoConnectionManager scm) {
-        try {
-            vehicleController = new VehicleController(scm);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	// public MapPanel(SumoConnectionManager scm) {
+    //     try {
+    //         vehicleController = new VehicleController(scm);
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 
-	public void updateVehicles() {
-        try {
-            vehicles.clear();
-            List<String> ids = vehicleController.getAllVehicleIDs();
-            for (String id : ids) {
-                Point pos = vehicleController.getPosition(id);
-                double speed = vehicleController.getSpeed(id);
-                double angle = vehicleController.getAngle(id);
-                String roadID = vehicleController.getRoadID(id);
-                String type = vehicleController.getTypeID(id);
-				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
-                vehicles.add(v);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	public void updateVehicles(List<Vehicle> updatedVehicles) {
+        // try {
+        //     vehicles.clear();
+        //     List<String> ids = vehicleController.getAllVehicleIDs();
+        //     for (String id : ids) {
+        //         Point pos = vehicleController.getPosition(id);
+        //         //double speed = vehicleController.getSpeed(id);
+        //         //double angle = vehicleController.getAngle(id);
+        //         String roadID = vehicleController.getRoadID(id);
+        //         String type = vehicleController.getTypeID(id);
+		// 		Vehicle v = new Vehicle(id, pos, roadID, type);
+        //         vehicles.add(v);
+        //     }
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+		vehicles = updatedVehicles;
     } 	
 
 // 			SumoConnectionManager scm = new SumoConnectionManager(Constants.SUMO_CONFIG);
@@ -111,26 +118,17 @@ public class MapPanel extends Panel {
 // 		}
 // 	}
 
-	public static List<String> generate_vID() {
-		Settings setting = new Settings();
-		List<String> vehicle_ids = new ArrayList<>();
-		for (int i = 0; i < setting.vehicleCounter; i++) {
-			String id = "v_" + i;
-			vehicle_ids.add(id);
-		}
-		return vehicle_ids;
-	}
-               
-
 	// public static List<String> generate_vID() {
 	// 	Settings setting = new Settings();
 	// 	List<String> vehicle_ids = new ArrayList<>();
-	// 	for (int i = 1; i < setting.vehicleCounter; i++) {
+	// 	for (int i = 0; i < setting.vehicleCounter; i++) {
 	// 		String id = "v_" + i;
 	// 		vehicle_ids.add(id);
 	// 	}
 	// 	return vehicle_ids;
 	// }
+               
+
 
 	/**
 	 * Overrides paint method from {@link java.awt.Component}. Parses objects in
@@ -189,7 +187,11 @@ public class MapPanel extends Panel {
 //		System.out.println("hahahaha");
 //		System.out.println(vehicles);
 		for (Vehicle v : vehicles) {
-			drawObject(g2D, v);
+			try{
+			    drawObject(g2D, v);
+			} catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -210,11 +212,8 @@ public class MapPanel extends Panel {
 			return;
 		}
 		Point pos = translateCoords(v.getPosition());
-		System.out.println("jajajja");
-		double[] dims = vehicle_dimension.getOrDefault(v.getType(),
-			new double[] { 1.8, 4.5 });
-		int width = (int) (dims[0] * scale);
-		int length = (int) (dims[1] * scale);
+		int width = (int)(4 * scale);  
+		int height = (int)(8 * scale);
 
 		Color color;
 		switch (v.getType()) {
@@ -237,27 +236,32 @@ public class MapPanel extends Panel {
 		g.setColor(color);
 		
 		System.out.println(color);
+		g.fillRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
 
-		double angle = 0;
-		try {
-			angle = v.getAngle();
-		} catch (Exception e) {
+		// Draw border
+        g.setColor(Color.BLACK);
+        g.drawRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
 
-		}
-		// Rotate g so that we can draw the vehicle in the right direction
-		g.rotate(Math.toRadians(-angle), pos.getX(), pos.getY());
-		// Fill the rectangle with chosen color
-		g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - length / 2,
-			width, length);
+		// double angle = 0;
+		// try {
+		// 	angle = v.getAngle();
+		// } catch (Exception e) {
 
-		g.setColor(color);
-		// Draw the outline of the rectangle
-		g.drawRect((int) pos.getX() - width / 2, (int) pos.getY() - length / 2,
-			width, length);
+		// }
+		// // Rotate g so that we can draw the vehicle in the right direction
+		// g.rotate(Math.toRadians(-angle), pos.getX(), pos.getY());
+		// // Fill the rectangle with chosen color
+		// g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - length / 2,
+		// 	width, length);
 
-		// Reset rotation
-		g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
-		g.setColor(Color.BLACK);
+		// g.setColor(color);
+		// // Draw the outline of the rectangle
+		// g.drawRect((int) pos.getX() - width / 2, (int) pos.getY() - length / 2,
+		// 	width, length);
+
+		// // Reset rotation
+		// g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
+		// g.setColor(Color.BLACK);
 
 	}
 
@@ -299,9 +303,9 @@ public class MapPanel extends Panel {
 		}
 	}
 
-<<<<<<< HEAD
+ 
 	// Draw TrafficLight, replaceTrafficLight to drawObject
-=======
+
     /**
      * Used to draw a traffic light on the User Interface.
      *
@@ -309,7 +313,6 @@ public class MapPanel extends Panel {
      * @param tl traffic light object that is passed to the method.
      * */
 	// Draw TrafficLight
->>>>>>> c511d6af8264764b3223786255dfee56d616b42d
 	private void drawTrafficLight(Graphics2D g, TrafficLight tl) {
 
 		// This one is Logic of the Phase So this logic should be place another class :)))

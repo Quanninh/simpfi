@@ -14,14 +14,12 @@ public class Vehicle {
 	private String type;
 	private double angle;
 
-	public Vehicle(String id, Point point, double speed, String roadID,
-		String type, double angle) {
+	public Vehicle(String id, Point point, String roadID,
+		String type) {
 		this.id = id;
 		this.position = point;
-		this.speed = speed;
 		this.roadID = roadID;
 		this.type = type;
-		this.angle = angle;
 	}
 
 	public String getID() {

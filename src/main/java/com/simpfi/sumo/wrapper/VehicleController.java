@@ -50,7 +50,7 @@ public class VehicleController {
 	public void addVehicle(String vehicleID, String routeID, String vType) throws Exception {
 		// Add vehicle to network
 		// double now = conn.do_job_get(SumoTraciConnection.getCurrentTime());
-		conn.do_job_get(
+		conn.do_job_set(
 			Vehicle.add(vehicleID, routeID, vType, 0, 0.0, 0.0, (byte) 0));
 	}
 
