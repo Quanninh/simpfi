@@ -35,14 +35,9 @@ public class MapPanel extends Panel {
 
 
 	public MapPanel(){
-		// try{
-		// 	sim = new SumoConnectionManager(Constants.SUMO_CONFIG);
-		// }catch (Exception e){
-		// 	e.printStackTrace();
-		// }
+		
 	}
-	// private List<Edge> edges = new ArrayList<>();
-	// private List<Junction> junctions = new ArrayList<>();
+	
 	private Map<String, String> liveTrafficLightStates = new HashMap<>();
 
 	public void updateTrafficLightState(String id, String state) {

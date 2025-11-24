@@ -28,7 +28,6 @@ public class NetworkXMLReader extends XMLReader {
 		super(fileAddress);
 	}
 
-	//  I accidentally added this map, but I forgot the original code. Please try to recreate it.
 	private Map<String, Lane> laneMap = new HashMap<String, Lane>();
 
 	/**

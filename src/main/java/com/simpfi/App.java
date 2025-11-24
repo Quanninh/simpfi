@@ -20,6 +20,8 @@ import com.simpfi.ui.Panel;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.RouteXMLReader;
 
+import de.tudresden.sumo.cmd.Simulation;
+
 import java.util.List;
 
 /**
@@ -39,6 +41,10 @@ public class App {
 	private static MapPanel mapPanel;
 
 	public static void main(String[] args) throws Exception {
+
+		double stepLen = 0.1;
+		long stepMs = (long) (stepLen * 1000);
+
 		SumoConnectionManager sim = null;
 		try {
 			sim = establishConnection();
@@ -62,11 +68,18 @@ public class App {
 				vehicle_control.addVehicle(v, r, vt);
 			}
 
+			long next = System.currentTimeMillis();
 			while (true) {
+
 				do_step(sim);
 				retrieveData(sim);
-				// mapPanel.updateVehicles();
 				mapPanel.repaint();
+
+				next += stepMs;
+				long sleep = next - System.currentTimeMillis();
+				if (sleep > 0)
+					Thread.sleep(sleep);
+				Thread.sleep(100);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,21 +103,12 @@ public class App {
 
 	private static void retrieveData(SumoConnectionManager sim)
 		throws Exception {
-		double stepLen = 0.1;
-		long stepMs = (long) (stepLen * 1000);
 		VehicleController vehicleController = new VehicleController(sim);
 		TrafficLightController trafficLightController = new TrafficLightController(
 			sim);
-
-		// long next = System.currentTimeMillis();
-
-		// double time = ((Double) sim.getConnection()
-		// .do_job_get(Simulation.getCurrentTime())) / 1000.0;
 		List<Vehicle> updatedVehicles = new ArrayList<Vehicle>();
 
 		for (String vid : vehicleController.getAllVehicleIDs()) {
-			// Khanh change something here but I don't remember the original one
-			// :)))
 			Point pos = vehicleController.getPosition(vid);
 			// double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
@@ -117,13 +121,7 @@ public class App {
 
 			updatedVehicles.add(v);
 			mapPanel.updateVehicles(updatedVehicles);
-
 		}
-		// mp.updateVehicles(updatedVehicles);
-
-		// System.out.printf("id=%s v=%.2f m/s edge=%s%n", vid, speed,edge);
-		// }
-//		mapPanel.updateVehicles(updatedVehicles);
 
 		for (String tl : trafficLightController.getIDList()) {
 			String light_state = trafficLightController.getState(tl);
@@ -131,11 +129,6 @@ public class App {
 																// TrafficLightController
 			System.out.printf("light state=%s", light_state);
 		}
-
-		// next += stepMs;
-		// long sleep = next - System.currentTimeMillis();
-		// if (sleep > 0) Thread.sleep(sleep);
-		// Thread.sleep(100);
 	}
 
 	private static void generateUI() {

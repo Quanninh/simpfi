@@ -23,26 +23,26 @@ public class Vehicle {
 	}
 
 	public String getID() {
-		return this.id;
+		return id;
 	}
 
 	public Point getPosition() {
-		return this.position;
+		return position;
 	}
 
 	public double getSpeed() {
-		return this.speed;
+		return speed;
 	}
 
 	public String getRoadID() {
-		return this.roadID;
+		return roadID;
 	}
 
 	public double getAngle() {
-		return this.angle;
+		return angle;
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 }
