@@ -140,7 +140,7 @@ public class MapPanel extends Panel {
 	@Override
 	public void paint(Graphics g) {
 		// Clear
-		Settings setting = new Settings();
+//		Settings setting = new Settings();
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setStroke(new BasicStroke(Constants.STROKE_SIZE));
@@ -148,33 +148,28 @@ public class MapPanel extends Panel {
 		scale = Settings.SETTINGS_SCALE;
 		topLeftPos = Settings.SETTINGS_OFFSET;
 
-		NetworkXMLReader networkXmlReader = null;
-		List<Edge> edges = new ArrayList<>();
-		List<Junction> junctions = new ArrayList<>();
-		List<TrafficLight> trafficLights = new ArrayList<>();
+//		NetworkXMLReader networkXmlReader = null;
+//		List<Edge> edges = new ArrayList<>();
+//		List<Junction> junctions = new ArrayList<>();
+//		List<TrafficLight> trafficLights = new ArrayList<>();
 
-		try {
-			networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
-			junctions = networkXmlReader.parseJunction();
-			edges = networkXmlReader.parseEdge(junctions);
-			trafficLights = networkXmlReader.parseTrafficLight(junctions, edges);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
+//			junctions = networkXmlReader.parseJunction();
+//			edges = networkXmlReader.parseEdge(junctions);
+//			trafficLights = networkXmlReader.parseTrafficLight(junctions, edges);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
-//		System.out.println("Edges:");
-//		System.out.println(edges.toString());
-//		System.out.println("Junctions:");
-//		System.out.println(junctions.toString());
-
-		for (Edge e : edges) {
+		for (Edge e : Settings.getEdges()) {
 			drawObject(g2D, e);
 		}
-		for (Junction j : setting.getJunctions()) {
+		for (Junction j : Settings.getJunctions()) {
 			drawObject(g2D, j);
 		}
 
-		for (TrafficLight tl : trafficLights) {
+		for (TrafficLight tl : Settings.getTrafficLights()) {
 			try {
 				drawTrafficLight(g2D, tl);
 			} catch (Exception e1) {
@@ -183,9 +178,6 @@ public class MapPanel extends Panel {
 			}
 		}
 
-		// System.out.println("Drawing Complete");
-//		System.out.println("hahahaha");
-//		System.out.println(vehicles);
 		for (Vehicle v : vehicles) {
 			try{
 			    drawObject(g2D, v);

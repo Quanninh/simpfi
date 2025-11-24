@@ -31,10 +31,16 @@ public class ControlPanel extends Panel {
 	/**
 	 * Constructor used to create the control panel displayed in the user
 	 * interface. Run the program for visualization. The control panel has three
-	 * main sets of components: 1. Three textboxes correspond to scale,
-	 * coordinate x and y. 2. Buttons and keyboard shortcuts to zoom in, zoom
-	 * out. 3. Buttons and keyboard shortcuts to move in four directions: Left,
-	 * Right, Up, Down. <b>Note<b>: May update in the future.
+	 * main sets of components:
+	 * 
+	 * 1. Three textboxes correspond to scale, coordinate x and y.
+	 * 
+	 * 2. Buttons and keyboard shortcuts to zoom in, zoom out.
+	 * 
+	 * 3. Buttons and keyboard shortcuts to move in four directions: Left,
+	 * Right, Up, Down.
+	 * 
+	 * <b>Note<b>: May update in the future.
 	 */
 	public ControlPanel() {
 		this.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
@@ -53,12 +59,12 @@ public class ControlPanel extends Panel {
 		InputMap inputMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap actionMap = this.getActionMap();
 
-
-		KeyStroke zoomInKey = KeyStroke.getKeyStroke(KeyEvent.VK_EQUALS, InputEvent.CTRL_DOWN_MASK); // Only for US
-																										// keyboard
-		KeyStroke zoomOutKey = KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, InputEvent.CTRL_DOWN_MASK);
-		KeyStroke moveUpKey = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0); // Or InputEvent.CTRL_DOWN_MASK if you want
-																			// ctrl + Up
+		// Only for US keyboard
+		KeyStroke zoomInKey = KeyStroke.getKeyStroke(KeyEvent.VK_EQUALS,
+			InputEvent.CTRL_DOWN_MASK);
+		KeyStroke zoomOutKey = KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
+			InputEvent.CTRL_DOWN_MASK);
+		KeyStroke moveUpKey = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0);
 		KeyStroke moveDownKey = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
 		KeyStroke moveRightKey = KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0);
 		KeyStroke moveLeftKey = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0);
@@ -71,126 +77,58 @@ public class ControlPanel extends Panel {
 		inputMap.put(moveRightKey, "moveRight");
 
 		actionMap.put("zoomIn", new AbstractAction() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Settings.modifyScale(0.1);
 				scaleTB.setText(scaleTB.ValueTextBox(Settings.SETTINGS_SCALE));
 			}
 		});
 
 		actionMap.put("zoomOut", new AbstractAction() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Settings.modifyScale(-0.1);
 				scaleTB.setText(scaleTB.ValueTextBox(Settings.SETTINGS_SCALE));
 			}
 		});
 
 		actionMap.put("moveUp", new AbstractAction() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Settings.modifyOffsetY(10);
-				offsetYTB.setText(offsetYTB.ValueTextBox(Settings.SETTINGS_OFFSET.getY()));
+				offsetYTB.setText(
+					offsetYTB.ValueTextBox(Settings.SETTINGS_OFFSET.getY()));
 			}
 
 		});
 
 		actionMap.put("moveDown", new AbstractAction() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Settings.modifyOffsetY(-10);
-				offsetYTB.setText(offsetYTB.ValueTextBox(Settings.SETTINGS_OFFSET.getY()));
+				offsetYTB.setText(
+					offsetYTB.ValueTextBox(Settings.SETTINGS_OFFSET.getY()));
 			}
 		});
 
 		actionMap.put("moveRight", new AbstractAction() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Settings.modifyOffsetX(-10);
-				offsetXTB.setText(offsetXTB.ValueTextBox(Settings.SETTINGS_OFFSET.getX()));
+				offsetXTB.setText(
+					offsetXTB.ValueTextBox(Settings.SETTINGS_OFFSET.getX()));
 			}
 		});
 
 		actionMap.put("moveLeft", new AbstractAction() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Settings.modifyOffsetX(10);
-				offsetXTB.setText(offsetXTB.ValueTextBox(Settings.SETTINGS_OFFSET.getX()));
+				offsetXTB.setText(
+					offsetXTB.ValueTextBox(Settings.SETTINGS_OFFSET.getX()));
 			}
-		});	
+		});
 
-//		Button buttonIncreasingScale = new Button("+");
-//		buttonIncreasingScale.addActionListener(e -> {
-//			Settings.modifyScale(0.1);
-//			scaleTB.setText("" + Settings.SETTINGS_SCALE);
-//		});
-//
-//		this.add(buttonIncreasingScale);
-//
-//		Button buttonDecreasingScale = new Button("-");
-//		buttonDecreasingScale.addActionListener(e -> {
-//			Settings.modifyScale(-0.1);
-//			scaleTB.setText("" + Settings.SETTINGS_SCALE);
-//		});
-//
-//		this.add(buttonDecreasingScale);
-
-//		Panel moveMapPanel = new Panel();
-//		moveMapPanel.setLayout(new GridBagLayout());
-//		GridBagConstraints gbc = new GridBagConstraints();
-//		gbc.insets = new Insets(0, 0, 0, 0);
-//		gbc.anchor = GridBagConstraints.WEST;
-//		gbc.fill = GridBagConstraints.HORIZONTAL;
-//
-//		Button buttonMoveUp = new Button("↑");
-//		buttonMoveUp.addActionListener(e -> {
-//			Settings.modifyOffsetY(10);
-//			offsetYTB.setText("" + Settings.SETTINGS_OFFSET.getY());
-//		});
-//		gbc.gridx = 1;
-//		gbc.gridy = 0;
-//		moveMapPanel.add(buttonMoveUp, gbc);
-//
-//		Button buttonMoveDown = new Button("↓");
-//		buttonMoveDown.addActionListener(e -> {
-//			Settings.modifyOffsetY(-10);
-//			offsetYTB.setText("" + Settings.SETTINGS_OFFSET.getY());
-//		});
-//		gbc.gridx = 1;
-//		gbc.gridy = 2;
-//		moveMapPanel.add(buttonMoveDown, gbc);
-//
-//		Button buttonMoveLeft = new Button("←");
-//		buttonMoveLeft.addActionListener(e -> {
-//			Settings.modifyOffsetX(10);
-//			offsetXTB.setText("" + Settings.SETTINGS_OFFSET.getX());
-//		});
-//		gbc.gridx = 0;
-//		gbc.gridy = 1;
-//		moveMapPanel.add(buttonMoveLeft, gbc);
-//
-//		Button buttonMoveRight = new Button("→");
-//		buttonMoveRight.addActionListener(e -> {
-//			Settings.modifyOffsetX(-10);
-//			offsetXTB.setText("" + Settings.SETTINGS_OFFSET.getX());
-//		});
-//		gbc.gridx = 2;
-//		gbc.gridy = 1;
-//		moveMapPanel.add(buttonMoveRight, gbc);
-//
-//		this.add(moveMapPanel);
 	}
 
 }
