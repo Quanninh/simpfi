@@ -14,7 +14,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.release>21</maven.compiler.release>
   </properties>
 
   <dependencyManagement>
@@ -36,6 +36,8 @@
     </repository>
   </repositories>
 
+
+
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -53,6 +55,11 @@
       <groupId>org.matsim.contrib</groupId>
       <artifactId>sumo</artifactId>
       <version>2026.0-2025w38</version>
+    </dependency>
+    <dependency>
+    <groupId>it.polito.appeal</groupId>
+    <artifactId>traci</artifactId>
+    <version>1.0</version>
     </dependency>
   </dependencies>
 

@@ -2,9 +2,6 @@ package com.simpfi.ui;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -13,8 +10,6 @@ import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
-import javax.swing.KeyStroke;
-
 import javax.swing.KeyStroke;
 
 import com.simpfi.config.Constants;
@@ -40,7 +35,7 @@ public class ControlPanel extends Panel {
 	 * 3. Buttons and keyboard shortcuts to move in four directions: Left,
 	 * Right, Up, Down.
 	 * 
-	 * <b>Note<b>: May update in the future.
+	 * <b>Note</b>: May update in the future.
 	 */
 	public ControlPanel() {
 		this.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));

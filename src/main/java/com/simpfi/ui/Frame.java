@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
- * Custom Frame class that inherits <@link javax.swing.JFrame>.
+ * Custom Frame class that inherits {@link javax.swing.JFrame}.
  */
 public class Frame extends JFrame {
 

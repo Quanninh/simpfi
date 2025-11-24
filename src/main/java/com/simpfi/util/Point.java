@@ -2,7 +2,7 @@ package com.simpfi.util;
 
 /**
  * Create 2-dimensional coordinates to better represent object classes such as
- * Lane & Junction.
+ * Lane &amp; Junction.
  */
 public class Point {
 

@@ -3,15 +3,14 @@ package com.simpfi.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.simpfi.ui.MapPanel;
-import com.simpfi.util.Point;
-import com.simpfi.util.reader.NetworkXMLReader;
-import com.simpfi.util.reader.RouteXMLReader;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Route;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.object.VehicleType;
+import com.simpfi.util.Point;
+import com.simpfi.util.reader.NetworkXMLReader;
+import com.simpfi.util.reader.RouteXMLReader;
 
 /**
  *
@@ -19,8 +18,9 @@ import com.simpfi.object.VehicleType;
  * for SUMO and is also used to initialize and update changes to scale and
  * offset settings of the software.
  *
- * @see {@link com.simpfi.ui.MapPanel}, {@link com.simpfi.ui.ControlPanel},
- *      {@link com.simpfi.ui.TextBox}.
+ * @see com.simpfi.ui.MapPanel
+ * @see com.simpfi.ui.ControlPanel
+ * @see com.simpfi.ui.TextBox
  */
 public class Settings {
 
