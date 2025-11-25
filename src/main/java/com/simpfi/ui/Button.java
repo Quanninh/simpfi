@@ -23,7 +23,7 @@ public class Button extends JButton {
 	public Button(String text) {
 		this.setText(text);
 		this.setBackground(new Color(251, 232, 237));
-		this.setFont(new Font("Arial", Font.PLAIN, 18));
+		this.setFont(new Font("Arial", Font.PLAIN, 14));
 	};
 
 }

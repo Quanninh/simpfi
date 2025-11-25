@@ -8,7 +8,6 @@ public class Phase {
 	private String state;
 	
 	public Phase(double duration, String state) {
-		// TODO Auto-generated constructor stub
 		this.duration = duration;
 		this.state = state;
 	}

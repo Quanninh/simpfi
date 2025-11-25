@@ -5,9 +5,12 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+
 import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
 import com.simpfi.config.Settings;
+import com.formdev.flatlaf.FlatLightLaf;
 import com.simpfi.config.Constants;
 import com.simpfi.object.Vehicle;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
@@ -39,82 +42,84 @@ import java.util.List;
  */
 public class App {
 	private static MapPanel mapPanel;
+	private static VehicleController vehicleController;
+	private static TrafficLightController trafficLightController;
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		long stepMs = (long) (Settings.TIMESTEP * 1000);
 
-		SumoConnectionManager sim = null;
+		SumoConnectionManager connection = null;
 		try {
-			sim = establishConnection();
-			generateUI(sim);
+			connection = establishConnection();
+			generateUI(connection);
 
-			RouteXMLReader routeXmlReader = new RouteXMLReader(
-				Constants.SUMO_ROUTE);
-			System.out.println(routeXmlReader.parseRoute().toString());
-			System.out.println(routeXmlReader.parseVehicleType().toString());
+			vehicleController = new VehicleController(connection);
+			trafficLightController = new TrafficLightController(connection);
 
-			long next = System.currentTimeMillis();
 			while (true) {
+				long next = System.currentTimeMillis() + stepMs;
 
-				do_step(sim);
-				retrieveData(sim);
+				doStep(connection);
+				retrieveData(connection);
 				mapPanel.repaint();
 
-				next += stepMs;
 				long sleep = next - System.currentTimeMillis();
-				if (sleep > 0)
+				if (sleep > 0) {
 					Thread.sleep((long) (sleep / Settings.SIMULATION_SPEED));
-				//Thread.sleep(100);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (sim != null) {
-				sim.close();
+			if (connection != null) {
+				connection.close();
 			}
 		}
 	}
 
-	private static void do_step(SumoConnectionManager sim) throws Exception {
+	private static void doStep(SumoConnectionManager sim) throws Exception {
 		sim.doStep();
 	}
 
 	private static SumoConnectionManager establishConnection()
 		throws Exception {
-		SumoConnectionManager sim = new SumoConnectionManager(
+		SumoConnectionManager conn = new SumoConnectionManager(
 			Constants.SUMO_CONFIG);
-		return sim;
+		return conn;
 	}
 
 	private static void retrieveData(SumoConnectionManager sim)
 		throws Exception {
-		VehicleController vehicleController = new VehicleController(sim);
-		TrafficLightController trafficLightController = new TrafficLightController(
-			sim);
-		List<Vehicle> updatedVehicles = new ArrayList<Vehicle>();
 
+//		List<Vehicle> updatedVehicles = new ArrayList<Vehicle>();
+
+		Settings.disableAllVehicles();
 		for (String vid : vehicleController.getAllVehicleIDs()) {
 			Point pos = vehicleController.getPosition(vid);
-			// double speed = vehicleController.getSpeed(vid);
+			double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
 			double angle = vehicleController.getAngle(vid);
 			String type = vehicleController.getTypeID(vid);
-			
-			Vehicle v = new Vehicle(vid, pos, edge, type, angle);
+			double width = vehicleController.getWidth(vid);
+			double height = vehicleController.getHeight(vid);
 
-			updatedVehicles.add(v);
-			mapPanel.updateVehicles(updatedVehicles);
+			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height);
+
+//			updatedVehicles.add(v);
+			Settings.setVehicles(v);
 		}
+		
 
 		for (String tl : trafficLightController.getIDList()) {
 			String light_state = trafficLightController.getState(tl);
-			mapPanel.updateTrafficLightState(tl, light_state); // It should be
-																// TrafficLightController
-			//System.out.printf("light state=%s", light_state);
+			Settings.updateTrafficLightState(tl, light_state);
+			// It should be TrafficLightController
+			// System.out.printf("light state=%s", light_state);
 		}
 	}
 
 	private static void generateUI(SumoConnectionManager conn) {
+		FlatLightLaf.setup();
 		Frame myFrame = new Frame();
 
 		ControlPanel controlPanel = new ControlPanel(conn);

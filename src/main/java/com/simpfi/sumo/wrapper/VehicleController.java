@@ -46,11 +46,19 @@ public class VehicleController {
 		return (String) conn.do_job_get(Vehicle.getTypeID(vId));
 	}
 
+	public double getWidth(String vId) throws Exception {
+		return (double) conn.do_job_get(Vehicle.getWidth(vId));
+	}
+
+	public double getHeight(String vId) throws Exception {
+		return (double) conn.do_job_get(Vehicle.getHeight(vId));
+	}
+
 	/**
 	 * Used to add a new vehicle to the list.
 	 * 
 	 * @param vehicleID id of the new vehicle, must be unique.
-	 * @param routeID    id of the route that the new vehicle is on.
+	 * @param routeID   id of the route that the new vehicle is on.
 	 * @param vType     the type of the new vehicle.
 	 */
 	public void addVehicle(String vehicleID, String routeID, String vType)

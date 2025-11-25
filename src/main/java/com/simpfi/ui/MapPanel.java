@@ -5,22 +5,15 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
-import com.simpfi.object.Phase;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.object.Vehicle;
-import com.simpfi.sumo.wrapper.SumoConnectionManager;
-import com.simpfi.sumo.wrapper.VehicleController;
 import com.simpfi.util.Point;
-import com.simpfi.util.reader.NetworkXMLReader;
 
 /**
  * Custom MapPanel class that inherits {@link com.simpfi.ui.Panel}. Used to draw
@@ -30,101 +23,8 @@ public class MapPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
-	private double scale = 3;
-	private Point topLeftPos = new Point(-800, -200);
-	private static List<Vehicle> vehicles = new ArrayList<>();
-
-
-	public MapPanel(){
-		
+	public MapPanel() {
 	}
-	
-	private Map<String, String> liveTrafficLightStates = new HashMap<>();
-
-	public void updateTrafficLightState(String id, String state) {
-	    liveTrafficLightStates.put(id, state);
-	}
-
-//	public void updateVehicles(List<Vehicle> newVehicles) {
-//	    this.vehicles = new ArrayList<>(newVehicles);
-//	}
-
-	//private List<Vehicle> vehicles = new ArrayList<>();
-	private VehicleController vehicleController;
-
-
-	// private static final Map<String, double[]> vehicle_dimension = Map.of(
-	// 	"private", new double[] { 1.8, 4.5 }, "truck",
-	// 	new double[] { 2.5, 12.0 }, "bus", new double[] { 2.5, 12.0 },
-	// 	"motorcycle", new double[] { 0.8, 2.2 }, "emergency",
-	// 	new double[] { 1.8, 4.5 });
-
-	// public MapPanel(SumoConnectionManager scm) {
-    //     try {
-    //         vehicleController = new VehicleController(scm);
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    // }
-
-	public void updateVehicles(List<Vehicle> updatedVehicles) {
-        // try {
-        //     vehicles.clear();
-        //     List<String> ids = vehicleController.getAllVehicleIDs();
-        //     for (String id : ids) {
-        //         Point pos = vehicleController.getPosition(id);
-        //         //double speed = vehicleController.getSpeed(id);
-        //         //double angle = vehicleController.getAngle(id);
-        //         String roadID = vehicleController.getRoadID(id);
-        //         String type = vehicleController.getTypeID(id);
-		// 		Vehicle v = new Vehicle(id, pos, roadID, type);
-        //         vehicles.add(v);
-        //     }
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-		vehicles = updatedVehicles;
-    } 	
-
-// 			SumoConnectionManager scm = new SumoConnectionManager(Constants.SUMO_CONFIG);
-// 			VehicleController vID = new VehicleController(scm);
-// //			Vehicle v1 = new Vehicle("private", new Point(1.8, 4.5), 0, "r_0", "private", 0);
-// //			Vehicle v2 = new Vehicle("bus", new Point(1.8, 4.5), 0, "r_1", "bus", 0);
-// //			vehicles.add(v1);
-// //			vehicles.add(v2);
-// 			for (String id : vID.getAllVehicleIDs()) {
-// 				Point pos = vID.getPosition(id);
-// 				double speed = vID.getSpeed(id);
-// 				String roadID = vID.getRoadID(id);
-// 				double angle = vID.getAngle(id);
-// 				String type = vID.getTypeID(id);
-
-// 				Vehicle v = new Vehicle(id, pos, speed, roadID, type, angle);
-				
-// //				vehicles.add(v1);
-// 				vehicles.add(v);
-// //				System.out.println("hehe:");
-// //				System.out.println(vehicles);
-// 				Settings.vehicleCounter += 1;
-// 			}
-// //			System.out.println("hehe:");
-// //			System.out.println(vehicles.get(0));
-// 		} catch (Exception e) {
-// 			e.printStackTrace();
-// 		}
-// 	}
-
-	// public static List<String> generate_vID() {
-	// 	Settings setting = new Settings();
-	// 	List<String> vehicle_ids = new ArrayList<>();
-	// 	for (int i = 0; i < setting.vehicleCounter; i++) {
-	// 		String id = "v_" + i;
-	// 		vehicle_ids.add(id);
-	// 	}
-	// 	return vehicle_ids;
-	// }
-               
-
 
 	/**
 	 * Overrides paint method from {@link java.awt.Component}. Parses objects in
@@ -135,14 +35,10 @@ public class MapPanel extends Panel {
 	 */
 	@Override
 	public void paint(Graphics g) {
-		// Clear
-//		Settings setting = new Settings();
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D) g;
-		g2D.setStroke(new BasicStroke(Constants.STROKE_SIZE));
-
-		scale = Settings.SETTINGS_SCALE;
-		topLeftPos = Settings.SETTINGS_OFFSET;
+		g2D.setStroke(new BasicStroke(
+			(float) (Constants.DEFAULT_STROKE_SIZE * Settings.SETTINGS_SCALE)));
 
 		for (Edge e : Settings.getEdges()) {
 			drawObject(g2D, e);
@@ -159,10 +55,10 @@ public class MapPanel extends Panel {
 			}
 		}
 
-		for (Vehicle v : vehicles) {
-			try{
-			    drawObject(g2D, v);
-			} catch(Exception e){
+		for (Vehicle v : Settings.getVehicles()) {
+			try {
+				drawObject(g2D, v);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -177,59 +73,47 @@ public class MapPanel extends Panel {
 
 	// Apply Function Overloading for drawObject to draw Vehicle, Edge, Lane,
 	// and Junction
-	
+
 	// Draw real-world vehicle shapes
 
 	private void drawObject(Graphics2D g, Vehicle v) {
-		if (v == null) {
+		if (v == null || !v.getIsActive()) {
 			return;
 		}
+
 		Point pos = translateCoords(v.getPosition());
-		int width = (int)(4 * scale);  
-		int height = (int)(8 * scale);
+		int width = (int) (v.getWidth() * Settings.SETTINGS_SCALE
+			* Constants.VEHICLE_UPSCALE);
+		int height = (int) (v.getHeight() * Settings.SETTINGS_SCALE
+			* Constants.VEHICLE_UPSCALE);
 
-		Color color;
-		switch (v.getType()) {
-		case "truck":
-			color = Color.GRAY;
-			break;
-		case "bus":
-			color = Color.YELLOW;
-			break;
-		case "motorcycle":
-			color = Color.MAGENTA;
-			break;
-		case "emergency":
-			color = Color.RED;
-			break;
-		default:
-			color = Color.GREEN;
-			break;
-		}
-		g.setColor(color);
+		g.setColor(getVehicleColor(v.getType()));
+
+		double angle = v.getAngle();
 		
-		// //System.out.println(color);
-		// g.fillRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
+		AffineTransform oldTransform = g.getTransform();
+		g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
+		
+		g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2,
+			width, height);
 
-		// // Draw border
-        // g.setColor(color);
-        // g.drawRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
+		g.setColor(Color.BLACK);
+		g.setStroke(new BasicStroke(
+			(float) (Constants.DEFAULT_STROKE_SIZE * Settings.SETTINGS_SCALE)));
+		g.drawRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2,
+			width, height);
+		
+		g.setTransform(oldTransform);
+	}
 
-		double angle = 0;
-		try {
-			angle = v.getAngle();
-		} catch (Exception e) {
-
-		}
-		AffineTransform trf = g.getTransform();
-		g.rotate(Math.toRadians(-angle), pos.getX(), pos.getY());
-
-		g.setColor(color);
-		g.fillRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
-
-		g.setColor(color);
-        g.drawRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
-		g.setTransform(trf);
+	private Color getVehicleColor(String type) {
+		return switch (type) {
+		case "truck" -> Constants.TRUCK_COLOR;
+		case "bus" -> Constants.BUS_COLOR;
+		case "motorcycle" -> Constants.MOTORCYCLE_COLOR;
+		case "emergency" -> Constants.EMERGENCY_COLOR;
+		default -> Constants.DEFAULT_VEHICLE_COLOR;
+		};
 	}
 
 	/**
@@ -264,54 +148,54 @@ public class MapPanel extends Panel {
 			Point p1 = translateCoords(shape[i]);
 			Point p2 = translateCoords(shape[i + 1]);
 
-			drawLine(g, p1, p2, Color.BLACK);
-
-			// System.out.println("Drawing Lane: " + l.getLaneId());
+			drawLine(g, p1, p2, Color.BLACK, Constants.LANE_STROKE_SIZE);
 		}
 	}
 
- 
 	// Draw TrafficLight, replaceTrafficLight to drawObject
 
-    /**
-     * Used to draw a traffic light on the User Interface.
-     *
-     * @param g where the traffic light is drawn on.
-     * @param tl traffic light object that is passed to the method.
-     * */
+	/**
+	 * Used to draw a traffic light on the User Interface.
+	 *
+	 * @param g  where the traffic light is drawn on.
+	 * @param tl traffic light object that is passed to the method.
+	 */
 	// Draw TrafficLight
 	private void drawTrafficLight(Graphics2D g, TrafficLight tl) {
-
-		// This one is Logic of the Phase So this logic should be place another class :)))
-		Phase firstPhase = tl.getPhase()[0];	
-		String firstState = firstPhase.getState();
-		String state = liveTrafficLightStates.getOrDefault(tl.getJunction().getId(), firstState);
-		
+		String state = getTLState(tl);
 		Lane[] lanes = tl.getLanes();
 
 		for (int i = 0; i < lanes.length; i++) {
 			Lane lane = lanes[i];
-			Color color = Color.YELLOW;
 			char signal = state.charAt(i);
-			color = switch (signal) {
-			case 'G' -> Color.GREEN;
-			case 'g' -> Color.GREEN.darker();
-			case 'y' -> Color.YELLOW;
-			case 'r' -> Color.RED;
-			default -> Color.BLACK;
-			};
+			Color color = getTrafficLightColor(signal);
 
 			Point[] shape = lane.getShape();
 			Point end = translateCoords(shape[1]);
 
-			int radius = 6;
-
-			g.setColor(color);
-			g.drawOval((int) end.getX() - radius, (int) end.getY() - radius, radius * 2, radius * 2);
+			int radius = (int) (Constants.TRAFFIC_LIGHT_RADIUS
+				* Settings.SETTINGS_SCALE);
+			drawCircle(g, end, radius, color);
 		}
 	}
 
+	private Color getTrafficLightColor(char signal) {
+		return switch (signal) {
+		case 'G' -> Color.GREEN;
+		case 'g' -> Color.GREEN.darker();
+		case 'y' -> Color.YELLOW;
+		case 'r' -> Color.RED;
+		default -> Color.BLACK;
+		};
+	}
 
+	private String getTLState(TrafficLight tl) {
+		// This one is Logic of the Phase So this logic should be place another
+		// class :)))
+		String defaultState = tl.getPhase()[0].getState();
+		return Settings.getLiveTrafficLightStates()
+			.getOrDefault(tl.getJunction().getId(), defaultState);
+	}
 
 	/**
 	 * Used to draw a Junction on the User Interface.
@@ -321,6 +205,9 @@ public class MapPanel extends Panel {
 	 */
 	// Draw Junction
 	private void drawObject(Graphics2D g, Junction j) {
+		// We don't draw junctions anymore
+		// Keep function for testing purposes and not breaking code
+
 		Point[] shape = j.getShape();
 		int size = j.getShapeSize();
 
@@ -337,22 +224,44 @@ public class MapPanel extends Panel {
 				p2 = translateCoords(shape[0]);
 			}
 
-			drawLine(g, p1, p2, Color.RED);
-			// System.out.println("Drawing Junction: " + j.getId());
+			drawLine(g, p1, p2, Color.PINK, Constants.JUNCTION_STROKE_SIZE);
 		}
 	}
 
 	/**
 	 * Used to draw a line on the User Interface.
 	 * 
-	 * @param g     where the line is drawn on.
-	 * @param p1    start coordinate of the line.
-	 * @param p2    end coordinate of the line.
-	 * @param color the color of the line.
+	 * @param g             where the line is drawn on.
+	 * @param p1            start coordinate of the line.
+	 * @param p2            end coordinate of the line.
+	 * @param color         the color of the line.
+	 * @param lineThickness the thickness of the line.
 	 */
-	private void drawLine(Graphics2D g, Point p1, Point p2, Color color) {
+	private void drawLine(Graphics2D g, Point p1, Point p2, Color color,
+		double lineThickness) {
+		lineThickness *= Settings.SETTINGS_SCALE;
+
+		AffineTransform oldTransform = g.getTransform();
 		g.setColor(color);
-		g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(), (int) p2.getY());
+		g.rotate(Math.atan2(p2.getY() - p1.getY(), p2.getX() - p1.getX()),
+			p1.getX(), p1.getY());
+
+		g.fillRect((int) (p1.getX() - lineThickness / 2),
+			(int) (p1.getY() - lineThickness / 2),
+			(int) (Point.distance(p1, p2) + lineThickness),
+			(int) lineThickness);
+		// g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(), (int)
+		// p2.getY());
+
+		g.setColor(Color.BLACK);
+		g.setTransform(oldTransform);
+	}
+
+	private void drawCircle(Graphics2D g, Point center, int radius,
+		Color color) {
+		g.setColor(color);
+		g.fillOval((int) center.getX() - radius, (int) center.getY() - radius,
+			radius * 2, radius * 2);
 		g.setColor(Color.BLACK);
 	}
 
@@ -364,27 +273,16 @@ public class MapPanel extends Panel {
 	 */
 	private Point translateCoords(Point before) {
 		Point after = new Point();
-		after.setX(before.getX() * scale - topLeftPos.getX());
+
+		after.setX(before.getX() * Settings.SETTINGS_SCALE
+			- Settings.SETTINGS_OFFSET.getX());
+
 		// -1 here to flip the Y-axis, because Y increases downward in graphics
 		// coordinates
-		after.setY(before.getY() * scale * -1 - topLeftPos.getY());
+		after.setY(before.getY() * Settings.SETTINGS_SCALE * -1
+			- Settings.SETTINGS_OFFSET.getY());
+
 		return after;
-	}
-
-	public double getScale() {
-		return scale;
-	}
-
-	public void setScale(double scale) {
-		this.scale = scale;
-	}
-
-	public Point getTopLeftPos() {
-		return topLeftPos;
-	}
-
-	public void setTopLeftPos(Point topLeftPos) {
-		this.topLeftPos = topLeftPos;
 	}
 
 }

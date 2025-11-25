@@ -34,6 +34,11 @@ public class Point {
 		this.y = y;
 	}
 
+	public static double distance(Point p1, Point p2) {
+		return Math.sqrt((p2.getX() - p1.getX()) * (p2.getX() - p1.getX())
+			+ (p2.getY() - p1.getY()) * (p2.getY() - p1.getY()));
+	}
+
 	/**
 	 * Overrides the built-in method toString() to provide a human-readable
 	 * representation of Point.
