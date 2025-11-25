@@ -20,6 +20,12 @@ import com.simpfi.util.XMLReader;
  */
 public class RouteXMLReader extends XMLReader {
 
+    /**
+     * calls the Constructor of superclass {@link XMLReader} and passes the given file address
+     *
+     * @param fileAddress address of the file to be read
+     * @throws Exception if reading of file fails
+     * */
 	public RouteXMLReader(String fileAddress) throws Exception {
 		super(fileAddress);
 	}

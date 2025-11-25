@@ -1,19 +1,17 @@
 package com.simpfi.config;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import com.simpfi.ui.MapPanel;
+import com.simpfi.util.Point;
+import com.simpfi.util.reader.NetworkXMLReader;
+import com.simpfi.util.reader.RouteXMLReader;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Route;
 import com.simpfi.object.TrafficLight;
-import com.simpfi.object.Vehicle;
 import com.simpfi.object.VehicleType;
-import com.simpfi.util.Point;
-import com.simpfi.util.reader.NetworkXMLReader;
-import com.simpfi.util.reader.RouteXMLReader;
 
 /**
  *
@@ -21,26 +19,21 @@ import com.simpfi.util.reader.RouteXMLReader;
  * for SUMO and is also used to initialize and update changes to scale and
  * offset settings of the software.
  *
- * @see com.simpfi.ui.MapPanel
- * @see com.simpfi.ui.ControlPanel
- * @see com.simpfi.ui.TextBox
+ * @see {@link com.simpfi.ui.MapPanel}, {@link com.simpfi.ui.ControlPanel},
+ *      {@link com.simpfi.ui.TextBox}.
  */
 public class Settings {
 
 	public static double SETTINGS_SCALE = Constants.DEFAULT_SCALE;
 	public static Point SETTINGS_OFFSET = new Point();
-	public static double TIMESTEP = 0.1;
-	public static double SIMULATION_SPEED = 2;
+	public static int vehicleCounter = 0;
 
 	private static List<Edge> parsedEdges;
 	private static List<Junction> parsedJunctions;
 	private static List<VehicleType> parsedVehicleTypes;
 	private static List<Route> parsedRoutes;
 	private static List<TrafficLight> parsedTrafficLights;
-
-	public static int vehicleCounter = 0;
-	private static Map<String, Vehicle> vehicleMap = new HashMap<>();
-	private static Map<String, String> liveTrafficLightStates = new HashMap<>();
+	private static List<String> parsedVehicleIds;
 
 	/**
 	 * Constructor loads all network and route data defined in {@link Constants}
@@ -60,8 +53,8 @@ public class Settings {
 			parsedEdges = networkXmlReader.parseEdge(parsedJunctions);
 			parsedVehicleTypes = routeXmlReader.parseVehicleType();
 			parsedRoutes = routeXmlReader.parseRoute();
-			parsedTrafficLights = networkXmlReader
-				.parseTrafficLight(parsedJunctions, parsedEdges);
+			parsedTrafficLights = networkXmlReader.parseTrafficLight(parsedJunctions, parsedEdges);
+			// this.parse_vid = routeXmlReader.parseVehicleID();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -113,32 +106,9 @@ public class Settings {
 		return parsedTrafficLights;
 	}
 
-	public static List<Vehicle> getVehicles() {
-		List<Vehicle> vehicleList = new ArrayList<Vehicle>();
-		for (Map.Entry<String, Vehicle> entry : vehicleMap.entrySet()) {
-			vehicleList.add(entry.getValue());
-		}
-		return vehicleList;
-	}
-	
-	public static void disableAllVehicles() {
-		for (Map.Entry<String, Vehicle> entry : vehicleMap.entrySet()) {
-			entry.getValue().setIsActive(false);
-		}
-	}
-
-	public static void setVehicles(Vehicle vehicleToUpdate) {
-		vehicleToUpdate.setIsActive(true);
-		vehicleMap.put(vehicleToUpdate.getID(), vehicleToUpdate);
-	}
-
-	public static void updateTrafficLightState(String id, String state) {
-		liveTrafficLightStates.put(id, state);
-	}
-
-	public static Map<String, String> getLiveTrafficLightStates() {
-		return liveTrafficLightStates;
-	}
+	// public List<String> getVehicleIDs(){
+	// return this.parse_vid;
+	// }
 
 	/**
 	 * Adds a value to the scale.
@@ -194,9 +164,24 @@ public class Settings {
 		SETTINGS_OFFSET.setY(newValue);
 	}
 
-	public static String generateVehicleIDs() {
-		String ids = "v_" + vehicleCounter;
-		vehicleCounter++;
+	// public static List<String> generate_vID() {
+	// List<String> vehicle_ids = new ArrayList<>();
+	// for (int i = 0; i < vehicleCounter; i++) {
+	// String id = "v_" + i;
+	// vehicle_ids.add(id);
+	// }
+	// return vehicle_ids;
+	// }
+
+	public static List<String> generateVehicleIDs() {
+		List<VehicleType> types = getVehicleTypes();
+		List<Route> routes = getRoutes();
+		int n = Math.min(types == null ? 0 : types.size(),
+			routes == null ? 0 : routes.size());
+		List<String> ids = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			ids.add("v_" + i);
+		}
 		return ids;
 	}
 

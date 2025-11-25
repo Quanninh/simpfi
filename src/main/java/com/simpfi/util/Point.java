@@ -9,10 +9,17 @@ public class Point {
 	private double x;
 	private double y;
 
+    /**
+     * Default Constructor
+     * */
 	public Point() {
 		this(0, 0);
 	}
-
+    /**
+     *  Constructs a point with the given coordinates
+     * @param x for x coordinate
+     * @param y for y coordinate
+     * */
 	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;

@@ -60,6 +60,7 @@ public class VehicleController {
 	 * @param vehicleID id of the new vehicle, must be unique.
 	 * @param routeID   id of the route that the new vehicle is on.
 	 * @param vType     the type of the new vehicle.
+     * @throws Exception if adding of vehicle fails
 	 */
 	public void addVehicle(String vehicleID, String routeID, String vType)
 		throws Exception {
@@ -69,7 +70,7 @@ public class VehicleController {
 		conn.do_job_set(
 			Vehicle.addFull(vehicleID, routeID, vType, "now", "random", "last",
 				"max", "current", "random", "current", "", "", "", 0, 0));
-	}
+	    }
 
 	/*
 	 * add vehicle tl: set state

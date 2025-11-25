@@ -5,15 +5,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
-
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-
 import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
 import com.simpfi.config.Settings;
-import com.formdev.flatlaf.FlatLightLaf;
 import com.simpfi.config.Constants;
 import com.simpfi.object.Vehicle;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
@@ -23,12 +17,6 @@ import com.simpfi.ui.ControlPanel;
 import com.simpfi.ui.Frame;
 import com.simpfi.ui.MapPanel;
 import com.simpfi.ui.Panel;
-import com.simpfi.ui.panel.FilterPanel;
-import com.simpfi.ui.panel.InjectPanel;
-import com.simpfi.ui.panel.InspectPanel;
-import com.simpfi.ui.panel.MapViewPanel;
-import com.simpfi.ui.panel.ProgramLightsPanel;
-import com.simpfi.ui.panel.StatisticsPanel;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.RouteXMLReader;
 
@@ -51,132 +39,113 @@ import java.util.List;
  */
 public class App {
 	private static MapPanel mapPanel;
-	private static VehicleController vehicleController;
-	private static TrafficLightController trafficLightController;
 
-	public static void main(String[] args) {
-		long stepMs = (long) (Settings.TIMESTEP * 1000);
+	public static void main(String[] args) throws Exception {
 
-		SumoConnectionManager connection = null;
+		double stepLen = 0.1;
+		long stepMs = (long) (stepLen * 1000);
+
+		SumoConnectionManager sim = null;
 		try {
-			connection = establishConnection();
-			generateUI(connection);
+			sim = establishConnection();
+			generateUI();
 
-			vehicleController = new VehicleController(connection);
-			trafficLightController = new TrafficLightController(connection);
+			RouteXMLReader routeXmlReader = new RouteXMLReader(
+				Constants.SUMO_ROUTE);
+			System.out.println(routeXmlReader.parseRoute().toString());
+			System.out.println(routeXmlReader.parseVehicleType().toString());
+			List<String> vehicleIds = Settings.generateVehicleIDs();
+			List<VehicleType> vehicleTypes = Settings.getVehicleTypes();
+			List<Route> routes = Settings.getRoutes();
 
+			VehicleController vehicle_control = new VehicleController(sim);
+
+			for (int i = 0; i < vehicleIds.size(); i++) {
+				String v = vehicleIds.get(i);
+				String vt = vehicleTypes.get(i).getId();
+				String r = routes.get(i).getId();
+
+				vehicle_control.addVehicle(v, r, vt);
+			}
+
+			long next = System.currentTimeMillis();
 			while (true) {
-				long next = System.currentTimeMillis() + stepMs;
 
-				doStep(connection);
-				retrieveData(connection);
+				do_step(sim);
+				retrieveData(sim);
 				mapPanel.repaint();
 
+				next += stepMs;
 				long sleep = next - System.currentTimeMillis();
-				if (sleep > 0) {
-					Thread.sleep((long) (sleep / Settings.SIMULATION_SPEED));
-				}
+				if (sleep > 0)
+					Thread.sleep(sleep);
+				Thread.sleep(100);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (connection != null) {
-				connection.close();
+			if (sim != null) {
+				sim.close();
 			}
 		}
 	}
 
-	private static void doStep(SumoConnectionManager sim) throws Exception {
+	private static void do_step(SumoConnectionManager sim) throws Exception {
 		sim.doStep();
 	}
 
 	private static SumoConnectionManager establishConnection()
 		throws Exception {
-		SumoConnectionManager conn = new SumoConnectionManager(
+		SumoConnectionManager sim = new SumoConnectionManager(
 			Constants.SUMO_CONFIG);
-		return conn;
+		return sim;
 	}
 
 	private static void retrieveData(SumoConnectionManager sim)
 		throws Exception {
+		VehicleController vehicleController = new VehicleController(sim);
+		TrafficLightController trafficLightController = new TrafficLightController(
+			sim);
+		List<Vehicle> updatedVehicles = new ArrayList<Vehicle>();
 
-//		List<Vehicle> updatedVehicles = new ArrayList<Vehicle>();
-
-		Settings.disableAllVehicles();
 		for (String vid : vehicleController.getAllVehicleIDs()) {
 			Point pos = vehicleController.getPosition(vid);
-			double speed = vehicleController.getSpeed(vid);
+			// double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
-			double angle = vehicleController.getAngle(vid);
+			// double angle = vehicleController.getAngle(vid);
 			String type = vehicleController.getTypeID(vid);
-			double width = vehicleController.getWidth(vid);
-			double height = vehicleController.getHeight(vid);
 
-			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height);
+			// System.out.printf("t=%.1fs id=%s v=%.2f m/s edge=%s%n",
+			// time, vid, speed, edge);
+			Vehicle v = new Vehicle(vid, pos, edge, type);
 
-			Settings.setVehicles(v);
+			updatedVehicles.add(v);
+			mapPanel.updateVehicles(updatedVehicles);
 		}
 
 		for (String tl : trafficLightController.getIDList()) {
 			String light_state = trafficLightController.getState(tl);
-			Settings.updateTrafficLightState(tl, light_state);
-			// It should be TrafficLightController
-			// System.out.printf("light state=%s", light_state);
+			mapPanel.updateTrafficLightState(tl, light_state); // It should be
+																// TrafficLightController
+			System.out.printf("light state=%s", light_state);
 		}
 	}
 
-	private static void generateUI(SumoConnectionManager conn) {
-		uiSetup();
+	private static void generateUI() {
 		Frame myFrame = new Frame();
 
-		ControlPanel controlPanel = new ControlPanel(conn);
+		ControlPanel controlPanel = new ControlPanel();
 		Panel infoPanel = new Panel();
 		mapPanel = new MapPanel();
-
-		StatisticsPanel statisticsPanel = new StatisticsPanel();
-		InjectPanel injectPanel = new InjectPanel(conn);
-		MapViewPanel mapViewPanel = new MapViewPanel();
-		ProgramLightsPanel programLightPanel = new ProgramLightsPanel();
-		FilterPanel filterPanel = new FilterPanel();
-		InspectPanel inspectPanel = new InspectPanel();
-
-//		sideBar.add(statisticsPanel);
-//		sideBar.add(injectPanel);
-//		sideBar.add(mapViewPanel);
-//		sideBar.add(programLightPanel);
-//		sideBar.add(filterPanel);
-//		sideBar.add(inspectPanel);
-
-		JTabbedPane sidePane = new JTabbedPane(JTabbedPane.LEFT,
-			JTabbedPane.SCROLL_TAB_LAYOUT);
-
-		sidePane.addTab("Statistics", statisticsPanel);
-		sidePane.addTab("Inject", injectPanel);
-		sidePane.addTab("Map View", mapViewPanel);
-		sidePane.addTab("Program Lights", programLightPanel);
-		sidePane.addTab("Filter", filterPanel);
-		sidePane.addTab("Inspect", inspectPanel);
 
 		myFrame.add(controlPanel, BorderLayout.NORTH);
 		myFrame.add(infoPanel, BorderLayout.EAST);
 		myFrame.add(mapPanel, BorderLayout.CENTER);
-		myFrame.add(sidePane, BorderLayout.WEST);
 
 		infoPanel.setBackground(Color.GREEN);
 		mapPanel.setBackground(Color.WHITE);
 
 		// ALWAYS PUT THIS AT THE END
 		myFrame.setVisible(true);
-	}
-
-	private static void uiSetup() {
-		FlatLightLaf.setup();
-		UIManager.put("Button.arc", Constants.ROUNDED_CORNERS);
-		UIManager.put("Component.arc", Constants.ROUNDED_CORNERS);
-		UIManager.put("ProgressBar.arc", Constants.ROUNDED_CORNERS);
-		UIManager.put("TextComponent.arc", Constants.ROUNDED_CORNERS);
-		UIManager.put("Component.arrowType", "chevron");
-		UIManager.put("Component.focusWidth", 3);
-		UIManager.put("TabbedPane.showTabSeparators", true);
 	}
 }
