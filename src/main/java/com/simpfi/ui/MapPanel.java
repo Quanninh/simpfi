@@ -90,10 +90,10 @@ public class MapPanel extends Panel {
 		g.setColor(getVehicleColor(v.getType()));
 
 		double angle = v.getAngle();
-		
+
 		AffineTransform oldTransform = g.getTransform();
 		g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
-		
+
 		g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2,
 			width, height);
 
@@ -102,7 +102,7 @@ public class MapPanel extends Panel {
 			(float) (Constants.DEFAULT_STROKE_SIZE * Settings.SETTINGS_SCALE)));
 		g.drawRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2,
 			width, height);
-		
+
 		g.setTransform(oldTransform);
 	}
 
@@ -243,9 +243,7 @@ public class MapPanel extends Panel {
 
 		AffineTransform oldTransform = g.getTransform();
 		g.setColor(color);
-		g.rotate(Math.atan2(p2.getY() - p1.getY(), p2.getX() - p1.getX()),
-			p1.getX(), p1.getY());
-
+		g = rotateToLine(g, p1, p2);
 		g.fillRect((int) (p1.getX() - lineThickness / 2),
 			(int) (p1.getY() - lineThickness / 2),
 			(int) (Point.distance(p1, p2) + lineThickness),
@@ -263,6 +261,12 @@ public class MapPanel extends Panel {
 		g.fillOval((int) center.getX() - radius, (int) center.getY() - radius,
 			radius * 2, radius * 2);
 		g.setColor(Color.BLACK);
+	}
+
+	private Graphics2D rotateToLine(Graphics2D g, Point p1, Point p2) {
+		g.rotate(Math.atan2(p2.getY() - p1.getY(), p2.getX() - p1.getX()),
+			p1.getX(), p1.getY());
+		return g;
 	}
 
 	/**

@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 
 import com.simpfi.object.Route;
@@ -20,6 +23,12 @@ import com.simpfi.ui.ControlPanel;
 import com.simpfi.ui.Frame;
 import com.simpfi.ui.MapPanel;
 import com.simpfi.ui.Panel;
+import com.simpfi.ui.panel.FilterPanel;
+import com.simpfi.ui.panel.InjectPanel;
+import com.simpfi.ui.panel.InspectPanel;
+import com.simpfi.ui.panel.MapViewPanel;
+import com.simpfi.ui.panel.ProgramLightsPanel;
+import com.simpfi.ui.panel.StatisticsPanel;
 import com.simpfi.util.Point;
 import com.simpfi.util.reader.RouteXMLReader;
 
@@ -105,10 +114,8 @@ public class App {
 
 			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height);
 
-//			updatedVehicles.add(v);
 			Settings.setVehicles(v);
 		}
-		
 
 		for (String tl : trafficLightController.getIDList()) {
 			String light_state = trafficLightController.getState(tl);
@@ -119,21 +126,57 @@ public class App {
 	}
 
 	private static void generateUI(SumoConnectionManager conn) {
-		FlatLightLaf.setup();
+		uiSetup();
 		Frame myFrame = new Frame();
 
 		ControlPanel controlPanel = new ControlPanel(conn);
 		Panel infoPanel = new Panel();
 		mapPanel = new MapPanel();
 
+		StatisticsPanel statisticsPanel = new StatisticsPanel();
+		InjectPanel injectPanel = new InjectPanel(conn);
+		MapViewPanel mapViewPanel = new MapViewPanel();
+		ProgramLightsPanel programLightPanel = new ProgramLightsPanel();
+		FilterPanel filterPanel = new FilterPanel();
+		InspectPanel inspectPanel = new InspectPanel();
+
+//		sideBar.add(statisticsPanel);
+//		sideBar.add(injectPanel);
+//		sideBar.add(mapViewPanel);
+//		sideBar.add(programLightPanel);
+//		sideBar.add(filterPanel);
+//		sideBar.add(inspectPanel);
+
+		JTabbedPane sidePane = new JTabbedPane(JTabbedPane.LEFT,
+			JTabbedPane.SCROLL_TAB_LAYOUT);
+
+		sidePane.addTab("Statistics", statisticsPanel);
+		sidePane.addTab("Inject", injectPanel);
+		sidePane.addTab("Map View", mapViewPanel);
+		sidePane.addTab("Program Lights", programLightPanel);
+		sidePane.addTab("Filter", filterPanel);
+		sidePane.addTab("Inspect", inspectPanel);
+
 		myFrame.add(controlPanel, BorderLayout.NORTH);
 		myFrame.add(infoPanel, BorderLayout.EAST);
 		myFrame.add(mapPanel, BorderLayout.CENTER);
+		myFrame.add(sidePane, BorderLayout.WEST);
 
 		infoPanel.setBackground(Color.GREEN);
 		mapPanel.setBackground(Color.WHITE);
 
 		// ALWAYS PUT THIS AT THE END
 		myFrame.setVisible(true);
+	}
+
+	private static void uiSetup() {
+		FlatLightLaf.setup();
+		UIManager.put("Button.arc", Constants.ROUNDED_CORNERS);
+		UIManager.put("Component.arc", Constants.ROUNDED_CORNERS);
+		UIManager.put("ProgressBar.arc", Constants.ROUNDED_CORNERS);
+		UIManager.put("TextComponent.arc", Constants.ROUNDED_CORNERS);
+		UIManager.put("Component.arrowType", "chevron");
+		UIManager.put("Component.focusWidth", 3);
+		UIManager.put("TabbedPane.showTabSeparators", true);
 	}
 }

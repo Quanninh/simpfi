@@ -16,6 +16,11 @@ public class Constants {
 	public static final String SUMO_CONFIG = "src/main/resources/SumoConfig/simpfi.sumocfg";
 
 	/**
+	 * UI CONFIG
+	 */
+	public static final int ROUNDED_CORNERS = 20;
+	
+	/**
 	 * MAP DRAWING
 	 */
 	public static final double DEFAULT_STROKE_SIZE = 1;

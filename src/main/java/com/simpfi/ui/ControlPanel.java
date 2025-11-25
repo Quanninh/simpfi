@@ -1,6 +1,5 @@
 package com.simpfi.ui;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
 
 import java.awt.event.ActionEvent;
@@ -13,7 +12,6 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
 import com.simpfi.config.Constants;
@@ -57,20 +55,20 @@ public class ControlPanel extends Panel {
 			Constants.DEFAULT_SCALE);
 		TextBox offsetXTB = new TextBox(true, SettingsType.OFFSET_X, -800);
 		TextBox offsetYTB = new TextBox(true, SettingsType.OFFSET_Y, -200);
+		initializeMapControl(scaleTB, offsetXTB, offsetYTB);
 
 		this.add(scaleTB);
 		this.add(offsetXTB);
 		this.add(offsetYTB);
 
-		initializeMapControl(scaleTB, offsetXTB, offsetYTB);
 
 		// Create button for adding vehicle
 
 		List<VehicleType> allVehicles = Settings.getVehicleTypes();
 
-		String[] vehicleIDs = new String[allVehicles.size()];
+		String[] vehicleTypes = new String[allVehicles.size()];
 		for (int i = 0; i < allVehicles.size(); i++) {
-			vehicleIDs[i] = allVehicles.get(i).getId();
+			vehicleTypes[i] = allVehicles.get(i).getId();
 		}
 
 		List<Route> allRoutes = Settings.getRoutes();
@@ -80,29 +78,26 @@ public class ControlPanel extends Panel {
 			routeIds[i] = allRoutes.get(i).getId();
 		}
 
-		JComboBox<String> cb = new JComboBox<String>(vehicleIDs);
-		JComboBox<String> cb2 = new JComboBox<String>(routeIds);
+		JComboBox<String> vehicleTypeCB = new JComboBox<String>(vehicleTypes);
+		JComboBox<String> routeCB = new JComboBox<String>(routeIds);
 
 		this.add(new Label("Vehicle Type:"));
-		this.add(cb);
+		this.add(vehicleTypeCB);
 		this.add(new Label("Route:"));
-		this.add(cb2);
-
-		System.out.println(cb.getSelectedItem());
+		this.add(routeCB);
 
 		Button addingVehice = new Button("Adding vehicle");
 
-		VehicleController vehicleControll = new VehicleController(conn);
+		VehicleController vehicleControl = new VehicleController(this.conn);
 
 		addingVehice.addActionListener(e -> {
 			try {
-				String userChoiceVehicleType = cb.getSelectedItem().toString();
-				String userChoiceRoute = cb2.getSelectedItem().toString();
+				String userChoiceVehicleType = vehicleTypeCB.getSelectedItem().toString();
+				String userChoiceRoute = routeCB.getSelectedItem().toString();
 				String vehicleIds = Settings.generateVehicleIDs();
-				vehicleControll.addVehicle(vehicleIds, userChoiceRoute,
+				vehicleControl.addVehicle(vehicleIds, userChoiceRoute,
 					userChoiceVehicleType);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
