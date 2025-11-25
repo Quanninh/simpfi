@@ -97,10 +97,10 @@ public class App {
 			Point pos = vehicleController.getPosition(vid);
 			// double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
-			// double angle = vehicleController.getAngle(vid);
+			double angle = vehicleController.getAngle(vid);
 			String type = vehicleController.getTypeID(vid);
 			
-			Vehicle v = new Vehicle(vid, pos, edge, type);
+			Vehicle v = new Vehicle(vid, pos, edge, type, angle);
 
 			updatedVehicles.add(v);
 			mapPanel.updateVehicles(updatedVehicles);

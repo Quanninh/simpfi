@@ -15,11 +15,12 @@ public class Vehicle {
 	private double angle;
 
 	public Vehicle(String id, Point point, String roadID,
-		String type) {
+		String type, double angle) {
 		this.id = id;
 		this.position = point;
 		this.roadID = roadID;
 		this.type = type;
+		this.angle = angle;
 	}
 
 	public String getID() {

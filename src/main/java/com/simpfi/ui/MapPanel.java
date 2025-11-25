@@ -1,5 +1,6 @@
 package com.simpfi.ui;
 
+import java.awt.geom.AffineTransform;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -207,34 +208,28 @@ public class MapPanel extends Panel {
 		}
 		g.setColor(color);
 		
-		//System.out.println(color);
+		// //System.out.println(color);
+		// g.fillRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
+
+		// // Draw border
+        // g.setColor(color);
+        // g.drawRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
+
+		double angle = 0;
+		try {
+			angle = v.getAngle();
+		} catch (Exception e) {
+
+		}
+		AffineTransform trf = g.getTransform();
+		g.rotate(Math.toRadians(-angle), pos.getX(), pos.getY());
+
+		g.setColor(color);
 		g.fillRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
 
-		// Draw border
-        g.setColor(color);
+		g.setColor(color);
         g.drawRect((int)pos.getX() - width / 2, (int)pos.getY() - height / 2, width, height);
-
-		// double angle = 0;
-		// try {
-		// 	angle = v.getAngle();
-		// } catch (Exception e) {
-
-		// }
-		// // Rotate g so that we can draw the vehicle in the right direction
-		// g.rotate(Math.toRadians(-angle), pos.getX(), pos.getY());
-		// // Fill the rectangle with chosen color
-		// g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - length / 2,
-		// 	width, length);
-
-		// g.setColor(color);
-		// // Draw the outline of the rectangle
-		// g.drawRect((int) pos.getX() - width / 2, (int) pos.getY() - length / 2,
-		// 	width, length);
-
-		// // Reset rotation
-		// g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
-		// g.setColor(Color.BLACK);
-
+		g.setTransform(trf);
 	}
 
 	/**
