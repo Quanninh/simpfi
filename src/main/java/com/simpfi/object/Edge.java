@@ -1,6 +1,7 @@
 package com.simpfi.object;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Creates Edge class (may includes {@link de.tudresden.sumo.cmd.Edge} in the
@@ -32,6 +33,22 @@ public class Edge {
 
 	public int getLanesSize() {
 		return lanesSize;
+	}
+	
+	/**
+	 * Used to search over a list of edges to find one with the matched id.
+	 * 
+	 * @param id    id of the edge that users look for.
+	 * @param edges given list of edges.
+	 * @return the edge with the passed id, {@code null} if not found.
+	 */
+	public static Edge searchForEdge(String id, List<Edge> edges) {
+		for (int i = 0; i < edges.size(); i++) {
+			if (edges.get(i).getId().equals(id)) {
+				return edges.get(i);
+			}
+		}
+		return null;
 	}
 
 	/**

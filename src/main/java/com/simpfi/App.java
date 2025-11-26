@@ -40,6 +40,15 @@ public class App {
 	private static VehicleController vehicleController;
 	private static TrafficLightController trafficLightController;
 
+	static StatisticsPanel statisticsPanel;
+	static InjectPanel injectPanel;
+	static MapViewPanel mapViewPanel;
+	static ProgramLightsPanel programLightPanel;
+	static FilterPanel filterPanel;
+	static InspectPanel inspectPanel;
+
+	static TabbedPane sidePane;
+
 	public static void main(String[] args) {
 		long stepMs = (long) (Settings.config.TIMESTEP * 1000);
 
@@ -56,6 +65,7 @@ public class App {
 
 				doStep(connection);
 				retrieveData(connection);
+				injectPanel.sthidk();
 				mapPanel.repaint();
 
 				long sleep = next - System.currentTimeMillis();
@@ -110,14 +120,14 @@ public class App {
 
 		mapPanel = new MapPanel();
 
-		StatisticsPanel statisticsPanel = new StatisticsPanel();
-		InjectPanel injectPanel = new InjectPanel(conn);
-		MapViewPanel mapViewPanel = new MapViewPanel();
-		ProgramLightsPanel programLightPanel = new ProgramLightsPanel();
-		FilterPanel filterPanel = new FilterPanel();
-		InspectPanel inspectPanel = new InspectPanel();
+		statisticsPanel = new StatisticsPanel();
+		injectPanel = new InjectPanel(conn);
+		mapViewPanel = new MapViewPanel();
+		programLightPanel = new ProgramLightsPanel();
+		filterPanel = new FilterPanel();
+		inspectPanel = new InspectPanel();
 
-		TabbedPane sidePane = new TabbedPane();
+		sidePane = new TabbedPane();
 
 		sidePane.addTab("Statistics", statisticsPanel);
 		sidePane.addTab("Inject", injectPanel);

@@ -20,6 +20,7 @@ public class InjectPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	private final VehicleController vehicleControl;
+	private Dropdown<String> routeDropdown;
 
 	public InjectPanel(SumoConnectionManager conn) {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -28,7 +29,7 @@ public class InjectPanel extends Panel {
 		String[] routeIds = getAllRouteIds();
 
 		Dropdown<String> vehicleTypeDropdown = createDropdownWithLabel("Vehicle Type:", vehicleTypes);
-		Dropdown<String> routeDropdown = createDropdownWithLabel("Route:", routeIds);
+		routeDropdown = createDropdownWithLabel("Route:", routeIds);
 
 		vehicleControl = new VehicleController(conn);
 
@@ -37,6 +38,10 @@ public class InjectPanel extends Panel {
 
 		addVehicleBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.add(addVehicleBtn);
+	}
+
+	public void sthidk() {
+		Settings.config.HIGHLIGHTED_ROUTE = (String) routeDropdown.getSelectedItem();
 	}
 
 	private void addVehicle(Dropdown<String> vehicleTypeDropdown, Dropdown<String> routeDropdown) {

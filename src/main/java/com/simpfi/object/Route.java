@@ -1,6 +1,7 @@
 package com.simpfi.object;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Creates Route class (may includes {@link de.tudresden.sumo.cmd.Route} in the
@@ -22,6 +23,15 @@ public class Route {
 
 	public Edge[] getEdges() {
 		return edges;
+	}
+	
+	public static Route searchForRoute(String id, List<Route> routes) {
+		for (int i = 0; i < routes.size(); i++) {
+			if (routes.get(i).getId().equals(id)) {
+				return routes.get(i);
+			}
+		}
+		return null;
 	}
 
 	/**

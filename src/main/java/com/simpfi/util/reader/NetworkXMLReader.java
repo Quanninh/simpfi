@@ -23,6 +23,7 @@ import com.simpfi.util.XMLReader;
 public class NetworkXMLReader extends XMLReader {
 
 	public NetworkXMLReader(String fileAddress) throws Exception {
+
 		super(fileAddress);
 	}
 
@@ -108,6 +109,7 @@ public class NetworkXMLReader extends XMLReader {
 
 	public List<TrafficLight> parseTrafficLight(List<Junction> junctions, List<Edge> edges) throws Exception {
 		List<TrafficLight> trafficLights = new ArrayList<TrafficLight>();
+
 		NodeList trafficLightLogic = document.getElementsByTagName("tlLogic");
 
 		for (int i = 0; i < trafficLightLogic.getLength(); i++) {
@@ -137,7 +139,7 @@ public class NetworkXMLReader extends XMLReader {
 			Lane[] lanes = new Lane[incomingLanes.size()];
 
 			for (int k = 0; k < incomingLanes.size(); k++) {
-				Lane lane = searchForLane(incomingLanes.get(k), edges);
+				Lane lane = Lane.searchForLane(incomingLanes.get(k), edges);
 				lanes[k] = lane;
 			}
 
@@ -159,34 +161,6 @@ public class NetworkXMLReader extends XMLReader {
 		for (int i = 0; i < junctions.size(); i++) {
 			if (junctions.get(i).getId().equals(id)) {
 				return junctions.get(i);
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Used to search over a list of edges to find one with the matched id.
-	 * 
-	 * @param id    id of the edge that users look for.
-	 * @param edges given list of edges.
-	 * @return the edge with the passed id, {@code null} if not found.
-	 */
-	public Edge searchForEdge(String id, List<Edge> edges) {
-		for (int i = 0; i < edges.size(); i++) {
-			if (edges.get(i).getId().equals(id)) {
-				return edges.get(i);
-			}
-		}
-		return null;
-	}
-
-	public Lane searchForLane(String id, List<Edge> edges) {
-		String edgeId = id.split("_")[0];
-		Edge edge = searchForEdge(edgeId, edges);
-		Lane[] lanes = edge.getLanes();
-		for (int i = 0; i < lanes.length; i++) {
-			if (lanes[i].getLaneId().equals(id)) {
-				return lanes[i];
 			}
 		}
 		return null;

@@ -8,6 +8,8 @@ public class SimulationConfig {
 	public Point OFFSET = new Point(Constants.DEFAULT_OFFSET_X, Constants.DEFAULT_OFFSET_Y);
 	public double TIMESTEP = 0.1;
 	public double SIMULATION_SPEED = 2;
+	
+	public String HIGHLIGHTED_ROUTE = "";
 
 	/**
 	 * Adds a value to the scale.

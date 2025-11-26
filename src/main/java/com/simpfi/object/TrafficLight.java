@@ -1,7 +1,9 @@
 package com.simpfi.object;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.simpfi.sumo.wrapper.TrafficLightController;
 
@@ -13,6 +15,7 @@ public class TrafficLight {
 	private Junction junction;
 	private Lane[] lanes;
 	private Phase[] phase;
+	private List<Connection> connections = new ArrayList<Connection>();
 
 	public TrafficLight(Junction junction, String type, Lane[] lanes) {
 		this.junction = junction;
@@ -38,7 +41,7 @@ public class TrafficLight {
 
 	public Junction getJunction() {
 		return junction;
-	}
+	} 
 
 	public Lane[] getLanes() {
 		return lanes;
@@ -53,6 +56,15 @@ public class TrafficLight {
 		return TrafficLightController.getLiveTrafficLightStates().getOrDefault(this.getJunction().getId(),
 			defaultState);
 	}
+	
+
+	public List<Connection> getConnections() {
+		return connections;
+	}
+
+	public void setConnections(List<Connection> connections) {
+		this.connections = connections;
+	}
 
 	public static Color getTrafficLightColor(char signal) {
 		return switch (signal) {
@@ -63,6 +75,7 @@ public class TrafficLight {
 		default -> Color.BLACK;
 		};
 	}
+	
 
 	/**
 	 * Overrides the built-in method toString() to provide a human-readable
@@ -73,5 +86,7 @@ public class TrafficLight {
 		return "TrafficLight [type=" + type + ", junction=" + junction + ", lanes=" + Arrays.toString(lanes)
 			+ ", phase=" + Arrays.toString(phase) + "]";
 	}
+	
+	
 
 }

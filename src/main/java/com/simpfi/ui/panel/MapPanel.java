@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
+import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -18,9 +19,11 @@ import javax.swing.KeyStroke;
 
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
+import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
+import com.simpfi.object.Route;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.object.Vehicle;
 import com.simpfi.sumo.wrapper.VehicleController;
@@ -36,7 +39,8 @@ public class MapPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	private final BasicStroke defaultStroke = new BasicStroke(
-		(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND);
+			(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
+			BasicStroke.JOIN_ROUND);
 
 	public MapPanel() {
 		initializeMapControl();
@@ -56,12 +60,18 @@ public class MapPanel extends Panel {
 		g2D.setStroke(defaultStroke);
 
 		for (Edge e : Settings.network.getEdges()) {
-			drawObject(g2D, e);
-		}
-		for (Junction j : Settings.network.getJunctions()) {
-			drawObject(g2D, j);
+			drawObject(g2D, e, Color.BLACK);
 		}
 
+		for (Junction j : Settings.network.getJunctions()) {
+			//drawObject(g2D, j);
+		}
+
+		Route highlightedRoute = Route.searchForRoute(Settings.config.HIGHLIGHTED_ROUTE, Settings.network.getRoutes());
+		for (Edge e: highlightedRoute.getEdges()) {
+			drawObject(g2D, e, Color.YELLOW);
+		}
+		
 		for (TrafficLight tl : Settings.network.getTrafficLights()) {
 			try {
 				drawObject(g2D, tl);
@@ -116,11 +126,11 @@ public class MapPanel extends Panel {
 	 * @param g where the edge is drawn on.
 	 * @param e the edge that is passed to the method.
 	 */
-	private void drawObject(Graphics2D g, Edge e) {
+	private void drawObject(Graphics2D g, Edge e, Color c) {
 		Lane[] lanes = e.getLanes();
 		int laneSize = e.getLanesSize();
 		for (int i = 0; i < laneSize; i++) {
-			drawObject(g, lanes[i]);
+			drawObject(g, lanes[i], c);
 		}
 
 		if (laneSize <= 1) {
@@ -137,7 +147,7 @@ public class MapPanel extends Panel {
 		float dashLength = (float) (Constants.LANE_DIVIDER_DASH_LENGTH * Settings.config.SCALE);
 		float[] dashPattern = { dashLength, dashLength };
 		g.setStroke(new BasicStroke((float) (Constants.LANE_DIVIDER_STROKE_SIZE * Settings.config.SCALE),
-			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
+				BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
 		g.setColor(Color.WHITE);
 
 		for (int i = 0; i < laneSize - 1; i++) {
@@ -167,7 +177,7 @@ public class MapPanel extends Panel {
 	 * @param g where the lane is drawn on.
 	 * @param l the lane that is passed to the method.
 	 */
-	private void drawObject(Graphics2D g, Lane l) {
+	private void drawObject(Graphics2D g, Lane l, Color c) {
 		Point[] shape = l.getShape();
 		int size = l.getShapeSize();
 
@@ -188,7 +198,7 @@ public class MapPanel extends Panel {
 
 		AffineTransform oldTransform = g.getTransform();
 		Stroke oldStroke = g.getStroke();
-		g.setColor(Color.BLACK);
+		g.setColor(c);
 		g.setStroke(new BasicStroke(lineThickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 
 		g.drawPolyline(xPoints, yPoints, size);
@@ -206,14 +216,17 @@ public class MapPanel extends Panel {
 	 */
 	private void drawObject(Graphics2D g, TrafficLight tl) {
 		String state = tl.getTLState();
-		Lane[] lanes = tl.getLanes();
+		List<Connection> connections = tl.getConnections();
 
-		for (int i = 0; i < lanes.length; i++) {
-			Lane lane = lanes[i];
+		for (int i = 0; i < connections.size(); i++) {
+			Connection connect = connections.get(i);
+
 			char signal = state.charAt(i);
 			Color color = TrafficLight.getTrafficLightColor(signal);
 
-			Point[] shape = lane.getShape();
+			Lane fromLane = connect.getFromLane();
+
+			Point[] shape = fromLane.getShape();
 			Point end = translateCoords(shape[1]);
 
 			int radius = (int) (Constants.TRAFFIC_LIGHT_RADIUS * Settings.config.SCALE);

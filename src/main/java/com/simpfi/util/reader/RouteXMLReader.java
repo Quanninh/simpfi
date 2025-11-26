@@ -76,7 +76,7 @@ public class RouteXMLReader extends XMLReader {
 			Edge[] edgesArr = new Edge[routeLength];
 
 			for (int j = 0; j < routeLength; j++) {
-				edgesArr[j] = networkXmlReader.searchForEdge(edgesSplit[j], allEdges);
+				edgesArr[j] = Edge.searchForEdge(edgesSplit[j], allEdges);
 			}
 
 			routes.add(new Route(route.getAttribute("id"), edgesArr));
