@@ -4,6 +4,14 @@
 -->
 
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <!-- VTypes -->
+    <!-- Core vehicle classes -->
+    <vType id="private" vClass="private"/>
+    <vType id="emergency" vClass="emergency"/>
+    <vType id="bus" vClass="bus"/>
+    <vType id="truck" vClass="truck"/>
+    <vType id="motorcycle" vClass="motorcycle"/>
+
     <!-- Routes -->
     <route id="r_0" edges="E14 E15 E13 E11 -E8 E36 E37 E38"/>
     <route id="r_1" edges="E16 E17 E15 E13 E11 -E8 -E7 -E6 -E4 -E30 E43 E44 E38"/>

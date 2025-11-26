@@ -12,9 +12,9 @@ public class Constants {
 	/**
 	 * SUMO MAP FILES
 	 */
-	public static final String SUMO_NETWORK = "src/main/resources/SumoConfig/simpfi.net.xml";
-	public static final String SUMO_ROUTE = "src/main/resources/SumoConfig/simpfi.rou.xml";
-	public static final String SUMO_CONFIG = "src/main/resources/SumoConfig/simpfi.sumocfg";
+	public static final String SUMO_NETWORK = "src/main/resources/SumoConfig/simpfi_new.net.xml";
+	public static final String SUMO_ROUTE = "src/main/resources/SumoConfig/simpfi_new.rou.xml";
+	public static final String SUMO_CONFIG = "src/main/resources/SumoConfig/simpfi_new.sumocfg";
 
 	/**
 	 * UI CONFIG
