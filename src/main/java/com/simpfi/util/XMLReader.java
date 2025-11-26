@@ -34,8 +34,8 @@ public class XMLReader {
 	 * Used to convert a String of multiple pairs of coordinates to an array of
 	 * Point.
 	 * 
-	 * @param shape the String that contains pairs of coordinates with the
-	 *              format: "x,y u,t a,b ...".
+	 * @param shape the String that contains pairs of coordinates with the format:
+	 *              "x,y u,t a,b ...".
 	 * @return Array of Points.
 	 */
 	protected Point[] extractPoints(String shape) {
@@ -45,8 +45,7 @@ public class XMLReader {
 		for (int k = 0; k < points.length; k++) {
 			String[] point = points[k].split(",");
 
-			pointArr[k] = new Point(Double.parseDouble(point[0]),
-				Double.parseDouble(point[1]));
+			pointArr[k] = new Point(Double.parseDouble(point[0]), Double.parseDouble(point[1]));
 		}
 
 		return pointArr;

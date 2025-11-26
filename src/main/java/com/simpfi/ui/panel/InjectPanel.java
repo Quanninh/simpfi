@@ -1,13 +1,9 @@
 package com.simpfi.ui.panel;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.Component;
 import java.util.List;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JComboBox;
-
 import com.simpfi.config.Settings;
 import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
@@ -21,54 +17,68 @@ import com.simpfi.ui.Panel;
 public class InjectPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
-	
-	private SumoConnectionManager conn;
+
+	private final VehicleController vehicleControl;
 
 	public InjectPanel(SumoConnectionManager conn) {
-		this.conn = conn;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
-		List<VehicleType> allVehicles = Settings.getVehicleTypes();
 
+		String[] vehicleTypes = getAllVehiclesTypes();
+		String[] routeIds = getAllRouteIds();
+
+		Dropdown<String> vehicleTypeDropdown = createDropdownWithLabel("Vehicle Type:", vehicleTypes);
+		Dropdown<String> routeDropdown = createDropdownWithLabel("Route:", routeIds);
+
+		vehicleControl = new VehicleController(conn);
+
+		Button addVehicleBtn = new Button("Adding vehicle");
+		addVehicleBtn.addActionListener(e -> addVehicle(vehicleTypeDropdown, routeDropdown));
+
+		addVehicleBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		this.add(addVehicleBtn);
+	}
+
+	private void addVehicle(Dropdown<String> vehicleTypeDropdown, Dropdown<String> routeDropdown) {
+		try {
+			String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
+			String userChoiceRoute = routeDropdown.getSelectedItem().toString();
+			String vehicleIds = Settings.generateVehicleIDs();
+			vehicleControl.addVehicle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	private Dropdown<String> createDropdownWithLabel(String label, String[] items) {
+		this.add(new Label(label));
+
+		Dropdown<String> dropdown = new Dropdown<String>(items);
+		dropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
+		this.add(dropdown);
+
+		return dropdown;
+	}
+
+	private String[] getAllVehiclesTypes() {
+		List<VehicleType> allVehicles = Settings.getVehicleTypes();
 		String[] vehicleTypes = new String[allVehicles.size()];
+
 		for (int i = 0; i < allVehicles.size(); i++) {
 			vehicleTypes[i] = allVehicles.get(i).getId();
 		}
 
-		List<Route> allRoutes = Settings.getRoutes();
+		return vehicleTypes;
+	}
 
+	private String[] getAllRouteIds() {
+		List<Route> allRoutes = Settings.getRoutes();
 		String[] routeIds = new String[allRoutes.size()];
+
 		for (int i = 0; i < allRoutes.size(); i++) {
 			routeIds[i] = allRoutes.get(i).getId();
 		}
 
-		this.add(new Label("Vehicle Type:"));
-
-		Dropdown<String> vehicleTypeCB = new Dropdown<String>(vehicleTypes);
-		this.add(vehicleTypeCB);
-
-		this.add(new Label("Route:"));
-
-		Dropdown<String> routeCB = new Dropdown<String>(routeIds);
-		this.add(routeCB);
-
-		Button addingVehice = new Button("Adding vehicle");
-
-		VehicleController vehicleControl = new VehicleController(this.conn);
-
-		addingVehice.addActionListener(e -> {
-			try {
-				String userChoiceVehicleType = vehicleTypeCB.getSelectedItem().toString();
-				String userChoiceRoute = routeCB.getSelectedItem().toString();
-				String vehicleIds = Settings.generateVehicleIDs();
-				vehicleControl.addVehicle(vehicleIds, userChoiceRoute,
-					userChoiceVehicleType);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		});
-
-		this.add(addingVehice);
+		return routeIds;
 	}
-	
+
 }

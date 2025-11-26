@@ -1,5 +1,8 @@
 package com.simpfi.object;
 
+import java.awt.Color;
+
+import com.simpfi.config.Constants;
 import com.simpfi.util.Point;
 
 /**
@@ -15,11 +18,10 @@ public class Vehicle {
 	private double angle;
 	private double width;
 	private double height;
-	
+
 	private Boolean isActive;
 
-	public Vehicle(String id, Point point, String roadID,
-		String type, double angle, double width, double height) {
+	public Vehicle(String id, Point point, String roadID, String type, double angle, double width, double height) {
 		this.id = id;
 		this.position = point;
 		this.roadID = roadID;
@@ -27,7 +29,7 @@ public class Vehicle {
 		this.angle = angle;
 		this.width = width;
 		this.height = height;
-		
+
 		isActive = false;
 	}
 
@@ -70,4 +72,15 @@ public class Vehicle {
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
+
+	public Color getVehicleColor() {
+		return switch (type) {
+		case "truck" -> Constants.TRUCK_COLOR;
+		case "bus" -> Constants.BUS_COLOR;
+		case "motorcycle" -> Constants.MOTORCYCLE_COLOR;
+		case "emergency" -> Constants.EMERGENCY_COLOR;
+		default -> Constants.DEFAULT_VEHICLE_COLOR;
+		};
+	}
+
 }

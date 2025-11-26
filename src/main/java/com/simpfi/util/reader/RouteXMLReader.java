@@ -12,7 +12,6 @@ import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
 import com.simpfi.util.XMLReader;
 
-
 /**
  * Creates class {@code RouteXMLReader} that inherits
  * {@link com.simpfi.util.XMLReader} used to parse route components such as
@@ -23,17 +22,6 @@ public class RouteXMLReader extends XMLReader {
 	public RouteXMLReader(String fileAddress) throws Exception {
 		super(fileAddress);
 	}
-
-	// public List<String> parseVehicleID() throws Exception {
-	// 	NodeList typeNodeList = document.getElementsByTagName("vehicle");
-
-	// 	List<String> vehicle_ids = new ArrayList<>();
-	// 	for (int i = 0; i < typeNodeList.getLength(); i++){
-	// 		Element vehicle = (Element) typeNodeList.item(i);
-	// 		vehicle_ids.add(vehicle.getAttribute("id"));
-	// 	}
-	// 	return vehicle_ids;
-	// }
 
 	/**
 	 * Used to parse vehicle types by leveraging methods from
@@ -51,29 +39,25 @@ public class RouteXMLReader extends XMLReader {
 		for (int i = 0; i < length; i++) {
 			Element type = (Element) typeNodeList.item(i);
 
-			types.add(new VehicleType(type.getAttribute("id"),
-				type.getAttribute("vClass")));
+			types.add(new VehicleType(type.getAttribute("id"), type.getAttribute("vClass")));
 		}
 		return types;
 	}
 
 	/**
-	 * Used to parse routes by leveraging methods from
-	 * {@link org.w3c.dom.Element}. Get the {@code edges} attribute of Route by
-	 * using an instance of {@link com.simpfi.util.reader.NetworkXMLReader}.
+	 * Used to parse routes by leveraging methods from {@link org.w3c.dom.Element}.
+	 * Get the {@code edges} attribute of Route by using an instance of
+	 * {@link com.simpfi.util.reader.NetworkXMLReader}.
 	 * 
 	 * @return list of routes from the XML file.
 	 * @throws Exception if the XML structure is invalid.
 	 */
 	public List<Route> parseRoute() throws Exception {
 		NodeList typeNodeList = document.getElementsByTagName("route");
-
 		List<Route> routes = new ArrayList<>();
 
-		NetworkXMLReader networkXmlReader = new NetworkXMLReader(
-			Constants.SUMO_NETWORK);
-		List<Edge> allEdges = networkXmlReader
-			.parseEdge(networkXmlReader.parseJunction());
+		NetworkXMLReader networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
+		List<Edge> allEdges = networkXmlReader.parseEdge(networkXmlReader.parseJunction());
 
 		int length = typeNodeList.getLength();
 		for (int i = 0; i < length; i++) {
@@ -85,8 +69,7 @@ public class RouteXMLReader extends XMLReader {
 			Edge[] edgesArr = new Edge[routeLength];
 
 			for (int j = 0; j < routeLength; j++) {
-				edgesArr[j] = networkXmlReader.searchForEdge(edgesSplit[j],
-					allEdges);
+				edgesArr[j] = networkXmlReader.searchForEdge(edgesSplit[j], allEdges);
 			}
 
 			routes.add(new Route(route.getAttribute("id"), edgesArr));

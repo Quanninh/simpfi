@@ -29,11 +29,10 @@ public class NetworkXMLReader extends XMLReader {
 	private Map<String, Lane> laneMap = new HashMap<String, Lane>();
 
 	/**
-	 * Used to parse edges by leveraging methods from
-	 * {@link org.w3c.dom.Element}.
+	 * Used to parse edges by leveraging methods from {@link org.w3c.dom.Element}.
 	 * 
-	 * @param junctions list of junctions used to get {@code from} &amp;
-	 *                  {@code to} attributes of Edge.
+	 * @param junctions list of junctions used to get {@code from} &amp; {@code to}
+	 *                  attributes of Edge.
 	 * @return list of edges from the XML file.
 	 * @throws Exception if the XML structure is invalid.
 	 */
@@ -55,21 +54,11 @@ public class NetworkXMLReader extends XMLReader {
 
 				String shape = lane.getAttribute("shape");
 
-				laneArr[j] = new Lane(lane.getAttribute("id"),
-					extractPoints(shape));
-				laneMap.put(laneArr[j].getLaneId(), laneArr[j]);// // THIS MAP I
-																// ACCIENTIDENTLY
-																// PUT IT BUT I
-																// FORGOT THE
-																// ORGINIAL
-																// CODE, PLEASE
-																// TRY TO
-																// RECREATE THIS
-																// ONE
+				laneArr[j] = new Lane(lane.getAttribute("id"), extractPoints(shape));
+				laneMap.put(laneArr[j].getLaneId(), laneArr[j]);
 			}
 
-			Junction from = searchForJunction(edge.getAttribute("from"),
-				junctions);
+			Junction from = searchForJunction(edge.getAttribute("from"), junctions);
 			Junction to = searchForJunction(edge.getAttribute("to"), junctions);
 
 			Edge e = new Edge(edge.getAttribute("id"), from, to, laneArr);
@@ -104,11 +93,9 @@ public class NetworkXMLReader extends XMLReader {
 
 			String shape = junction.getAttribute("shape");
 
-			Junction j = new Junction(junctionId, junctionType,
-				extractPoints(shape));
+			Junction j = new Junction(junctionId, junctionType, extractPoints(shape));
 
-			String[] incomingLaneIds = junction.getAttribute("incLanes").trim()
-				.split("\\s+");
+			String[] incomingLaneIds = junction.getAttribute("incLanes").trim().split("\\s+");
 
 			for (String id : incomingLaneIds) {
 				j.addIncomingLane(id);
@@ -119,17 +106,12 @@ public class NetworkXMLReader extends XMLReader {
 
 	}
 
-	public List<TrafficLight> parseTrafficLight(List<Junction> junctions,
-		List<Edge> edges) throws Exception {
-
+	public List<TrafficLight> parseTrafficLight(List<Junction> junctions, List<Edge> edges) throws Exception {
 		List<TrafficLight> trafficLights = new ArrayList<TrafficLight>();
-
 		NodeList trafficLightLogic = document.getElementsByTagName("tlLogic");
 
 		for (int i = 0; i < trafficLightLogic.getLength(); i++) {
-
 			Element traffcLight = (Element) trafficLightLogic.item(i);
-
 			String idJunction = traffcLight.getAttribute("id");
 
 			NodeList phaseNodeList = traffcLight.getElementsByTagName("phase");
@@ -138,15 +120,13 @@ public class NetworkXMLReader extends XMLReader {
 			for (int j = 0; j < phaseNodeList.getLength(); j++) {
 				Element phase = (Element) phaseNodeList.item(j);
 
-				Double duration = Double
-					.parseDouble(phase.getAttribute("duration"));
+				Double duration = Double.parseDouble(phase.getAttribute("duration"));
 				String state = phase.getAttribute("state");
 
 				listOfPhase[j] = new Phase(duration, state);
 			}
 
 			Junction junction = searchForJunction(idJunction, junctions);
-
 			String junctionType = junction.getType();
 
 			if (!junctionType.equals("traffic_light")) {
@@ -154,7 +134,6 @@ public class NetworkXMLReader extends XMLReader {
 			}
 
 			List<String> incomingLanes = junction.getIncomingLane();
-
 			Lane[] lanes = new Lane[incomingLanes.size()];
 
 			for (int k = 0; k < incomingLanes.size(); k++) {
@@ -165,7 +144,6 @@ public class NetworkXMLReader extends XMLReader {
 			TrafficLight tl = new TrafficLight(junction, "static", lanes);
 			tl.setPhase(listOfPhase);
 			trafficLights.add(tl);
-
 		}
 		return trafficLights;
 	}

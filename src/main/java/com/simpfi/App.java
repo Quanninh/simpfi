@@ -1,40 +1,27 @@
 package com.simpfi;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-
-import com.simpfi.object.Route;
-import com.simpfi.object.VehicleType;
-import com.simpfi.config.Settings;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.simpfi.config.Constants;
+import com.simpfi.config.Settings;
 import com.simpfi.object.Vehicle;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.sumo.wrapper.VehicleController;
-import com.simpfi.ui.ControlPanel;
 import com.simpfi.ui.Frame;
-import com.simpfi.ui.MapPanel;
-import com.simpfi.ui.Panel;
+import com.simpfi.ui.TabbedPane;
+import com.simpfi.ui.panel.ControlPanel;
 import com.simpfi.ui.panel.FilterPanel;
 import com.simpfi.ui.panel.InjectPanel;
 import com.simpfi.ui.panel.InspectPanel;
+import com.simpfi.ui.panel.MapPanel;
 import com.simpfi.ui.panel.MapViewPanel;
 import com.simpfi.ui.panel.ProgramLightsPanel;
 import com.simpfi.ui.panel.StatisticsPanel;
 import com.simpfi.util.Point;
-import com.simpfi.util.reader.RouteXMLReader;
-
-import de.tudresden.sumo.cmd.Simulation;
-
-import java.util.List;
 
 /**
  * App Class contains the {@code main} function and is used to run the software.
@@ -90,19 +77,14 @@ public class App {
 		sim.doStep();
 	}
 
-	private static SumoConnectionManager establishConnection()
-		throws Exception {
-		SumoConnectionManager conn = new SumoConnectionManager(
-			Constants.SUMO_CONFIG);
+	private static SumoConnectionManager establishConnection() throws Exception {
+		SumoConnectionManager conn = new SumoConnectionManager(Constants.SUMO_CONFIG);
 		return conn;
 	}
 
-	private static void retrieveData(SumoConnectionManager sim)
-		throws Exception {
-
-//		List<Vehicle> updatedVehicles = new ArrayList<Vehicle>();
-
+	private static void retrieveData(SumoConnectionManager sim) throws Exception {
 		Settings.disableAllVehicles();
+
 		for (String vid : vehicleController.getAllVehicleIDs()) {
 			Point pos = vehicleController.getPosition(vid);
 			double speed = vehicleController.getSpeed(vid);
@@ -130,7 +112,6 @@ public class App {
 		Frame myFrame = new Frame();
 
 		ControlPanel controlPanel = new ControlPanel(conn);
-		Panel infoPanel = new Panel();
 		mapPanel = new MapPanel();
 
 		StatisticsPanel statisticsPanel = new StatisticsPanel();
@@ -147,8 +128,7 @@ public class App {
 //		sideBar.add(filterPanel);
 //		sideBar.add(inspectPanel);
 
-		JTabbedPane sidePane = new JTabbedPane(JTabbedPane.LEFT,
-			JTabbedPane.SCROLL_TAB_LAYOUT);
+		TabbedPane sidePane = new TabbedPane();
 
 		sidePane.addTab("Statistics", statisticsPanel);
 		sidePane.addTab("Inject", injectPanel);
@@ -158,19 +138,17 @@ public class App {
 		sidePane.addTab("Inspect", inspectPanel);
 
 		myFrame.add(controlPanel, BorderLayout.NORTH);
-		myFrame.add(infoPanel, BorderLayout.EAST);
 		myFrame.add(mapPanel, BorderLayout.CENTER);
 		myFrame.add(sidePane, BorderLayout.WEST);
-
-		infoPanel.setBackground(Color.GREEN);
-		mapPanel.setBackground(Color.WHITE);
 
 		// ALWAYS PUT THIS AT THE END
 		myFrame.setVisible(true);
 	}
 
 	private static void uiSetup() {
+		FlatLightLaf.registerCustomDefaultsSource("themes");
 		FlatLightLaf.setup();
+
 		UIManager.put("Button.arc", Constants.ROUNDED_CORNERS);
 		UIManager.put("Component.arc", Constants.ROUNDED_CORNERS);
 		UIManager.put("ProgressBar.arc", Constants.ROUNDED_CORNERS);

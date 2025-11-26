@@ -21,14 +21,15 @@ import com.simpfi.util.reader.RouteXMLReader;
  * for SUMO and is also used to initialize and update changes to scale and
  * offset settings of the software.
  *
- * @see com.simpfi.ui.MapPanel
- * @see com.simpfi.ui.ControlPanel
+ * @see com.simpfi.ui.panel.MapPanel
+ * @see com.simpfi.ui.panel.ControlPanel
  * @see com.simpfi.ui.TextBox
  */
 public class Settings {
 
 	public static double SETTINGS_SCALE = Constants.DEFAULT_SCALE;
-	public static Point SETTINGS_OFFSET = new Point();
+	public static Point SETTINGS_OFFSET = new Point(Constants.DEFAULT_OFFSET_X,
+		Constants.DEFAULT_OFFSET_Y);
 	public static double TIMESTEP = 0.1;
 	public static double SIMULATION_SPEED = 2;
 
@@ -120,7 +121,7 @@ public class Settings {
 		}
 		return vehicleList;
 	}
-	
+
 	public static void disableAllVehicles() {
 		for (Map.Entry<String, Vehicle> entry : vehicleMap.entrySet()) {
 			entry.getValue().setIsActive(false);

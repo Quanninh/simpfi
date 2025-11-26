@@ -1,8 +1,9 @@
 package com.simpfi.ui;
 
-import java.awt.Font;
-
+import java.awt.Dimension;
 import javax.swing.JLabel;
+
+import com.simpfi.config.Constants;
 
 public class Label extends JLabel {
 
@@ -10,7 +11,9 @@ public class Label extends JLabel {
 
 	public Label(String string) {
 		this.setText(string);
-		this.setFont(new Font("Arial", Font.PLAIN, 14));
+		this.setFont(Constants.DEFAULT_FONT);
+		
+		this.setMaximumSize(new Dimension(Short.MAX_VALUE, this.getPreferredSize().height));
 	}
 
 }
