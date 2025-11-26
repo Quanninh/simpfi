@@ -43,10 +43,10 @@ public class Constants {
 	// When moving map, how much of map is moved each time
 	public static final double OFFSET_STEP = 10;
 
-	public static final Color DEFAULT_VEHICLE_COLOR = Color.GREEN;
+	public static final Color DEFAULT_VEHICLE_COLOR = new Color(225,247,12);
 	public static final Color TRUCK_COLOR = Color.GRAY;
-	public static final Color BUS_COLOR = Color.YELLOW;
+	public static final Color BUS_COLOR = new Color(12,239,255);
 	public static final Color MOTORCYCLE_COLOR = Color.MAGENTA;
-	public static final Color EMERGENCY_COLOR = Color.RED;
+	public static final Color EMERGENCY_COLOR = new Color(245,130,31);
 
 }
