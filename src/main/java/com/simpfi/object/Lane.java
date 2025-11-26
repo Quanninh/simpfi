@@ -1,6 +1,7 @@
 package com.simpfi.object;
 
 import java.util.Arrays;
+
 import com.simpfi.util.Point;
 
 /**
@@ -37,8 +38,7 @@ public class Lane {
 	 */
 	@Override
 	public String toString() {
-		return "Lane [laneId=" + laneId + ", shape=" + Arrays.toString(shape)
-			+ "]";
+		return "Lane [laneId=" + laneId + ", shape=" + Arrays.toString(shape) + "]";
 	}
 
 }

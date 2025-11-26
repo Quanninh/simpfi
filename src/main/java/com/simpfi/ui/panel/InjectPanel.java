@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.util.List;
 
 import javax.swing.BoxLayout;
+
 import com.simpfi.config.Settings;
 import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
@@ -42,7 +43,7 @@ public class InjectPanel extends Panel {
 		try {
 			String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
 			String userChoiceRoute = routeDropdown.getSelectedItem().toString();
-			String vehicleIds = Settings.generateVehicleIDs();
+			String vehicleIds = VehicleController.generateVehicleIDs();
 			vehicleControl.addVehicle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -60,7 +61,7 @@ public class InjectPanel extends Panel {
 	}
 
 	private String[] getAllVehiclesTypes() {
-		List<VehicleType> allVehicles = Settings.getVehicleTypes();
+		List<VehicleType> allVehicles = Settings.network.getVehicleTypes();
 		String[] vehicleTypes = new String[allVehicles.size()];
 
 		for (int i = 0; i < allVehicles.size(); i++) {
@@ -71,7 +72,7 @@ public class InjectPanel extends Panel {
 	}
 
 	private String[] getAllRouteIds() {
-		List<Route> allRoutes = Settings.getRoutes();
+		List<Route> allRoutes = Settings.network.getRoutes();
 		String[] routeIds = new String[allRoutes.size()];
 
 		for (int i = 0; i < allRoutes.size(); i++) {

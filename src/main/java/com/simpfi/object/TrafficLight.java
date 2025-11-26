@@ -3,7 +3,7 @@ package com.simpfi.object;
 import java.awt.Color;
 import java.util.Arrays;
 
-import com.simpfi.config.Settings;
+import com.simpfi.sumo.wrapper.TrafficLightController;
 
 /**
  * Creates TrafficLight class.
@@ -13,10 +13,6 @@ public class TrafficLight {
 	private Junction junction;
 	private Lane[] lanes;
 	private Phase[] phase;
-
-	public TrafficLight() {
-
-	}
 
 	public TrafficLight(Junction junction, String type, Lane[] lanes) {
 		this.junction = junction;
@@ -54,7 +50,8 @@ public class TrafficLight {
 
 	public String getTLState() {
 		String defaultState = this.getPhase()[0].getState();
-		return Settings.getLiveTrafficLightStates().getOrDefault(this.getJunction().getId(), defaultState);
+		return TrafficLightController.getLiveTrafficLightStates().getOrDefault(this.getJunction().getId(),
+			defaultState);
 	}
 
 	public static Color getTrafficLightColor(char signal) {

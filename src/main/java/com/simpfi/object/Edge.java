@@ -40,9 +40,8 @@ public class Edge {
 	 */
 	@Override
 	public String toString() {
-		return "Edge [edgeId=" + id + ", conjunctionFrom=" + conjunctionFrom
-			+ ", conjunctinTo=" + conjunctinTo + ", lanes="
-			+ Arrays.toString(lanes) + "]";
+		return "Edge [edgeId=" + id + ", conjunctionFrom=" + conjunctionFrom + ", conjunctinTo=" + conjunctinTo
+			+ ", lanes=" + Arrays.toString(lanes) + "]";
 	}
 
 }

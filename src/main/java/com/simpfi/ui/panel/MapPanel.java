@@ -23,6 +23,7 @@ import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.object.Vehicle;
+import com.simpfi.sumo.wrapper.VehicleController;
 import com.simpfi.ui.Panel;
 import com.simpfi.util.Point;
 
@@ -35,8 +36,7 @@ public class MapPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	private final BasicStroke defaultStroke = new BasicStroke(
-		(float) (Constants.DEFAULT_STROKE_SIZE * Settings.SETTINGS_SCALE), BasicStroke.CAP_BUTT,
-		BasicStroke.JOIN_ROUND);
+		(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND);
 
 	public MapPanel() {
 		initializeMapControl();
@@ -55,14 +55,14 @@ public class MapPanel extends Panel {
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setStroke(defaultStroke);
 
-		for (Edge e : Settings.getEdges()) {
+		for (Edge e : Settings.network.getEdges()) {
 			drawObject(g2D, e);
 		}
-		for (Junction j : Settings.getJunctions()) {
+		for (Junction j : Settings.network.getJunctions()) {
 			drawObject(g2D, j);
 		}
 
-		for (TrafficLight tl : Settings.getTrafficLights()) {
+		for (TrafficLight tl : Settings.network.getTrafficLights()) {
 			try {
 				drawObject(g2D, tl);
 			} catch (Exception e1) {
@@ -70,7 +70,7 @@ public class MapPanel extends Panel {
 			}
 		}
 
-		for (Vehicle v : Settings.getVehicles()) {
+		for (Vehicle v : VehicleController.getVehicles()) {
 			try {
 				drawObject(g2D, v);
 			} catch (Exception e) {
@@ -91,8 +91,8 @@ public class MapPanel extends Panel {
 		}
 
 		Point pos = translateCoords(v.getPosition());
-		int width = (int) (v.getWidth() * Settings.SETTINGS_SCALE * Constants.VEHICLE_UPSCALE);
-		int height = (int) (v.getHeight() * Settings.SETTINGS_SCALE * Constants.VEHICLE_UPSCALE);
+		int width = (int) (v.getWidth() * Settings.config.SCALE * Constants.VEHICLE_UPSCALE);
+		int height = (int) (v.getHeight() * Settings.config.SCALE * Constants.VEHICLE_UPSCALE);
 
 		g.setColor(v.getVehicleColor());
 
@@ -104,8 +104,8 @@ public class MapPanel extends Panel {
 		g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2, width, height);
 
 		g.setColor(Color.BLACK);
-		g.setStroke(defaultStroke);
-		g.drawRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2, width, height);
+		// g.drawRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2,
+		// width, height);
 
 		g.setTransform(oldTransform);
 	}
@@ -128,10 +128,15 @@ public class MapPanel extends Panel {
 		}
 
 		// draw lane dividers
-		float dashLength = (float) (Constants.LANE_DIVIDER_DASH_LENGTH * Settings.SETTINGS_SCALE);
-		float[] dashPattern = { dashLength, dashLength };
 		Stroke oldStroke = g.getStroke();
-		g.setStroke(new BasicStroke((float) (Constants.LANE_DIVIDER_STROKE_SIZE * Settings.SETTINGS_SCALE),
+		drawLaneDividers(g, lanes, laneSize);
+		g.setStroke(oldStroke);
+	}
+
+	private void drawLaneDividers(Graphics2D g, Lane[] lanes, int laneSize) {
+		float dashLength = (float) (Constants.LANE_DIVIDER_DASH_LENGTH * Settings.config.SCALE);
+		float[] dashPattern = { dashLength, dashLength };
+		g.setStroke(new BasicStroke((float) (Constants.LANE_DIVIDER_STROKE_SIZE * Settings.config.SCALE),
 			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
 		g.setColor(Color.WHITE);
 
@@ -154,8 +159,6 @@ public class MapPanel extends Panel {
 				g.drawLine((int) from.getX(), (int) from.getY(), (int) to.getX(), (int) to.getY());
 			}
 		}
-
-		g.setStroke(oldStroke);
 	}
 
 	/**
@@ -181,7 +184,7 @@ public class MapPanel extends Panel {
 			yPoints[i] = (int) p.getY();
 		}
 
-		float lineThickness = (float) (Constants.LANE_STROKE_SIZE * Settings.SETTINGS_SCALE);
+		float lineThickness = (float) (Constants.LANE_STROKE_SIZE * Settings.config.SCALE);
 
 		AffineTransform oldTransform = g.getTransform();
 		Stroke oldStroke = g.getStroke();
@@ -193,14 +196,6 @@ public class MapPanel extends Panel {
 		g.setColor(Color.BLACK);
 		g.setTransform(oldTransform);
 		g.setStroke(oldStroke);
-
-		// WAIT
-//		for (int i = 0; i < size - 1; i++) {
-//			Point p1 = translateCoords(shape[i]);
-//			Point p2 = translateCoords(shape[i + 1]);
-//
-//			drawLine(g, p1, p2, Color.BLACK, Constants.LANE_STROKE_SIZE);
-//		}
 	}
 
 	/**
@@ -221,7 +216,7 @@ public class MapPanel extends Panel {
 			Point[] shape = lane.getShape();
 			Point end = translateCoords(shape[1]);
 
-			int radius = (int) (Constants.TRAFFIC_LIGHT_RADIUS * Settings.SETTINGS_SCALE);
+			int radius = (int) (Constants.TRAFFIC_LIGHT_RADIUS * Settings.config.SCALE);
 			drawCircle(g, end, radius, color);
 		}
 	}
@@ -250,11 +245,10 @@ public class MapPanel extends Panel {
 			Point p = translateCoords(shape[i]);
 			xPoints[i] = (int) p.getX();
 			yPoints[i] = (int) p.getY();
-//			drawLine(g, p1, p2, Color.PINK, Constants.JUNCTION_STROKE_SIZE);
 		}
 
 		g.setColor(Color.BLACK);
-		g.setStroke(new BasicStroke((float) (Constants.JUNCTION_STROKE_SIZE * Settings.SETTINGS_SCALE)));
+		g.setStroke(new BasicStroke((float) (Constants.JUNCTION_STROKE_SIZE * Settings.config.SCALE)));
 
 		g.fillPolygon(xPoints, yPoints, size);
 		g.drawPolygon(xPoints, yPoints, size);
@@ -263,44 +257,11 @@ public class MapPanel extends Panel {
 		g.setStroke(oldStroke);
 	}
 
-	/**
-	 * Used to draw a line on the User Interface.
-	 * 
-	 * @param g             where the line is drawn on.
-	 * @param p1            start coordinate of the line.
-	 * @param p2            end coordinate of the line.
-	 * @param color         the color of the line.
-	 * @param lineThickness the thickness of the line.
-	 */
-	private void drawLine(Graphics2D g, Point p1, Point p2, Color color, double lineThickness) {
-		lineThickness *= Settings.SETTINGS_SCALE;
-
-		AffineTransform oldTransform = g.getTransform();
-		Stroke oldStroke = g.getStroke();
-		g.setColor(color);
-		// g = rotateToLine(g, p1, p2);
-		// g.fillRect((int) (p1.getX() - lineThickness / 2), (int) (p1.getY() -
-		// lineThickness / 2),
-		// (int) (Point.distance(p1, p2) + lineThickness), (int) lineThickness);
-		g.setStroke(new BasicStroke((float) lineThickness));
-		g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(), (int) p2.getY());
-
-		g.setColor(Color.BLACK);
-		g.setTransform(oldTransform);
-		g.setStroke(oldStroke);
-	}
-
 	private void drawCircle(Graphics2D g, Point center, int radius, Color color) {
 		g.setColor(color);
 		g.fillOval((int) center.getX() - radius, (int) center.getY() - radius, radius * 2, radius * 2);
 		g.setColor(Color.BLACK);
 	}
-
-	// private Graphics2D rotateToLine(Graphics2D g, Point p1, Point p2) {
-	// g.rotate(Math.atan2(p2.getY() - p1.getY(), p2.getX() - p1.getX()), p1.getX(),
-	// p1.getY());
-	// return g;
-	// }
 
 	/**
 	 * Used to convert the real-world coordinate to the graphics coordinate.
@@ -313,8 +274,8 @@ public class MapPanel extends Panel {
 
 		// -1 here to flip the Y-axis, because Y increases downward in graphics
 		// coordinates
-		after.setX(before.getX() * Settings.SETTINGS_SCALE - Settings.SETTINGS_OFFSET.getX());
-		after.setY(before.getY() * Settings.SETTINGS_SCALE * -1 - Settings.SETTINGS_OFFSET.getY());
+		after.setX(before.getX() * Settings.config.SCALE - Settings.config.OFFSET.getX());
+		after.setY(before.getY() * Settings.config.SCALE * -1 - Settings.config.OFFSET.getY());
 
 		return after;
 	}
@@ -341,21 +302,21 @@ public class MapPanel extends Panel {
 		actionMap.put("zoomIn", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.modifyScale(Constants.SCALE_STEP);
+				Settings.config.modifyScale(Constants.SCALE_STEP);
 			}
 		});
 
 		actionMap.put("zoomOut", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.modifyScale(-Constants.SCALE_STEP);
+				Settings.config.modifyScale(-Constants.SCALE_STEP);
 			}
 		});
 
 		actionMap.put("moveUp", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.modifyOffsetY(-Constants.OFFSET_STEP);
+				Settings.config.modifyOffsetY(-Constants.OFFSET_STEP);
 			}
 
 		});
@@ -363,21 +324,21 @@ public class MapPanel extends Panel {
 		actionMap.put("moveDown", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.modifyOffsetY(Constants.OFFSET_STEP);
+				Settings.config.modifyOffsetY(Constants.OFFSET_STEP);
 			}
 		});
 
 		actionMap.put("moveRight", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.modifyOffsetX(Constants.OFFSET_STEP);
+				Settings.config.modifyOffsetX(Constants.OFFSET_STEP);
 			}
 		});
 
 		actionMap.put("moveLeft", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.modifyOffsetX(-Constants.OFFSET_STEP);
+				Settings.config.modifyOffsetX(-Constants.OFFSET_STEP);
 			}
 		});
 	}

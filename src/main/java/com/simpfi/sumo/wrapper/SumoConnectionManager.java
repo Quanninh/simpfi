@@ -20,7 +20,7 @@ public class SumoConnectionManager {
 	 */
 	public SumoConnectionManager(String cfg) throws Exception {
 		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg, "--start", "--quit-on-end", "--remote-port", "9999",
-				"--step-length", String.valueOf(Settings.TIMESTEP));
+			"--step-length", String.valueOf(Settings.config.TIMESTEP));
 		pb.inheritIO();
 		pb.start();
 

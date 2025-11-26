@@ -3,6 +3,7 @@ package com.simpfi.object;
 import java.awt.Color;
 
 import com.simpfi.config.Constants;
+import com.simpfi.config.Settings;
 import com.simpfi.util.Point;
 
 /**
@@ -14,7 +15,7 @@ public class Vehicle {
 	private Point position;
 	private double speed;
 	private String roadID;
-	private String type;
+	private VehicleType type;
 	private double angle;
 	private double width;
 	private double height;
@@ -25,10 +26,20 @@ public class Vehicle {
 		this.id = id;
 		this.position = point;
 		this.roadID = roadID;
-		this.type = type;
 		this.angle = angle;
 		this.width = width;
 		this.height = height;
+
+		this.type = null;
+		for (VehicleType vType : Settings.network.getVehicleTypes()) {
+			if (vType.getId().equals(type)) {
+				this.type = vType;
+				break;
+			}
+		}
+		if (this.type == null) {
+			System.err.println("Invalid vehicle type: " + type);
+		}
 
 		isActive = false;
 	}
@@ -53,7 +64,7 @@ public class Vehicle {
 		return angle;
 	}
 
-	public String getType() {
+	public VehicleType getType() {
 		return type;
 	}
 
@@ -74,7 +85,7 @@ public class Vehicle {
 	}
 
 	public Color getVehicleColor() {
-		return switch (type) {
+		return switch (type.getId()) {
 		case "truck" -> Constants.TRUCK_COLOR;
 		case "bus" -> Constants.BUS_COLOR;
 		case "motorcycle" -> Constants.MOTORCYCLE_COLOR;

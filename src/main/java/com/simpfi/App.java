@@ -13,7 +13,6 @@ import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.sumo.wrapper.VehicleController;
 import com.simpfi.ui.Frame;
 import com.simpfi.ui.TabbedPane;
-import com.simpfi.ui.panel.ControlPanel;
 import com.simpfi.ui.panel.FilterPanel;
 import com.simpfi.ui.panel.InjectPanel;
 import com.simpfi.ui.panel.InspectPanel;
@@ -42,7 +41,7 @@ public class App {
 	private static TrafficLightController trafficLightController;
 
 	public static void main(String[] args) {
-		long stepMs = (long) (Settings.TIMESTEP * 1000);
+		long stepMs = (long) (Settings.config.TIMESTEP * 1000);
 
 		SumoConnectionManager connection = null;
 		try {
@@ -61,7 +60,7 @@ public class App {
 
 				long sleep = next - System.currentTimeMillis();
 				if (sleep > 0) {
-					Thread.sleep((long) (sleep / Settings.SIMULATION_SPEED));
+					Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
 				}
 			}
 		} catch (Exception e) {
@@ -83,11 +82,11 @@ public class App {
 	}
 
 	private static void retrieveData(SumoConnectionManager sim) throws Exception {
-		Settings.disableAllVehicles();
+		VehicleController.disableAllVehicles();
 
 		for (String vid : vehicleController.getAllVehicleIDs()) {
 			Point pos = vehicleController.getPosition(vid);
-			double speed = vehicleController.getSpeed(vid);
+			// double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
 			double angle = vehicleController.getAngle(vid);
 			String type = vehicleController.getTypeID(vid);
@@ -96,14 +95,12 @@ public class App {
 
 			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height);
 
-			Settings.setVehicles(v);
+			VehicleController.setVehicles(v);
 		}
 
 		for (String tl : trafficLightController.getIDList()) {
 			String light_state = trafficLightController.getState(tl);
-			Settings.updateTrafficLightState(tl, light_state);
-			// It should be TrafficLightController
-			// System.out.printf("light state=%s", light_state);
+			TrafficLightController.updateTrafficLightState(tl, light_state);
 		}
 	}
 
@@ -111,7 +108,6 @@ public class App {
 		uiSetup();
 		Frame myFrame = new Frame();
 
-		ControlPanel controlPanel = new ControlPanel(conn);
 		mapPanel = new MapPanel();
 
 		StatisticsPanel statisticsPanel = new StatisticsPanel();
@@ -120,13 +116,6 @@ public class App {
 		ProgramLightsPanel programLightPanel = new ProgramLightsPanel();
 		FilterPanel filterPanel = new FilterPanel();
 		InspectPanel inspectPanel = new InspectPanel();
-
-//		sideBar.add(statisticsPanel);
-//		sideBar.add(injectPanel);
-//		sideBar.add(mapViewPanel);
-//		sideBar.add(programLightPanel);
-//		sideBar.add(filterPanel);
-//		sideBar.add(inspectPanel);
 
 		TabbedPane sidePane = new TabbedPane();
 
@@ -137,7 +126,6 @@ public class App {
 		sidePane.addTab("Filter", filterPanel);
 		sidePane.addTab("Inspect", inspectPanel);
 
-		myFrame.add(controlPanel, BorderLayout.NORTH);
 		myFrame.add(mapPanel, BorderLayout.CENTER);
 		myFrame.add(sidePane, BorderLayout.WEST);
 

@@ -81,13 +81,13 @@ public class TextBox extends JTextField {
 
 		switch (type) {
 		case SCALE:
-			Settings.changeScale(value);
+			Settings.config.changeScale(value);
 			break;
 		case OFFSET_X:
-			Settings.changeOffsetX(value);
+			Settings.config.changeOffsetX(value);
 			break;
 		case OFFSET_Y:
-			Settings.changeOffsetY(value);
+			Settings.config.changeOffsetY(value);
 			break;
 		default:
 			System.out.println("Unexpected TextBox");
