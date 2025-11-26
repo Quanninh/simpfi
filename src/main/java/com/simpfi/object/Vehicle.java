@@ -22,6 +22,12 @@ public class Vehicle {
 
 	private Boolean isActive;
 
+    /**
+     * Overloaded Constructor assigning provided parameters
+     * Compares the provided type ID to the IDs of all {@link VehicleType} objects in
+     * {@code Settings.network}.
+     * */
+
 	public Vehicle(String id, Point point, String roadID, String type, double angle, double width, double height) {
 		this.id = id;
 		this.position = point;
@@ -31,6 +37,7 @@ public class Vehicle {
 		this.height = height;
 
 		this.type = null;
+
 		for (VehicleType vType : Settings.network.getVehicleTypes()) {
 			if (vType.getId().equals(type)) {
 				this.type = vType;

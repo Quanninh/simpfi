@@ -2,7 +2,12 @@ package com.simpfi.config;
 
 import com.simpfi.util.Point;
 
-public class SimulationConfig {
+ /**
+  * Holds configuration parameters that control how the simulation is displayed
+  * and executed. This includes scaling factors, coordinate offsets,
+  * simulation timestep, and playback speed.
+  */
+ public class SimulationConfig {
 
 	public double SCALE = Constants.DEFAULT_SCALE;
 	public Point OFFSET = new Point(Constants.DEFAULT_OFFSET_X, Constants.DEFAULT_OFFSET_Y);

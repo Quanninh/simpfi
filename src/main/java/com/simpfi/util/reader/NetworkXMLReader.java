@@ -36,7 +36,7 @@ public class NetworkXMLReader extends XMLReader {
 	private Map<String, Lane> laneMap = new HashMap<String, Lane>();
 
 	/**
-	 * Used to parse edges by leveraging methods from {@link org.w3c.dom.Element}.
+	 * Used to parse {@code edges} by leveraging methods from {@link org.w3c.dom.Element}.
 	 * 
 	 * @param junctions list of junctions used to get {@code from} &amp; {@code to}
 	 *                  attributes of Edge.
@@ -76,7 +76,7 @@ public class NetworkXMLReader extends XMLReader {
 	}
 
 	/**
-	 * Used to parse junctions by leveraging methods from
+	 * Used to parse {@code junctions} by leveraging methods from
 	 * {@link org.w3c.dom.Element}.
 	 * 
 	 * @return list of junctions from the XML file.
@@ -114,13 +114,13 @@ public class NetworkXMLReader extends XMLReader {
 	}
 
     /**
-     * Used to parse all traffic lights using provided junctions and edges by leveraging methods from {@link org.w3c.dom.Element}.
+     * Used to parse all {@code traffic lights} using provided {@code junctions} and {@code edges} by leveraging methods from {@link org.w3c.dom.Element}.
      *
      * @param junctions list of all parsed junctions
      * @param edges list of all parsed edges needed for lane information
      * @return list of traffic lights from the XML file.
      * @throws Exception if the XML structure is invalid.
-     * */
+     */
 	public List<TrafficLight> parseTrafficLight(List<Junction> junctions, List<Edge> edges) throws Exception {
 		List<TrafficLight> trafficLights = new ArrayList<TrafficLight>();
 		NodeList trafficLightLogic = document.getElementsByTagName("tlLogic");

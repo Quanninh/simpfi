@@ -13,6 +13,12 @@ public class Point {
 		this(0, 0);
 	}
 
+    /**
+     * Overloaded constructor creating a new {@code Point} using provided x and y coordinates.
+     *
+     * @param x x coordinate for the new point
+     * @param y y coordinate for the new point
+     */
 	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -34,6 +40,13 @@ public class Point {
 		this.y = y;
 	}
 
+    /**
+     * Method to calculate the distance of two {@code Points}.
+     *
+     * @param p1 first point
+     * @param p2 second point
+     * @return distance between p1 and p2
+     */
 	public static double distance(Point p1, Point p2) {
 		double dx = p2.getX() - p1.getX();
 		double dy = p2.getY() - p1.getY();
@@ -44,6 +57,12 @@ public class Point {
 		return new Point(x + other.getX(), y + other.getY());
 	}
 
+    /**
+     * Returns a new point that is scaled by a provided factor.
+     *
+     * @param scale factor
+     * @return the new point manipulated by scale
+     */
 	public Point scale(double scale) {
 		return new Point(x * scale, y * scale);
 	}
