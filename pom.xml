@@ -121,7 +121,6 @@
           <source>${maven.compiler.release}</source>
           <encoding>UTF-8</encoding>
           <failOnError>false</failOnError>
-          <additionalparam>-Xdoclint:none</additionalparam>
         </configuration>
         <executions>
           <execution>
@@ -135,20 +134,3 @@
     </plugins>
   </build>
 </project>
-
-<dependencies>
-<!-- TraaS / TraCI Java client for SUMO -->
-<dependency>
-    <groupId>it.polito.appeal.traci</groupId>
-    <artifactId>traci-java</artifactId>
-    <version>1.24.0</version> <!-- passe Version an -->
-</dependency>
-
-<dependency>
-    <groupId>de.tudresden.sumo</groupId>
-    <artifactId>sumo-java-bindings</artifactId>
-    <version>1.24.0</version> <!-- bekannte Version oder local jar -->
-</dependency>
-
-
-</dependencies>
