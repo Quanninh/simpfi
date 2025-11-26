@@ -22,6 +22,13 @@ import com.simpfi.util.XMLReader;
  */
 public class NetworkXMLReader extends XMLReader {
 
+    /**
+     * calls the Constructor of superclass {@link XMLReader} and passes the given
+     * file address
+     *
+     * @param fileAddress address of the file to be read
+     * @throws Exception if reading of the file fails
+     */
 	public NetworkXMLReader(String fileAddress) throws Exception {
 		super(fileAddress);
 	}
@@ -106,6 +113,14 @@ public class NetworkXMLReader extends XMLReader {
 
 	}
 
+    /**
+     * Used to parse all traffic lights using provided junctions and edges by leveraging methods from {@link org.w3c.dom.Element}.
+     *
+     * @param junctions list of all parsed junctions
+     * @param edges list of all parsed edges needed for lane information
+     * @return list of traffic lights from the XML file.
+     * @throws Exception if the XML structure is invalid.
+     * */
 	public List<TrafficLight> parseTrafficLight(List<Junction> junctions, List<Edge> edges) throws Exception {
 		List<TrafficLight> trafficLights = new ArrayList<TrafficLight>();
 		NodeList trafficLightLogic = document.getElementsByTagName("tlLogic");
@@ -180,6 +195,13 @@ public class NetworkXMLReader extends XMLReader {
 		return null;
 	}
 
+    /**
+     * Used to search over a list of edges to find the lane with the matched id.
+     *
+     * @param id    id of the lane that users look for.
+     * @param edges given list of edges.
+     * @return the lane with the passed id, {@code null} if not found.
+     * */
 	public Lane searchForLane(String id, List<Edge> edges) {
 		String edgeId = id.split("_")[0];
 		Edge edge = searchForEdge(edgeId, edges);
