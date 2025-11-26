@@ -28,8 +28,7 @@ import com.simpfi.util.reader.RouteXMLReader;
 public class Settings {
 
 	public static double SETTINGS_SCALE = Constants.DEFAULT_SCALE;
-	public static Point SETTINGS_OFFSET = new Point(Constants.DEFAULT_OFFSET_X,
-		Constants.DEFAULT_OFFSET_Y);
+	public static Point SETTINGS_OFFSET = new Point(Constants.DEFAULT_OFFSET_X, Constants.DEFAULT_OFFSET_Y);
 	public static double TIMESTEP = 0.1;
 	public static double SIMULATION_SPEED = 2;
 
@@ -46,23 +45,20 @@ public class Settings {
 	/**
 	 * Constructor loads all network and route data defined in {@link Constants}
 	 *
-	 * Parsing of all junctions and edges using {@link NetworkXMLReader} Parsing
-	 * of vehicle types, routes, and IDs using {@link RouteXMLReader}
+	 * Parsing of all junctions and edges using {@link NetworkXMLReader} Parsing of
+	 * vehicle types, routes, and IDs using {@link RouteXMLReader}
 	 */
 	static {
 		System.out.println("Initializing Settings");
 		try {
-			NetworkXMLReader networkXmlReader = new NetworkXMLReader(
-				Constants.SUMO_NETWORK);
-			RouteXMLReader routeXmlReader = new RouteXMLReader(
-				Constants.SUMO_ROUTE);
+			NetworkXMLReader networkXmlReader = new NetworkXMLReader(Constants.SUMO_NETWORK);
+			RouteXMLReader routeXmlReader = new RouteXMLReader(Constants.SUMO_ROUTE);
 
 			parsedJunctions = networkXmlReader.parseJunction();
 			parsedEdges = networkXmlReader.parseEdge(parsedJunctions);
 			parsedVehicleTypes = routeXmlReader.parseVehicleType();
 			parsedRoutes = routeXmlReader.parseRoute();
-			parsedTrafficLights = networkXmlReader
-				.parseTrafficLight(parsedJunctions, parsedEdges);
+			parsedTrafficLights = networkXmlReader.parseTrafficLight(parsedJunctions, parsedEdges);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
