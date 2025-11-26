@@ -56,11 +56,13 @@
       <artifactId>sumo</artifactId>
       <version>2026.0-2025w38</version>
     </dependency>
-    <!--<dependency>
-    <groupId>it.polito.appeal</groupId>
-    <artifactId>traci</artifactId>
+	<dependency>
+    <groupId>de.tudresden.sumo</groupId>
+    <artifactId>traas</artifactId>
     <version>1.0</version>
-    </dependency>-->
+    <scope>system</scope>
+    <systemPath>${project.basedir}/src/main/java/com/simpfi/lib/TraaS.jar</systemPath>
+	</dependency>
     <dependency>
       <groupId>com.formdev</groupId>
       <artifactId>flatlaf</artifactId>
@@ -121,6 +123,7 @@
           <source>${maven.compiler.release}</source>
           <encoding>UTF-8</encoding>
           <failOnError>false</failOnError>
+		  <destDir>../../../docs/javadoc</destDir>
         </configuration>
         <executions>
           <execution>
