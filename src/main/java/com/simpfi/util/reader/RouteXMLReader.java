@@ -24,7 +24,7 @@ public class RouteXMLReader extends XMLReader {
 	 * file address
 	 *
 	 * @param fileAddress address of the file to be read
-	 * @throws Exception if reading of file fails
+	 * @throws Exception if reading of the file fails
 	 */
 	public RouteXMLReader(String fileAddress) throws Exception {
 		super(fileAddress);

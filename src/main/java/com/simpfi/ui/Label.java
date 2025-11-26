@@ -4,6 +4,10 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 
 import com.simpfi.config.Constants;
+/**
+ * Configures a label on the UI.
+ * This class inherits {@link javax.swing.JPanel}.
+ */
 
 public class Label extends JLabel {
 

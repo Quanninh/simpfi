@@ -6,6 +6,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import com.simpfi.config.Constants;
 
+/**
+ * Implements the Dropdown component on the UI.
+ * This class inherits {@link javax.swing.JPanel}.
+ */
 public class Dropdown<E> extends JComboBox<E> {
 
 	private static final long serialVersionUID = 1L;

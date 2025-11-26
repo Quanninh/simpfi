@@ -23,7 +23,7 @@ import com.simpfi.ui.panel.StatisticsPanel;
 import com.simpfi.util.Point;
 
 /**
- * App Class contains the {@code main} function and is used to run the software.
+ * App Class as main application class contains the {@code main} function and is used to run the software.
  * 
  * Flow of actions:
  * 
@@ -49,6 +49,11 @@ public class App {
 
 	static TabbedPane sidePane;
 
+    /**
+     * Main function and starting point of application.
+     * Sets up TraCI connection, initializes UI and controllers and
+     * runs the simulation loop.
+     */
 	public static void main(String[] args) {
 		long stepMs = (long) (Settings.config.TIMESTEP * 1000);
 
@@ -82,15 +87,33 @@ public class App {
 		}
 	}
 
+    /**
+     *
+     * @param sim the SumoConnectionManager
+     * @throws Exception if the connection fails
+     * */
 	private static void doStep(SumoConnectionManager sim) throws Exception {
 		sim.doStep();
 	}
 
+    /**
+     * Establishes the SUMO connection.
+     *
+     * @return new SumoConnectionManager
+     * @throws Exception if the connection can't be established
+     */
 	private static SumoConnectionManager establishConnection() throws Exception {
 		SumoConnectionManager conn = new SumoConnectionManager(Constants.SUMO_CONFIG);
 		return conn;
 	}
 
+    /**
+     * Retrieves updated vehicle and traffic light data
+     * and updates the UI and controllers.
+     *
+     * @param sim the connection manager
+     * @throws Exception if the connection fails
+     */
 	private static void retrieveData(SumoConnectionManager sim) throws Exception {
 		VehicleController.disableAllVehicles();
 
@@ -114,6 +137,11 @@ public class App {
 		}
 	}
 
+    /**
+     * Sets up the UI including panels and panes.
+     *
+     * @param conn the connection manager used by the UI
+     */
 	private static void generateUI(SumoConnectionManager conn) {
 		uiSetup();
 		Frame myFrame = new Frame();
@@ -143,6 +171,9 @@ public class App {
 		myFrame.setVisible(true);
 	}
 
+    /**
+     * Sets up UI theme using {@link FlatLightLaf}.
+     */
 	private static void uiSetup() {
 		FlatLightLaf.registerCustomDefaultsSource("themes");
 		FlatLightLaf.setup();

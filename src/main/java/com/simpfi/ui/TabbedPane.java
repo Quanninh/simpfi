@@ -4,6 +4,10 @@ import javax.swing.JTabbedPane;
 
 import com.formdev.flatlaf.ui.FlatTabbedPaneUI;
 
+/**
+ * A custom Tabbed Pane with tabs placed on the left side and scrollable tab layout.
+ * The class inherits {@link javax.swing.JTabbedPane}.
+ */
 public class TabbedPane extends JTabbedPane {
 
 	private static final long serialVersionUID = 1L;

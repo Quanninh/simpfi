@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Creates Route class (may includes {@link de.tudresden.sumo.cmd.Route} in the
+ * Creates Route class (may include {@link de.tudresden.sumo.cmd.Route} in the
  * future).
  */
 public class Route {
