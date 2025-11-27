@@ -9,6 +9,7 @@ import javax.swing.event.DocumentListener;
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 
+// TODO: Auto-generated Javadoc
 /**
  * Custom TextBox class that inherits {@link javax.swing.JTextField}. The class
  * is created to mainly provide three types of textboxes: scale, coordinate x
@@ -16,14 +17,29 @@ import com.simpfi.config.Settings;
  */
 public class TextBox extends JTextField {
 
+	/**
+	 * The Enum SettingsType.
+	 */
 	public enum SettingsType {
-		SCALE, OFFSET_X, OFFSET_Y,
+		
+		/** The scale. */
+		SCALE, 
+ /** The offset x. */
+ OFFSET_X, 
+ /** The offset y. */
+ OFFSET_Y,
 	}
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The default value. */
 	private double defaultValue;
+	
+	/** The must be double. */
 	private Boolean mustBeDouble;
+	
+	/** The type. */
 	private SettingsType type;
 
 	/**
@@ -97,7 +113,7 @@ public class TextBox extends JTextField {
 
 	/**
 	 * Converts a double value into a formatted string using a pattern: shows max 6
-	 * digits after the decimal point
+	 * digits after the decimal point.
 	 *
 	 * @param value the double value to be formatted
 	 * @return string representing the formatted value

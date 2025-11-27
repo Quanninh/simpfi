@@ -4,12 +4,14 @@ import com.simpfi.config.Settings;
 
 import it.polito.appeal.traci.SumoTraciConnection;
 
+// TODO: Auto-generated Javadoc
 /**
  * Creates SumoConnectionManager class used to establish the connection between
  * Java programs and SUMO via TraCI.
  */
 public class SumoConnectionManager {
 
+	/** The conn. */
 	private SumoTraciConnection conn;
 
 	/**
@@ -45,6 +47,11 @@ public class SumoConnectionManager {
 		conn.do_timestep();
 	}
 
+	/**
+	 * Gets the connection.
+	 *
+	 * @return the connection
+	 */
 	public SumoTraciConnection getConnection() {
 		return conn;
 	}

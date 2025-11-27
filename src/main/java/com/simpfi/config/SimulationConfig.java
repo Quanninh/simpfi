@@ -9,25 +9,28 @@ import com.simpfi.util.Point;
  */
 public class SimulationConfig {
 
-	/** Scale of the map */
+	/** Scale of the map. */
 	public double SCALE = Constants.DEFAULT_SCALE;
-	/** Position of the map (top left corner) */
+
+	/** Position of the map (top left corner). */
 	public Point OFFSET = new Point(Constants.DEFAULT_OFFSET_X, Constants.DEFAULT_OFFSET_Y);
-	/** Timestep (in ms) is the time between two simulation step */
+
+	/** Timestep (in ms) is the time between two simulation step. */
 	public double TIMESTEP = 0.1;
+
 	/**
 	 * How fast the simulation is running (will add feature to change this in the
-	 * future)
+	 * future).
 	 */
 	public double SIMULATION_SPEED = 2;
 
-	/** The currently chosen route */
+	/** The currently chosen route. */
 	public String HIGHLIGHTED_ROUTE = "";
 
 	/**
 	 * Adds a value to the scale.
 	 * 
-	 * @param change the value users want to add.
+	 * @param change the value users want to add
 	 */
 	public void modifyScale(double change) {
 		SCALE += change;
@@ -36,7 +39,7 @@ public class SimulationConfig {
 	/**
 	 * Adds a value to the offset x.
 	 * 
-	 * @param change the value users want to add.
+	 * @param change the value users want to add
 	 */
 	public void modifyOffsetX(double change) {
 		OFFSET.setX(OFFSET.getX() + change);
@@ -45,7 +48,7 @@ public class SimulationConfig {
 	/**
 	 * Adds a value to the offset y.
 	 * 
-	 * @param change the value users want to add.
+	 * @param change the value users want to add
 	 */
 	public void modifyOffsetY(double change) {
 		OFFSET.setY(OFFSET.getY() + change);
@@ -54,7 +57,7 @@ public class SimulationConfig {
 	/**
 	 * Replace scale with a new value.
 	 * 
-	 * @param newValue the new value users want to set.
+	 * @param newValue the new value users want to set
 	 */
 	public void changeScale(double newValue) {
 		SCALE = newValue;
@@ -63,7 +66,7 @@ public class SimulationConfig {
 	/**
 	 * Replace offset x with a new value.
 	 * 
-	 * @param newValue the new value users want to set.
+	 * @param newValue the new value users want to set
 	 */
 	public void changeOffsetX(double newValue) {
 		OFFSET.setX(newValue);
@@ -72,7 +75,7 @@ public class SimulationConfig {
 	/**
 	 * Replace offset y with a new value.
 	 * 
-	 * @param newValue the new value users want to set.
+	 * @param newValue the new value users want to set
 	 */
 	public void changeOffsetY(double newValue) {
 		OFFSET.setY(newValue);

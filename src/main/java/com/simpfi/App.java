@@ -22,6 +22,7 @@ import com.simpfi.ui.panel.ProgramLightsPanel;
 import com.simpfi.ui.panel.StatisticsPanel;
 import com.simpfi.util.Point;
 
+// TODO: Auto-generated Javadoc
 /**
  * App Class as main application class contains the {@code main} function and is used to run the software.
  * 
@@ -36,23 +37,43 @@ import com.simpfi.util.Point;
  * 4. Start the simulation loop.
  */
 public class App {
+	
+	/** The map panel. */
 	private static MapPanel mapPanel;
+	
+	/** The vehicle controller. */
 	private static VehicleController vehicleController;
+	
+	/** The traffic light controller. */
 	private static TrafficLightController trafficLightController;
 
+	/** The statistics panel. */
 	static StatisticsPanel statisticsPanel;
+	
+	/** The inject panel. */
 	static InjectPanel injectPanel;
+	
+	/** The map view panel. */
 	static MapViewPanel mapViewPanel;
+	
+	/** The program light panel. */
 	static ProgramLightsPanel programLightPanel;
+	
+	/** The filter panel. */
 	static FilterPanel filterPanel;
+	
+	/** The inspect panel. */
 	static InspectPanel inspectPanel;
 
+	/** The side pane. */
 	static TabbedPane sidePane;
 
     /**
      * Main function and starting point of application.
      * Sets up TraCI connection, initializes UI and controllers and
      * runs the simulation loop.
+     *
+     * @param args the arguments
      */
 	public static void main(String[] args) {
 		long stepMs = (long) (Settings.config.TIMESTEP * 1000);
@@ -88,10 +109,11 @@ public class App {
 	}
 
     /**
+     * Do step.
      *
      * @param sim the SumoConnectionManager
      * @throws Exception if the connection fails
-     * */
+     */
 	private static void doStep(SumoConnectionManager sim) throws Exception {
 		sim.doStep();
 	}

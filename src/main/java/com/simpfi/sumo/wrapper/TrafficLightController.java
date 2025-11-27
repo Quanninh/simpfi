@@ -14,47 +14,99 @@ import de.tudresden.sumo.cmd.Trafficlight;
 import de.tudresden.sumo.objects.SumoLink;
 import it.polito.appeal.traci.SumoTraciConnection;
 
+// TODO: Auto-generated Javadoc
 /**
  * Wrapper Class for {@link de.tudresden.sumo.cmd.Trafficlight}.
  */
 public class TrafficLightController {
 
+	/** The conn. */
 	private final SumoTraciConnection conn;
 
+/** The live traffic light states. */
 //	private List<Connection> connections;
 	private static Map<String, String> liveTrafficLightStates = new HashMap<>();
 
+	/**
+	 * Instantiates a new traffic light controller.
+	 *
+	 * @param conn the conn
+	 * @throws Exception the exception
+	 */
 	public TrafficLightController(SumoConnectionManager conn) throws Exception {
 		this.conn = conn.getConnection();
 		addConnectionToTrafficLight();
 	}
 
+	/**
+	 * Gets the ID list.
+	 *
+	 * @return the ID list
+	 * @throws Exception the exception
+	 */
 	@SuppressWarnings("unchecked")
 	public List<String> getIDList() throws Exception {
 		return (List<String>) conn.do_job_get(Trafficlight.getIDList());
 	}
 
+	/**
+	 * Gets the state.
+	 *
+	 * @param tlId the tl id
+	 * @return the state
+	 * @throws Exception the exception
+	 */
 	public String getState(String tlId) throws Exception {
 		return (String) conn.do_job_get(Trafficlight.getRedYellowGreenState(tlId));
 	}
 
+	/**
+	 * Sets the duration.
+	 *
+	 * @param tlId the tl id
+	 * @param duration the duration
+	 * @throws Exception the exception
+	 */
 	public void setDuration(String tlId, double duration) throws Exception {
 		conn.do_job_get(Trafficlight.setPhaseDuration(tlId, duration));
 	}
 
+	/**
+	 * Update traffic light state.
+	 *
+	 * @param id the id
+	 * @param state the state
+	 */
 	public static void updateTrafficLightState(String id, String state) {
 		liveTrafficLightStates.put(id, state);
 	}
 
+	/**
+	 * Gets the live traffic light states.
+	 *
+	 * @return the live traffic light states
+	 */
 	public static Map<String, String> getLiveTrafficLightStates() {
 		return liveTrafficLightStates;
 	}
 
+	/**
+	 * Controlled links.
+	 *
+	 * @param tlId the tl id
+	 * @return the list
+	 * @throws Exception the exception
+	 */
 	@SuppressWarnings("unchecked")
 	public List<SumoLink> controlledLinks(String tlId) throws Exception {
 		return (List<SumoLink>) conn.do_job_get(Trafficlight.getControlledLinks(tlId));
 	}
 
+	/**
+	 * Adds the connection to traffic light.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void addConnectionToTrafficLight() throws Exception {
 		List<TrafficLight> allTrafficLights = Settings.network.getTrafficLights();
 		List<Edge> edges = Settings.network.getEdges();

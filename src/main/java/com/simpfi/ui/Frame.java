@@ -3,11 +3,13 @@ package com.simpfi.ui;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
+// TODO: Auto-generated Javadoc
 /**
  * Custom Frame class that inherits {@link javax.swing.JFrame}.
  */
 public class Frame extends JFrame {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**

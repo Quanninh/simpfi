@@ -30,18 +30,24 @@ import com.simpfi.sumo.wrapper.VehicleController;
 import com.simpfi.ui.Panel;
 import com.simpfi.util.Point;
 
+// TODO: Auto-generated Javadoc
 /**
  * Custom MapPanel class that inherits {@link com.simpfi.ui.Panel}. Used to draw
  * objects on the user interface such as vehicles, edges, lanes, etc.
  */
 public class MapPanel extends Panel {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The default stroke. */
 	private final BasicStroke defaultStroke = new BasicStroke(
 			(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
 			BasicStroke.JOIN_ROUND);
 
+	/**
+	 * Instantiates a new map panel.
+	 */
 	public MapPanel() {
 		initializeMapControl();
 	}
@@ -122,9 +128,10 @@ public class MapPanel extends Panel {
 
 	/**
 	 * Used to draw an Edge on the User Interface.
-	 * 
+	 *
 	 * @param g where the edge is drawn on.
 	 * @param e the edge that is passed to the method.
+	 * @param c the c
 	 */
 	private void drawObject(Graphics2D g, Edge e, Color c) {
 		Lane[] lanes = e.getLanes();
@@ -143,6 +150,13 @@ public class MapPanel extends Panel {
 		g.setStroke(oldStroke);
 	}
 
+	/**
+	 * Draw lane dividers.
+	 *
+	 * @param g the g
+	 * @param lanes the lanes
+	 * @param laneSize the lane size
+	 */
 	private void drawLaneDividers(Graphics2D g, Lane[] lanes, int laneSize) {
 		float dashLength = (float) (Constants.LANE_DIVIDER_DASH_LENGTH * Settings.config.SCALE);
 		float[] dashPattern = { dashLength, dashLength };
@@ -173,9 +187,10 @@ public class MapPanel extends Panel {
 
 	/**
 	 * Used to draw a Lane on the User Interface.
-	 * 
+	 *
 	 * @param g where the lane is drawn on.
 	 * @param l the lane that is passed to the method.
+	 * @param c the c
 	 */
 	private void drawObject(Graphics2D g, Lane l, Color c) {
 		Point[] shape = l.getShape();
@@ -270,6 +285,14 @@ public class MapPanel extends Panel {
 		g.setStroke(oldStroke);
 	}
 
+	/**
+	 * Draw circle.
+	 *
+	 * @param g the g
+	 * @param center the center
+	 * @param radius the radius
+	 * @param color the color
+	 */
 	private void drawCircle(Graphics2D g, Point center, int radius, Color color) {
 		g.setColor(color);
 		g.fillOval((int) center.getX() - radius, (int) center.getY() - radius, radius * 2, radius * 2);
@@ -293,6 +316,9 @@ public class MapPanel extends Panel {
 		return after;
 	}
 
+	/**
+	 * Initialize map control.
+	 */
 	public void initializeMapControl() {
 		InputMap inputMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap actionMap = this.getActionMap();

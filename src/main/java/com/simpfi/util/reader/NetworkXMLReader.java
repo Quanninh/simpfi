@@ -15,6 +15,7 @@ import com.simpfi.object.Phase;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.util.XMLReader;
 
+// TODO: Auto-generated Javadoc
 /**
  * Creates class {@code NetworkXMLReader} that inherits
  * {@link com.simpfi.util.XMLReader} used to parse network components such as
@@ -24,7 +25,7 @@ public class NetworkXMLReader extends XMLReader {
 
     /**
      * calls the Constructor of superclass {@link XMLReader} and passes the given
-     * file address
+     * file address.
      *
      * @param fileAddress address of the file to be read
      * @throws Exception if reading of the file fails
@@ -34,6 +35,7 @@ public class NetworkXMLReader extends XMLReader {
 		super(fileAddress);
 	}
 
+	/** The lane map. */
 	private Map<String, Lane> laneMap = new HashMap<String, Lane>();
 
 	/**

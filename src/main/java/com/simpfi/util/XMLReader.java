@@ -7,14 +7,22 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 
+// TODO: Auto-generated Javadoc
 /**
  * Creates XMLReader used to read and parse XML files.
  */
 public class XMLReader {
 
+	/** The file. */
 	protected File file;
+	
+	/** The factory. */
 	private DocumentBuilderFactory factory;
+	
+	/** The builder. */
 	private DocumentBuilder builder;
+	
+	/** The document. */
 	protected Document document;
 
 	/**

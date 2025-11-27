@@ -2,12 +2,14 @@ package com.simpfi.ui.panel;
 
 import com.simpfi.ui.Panel;
 
+// TODO: Auto-generated Javadoc
 /**
  * CONSIDER REMOVING THIS CLASS... Custom ControlPanel class that inherits
  * {@link com.simpfi.ui.Panel}.
  */
 public class ControlPanel extends Panel {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**

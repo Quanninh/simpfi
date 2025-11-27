@@ -1,14 +1,21 @@
 package com.simpfi.util;
 
+// TODO: Auto-generated Javadoc
 /**
  * Create 2-dimensional coordinates to better represent object classes such as
  * Lane &amp; Junction.
  */
 public class Point {
 
+	/** The x. */
 	private double x;
+	
+	/** The y. */
 	private double y;
 
+	/**
+	 * Instantiates a new point.
+	 */
 	public Point() {
 		this(0, 0);
 	}
@@ -24,18 +31,38 @@ public class Point {
 		this.y = y;
 	}
 
+	/**
+	 * Gets the x.
+	 *
+	 * @return the x
+	 */
 	public double getX() {
 		return x;
 	}
 
+	/**
+	 * Sets the x.
+	 *
+	 * @param x the new x
+	 */
 	public void setX(double x) {
 		this.x = x;
 	}
 
+	/**
+	 * Gets the y.
+	 *
+	 * @return the y
+	 */
 	public double getY() {
 		return y;
 	}
 
+	/**
+	 * Sets the y.
+	 *
+	 * @param y the new y
+	 */
 	public void setY(double y) {
 		this.y = y;
 	}
@@ -53,6 +80,12 @@ public class Point {
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 
+	/**
+	 * Adds the.
+	 *
+	 * @param other the other
+	 * @return the point
+	 */
 	public Point add(Point other) {
 		return new Point(x + other.getX(), y + other.getY());
 	}
@@ -70,6 +103,8 @@ public class Point {
 	/**
 	 * Overrides the built-in method toString() to provide a human-readable
 	 * representation of Point.
+	 *
+	 * @return the string
 	 */
 	@Override
 	public String toString() {

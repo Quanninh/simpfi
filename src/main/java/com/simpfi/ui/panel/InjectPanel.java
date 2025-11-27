@@ -15,17 +15,26 @@ import com.simpfi.ui.Dropdown;
 import com.simpfi.ui.Label;
 import com.simpfi.ui.Panel;
 
+// TODO: Auto-generated Javadoc
 /**
- *
- *
+ * The Class InjectPanel.
  */
 public class InjectPanel extends Panel {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The vehicle control. */
 	private final VehicleController vehicleControl;
+	
+	/** The route dropdown. */
 	private Dropdown<String> routeDropdown;
 
+	/**
+	 * Instantiates a new inject panel.
+	 *
+	 * @param conn the conn
+	 */
 	public InjectPanel(SumoConnectionManager conn) {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -44,10 +53,19 @@ public class InjectPanel extends Panel {
 		this.add(addVehicleBtn);
 	}
 
+	/**
+	 * Sthidk.
+	 */
 	public void sthidk() {
 		Settings.config.HIGHLIGHTED_ROUTE = (String) routeDropdown.getSelectedItem();
 	}
 
+	/**
+	 * Adds the vehicle.
+	 *
+	 * @param vehicleTypeDropdown the vehicle type dropdown
+	 * @param routeDropdown the route dropdown
+	 */
 	private void addVehicle(Dropdown<String> vehicleTypeDropdown, Dropdown<String> routeDropdown) {
 		try {
 			String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
@@ -59,6 +77,13 @@ public class InjectPanel extends Panel {
 		}
 	}
 
+	/**
+	 * Creates the dropdown with label.
+	 *
+	 * @param label the label
+	 * @param items the items
+	 * @return the dropdown
+	 */
 	private Dropdown<String> createDropdownWithLabel(String label, String[] items) {
 		this.add(new Label(label));
 
@@ -69,6 +94,11 @@ public class InjectPanel extends Panel {
 		return dropdown;
 	}
 
+	/**
+	 * Gets the all vehicles types.
+	 *
+	 * @return the all vehicles types
+	 */
 	private String[] getAllVehiclesTypes() {
 		List<VehicleType> allVehicles = Settings.network.getVehicleTypes();
 		String[] vehicleTypes = new String[allVehicles.size()];
@@ -80,6 +110,11 @@ public class InjectPanel extends Panel {
 		return vehicleTypes;
 	}
 
+	/**
+	 * Gets the all route ids.
+	 *
+	 * @return the all route ids
+	 */
 	private String[] getAllRouteIds() {
 		List<Route> allRoutes = Settings.network.getRoutes();
 		String[] routeIds = new String[allRoutes.size()];

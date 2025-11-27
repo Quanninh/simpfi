@@ -10,88 +10,103 @@ import java.awt.Font;
  */
 public class Constants {
 
-	/*****************************************************************************
+	/**
+	 * ***************************************************************************
 	 * SUMO MAP FILES
 	 * 
-	 * Note: Can replace all the simpfi_new files with the simpfi files for another
-	 * network (will add an in-app function for this in the future)
-	 *****************************************************************************/
+	 * <b>Note:</b> Can replace all the simpfi_new files with the simpfi files for
+	 * another network (will add an in-app function for this in the future)
+	 * ***************************************************************************.
+	 */
 
-	/** SUMO .net.xml file path */
+	/** SUMO .net.xml file path. */
 	public static final String SUMO_NETWORK = "src/main/resources/SumoConfig/simpfi_new.net.xml";
 	/*
 	 * public static final String SUMO_NETWORK =
 	 * "src/main/resources/SumoConfig/simpfi.net.xml";
 	 */
 
-	/** SUMO .rou.xml file path */
+	/** SUMO .rou.xml file path. */
 	public static final String SUMO_ROUTE = "src/main/resources/SumoConfig/simpfi_new.rou.xml";
 	/*
 	 * public static final String SUMO_ROUTE =
 	 * "src/main/resources/SumoConfig/simpfi.rou.xml";
 	 */
 
-	/** SUMO .config file path */
+	/** SUMO .config file path. */
 	public static final String SUMO_CONFIG = "src/main/resources/SumoConfig/simpfi_new.sumocfg";
 	/*
 	 * public static final String SUMO_CONFIG =
 	 * "src/main/resources/SumoConfig/simpfi.sumocfg";
 	 */
 
-	/*****************************************************************************
-	 * UI CONFIGURATIONS
-	 * 
-	 * Configurations for UI elements
-	 *****************************************************************************/
+	/**
+	 * ***************************************************************************
+	 * UI CONFIGURATIONS Configurations for UI elements
+	 * ***************************************************************************.
+	 */
 
-	/** How rounded (in px) the corners of all elements are */
+	/** How rounded (in px) the corners of all elements are. */
 	public static final int ROUNDED_CORNERS = 20;
-	/** Default font for all elements */
+
+	/** Default font for all elements. */
 	public static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 14);
 
-	/*****************************************************************************
-	 * MAP DRAWING
-	 * 
-	 * Configurations needed for drawing of map
-	 *****************************************************************************/
+	/**
+	 * ***************************************************************************
+	 * MAP DRAWING Configurations needed for drawing of map
+	 * ***************************************************************************.
+	 */
 
-	/** Thin stroke size for all other elements */
+	/** Thin stroke size for all other elements. */
 	public static final double DEFAULT_STROKE_SIZE = 1;
-	/** Stroke size for drawing lanes so that they fit and have no gaps */
+
+	/** Stroke size for drawing lanes so that they fit and have no gaps. */
 	public static final double LANE_STROKE_SIZE = 4;
-	/** Stroke size for drawing junction borders so that they fit each other */
+
+	/** Stroke size for drawing junction borders so that they fit each other. */
 	public static final double JUNCTION_STROKE_SIZE = 1.5;
-	/** Dash length for drawing lane dividers */
+
+	/** Dash length for drawing lane dividers. */
 	public static final double LANE_DIVIDER_DASH_LENGTH = 4;
-	/** Stroke size for drawing lane dividers */
+
+	/** Stroke size for drawing lane dividers. */
 	public static final double LANE_DIVIDER_STROKE_SIZE = 0.35;
 
-	/** How big the traffic lights are */
+	/** How big the traffic lights are. */
 	public static final double TRAFFIC_LIGHT_RADIUS = 1.5;
 
-	/** Default scale of map so when the program launches the map is centered */
+	/** Default scale of map so when the program launches the map is centered. */
 	public static final double DEFAULT_SCALE = 2.8;
-	/** Vehicles are drawn bigger than other elements to enhance visibility */
+
+	/** Vehicles are drawn bigger than other elements to enhance visibility. */
 	public static final double VEHICLE_UPSCALE = 2;
-	/** When zooming, how much of scale is changed each time */
+
+	/** When zooming, how much of scale is changed each time. */
 	public static final double SCALE_STEP = 0.1;
 
-	/** Default offset_x of map so when the program launches the map is centered */
+	/** Default offset_x of map so when the program launches the map is centered. */
 	public static final double DEFAULT_OFFSET_X = -750;
-	/** Default offset_y of map so when the program launches the map is centered */
+
+	/** Default offset_y of map so when the program launches the map is centered. */
 	public static final double DEFAULT_OFFSET_Y = -250;
-	/** When moving map, how much of map is moved each time */
+
+	/** When moving map, how much of map is moved each time. */
 	public static final double OFFSET_STEP = 10;
 
-	/** Color of the default vehicle */
+	/** Color of the default vehicle. */
 	public static final Color DEFAULT_VEHICLE_COLOR = new Color(225, 247, 12);
-	/** Color of the truck */
+
+	/** Color of the truck. */
 	public static final Color TRUCK_COLOR = Color.GRAY;
-	/** Color of the bus */
+
+	/** Color of the bus. */
 	public static final Color BUS_COLOR = new Color(12, 239, 255);
-	/** Color of the motorcycle */
+
+	/** Color of the motorcycle. */
 	public static final Color MOTORCYCLE_COLOR = Color.MAGENTA;
-	/** Color of the emergency vehicle */
+
+	/** Color of the emergency vehicle. */
 	public static final Color EMERGENCY_COLOR = new Color(245, 130, 31);
 
 }

@@ -9,32 +9,64 @@ import java.util.List;
  */
 public class Edge {
 
+	/** The edge id. */
 	String id;
+
+	/** The conjunction where the edge starts. */
 	Junction conjunctionFrom;
-	Junction conjunctinTo;
+
+	/** The conjunction where the edge ends. */
+	Junction conjunctionTo;
+
+	/** All lanes of the edge. */
 	Lane[] lanes;
+
+	/** Number of lanes of the edge. */
 	int lanesSize;
 
+	/**
+	 * Instantiates a new edge.
+	 *
+	 * @param id    the id of the edge
+	 * @param from  the conjunction where the edge starts
+	 * @param to    the onjunction where the edge ends
+	 * @param lanes all the lanes of the edge
+	 */
 	public Edge(String id, Junction from, Junction to, Lane[] lanes) {
 		this.id = id;
 		this.conjunctionFrom = from;
-		this.conjunctinTo = to;
+		this.conjunctionTo = to;
 		this.lanes = lanes;
 		this.lanesSize = this.lanes.length;
 	}
 
+	/**
+	 * Returns the id.
+	 *
+	 * @return the id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * Returns the lanes.
+	 *
+	 * @return the lanes
+	 */
 	public Lane[] getLanes() {
 		return lanes;
 	}
 
+	/**
+	 * Returns the lanes size.
+	 *
+	 * @return the lanes size
+	 */
 	public int getLanesSize() {
 		return lanesSize;
 	}
-	
+
 	/**
 	 * Used to search over a list of edges to find one with the matched id.
 	 * 
@@ -54,10 +86,12 @@ public class Edge {
 	/**
 	 * Overrides the built-in method toString() to provide a human-readable
 	 * representation of Edge.
+	 *
+	 * @return the string
 	 */
 	@Override
 	public String toString() {
-		return "Edge [edgeId=" + id + ", conjunctionFrom=" + conjunctionFrom + ", conjunctinTo=" + conjunctinTo
+		return "Edge [edgeId=" + id + ", conjunctionFrom=" + conjunctionFrom + ", conjunctinTo=" + conjunctionTo
 			+ ", lanes=" + Arrays.toString(lanes) + "]";
 	}
 
