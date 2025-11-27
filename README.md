@@ -38,7 +38,7 @@ work. Additionally, users can move and scale the map by using keyboard shortcuts
 (command +) to increase its size.
 
 ### SUMO Integration (Wrapper) Layer
-The layer is where TraCI connection takes place. Put differently, it is the interface where
+The layer is where TraCI connectection takes place. Put differently, it is the interface where
 SUMO and wrapper classes communicate with each other. From there, the simulation can be
 executed, logical operations like numerical calculations can be performed, and network controls
 can be handled flawlessly.
@@ -60,19 +60,19 @@ in one single class diagram. Therefore, a wrapper class diagram was designed to 
 conciseness and readability.
 
 ### Class Responsibilities
-- VehicleController: its main role is to process and retrieve detailed information regarding
-vehicles. To achieve this, the class has a SumoTraciConnection attribute conn used to actively
-connect to SUMO so that getters such as getSpeed(), getRoadID() can be implemented. Additionally, vehicleCounter and vehicleMap are developed to keep tracks of vehicles number
-and mapping. Furthermore, the class provides several useful methods like setVehicles(),
-addVehicle() for users to perform vehicle-related operations.
-- TrafficLightController: as its name suggests, the class deals with traffic light objects, especially in the real-time scenarios since it has a live traffic light mapping: liveTrafficLightStates.
-Similar to VehicleController, the class establishes a connection with SUMO using the attribute conn and therefore is able to implement getters such as getIDList(), getState().
-Besides, updateTrafficLightState(), getLiveTrafficLightStates() are provided to maintain the logic of SUMO traffic lights in the Simpfi’s map.
-- SumoConnectionManager: is the class that creates and manages the TraCI connection between SUMO and the project’s app. This is achieved by passing a XML configuration file to its
-constructor and then the program can initialize the connection by getConnection() method and close it safely later using close(). Moreover, it provides an important method doStep()
+- `VehicleController`: its main role is to process and retrieve detailed information regarding
+vehicles. To achieve this, the class has a SumoTraciConnection attribute `connection` used to actively
+connect to SUMO so that getters such as `getSpeed()`, `getRoadID()` can be implemented. Additionally, `vehicleCounter` and `vehicleMap` are developed to keep tracks of vehicles number
+and mapping. Furthermore, the class provides several useful methods like `setVehicles()`,
+`addVehicle()` for users to perform vehicle-related operations.
+- `TrafficLightController`: as its name suggests, the class deals with traffic light objects, especially in the real-time scenarios since it has a live traffic light mapping: `liveTrafficLightStates`.
+Similar to `VehicleController`, the class establishes a connection with SUMO using the attribute `connect` and therefore is able to implement getters such as `getIDList()`, `getState()`.
+Besides, `updateTrafficLightState()`, `getLiveTrafficLightStates()` are provided to maintain the logic of SUMO traffic lights in the Simpfi’s map.
+- `SumoConnectionManager`: is the class that creates and manages the TraCI connection between SUMO and the project’s app. This is achieved by passing a XML configuration file to its
+constructor and then the program can initialize the connection by `getConnection()` method and close it safely later using `close()`. Moreover, it provides an important method `doStep()`
 which advances the simulation by one timestep.
-- App: is where the main function resides. Particularly, it connects the frontend (mapPanel)
-and the backend (vehicleController and trafficLightController); defines the TraCI connection; and handles the connection loop so that the software can function properly.
+- `App`: is where the main function resides. Particularly, it connects the frontend (`mapPanel`)
+and the backend (`vehicleController` and `trafficLightController`); defines the TraCI connection; and handles the connection loop so that the software can function properly.
 
 
 
@@ -83,6 +83,7 @@ and the backend (vehicleController and trafficLightController); defines the TraC
 
 
 # Run Instructions
+- Install Java JDK 17 or higher, SUMO, Eclipse
 - Download project folder
 - Open project folder in Eclipse
 - Go to `src/main/java/com/simpfi/lib` folder
