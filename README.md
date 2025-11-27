@@ -49,7 +49,7 @@ storage, which is essential for exporting meaningful statistics. Also, the layer
 ensure the consistency and integrity of data throughout different parts of the system.
 
 ## Class Design
-<img width="792" height="960" alt="image" src="https://github.com/user-attachments/assets/c03c2020-f0b2-4035-81f0-bfd46cf0ab62" />
+<img width="1136" height="1180" alt="image" src="https://github.com/user-attachments/assets/b4b3cf9f-e156-4625-ad70-e6fd7c440111" />
 
 
 ### Overview
