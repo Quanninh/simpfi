@@ -91,7 +91,7 @@ public class App {
 
 				doStep(connection);
 				retrieveData(connection);
-				injectPanel.sthidk();
+				injectPanel.setHighlightedRoute();
 				mapPanel.repaint();
 
 				long sleep = next - System.currentTimeMillis();

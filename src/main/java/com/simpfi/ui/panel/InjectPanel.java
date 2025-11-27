@@ -15,19 +15,20 @@ import com.simpfi.ui.Dropdown;
 import com.simpfi.ui.Label;
 import com.simpfi.ui.Panel;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InjectPanel.
+ * A panel for injecting vehicles. This class extends {@link Panel}.
  */
 public class InjectPanel extends Panel {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The vehicle control. */
-	private final VehicleController vehicleControl;
-	
-	/** The route dropdown. */
+	/** The vehicle controller. */
+	private final VehicleController vehicleController;
+
+	/** The vehicle type dropdown for user to select vehicle types to add. */
+	private Dropdown<String> vehicleTypeDropdown;
+	/** The route dropdown for user to select routes to add vehicle to. */
 	private Dropdown<String> routeDropdown;
 
 	/**
@@ -38,49 +39,47 @@ public class InjectPanel extends Panel {
 	public InjectPanel(SumoConnectionManager conn) {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		String[] vehicleTypes = getAllVehiclesTypes();
-		String[] routeIds = getAllRouteIds();
+		String[] vehicleTypes = getAllVehiclesTypesAsStrings();
+		String[] routeIds = getAllRouteIdsAsStrings();
 
-		Dropdown<String> vehicleTypeDropdown = createDropdownWithLabel("Vehicle Type:", vehicleTypes);
+		vehicleTypeDropdown = createDropdownWithLabel("Vehicle Type:", vehicleTypes);
 		routeDropdown = createDropdownWithLabel("Route:", routeIds);
 
-		vehicleControl = new VehicleController(conn);
+		vehicleController = new VehicleController(conn);
 
 		Button addVehicleBtn = new Button("Adding vehicle");
-		addVehicleBtn.addActionListener(e -> addVehicle(vehicleTypeDropdown, routeDropdown));
+		addVehicleBtn.addActionListener(e -> addVehicle());
 
 		addVehicleBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.add(addVehicleBtn);
 	}
 
 	/**
-	 * Sthidk.
+	 * Set the highlighted route variable in {@link Settings} to the currently
+	 * chosen route in the dropdown.
 	 */
-	public void sthidk() {
+	public void setHighlightedRoute() {
 		Settings.config.HIGHLIGHTED_ROUTE = (String) routeDropdown.getSelectedItem();
 	}
 
 	/**
-	 * Adds the vehicle.
-	 *
-	 * @param vehicleTypeDropdown the vehicle type dropdown
-	 * @param routeDropdown the route dropdown
+	 * Adds a vehicle to the route.
 	 */
-	private void addVehicle(Dropdown<String> vehicleTypeDropdown, Dropdown<String> routeDropdown) {
+	private void addVehicle() {
 		try {
 			String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
 			String userChoiceRoute = routeDropdown.getSelectedItem().toString();
 			String vehicleIds = VehicleController.generateVehicleID();
-			vehicleControl.addVehicle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
+			vehicleController.addVehicle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	}
 
 	/**
-	 * Creates the dropdown with label.
+	 * Creates a dropdown along with a label.
 	 *
-	 * @param label the label
+	 * @param label the label text
 	 * @param items the items
 	 * @return the dropdown
 	 */
@@ -95,11 +94,11 @@ public class InjectPanel extends Panel {
 	}
 
 	/**
-	 * Gets the all vehicles types.
+	 * Returns all vehicles types as strings.
 	 *
 	 * @return the all vehicles types
 	 */
-	private String[] getAllVehiclesTypes() {
+	private String[] getAllVehiclesTypesAsStrings() {
 		List<VehicleType> allVehicles = Settings.network.getVehicleTypes();
 		String[] vehicleTypes = new String[allVehicles.size()];
 
@@ -111,11 +110,11 @@ public class InjectPanel extends Panel {
 	}
 
 	/**
-	 * Gets the all route ids.
+	 * Returns the all route ids as strings.
 	 *
 	 * @return the all route ids
 	 */
-	private String[] getAllRouteIds() {
+	private String[] getAllRouteIdsAsStrings() {
 		List<Route> allRoutes = Settings.network.getRoutes();
 		String[] routeIds = new String[allRoutes.size()];
 

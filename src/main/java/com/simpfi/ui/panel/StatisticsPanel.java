@@ -2,10 +2,9 @@ package com.simpfi.ui.panel;
 
 import com.simpfi.ui.Panel;
 
-// TODO: Auto-generated Javadoc
 /**
- * A UI panel used for displaying simulation statistics.
- * This class extends {@link Panel}.
+ * A UI panel used for displaying simulation statistics. This class extends
+ * {@link Panel}.
  */
 public class StatisticsPanel extends Panel {
 

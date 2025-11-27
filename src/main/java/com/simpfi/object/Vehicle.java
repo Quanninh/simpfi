@@ -35,7 +35,10 @@ public class Vehicle {
 	/** The vehicle height. */
 	private double height;
 
-	/** The active state of the vehicle. */
+	/**
+	 * The active state of the vehicle. A vehicle is considered inactive if it has
+	 * completed its journey.
+	 */
 	private Boolean isActive;
 
 	/**
