@@ -73,7 +73,7 @@ and the backend (vehicleController and trafficLightController); defines the TraC
 
 
 ## GUI Mockups
-<img width="143" height="84" alt="Screenshot 2025-11-27 at 23 17 37" src="https://github.com/user-attachments/assets/ce35e8ea-1ea5-40b1-8718-5456802998b3" />
+<img width="1086" height="400" alt="Screenshot 2025-11-27 at 23 17 37" src="https://github.com/user-attachments/assets/ce35e8ea-1ea5-40b1-8718-5456802998b3" />
 
 
 
