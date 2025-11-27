@@ -1,22 +1,21 @@
 package com.simpfi.object;
 
-// TODO: Auto-generated Javadoc
 /**
  * Creates Vehicle Type class.
  */
 public class VehicleType {
 
-	/** The id. */
+	/** The vehicle type id. */
 	private String id;
-	
-	/** The v class. */
+
+	/** The vehicle class. */
 	private String vClass;
 
 	/**
 	 * Instantiates a new vehicle type.
 	 *
-	 * @param id the id
-	 * @param vClass the v class
+	 * @param id     the id
+	 * @param vClass the vehicle class
 	 */
 	public VehicleType(String id, String vClass) {
 		this.id = id;
@@ -24,7 +23,7 @@ public class VehicleType {
 	}
 
 	/**
-	 * Gets the id.
+	 * Returns the vehicle type id.
 	 *
 	 * @return the id
 	 */
@@ -33,9 +32,9 @@ public class VehicleType {
 	}
 
 	/**
-	 * Gets the v class.
+	 * Returns the vehicle class.
 	 *
-	 * @return the v class
+	 * @return the vehicle class
 	 */
 	public String getvClass() {
 		return vClass;
@@ -45,11 +44,11 @@ public class VehicleType {
 	 * Overrides the built-in method toString() to provide a human-readable
 	 * representation of Vehicle Type.
 	 *
-	 * @return the string
+	 * @return the representation of Vehicle Type
 	 */
 	@Override
 	public String toString() {
-		return "VehicleType [id=" + id + ", vClass=" + vClass + "]";
+		return "VehicleType [id=" + id + "]";
 	}
 
 }

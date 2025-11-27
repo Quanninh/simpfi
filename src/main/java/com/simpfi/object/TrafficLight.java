@@ -7,33 +7,32 @@ import java.util.List;
 
 import com.simpfi.sumo.wrapper.TrafficLightController;
 
-// TODO: Auto-generated Javadoc
 /**
  * Creates TrafficLight class.
  */
 public class TrafficLight {
-	
-	/** The type. */
+
+	/** The traffic light type. */
 	private String type;
-	
-	/** The junction. */
+
+	/** The traffic light junction. */
 	private Junction junction;
-	
-	/** The lanes. */
+
+	/** The traffic light lanes. */
 	private Lane[] lanes;
-	
-	/** The phase. */
+
+	/** The traffic light phase. */
 	private Phase[] phase;
-	
-	/** The connections. */
+
+	/** The traffic light connections. */
 	private List<Connection> connections = new ArrayList<Connection>();
 
 	/**
 	 * Instantiates a new traffic light.
 	 *
 	 * @param junction the junction
-	 * @param type the type
-	 * @param lanes the lanes
+	 * @param type     the type
+	 * @param lanes    the lanes
 	 */
 	public TrafficLight(Junction junction, String type, Lane[] lanes) {
 		this.junction = junction;
@@ -42,25 +41,7 @@ public class TrafficLight {
 	}
 
 	/**
-	 * Gets the type.
-	 *
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * Sets the type.
-	 *
-	 * @param type the new type
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	/**
-	 * Gets the phase.
+	 * Returns the phase.
 	 *
 	 * @return the phase
 	 */
@@ -78,16 +59,16 @@ public class TrafficLight {
 	}
 
 	/**
-	 * Gets the junction.
+	 * Returns the junction.
 	 *
 	 * @return the junction
 	 */
 	public Junction getJunction() {
 		return junction;
-	} 
+	}
 
 	/**
-	 * Gets the lanes.
+	 * Returns the lanes.
 	 *
 	 * @return the lanes
 	 */
@@ -105,7 +86,7 @@ public class TrafficLight {
 	}
 
 	/**
-	 * Gets the TL state.
+	 * Returns the TL state.
 	 *
 	 * @return the TL state
 	 */
@@ -114,10 +95,9 @@ public class TrafficLight {
 		return TrafficLightController.getLiveTrafficLightStates().getOrDefault(this.getJunction().getId(),
 			defaultState);
 	}
-	
 
 	/**
-	 * Gets the connections.
+	 * Returns the connections.
 	 *
 	 * @return the connections
 	 */
@@ -135,9 +115,11 @@ public class TrafficLight {
 	}
 
 	/**
-	 * Gets the traffic light color.
+	 * Returns the traffic light color. Traffic light signals can be one of the
+	 * letters ryGgsuoO but currently, only ryGg are implemented, the other signals
+	 * are default to black.
 	 *
-	 * @param signal the signal
+	 * @param signal the signal of traffic light
 	 * @return the traffic light color
 	 */
 	public static Color getTrafficLightColor(char signal) {
@@ -149,7 +131,6 @@ public class TrafficLight {
 		default -> Color.BLACK;
 		};
 	}
-	
 
 	/**
 	 * Overrides the built-in method toString() to provide a human-readable
@@ -162,7 +143,5 @@ public class TrafficLight {
 		return "TrafficLight [type=" + type + ", junction=" + junction + ", lanes=" + Arrays.toString(lanes)
 			+ ", phase=" + Arrays.toString(phase) + "]";
 	}
-	
-	
 
 }

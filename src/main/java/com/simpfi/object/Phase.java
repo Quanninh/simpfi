@@ -1,22 +1,21 @@
 package com.simpfi.object;
 
-// TODO: Auto-generated Javadoc
 /**
  * Creates Phase class for {@link TrafficLight}.
  */
 public class Phase {
-	
-	/** The duration. */
+
+	/** The phase duration. */
 	private double duration;
-	
-	/** The state. */
+
+	/** The phase state. */
 	private String state;
 
 	/**
 	 * Instantiates a new phase.
 	 *
 	 * @param duration the duration
-	 * @param state the state
+	 * @param state    the state
 	 */
 	public Phase(double duration, String state) {
 		this.duration = duration;
@@ -24,7 +23,7 @@ public class Phase {
 	}
 
 	/**
-	 * Gets the duration.
+	 * Returns the duration.
 	 *
 	 * @return the duration
 	 */
@@ -42,7 +41,7 @@ public class Phase {
 	}
 
 	/**
-	 * Gets the state.
+	 * Returns the state.
 	 *
 	 * @return the state
 	 */
@@ -63,7 +62,7 @@ public class Phase {
 	 * Overrides the built-in method toString() to provide a human-readable
 	 * representation of Phase.
 	 *
-	 * @return the string
+	 * @return the representation of Phase
 	 */
 	@Override
 	public String toString() {

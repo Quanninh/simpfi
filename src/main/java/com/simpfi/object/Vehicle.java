@@ -6,52 +6,51 @@ import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.util.Point;
 
-// TODO: Auto-generated Javadoc
 /**
  * Creates Vehicle class.
  */
 public class Vehicle {
 
-	/** The id. */
+	/** The vehicle id. */
 	private String id;
-	
-	/** The position. */
+
+	/** The vehicle position. */
 	private Point position;
-	
-	/** The speed. */
+
+	/** The vehicle speed. */
 	private double speed;
-	
-	/** The road ID. */
+
+	/** The road ID that the vehicle is on. */
 	private String roadID;
-	
-	/** The type. */
+
+	/** The vehicle type. */
 	private VehicleType type;
-	
-	/** The angle. */
+
+	/** The vehicle angle. */
 	private double angle;
-	
-	/** The width. */
+
+	/** The vehicle width. */
 	private double width;
-	
-	/** The height. */
+
+	/** The vehicle height. */
 	private double height;
 
-	/** The is active. */
+	/** The active state of the vehicle. */
 	private Boolean isActive;
 
-    /**
-     * Overloaded Constructor assigning provided parameters
-     * Compares the provided type ID to the IDs of all {@link VehicleType} objects in
-     * {@code Settings.network}.
-     *
-     * @param id the id
-     * @param point the point
-     * @param roadID the road ID
-     * @param type the type
-     * @param angle the angle
-     * @param width the width
-     * @param height the height
-     */
+	/**
+	 * Overloaded Constructor assigning provided parameters. Compares the provided
+	 * type ID to the IDs of all {@link VehicleType} objects in
+	 * {@code Settings.network}.
+	 *
+	 * @param id     the id
+	 * @param point  the point
+	 * @param roadID the road ID
+	 * @param type   the type
+	 * @param angle  the angle
+	 * @param width  the width
+	 * @param height the height
+	 */
 
 	public Vehicle(String id, Point point, String roadID, String type, double angle, double width, double height) {
 		this.id = id;
@@ -77,7 +76,7 @@ public class Vehicle {
 	}
 
 	/**
-	 * Gets the id.
+	 * Returns the id.
 	 *
 	 * @return the id
 	 */
@@ -86,7 +85,7 @@ public class Vehicle {
 	}
 
 	/**
-	 * Gets the position.
+	 * Returns the position.
 	 *
 	 * @return the position
 	 */
@@ -95,7 +94,7 @@ public class Vehicle {
 	}
 
 	/**
-	 * Gets the speed.
+	 * Returns the speed.
 	 *
 	 * @return the speed
 	 */
@@ -104,7 +103,7 @@ public class Vehicle {
 	}
 
 	/**
-	 * Gets the road ID.
+	 * Returns the road ID.
 	 *
 	 * @return the road ID
 	 */
@@ -113,7 +112,7 @@ public class Vehicle {
 	}
 
 	/**
-	 * Gets the angle.
+	 * Returns the angle.
 	 *
 	 * @return the angle
 	 */
@@ -122,7 +121,7 @@ public class Vehicle {
 	}
 
 	/**
-	 * Gets the type.
+	 * Returns the type.
 	 *
 	 * @return the type
 	 */
@@ -131,7 +130,7 @@ public class Vehicle {
 	}
 
 	/**
-	 * Gets the width.
+	 * Returns the width.
 	 *
 	 * @return the width
 	 */
@@ -140,7 +139,7 @@ public class Vehicle {
 	}
 
 	/**
-	 * Gets the height.
+	 * Returns the height.
 	 *
 	 * @return the height
 	 */
@@ -149,25 +148,26 @@ public class Vehicle {
 	}
 
 	/**
-	 * Gets the checks if is active.
+	 * Returns the checks if vehicle is active.
 	 *
-	 * @return the checks if is active
+	 * @return the checks if vehicle is active
 	 */
 	public Boolean getIsActive() {
 		return isActive;
 	}
 
 	/**
-	 * Sets the checks if is active.
+	 * Sets the active state of vehicle.
 	 *
-	 * @param isActive the new checks if is active
+	 * @param isActive the active state of vehicle
 	 */
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 
 	/**
-	 * Gets the vehicle color.
+	 * Returns the vehicle color based on type. Vehicle colors are defined in
+	 * {@link com.simpfi.config.Constants}
 	 *
 	 * @return the vehicle color
 	 */
@@ -179,6 +179,18 @@ public class Vehicle {
 		case "emergency" -> Constants.EMERGENCY_COLOR;
 		default -> Constants.DEFAULT_VEHICLE_COLOR;
 		};
+	}
+
+	/**
+	 * Overrides the built-in method toString() to provide a human-readable
+	 * representation of Vehicle.
+	 *
+	 * @return the representation of Vehicle
+	 */
+	@Override
+	public String toString() {
+		return "Vehicle [id=" + id + ", position=" + position + ", speed=" + speed + ", roadID=" + roadID + ", type="
+			+ type + ", isActive=" + isActive + "]";
 	}
 
 }

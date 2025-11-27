@@ -70,9 +70,9 @@ public class Edge {
 	/**
 	 * Used to search over a list of edges to find one with the matched id.
 	 * 
-	 * @param id    id of the edge that users look for.
-	 * @param edges given list of edges.
-	 * @return the edge with the passed id, {@code null} if not found.
+	 * @param id    the id of the edge to be searched for
+	 * @param edges the list of edges
+	 * @return the edge with the passed id, {@code null} if not found
 	 */
 	public static Edge searchForEdge(String id, List<Edge> edges) {
 		for (int i = 0; i < edges.size(); i++) {
