@@ -37,8 +37,7 @@ public class NetworkXMLReader extends XMLReader {
 	}
 
 	/**
-	 * Used to parse {@code edges} by leveraging methods from
-	 * {@link org.w3c.dom.Element}.
+	 * Parses edges by leveraging methods from {@link org.w3c.dom.Element}.
 	 * 
 	 * @param junctions list of junctions used to get {@code from} &amp; {@code to}
 	 *                  attributes of Edge.

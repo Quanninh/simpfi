@@ -20,8 +20,8 @@ import com.simpfi.util.XMLReader;
 public class RouteXMLReader extends XMLReader {
 
 	/**
-	 * calls the Constructor of superclass {@link XMLReader} and passes the given
-	 * file address.
+	 * Initialize a new Route XML Reader. Calls the Constructor of superclass
+	 * {@link XMLReader} and passes the given file address.
 	 *
 	 * @param fileAddress address of the file to be read
 	 * @throws Exception if reading of the file fails
@@ -31,8 +31,7 @@ public class RouteXMLReader extends XMLReader {
 	}
 
 	/**
-	 * Used to parse vehicle types by leveraging methods from
-	 * {@link org.w3c.dom.Element}.
+	 * Parses vehicle types by leveraging methods from {@link org.w3c.dom.Element}.
 	 * 
 	 * @return list of vehicle types from the XML file.
 	 * @throws Exception if the XML structure is invalid.
@@ -52,8 +51,8 @@ public class RouteXMLReader extends XMLReader {
 	}
 
 	/**
-	 * Used to parse routes by leveraging methods from {@link org.w3c.dom.Element}.
-	 * Get the {@code edges} attribute of Route by using an instance of
+	 * Parses routes by leveraging methods from {@link org.w3c.dom.Element}. Get the
+	 * {@code edges} attribute of Route by using an instance of
 	 * {@link com.simpfi.util.reader.NetworkXMLReader}.
 	 * 
 	 * @return list of routes from the XML file.
