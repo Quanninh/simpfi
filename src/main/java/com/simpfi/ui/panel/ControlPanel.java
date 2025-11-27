@@ -2,10 +2,9 @@ package com.simpfi.ui.panel;
 
 import com.simpfi.ui.Panel;
 
-// TODO: Auto-generated Javadoc
 /**
- * CONSIDER REMOVING THIS CLASS... Custom ControlPanel class that inherits
- * {@link com.simpfi.ui.Panel}.
+ * @deprecated Custom ControlPanel class that inherits
+ *             {@link com.simpfi.ui.Panel}.
  */
 public class ControlPanel extends Panel {
 
@@ -26,19 +25,22 @@ public class ControlPanel extends Panel {
 	 * 
 	 * <b>Note</b>: May update in the future.
 	 */
-//	public ControlPanel(SumoConnectionManager conn) {
-//		// this.conn = conn;
-//
-//		this.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-//
-//		TextBox scaleTB = new TextBox(true, SettingsType.SCALE, Constants.DEFAULT_SCALE);
-//		TextBox offsetXTB = new TextBox(true, SettingsType.OFFSET_X, Constants.DEFAULT_OFFSET_X);
-//		TextBox offsetYTB = new TextBox(true, SettingsType.OFFSET_Y, Constants.DEFAULT_OFFSET_Y);
-//		// initializeMapControl(scaleTB, offsetXTB, offsetYTB);
-//
-//		this.add(scaleTB);
-//		this.add(offsetXTB);
-//		this.add(offsetYTB);
-//	}
+	// public ControlPanel(SumoConnectionManager conn) {
+	// // this.conn = conn;
+	//
+	// this.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+	//
+	// TextBox scaleTB = new TextBox(true, SettingsType.SCALE,
+	// Constants.DEFAULT_SCALE);
+	// TextBox offsetXTB = new TextBox(true, SettingsType.OFFSET_X,
+	// Constants.DEFAULT_OFFSET_X);
+	// TextBox offsetYTB = new TextBox(true, SettingsType.OFFSET_Y,
+	// Constants.DEFAULT_OFFSET_Y);
+	// // initializeMapControl(scaleTB, offsetXTB, offsetYTB);
+	//
+	// this.add(scaleTB);
+	// this.add(offsetXTB);
+	// this.add(offsetYTB);
+	// }
 
 }

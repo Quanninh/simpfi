@@ -9,7 +9,6 @@ import javax.swing.event.DocumentListener;
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 
-// TODO: Auto-generated Javadoc
 /**
  * Custom TextBox class that inherits {@link javax.swing.JTextField}. The class
  * is created to mainly provide three types of textboxes: scale, coordinate x
@@ -21,25 +20,24 @@ public class TextBox extends JTextField {
 	 * The Enum SettingsType.
 	 */
 	public enum SettingsType {
-		
-		/** The scale. */
-		SCALE, 
- /** The offset x. */
- OFFSET_X, 
- /** The offset y. */
- OFFSET_Y,
+		/** Scale. */
+		SCALE,
+		/** Offset x. */
+		OFFSET_X,
+		/** Offset y. */
+		OFFSET_Y,
 	}
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The default value. */
+	/** The default value for the textbox. */
 	private double defaultValue;
-	
-	/** The must be double. */
+
+	/** Whether the values entered must be a double. */
 	private Boolean mustBeDouble;
-	
-	/** The type. */
+
+	/** The settings type. */
 	private SettingsType type;
 
 	/**
@@ -80,7 +78,7 @@ public class TextBox extends JTextField {
 	}
 
 	/**
-	 * Make changes to the required value(SETTINGS_SCALE, SETTINGS_OFFSET) if
+	 * Make changes to the required values (SETTINGS_SCALE, SETTINGS_OFFSET) if
 	 * mustBeDouble is set to true.
 	 */
 	public void updateSettings() {
@@ -95,6 +93,7 @@ public class TextBox extends JTextField {
 			value = defaultValue;
 		}
 
+		// Depending on the settings type, different values are changed
 		switch (type) {
 		case SCALE:
 			Settings.config.changeScale(value);

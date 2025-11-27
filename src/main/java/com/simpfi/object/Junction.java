@@ -96,6 +96,22 @@ public class Junction {
 	}
 
 	/**
+	 * Used to search over a list of junctions to find one with the matched id.
+	 * 
+	 * @param id        id of the junction that users look for.
+	 * @param junctions given list of junctions.
+	 * @return the junction with the passed id, {@code null} if not found.
+	 */
+	public static Junction searchForJunction(String id, List<Junction> junctions) {
+		for (int i = 0; i < junctions.size(); i++) {
+			if (junctions.get(i).getId().equals(id)) {
+				return junctions.get(i);
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Overrides the built-in method toString() to provide a human-readable
 	 * representation of Junction.
 	 *

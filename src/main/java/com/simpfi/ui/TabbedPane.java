@@ -4,10 +4,9 @@ import javax.swing.JTabbedPane;
 
 import com.formdev.flatlaf.ui.FlatTabbedPaneUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * A custom Tabbed Pane with tabs placed on the left side and scrollable tab layout.
- * The class inherits {@link javax.swing.JTabbedPane}.
+ * A custom Tabbed Pane with tabs placed on the left side and scrollable tab
+ * layout. The class inherits {@link javax.swing.JTabbedPane}.
  */
 public class TabbedPane extends JTabbedPane {
 
@@ -21,6 +20,7 @@ public class TabbedPane extends JTabbedPane {
 		this.setTabPlacement(JTabbedPane.LEFT);
 		this.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
+		// Stretch all tabs to fill the available space to better match the UI mockup
 		this.setUI(new FlatTabbedPaneUI() {
 			@Override
 			protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {

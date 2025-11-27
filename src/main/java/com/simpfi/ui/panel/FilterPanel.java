@@ -2,10 +2,8 @@ package com.simpfi.ui.panel;
 
 import com.simpfi.ui.Panel;
 
-// TODO: Auto-generated Javadoc
 /**
- * A UI panel for filters.
- * This class extends {@link Panel}.
+ * A panel for filtering vehicles. This class extends {@link Panel}.
  */
 public class FilterPanel extends Panel {
 

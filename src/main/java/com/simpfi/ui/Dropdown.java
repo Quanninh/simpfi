@@ -4,12 +4,12 @@ import java.awt.Dimension;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+
 import com.simpfi.config.Constants;
 
-// TODO: Auto-generated Javadoc
 /**
- * Implements the Dropdown component on the UI.
- * This class inherits {@link javax.swing.JPanel}.
+ * Implements the Dropdown component on the UI. This class inherits
+ * {@link javax.swing.JPanel}.
  *
  * @param <E> the element type
  */

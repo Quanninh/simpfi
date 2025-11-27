@@ -22,9 +22,9 @@ import com.simpfi.ui.panel.ProgramLightsPanel;
 import com.simpfi.ui.panel.StatisticsPanel;
 import com.simpfi.util.Point;
 
-// TODO: Auto-generated Javadoc
 /**
- * App Class as main application class contains the {@code main} function and is used to run the software.
+ * App Class as main application class contains the {@code main} function and is
+ * used to run the software.
  * 
  * Flow of actions:
  * 
@@ -37,44 +37,43 @@ import com.simpfi.util.Point;
  * 4. Start the simulation loop.
  */
 public class App {
-	
+
 	/** The map panel. */
 	private static MapPanel mapPanel;
-	
+
 	/** The vehicle controller. */
 	private static VehicleController vehicleController;
-	
+
 	/** The traffic light controller. */
 	private static TrafficLightController trafficLightController;
 
 	/** The statistics panel. */
 	static StatisticsPanel statisticsPanel;
-	
+
 	/** The inject panel. */
 	static InjectPanel injectPanel;
-	
+
 	/** The map view panel. */
 	static MapViewPanel mapViewPanel;
-	
+
 	/** The program light panel. */
 	static ProgramLightsPanel programLightPanel;
-	
+
 	/** The filter panel. */
 	static FilterPanel filterPanel;
-	
+
 	/** The inspect panel. */
 	static InspectPanel inspectPanel;
 
 	/** The side pane. */
 	static TabbedPane sidePane;
 
-    /**
-     * Main function and starting point of application.
-     * Sets up TraCI connection, initializes UI and controllers and
-     * runs the simulation loop.
-     *
-     * @param args the arguments
-     */
+	/**
+	 * Main function and starting point of application. Sets up TraCI connection,
+	 * initializes UI and controllers and runs the simulation loop.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		long stepMs = (long) (Settings.config.TIMESTEP * 1000);
 
@@ -91,7 +90,7 @@ public class App {
 
 				doStep(connection);
 				retrieveData(connection);
-				injectPanel.sthidk();
+				injectPanel.setHighlightedRoute();
 				mapPanel.repaint();
 
 				long sleep = next - System.currentTimeMillis();
@@ -108,38 +107,38 @@ public class App {
 		}
 	}
 
-    /**
-     * Do step.
-     *
-     * @param sim the SumoConnectionManager
-     * @throws Exception if the connection fails
-     */
+	/**
+	 * Do step.
+	 *
+	 * @param sim the SumoConnectionManager
+	 * @throws Exception if the connection fails
+	 */
 	private static void doStep(SumoConnectionManager sim) throws Exception {
 		sim.doStep();
 	}
 
-    /**
-     * Establishes the SUMO connection.
-     *
-     * @return new SumoConnectionManager
-     * @throws Exception if the connection can't be established
-     */
+	/**
+	 * Establishes the SUMO connection.
+	 *
+	 * @return new SumoConnectionManager
+	 * @throws Exception if the connection can't be established
+	 */
 	private static SumoConnectionManager establishConnection() throws Exception {
 		SumoConnectionManager conn = new SumoConnectionManager(Constants.SUMO_CONFIG);
 		return conn;
 	}
 
-    /**
-     * Retrieves updated vehicle and traffic light data
-     * and updates the UI and controllers.
-     *
-     * @param sim the connection manager
-     * @throws Exception if the connection fails
-     */
+	/**
+	 * Retrieves updated vehicle and traffic light data and updates the UI and
+	 * controllers.
+	 *
+	 * @param sim the connection manager
+	 * @throws Exception if the connection fails
+	 */
 	private static void retrieveData(SumoConnectionManager sim) throws Exception {
 		VehicleController.disableAllVehicles();
 
-		for (String vid : vehicleController.getAllVehicleIDs()) {
+		for (String vid : vehicleController.getAllVehicleIds()) {
 			Point pos = vehicleController.getPosition(vid);
 			// double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
@@ -150,7 +149,7 @@ public class App {
 
 			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height);
 
-			VehicleController.setVehicles(v);
+			VehicleController.updateVehicleMap(v);
 		}
 
 		for (String tl : trafficLightController.getIDList()) {
@@ -159,11 +158,11 @@ public class App {
 		}
 	}
 
-    /**
-     * Sets up the UI including panels and panes.
-     *
-     * @param conn the connection manager used by the UI
-     */
+	/**
+	 * Sets up the UI including panels and panes.
+	 *
+	 * @param conn the connection manager used by the UI
+	 */
 	private static void generateUI(SumoConnectionManager conn) {
 		uiSetup();
 		Frame myFrame = new Frame();
@@ -193,9 +192,9 @@ public class App {
 		myFrame.setVisible(true);
 	}
 
-    /**
-     * Sets up UI theme using {@link FlatLightLaf}.
-     */
+	/**
+	 * Sets up UI theme using {@link FlatLightLaf}.
+	 */
 	private static void uiSetup() {
 		FlatLightLaf.registerCustomDefaultsSource("themes");
 		FlatLightLaf.setup();

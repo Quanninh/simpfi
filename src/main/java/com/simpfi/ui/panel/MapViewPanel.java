@@ -2,10 +2,8 @@ package com.simpfi.ui.panel;
 
 import com.simpfi.ui.Panel;
 
-// TODO: Auto-generated Javadoc
 /**
- * A UI panel used for adjusting the map view.
- * This class extends {@link Panel}.
+ * A UI panel used for adjusting the map view. This class extends {@link Panel}.
  */
 public class MapViewPanel extends Panel {
 

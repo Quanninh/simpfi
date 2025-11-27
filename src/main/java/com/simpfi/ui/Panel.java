@@ -3,7 +3,6 @@ package com.simpfi.ui;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-// TODO: Auto-generated Javadoc
 /**
  * Custom Panel class that inherits {@link javax.swing.JPanel}.
  */

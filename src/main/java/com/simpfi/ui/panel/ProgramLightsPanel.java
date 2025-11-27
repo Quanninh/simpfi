@@ -2,10 +2,8 @@ package com.simpfi.ui.panel;
 
 import com.simpfi.ui.Panel;
 
-// TODO: Auto-generated Javadoc
 /**
- * A UI panel used for controlling the Lights.
- * This class extends {@link Panel}.
+ * A UI panel used for controlling the Lights. This class extends {@link Panel}.
  */
 public class ProgramLightsPanel extends Panel {
 

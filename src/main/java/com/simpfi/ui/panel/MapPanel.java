@@ -4,11 +4,9 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Stroke;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.awt.geom.AffineTransform;
 import java.util.List;
 
 import javax.swing.AbstractAction;
@@ -28,9 +26,9 @@ import com.simpfi.object.TrafficLight;
 import com.simpfi.object.Vehicle;
 import com.simpfi.sumo.wrapper.VehicleController;
 import com.simpfi.ui.Panel;
+import com.simpfi.util.GraphicsSettings;
 import com.simpfi.util.Point;
 
-// TODO: Auto-generated Javadoc
 /**
  * Custom MapPanel class that inherits {@link com.simpfi.ui.Panel}. Used to draw
  * objects on the user interface such as vehicles, edges, lanes, etc.
@@ -42,8 +40,7 @@ public class MapPanel extends Panel {
 
 	/** The default stroke. */
 	private final BasicStroke defaultStroke = new BasicStroke(
-			(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
-			BasicStroke.JOIN_ROUND);
+		(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND);
 
 	/**
 	 * Instantiates a new map panel.
@@ -53,11 +50,11 @@ public class MapPanel extends Panel {
 	}
 
 	/**
-	 * Overrides paintComponent method from {@link java.awt.Component}. Parses
-	 * objects in the XML files and draw them on the panel. Graphics is replaced by
-	 * Graphics2D for more advanced drawing features.
+	 * Overrides paintComponent method from {@link java.awt.Component}. Gets the
+	 * information from {@code Settings.network} and draw them on the panel.
+	 * Graphics is replaced by Graphics2D for more advanced drawing features.
 	 * 
-	 * @param g where elements are drawn.
+	 * @param g the {@link Graphics}
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
@@ -70,14 +67,15 @@ public class MapPanel extends Panel {
 		}
 
 		for (Junction j : Settings.network.getJunctions()) {
-			//drawObject(g2D, j);
+			drawObject(g2D, j);
 		}
 
+		// Draw the highlighted Route in a different color
 		Route highlightedRoute = Route.searchForRoute(Settings.config.HIGHLIGHTED_ROUTE, Settings.network.getRoutes());
-		for (Edge e: highlightedRoute.getEdges()) {
-			drawObject(g2D, e, Color.YELLOW);
+		for (Edge e : highlightedRoute.getEdges()) {
+			drawObject(g2D, e, Constants.HIGHLIGHTED_ROUTE_COLOR);
 		}
-		
+
 		for (TrafficLight tl : Settings.network.getTrafficLights()) {
 			try {
 				drawObject(g2D, tl);
@@ -96,42 +94,44 @@ public class MapPanel extends Panel {
 	}
 
 	/**
-	 * Used to draw a Vehicle on the User Interface.
+	 * Draws a {@link Vehicle} on the map.
 	 * 
-	 * @param g where the vehicle is drawn on.
-	 * @param v the vehicle that is passed to the method.
+	 * @param g the {@link Graphics2D}
+	 * @param v the {@link Vehicle}
 	 */
 	private void drawObject(Graphics2D g, Vehicle v) {
+		// We don't draw inactive vehicles
 		if (v == null || !v.getIsActive()) {
 			return;
 		}
+
+		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
+
+		g.setColor(v.getVehicleColor());
 
 		Point pos = translateCoords(v.getPosition());
 		int width = (int) (v.getWidth() * Settings.config.SCALE * Constants.VEHICLE_UPSCALE);
 		int height = (int) (v.getHeight() * Settings.config.SCALE * Constants.VEHICLE_UPSCALE);
 
-		g.setColor(v.getVehicleColor());
-
 		double angle = v.getAngle();
-
-		AffineTransform oldTransform = g.getTransform();
 		g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
 
 		g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2, width, height);
 
-		g.setColor(Color.BLACK);
+		// Draw the border of the vehicle
+		// g.setColor(Constants.DEFAULT_COLOR);
 		// g.drawRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2,
 		// width, height);
 
-		g.setTransform(oldTransform);
+		loadGraphicsSettings(g, oldSettings);
 	}
 
 	/**
-	 * Used to draw an Edge on the User Interface.
+	 * Draws an {@link Edge} on the map.
 	 *
-	 * @param g where the edge is drawn on.
-	 * @param e the edge that is passed to the method.
-	 * @param c the c
+	 * @param g the {@link Graphics2D}
+	 * @param e the edge
+	 * @param c the color
 	 */
 	private void drawObject(Graphics2D g, Edge e, Color c) {
 		Lane[] lanes = e.getLanes();
@@ -144,25 +144,33 @@ public class MapPanel extends Panel {
 			return;
 		}
 
-		// draw lane dividers
-		Stroke oldStroke = g.getStroke();
+		// Draw lane dividers
 		drawLaneDividers(g, lanes, laneSize);
-		g.setStroke(oldStroke);
 	}
 
 	/**
 	 * Draw lane dividers.
 	 *
-	 * @param g the g
-	 * @param lanes the lanes
+	 * @param g        the {@link Graphics2D}
+	 * @param lanes    the lanes
 	 * @param laneSize the lane size
 	 */
 	private void drawLaneDividers(Graphics2D g, Lane[] lanes, int laneSize) {
+		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
+
+		/*
+		 * same amount of line and no line
+		 * 
+		 * so it's like ----- ----- -----
+		 * 
+		 * if want to change -> multiply it by a value
+		 */
 		float dashLength = (float) (Constants.LANE_DIVIDER_DASH_LENGTH * Settings.config.SCALE);
 		float[] dashPattern = { dashLength, dashLength };
+
 		g.setStroke(new BasicStroke((float) (Constants.LANE_DIVIDER_STROKE_SIZE * Settings.config.SCALE),
-				BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
-		g.setColor(Color.WHITE);
+			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
+		g.setColor(Constants.LANE_DIVIDER_COLOR);
 
 		for (int i = 0; i < laneSize - 1; i++) {
 			Lane lane1 = lanes[i];
@@ -183,16 +191,20 @@ public class MapPanel extends Panel {
 				g.drawLine((int) from.getX(), (int) from.getY(), (int) to.getX(), (int) to.getY());
 			}
 		}
+
+		loadGraphicsSettings(g, oldSettings);
 	}
 
 	/**
-	 * Used to draw a Lane on the User Interface.
+	 * Draws a {@link Lane} on the map
 	 *
-	 * @param g where the lane is drawn on.
-	 * @param l the lane that is passed to the method.
-	 * @param c the c
+	 * @param g the {@link Graphics2D}
+	 * @param l the lane
+	 * @param c the color
 	 */
 	private void drawObject(Graphics2D g, Lane l, Color c) {
+		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
+
 		Point[] shape = l.getShape();
 		int size = l.getShapeSize();
 
@@ -211,23 +223,19 @@ public class MapPanel extends Panel {
 
 		float lineThickness = (float) (Constants.LANE_STROKE_SIZE * Settings.config.SCALE);
 
-		AffineTransform oldTransform = g.getTransform();
-		Stroke oldStroke = g.getStroke();
 		g.setColor(c);
 		g.setStroke(new BasicStroke(lineThickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 
 		g.drawPolyline(xPoints, yPoints, size);
 
-		g.setColor(Color.BLACK);
-		g.setTransform(oldTransform);
-		g.setStroke(oldStroke);
+		loadGraphicsSettings(g, oldSettings);
 	}
 
 	/**
-	 * Used to draw a traffic light on the User Interface.
+	 * Draws a {@link TrafficLight} on the map.
 	 *
-	 * @param g  where the traffic light is drawn on.
-	 * @param tl traffic light object that is passed to the method.
+	 * @param g  the {@link Graphics2D}
+	 * @param tl the traffic light
 	 */
 	private void drawObject(Graphics2D g, TrafficLight tl) {
 		String state = tl.getTLState();
@@ -250,14 +258,14 @@ public class MapPanel extends Panel {
 	}
 
 	/**
-	 * Used to draw a Junction on the User Interface.
+	 * Draws a {@link Junction} on the map.
 	 * 
-	 * @param g where the junction is drawn on.
-	 * @param j the junction that is passed to the method.
+	 * @param g the {@link Graphics2D}
+	 * @param j the junction
 	 */
 	// Draw Junction
 	private void drawObject(Graphics2D g, Junction j) {
-		Stroke oldStroke = g.getStroke();
+		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 
 		Point[] shape = j.getShape();
 		int size = j.getShapeSize();
@@ -275,35 +283,35 @@ public class MapPanel extends Panel {
 			yPoints[i] = (int) p.getY();
 		}
 
-		g.setColor(Color.BLACK);
+		g.setColor(Constants.JUNCTION_COLOR);
 		g.setStroke(new BasicStroke((float) (Constants.JUNCTION_STROKE_SIZE * Settings.config.SCALE)));
 
 		g.fillPolygon(xPoints, yPoints, size);
 		g.drawPolygon(xPoints, yPoints, size);
 
-		g.setColor(Color.BLACK);
-		g.setStroke(oldStroke);
+		loadGraphicsSettings(g, oldSettings);
 	}
 
 	/**
-	 * Draw circle.
+	 * Draws a circle on the map.
 	 *
-	 * @param g the g
+	 * @param g      the {@link Graphics2D}
 	 * @param center the center
 	 * @param radius the radius
-	 * @param color the color
+	 * @param color  the color
 	 */
 	private void drawCircle(Graphics2D g, Point center, int radius, Color color) {
+		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 		g.setColor(color);
 		g.fillOval((int) center.getX() - radius, (int) center.getY() - radius, radius * 2, radius * 2);
-		g.setColor(Color.BLACK);
+		loadGraphicsSettings(g, oldSettings);
 	}
 
 	/**
-	 * Used to convert the real-world coordinate to the graphics coordinate.
+	 * Converts the real-world coordinate to the map coordinate.
 	 * 
-	 * @param before the real-world coordinate.
-	 * @return the graphics coordinate value.
+	 * @param before the real-world coordinate
+	 * @return the map coordinate
 	 */
 	private Point translateCoords(Point before) {
 		Point after = new Point();
@@ -314,6 +322,28 @@ public class MapPanel extends Panel {
 		after.setY(before.getY() * Settings.config.SCALE * -1 - Settings.config.OFFSET.getY());
 
 		return after;
+	}
+
+	/**
+	 * Save the current graphics settings.
+	 *
+	 * @param g the {@link Graphics2D}
+	 * @return the graphics settings
+	 */
+	private GraphicsSettings saveCurrentGraphicsSettings(Graphics2D g) {
+		return new GraphicsSettings(g.getColor(), g.getStroke(), g.getTransform());
+	}
+
+	/**
+	 * Load the graphics settings.
+	 *
+	 * @param g        the {@link Graphics2D}
+	 * @param settings the settings
+	 */
+	private void loadGraphicsSettings(Graphics2D g, GraphicsSettings settings) {
+		g.setColor(settings.getColor());
+		g.setStroke(settings.getStroke());
+		g.setTransform(settings.getTransform());
 	}
 
 	/**

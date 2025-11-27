@@ -15,7 +15,6 @@ import com.simpfi.object.Phase;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.util.XMLReader;
 
-// TODO: Auto-generated Javadoc
 /**
  * Creates class {@code NetworkXMLReader} that inherits
  * {@link com.simpfi.util.XMLReader} used to parse network components such as
@@ -23,23 +22,22 @@ import com.simpfi.util.XMLReader;
  */
 public class NetworkXMLReader extends XMLReader {
 
-    /**
-     * calls the Constructor of superclass {@link XMLReader} and passes the given
-     * file address.
-     *
-     * @param fileAddress address of the file to be read
-     * @throws Exception if reading of the file fails
-     */
-	public NetworkXMLReader(String fileAddress) throws Exception {
-
-		super(fileAddress);
-	}
-
 	/** The lane map. */
 	private Map<String, Lane> laneMap = new HashMap<String, Lane>();
 
 	/**
-	 * Used to parse {@code edges} by leveraging methods from {@link org.w3c.dom.Element}.
+	 * Calls the Constructor of superclass {@link XMLReader} and passes the given
+	 * file address.
+	 *
+	 * @param fileAddress address of the file to be read
+	 * @throws Exception if reading of the file fails
+	 */
+	public NetworkXMLReader(String fileAddress) throws Exception {
+		super(fileAddress);
+	}
+
+	/**
+	 * Parses edges by leveraging methods from {@link org.w3c.dom.Element}.
 	 * 
 	 * @param junctions list of junctions used to get {@code from} &amp; {@code to}
 	 *                  attributes of Edge.
@@ -68,8 +66,8 @@ public class NetworkXMLReader extends XMLReader {
 				laneMap.put(laneArr[j].getLaneId(), laneArr[j]);
 			}
 
-			Junction from = searchForJunction(edge.getAttribute("from"), junctions);
-			Junction to = searchForJunction(edge.getAttribute("to"), junctions);
+			Junction from = Junction.searchForJunction(edge.getAttribute("from"), junctions);
+			Junction to = Junction.searchForJunction(edge.getAttribute("to"), junctions);
 
 			Edge e = new Edge(edge.getAttribute("id"), from, to, laneArr);
 			edges.add(e);
@@ -116,14 +114,15 @@ public class NetworkXMLReader extends XMLReader {
 
 	}
 
-    /**
-     * Used to parse all {@code traffic lights} using provided {@code junctions} and {@code edges} by leveraging methods from {@link org.w3c.dom.Element}.
-     *
-     * @param junctions list of all parsed junctions
-     * @param edges list of all parsed edges needed for lane information
-     * @return list of traffic lights from the XML file.
-     * @throws Exception if the XML structure is invalid.
-     */
+	/**
+	 * Used to parse all {@link TrafficLight} using provided {@link Junction} and
+	 * {@link Edge} by leveraging methods from {@link org.w3c.dom.Element}.
+	 *
+	 * @param junctions list of all parsed junctions
+	 * @param edges     list of all parsed edges needed for lane information
+	 * @return list of traffic lights from the XML file.
+	 * @throws Exception if the XML structure is invalid.
+	 */
 	public List<TrafficLight> parseTrafficLight(List<Junction> junctions, List<Edge> edges) throws Exception {
 		List<TrafficLight> trafficLights = new ArrayList<TrafficLight>();
 
@@ -145,7 +144,7 @@ public class NetworkXMLReader extends XMLReader {
 				listOfPhase[j] = new Phase(duration, state);
 			}
 
-			Junction junction = searchForJunction(idJunction, junctions);
+			Junction junction = Junction.searchForJunction(idJunction, junctions);
 			String junctionType = junction.getType();
 
 			if (!junctionType.equals("traffic_light")) {
@@ -157,22 +156,6 @@ public class NetworkXMLReader extends XMLReader {
 			trafficLights.add(tl);
 		}
 		return trafficLights;
-	}
-
-	/**
-	 * Used to search over a list of junctions to find one with the matched id.
-	 * 
-	 * @param id        id of the junction that users look for.
-	 * @param junctions given list of junctions.
-	 * @return the junction with the passed id, {@code null} if not found.
-	 */
-	public Junction searchForJunction(String id, List<Junction> junctions) {
-		for (int i = 0; i < junctions.size(); i++) {
-			if (junctions.get(i).getId().equals(id)) {
-				return junctions.get(i);
-			}
-		}
-		return null;
 	}
 
 }
