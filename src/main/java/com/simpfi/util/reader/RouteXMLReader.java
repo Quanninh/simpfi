@@ -12,7 +12,6 @@ import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
 import com.simpfi.util.XMLReader;
 
-// TODO: Auto-generated Javadoc
 /**
  * Creates class {@code RouteXMLReader} that inherits
  * {@link com.simpfi.util.XMLReader} used to parse route components such as
