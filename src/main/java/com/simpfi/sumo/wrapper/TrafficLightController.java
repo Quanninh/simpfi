@@ -93,8 +93,9 @@ public class TrafficLightController {
 	/**
 	 * Controlled links.
 	 *
-	 * @param tlId the tl id
-	 * @return the list
+	 * @param tlId the traffic light id which can be specify via junction id
+	 * @return a list of class SumoLink, which is from {@link de.tudresden.sumo.objects.SumoLink}
+	 *  which contains attribute "from" and "to"
 	 * @throws Exception the exception
 	 */
 	@SuppressWarnings("unchecked")

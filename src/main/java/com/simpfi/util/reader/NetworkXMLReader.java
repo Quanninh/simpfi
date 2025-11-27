@@ -152,15 +152,7 @@ public class NetworkXMLReader extends XMLReader {
 				continue;
 			}
 
-			List<String> incomingLanes = junction.getIncomingLane();
-			Lane[] lanes = new Lane[incomingLanes.size()];
-
-			for (int k = 0; k < incomingLanes.size(); k++) {
-				Lane lane = Lane.searchForLane(incomingLanes.get(k), edges);
-				lanes[k] = lane;
-			}
-
-			TrafficLight tl = new TrafficLight(junction, "static", lanes);
+			TrafficLight tl = new TrafficLight(junction, "static");
 			tl.setPhase(listOfPhase);
 			trafficLights.add(tl);
 		}

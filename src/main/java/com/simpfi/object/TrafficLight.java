@@ -12,19 +12,20 @@ import com.simpfi.sumo.wrapper.TrafficLightController;
  */
 public class TrafficLight {
 
-	/** The traffic light type. */
+	/** The type of the traffic light. Most of the traffic lights we used have 
+	 * static type, which fixed cycle time and predefined duration  */
 	private String type;
 
-	/** The traffic light junction. */
+	/** Each traffic light links to only one junction */
 	private Junction junction;
 
-	/** The traffic light lanes. */
-	private Lane[] lanes;
 
-	/** The traffic light phase. */
+	/** The traffic light phase, which specify the status at a given time 
+	 * of the traffic light*/
 	private Phase[] phase;
 
-	/** The traffic light connections. */
+	/** The traffic light connections. This one shows all the connections from 
+	 * one Lane to another Lane. And each of this must specify the color of the traffic light*/
 	private List<Connection> connections = new ArrayList<Connection>();
 
 	/**
@@ -32,12 +33,10 @@ public class TrafficLight {
 	 *
 	 * @param junction the junction
 	 * @param type     the type
-	 * @param lanes    the lanes
 	 */
-	public TrafficLight(Junction junction, String type, Lane[] lanes) {
+	public TrafficLight(Junction junction, String type) {
 		this.junction = junction;
 		this.type = type;
-		this.lanes = lanes;
 	}
 
 	/**
@@ -65,15 +64,6 @@ public class TrafficLight {
 	 */
 	public Junction getJunction() {
 		return junction;
-	}
-
-	/**
-	 * Returns the lanes.
-	 *
-	 * @return the lanes
-	 */
-	public Lane[] getLanes() {
-		return lanes;
 	}
 
 	/**
@@ -132,16 +122,19 @@ public class TrafficLight {
 		};
 	}
 
+
 	/**
 	 * Overrides the built-in method toString() to provide a human-readable
 	 * representation of TrafficLight.
 	 *
 	 * @return the string
 	 */
+
 	@Override
 	public String toString() {
-		return "TrafficLight [type=" + type + ", junction=" + junction + ", lanes=" + Arrays.toString(lanes)
-			+ ", phase=" + Arrays.toString(phase) + "]";
+		return "TrafficLight [type=" + type + ", junction=" + junction + ", phase=" + Arrays.toString(phase)
+				+ ", connections=" + connections + "]";
 	}
+
 
 }
