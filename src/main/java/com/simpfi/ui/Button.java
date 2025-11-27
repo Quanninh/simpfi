@@ -4,7 +4,6 @@ import javax.swing.JButton;
 
 import com.simpfi.config.Constants;
 
-// TODO: Auto-generated Javadoc
 /**
  * Creates the Button class which inherits {@link javax.swing.JButton} to better
  * customise buttons in the User Interface.
