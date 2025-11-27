@@ -139,7 +139,7 @@ public class App {
 	private static void retrieveData(SumoConnectionManager sim) throws Exception {
 		VehicleController.disableAllVehicles();
 
-		for (String vid : vehicleController.getAllVehicleIDs()) {
+		for (String vid : vehicleController.getAllVehicleIds()) {
 			Point pos = vehicleController.getPosition(vid);
 			// double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
@@ -150,7 +150,7 @@ public class App {
 
 			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height);
 
-			VehicleController.setVehicles(v);
+			VehicleController.updateVehicleMap(v);
 		}
 
 		for (String tl : trafficLightController.getIDList()) {

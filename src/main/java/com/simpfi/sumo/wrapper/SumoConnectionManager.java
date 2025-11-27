@@ -4,56 +4,58 @@ import com.simpfi.config.Settings;
 
 import it.polito.appeal.traci.SumoTraciConnection;
 
-// TODO: Auto-generated Javadoc
 /**
  * Creates SumoConnectionManager class used to establish the connection between
  * Java programs and SUMO via TraCI.
  */
 public class SumoConnectionManager {
 
-	/** The conn. */
-	private SumoTraciConnection conn;
+	/** The connection to SUMO. */
+	private SumoTraciConnection connection;
+
+	/** The port to connect to SUMO. */
+	private int port = 9999;
+	/** The time (in ms) to wait for SUMO to start */
+	private int waitForSumoMs = 5000;
 
 	/**
-	 * Constructor used to initialize the Sumo Connection Manager.
+	 * Initializes the Sumo Connection Manager.
 	 * 
-	 * @param cfg path to SUMO configuration file(.sumocfg).
-	 * @throws Exception if the TraCI connection fails.
+	 * @param cfg the path to SUMO configuration file (.sumocfg)
+	 * @throws Exception if the TraCI connection fails
 	 */
 	public SumoConnectionManager(String cfg) throws Exception {
-		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg, "--start", "--quit-on-end", "--remote-port", "9999",
-			"--step-length", String.valueOf(Settings.config.TIMESTEP));
+		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg, "--start", "--quit-on-end", "--remote-port",
+			String.valueOf(port), "--step-length", String.valueOf(Settings.config.TIMESTEP));
 		pb.inheritIO();
 		pb.start();
 
-		// Wait 6 seconds for SUMO to start
-		Thread.sleep(6000);
+		Thread.sleep(waitForSumoMs);
 
-		conn = new SumoTraciConnection(9999);
+		connection = new SumoTraciConnection(port);
 
-		conn.runServer();
-		conn.setOrder(1);
+		connection.runServer();
+		connection.setOrder(1);
 
 		System.out.println("SUMO launched and TraCI connected.");
 	}
 
 	/**
-	 * Updates states of objects in SUMO so that movements such as car running can
-	 * be observed.
+	 * Moves forward one step in the simulation.
 	 * 
 	 * @throws Exception if the TraCI connection fails.
 	 */
 	public void doStep() throws Exception {
-		conn.do_timestep();
+		connection.do_timestep();
 	}
 
 	/**
-	 * Gets the connection.
+	 * Returns the connection.
 	 *
 	 * @return the connection
 	 */
 	public SumoTraciConnection getConnection() {
-		return conn;
+		return connection;
 	}
 
 	/**
@@ -61,8 +63,8 @@ public class SumoConnectionManager {
 	 */
 	public void close() {
 		try {
-			if (conn != null)
-				conn.close();
+			if (connection != null)
+				connection.close();
 			System.out.println("TraCI connection closed.");
 		} catch (Exception e) {
 			e.printStackTrace();

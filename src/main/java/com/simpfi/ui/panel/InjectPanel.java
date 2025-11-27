@@ -70,7 +70,7 @@ public class InjectPanel extends Panel {
 		try {
 			String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
 			String userChoiceRoute = routeDropdown.getSelectedItem().toString();
-			String vehicleIds = VehicleController.generateVehicleIDs();
+			String vehicleIds = VehicleController.generateVehicleID();
 			vehicleControl.addVehicle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
 		} catch (Exception e1) {
 			e1.printStackTrace();
