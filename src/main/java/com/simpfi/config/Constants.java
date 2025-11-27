@@ -5,48 +5,93 @@ import java.awt.Font;
 
 /**
  * Defines fixed values for file paths and drawing properties to ensure
- * consistency when plotting maps and running programs.
+ * consistency when plotting maps and running programs. These values are not
+ * allowed to be changed in the program and can only be altered here.
  */
 public class Constants {
 
-	/**
+	/*****************************************************************************
 	 * SUMO MAP FILES
-	 */
-	public static final String SUMO_NETWORK = "src/main/resources/SumoConfig/simpfi_new.net.xml";
-	public static final String SUMO_ROUTE = "src/main/resources/SumoConfig/simpfi_new.rou.xml";
-	public static final String SUMO_CONFIG = "src/main/resources/SumoConfig/simpfi_new.sumocfg";
+	 * 
+	 * Note: Can replace all the simpfi_new files with the simpfi files for another
+	 * network (will add an in-app function for this in the future)
+	 *****************************************************************************/
 
-	/**
-	 * UI CONFIG
+	/** SUMO .net.xml file path */
+	public static final String SUMO_NETWORK = "src/main/resources/SumoConfig/simpfi_new.net.xml";
+	/*
+	 * public static final String SUMO_NETWORK =
+	 * "src/main/resources/SumoConfig/simpfi.net.xml";
 	 */
+
+	/** SUMO .rou.xml file path */
+	public static final String SUMO_ROUTE = "src/main/resources/SumoConfig/simpfi_new.rou.xml";
+	/*
+	 * public static final String SUMO_ROUTE =
+	 * "src/main/resources/SumoConfig/simpfi.rou.xml";
+	 */
+
+	/** SUMO .config file path */
+	public static final String SUMO_CONFIG = "src/main/resources/SumoConfig/simpfi_new.sumocfg";
+	/*
+	 * public static final String SUMO_CONFIG =
+	 * "src/main/resources/SumoConfig/simpfi.sumocfg";
+	 */
+
+	/*****************************************************************************
+	 * UI CONFIGURATIONS
+	 * 
+	 * Configurations for UI elements
+	 *****************************************************************************/
+
+	/** How rounded (in px) the corners of all elements are */
 	public static final int ROUNDED_CORNERS = 20;
+	/** Default font for all elements */
 	public static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 14);
 
-	/**
+	/*****************************************************************************
 	 * MAP DRAWING
-	 */
+	 * 
+	 * Configurations needed for drawing of map
+	 *****************************************************************************/
+
+	/** Thin stroke size for all other elements */
 	public static final double DEFAULT_STROKE_SIZE = 1;
+	/** Stroke size for drawing lanes so that they fit and have no gaps */
 	public static final double LANE_STROKE_SIZE = 4;
+	/** Stroke size for drawing junction borders so that they fit each other */
 	public static final double JUNCTION_STROKE_SIZE = 1.5;
+	/** Dash length for drawing lane dividers */
 	public static final double LANE_DIVIDER_DASH_LENGTH = 4;
+	/** Stroke size for drawing lane dividers */
 	public static final double LANE_DIVIDER_STROKE_SIZE = 0.35;
 
+	/** How big the traffic lights are */
 	public static final double TRAFFIC_LIGHT_RADIUS = 1.5;
 
+	/** Default scale of map so when the program launches the map is centered */
 	public static final double DEFAULT_SCALE = 2.8;
+	/** Vehicles are drawn bigger than other elements to enhance visibility */
 	public static final double VEHICLE_UPSCALE = 2;
-	// When zooming, how much of scale is changed each time
+	/** When zooming, how much of scale is changed each time */
 	public static final double SCALE_STEP = 0.1;
 
+	/** Default offset_x of map so when the program launches the map is centered */
 	public static final double DEFAULT_OFFSET_X = -750;
+	/** Default offset_y of map so when the program launches the map is centered */
 	public static final double DEFAULT_OFFSET_Y = -250;
-	// When moving map, how much of map is moved each time
+	/** When moving map, how much of map is moved each time */
 	public static final double OFFSET_STEP = 10;
 
-	public static final Color DEFAULT_VEHICLE_COLOR = new Color(225,247,12);
+	/** Color of the default vehicle */
+	public static final Color DEFAULT_VEHICLE_COLOR = new Color(225, 247, 12);
+	/** Color of the truck */
 	public static final Color TRUCK_COLOR = Color.GRAY;
-	public static final Color BUS_COLOR = new Color(12,239,255);
+	/** Color of the bus */
+	public static final Color BUS_COLOR = new Color(12, 239, 255);
+	/** Color of the motorcycle */
 	public static final Color MOTORCYCLE_COLOR = Color.MAGENTA;
-	public static final Color EMERGENCY_COLOR = new Color(245,130,31);
+	/** Color of the emergency vehicle */
+	public static final Color EMERGENCY_COLOR = new Color(245, 130, 31);
 
 }

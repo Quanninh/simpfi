@@ -10,19 +10,31 @@ import com.simpfi.object.VehicleType;
 import com.simpfi.util.reader.NetworkXMLReader;
 import com.simpfi.util.reader.RouteXMLReader;
 
+/**
+ * Network class loads and stores information related to the network from SUMO,
+ * including edges, junctions, vehicle types, routes, and traffic lights, and
+ * makes them available for all other class to access. This class is available
+ * for all other classes through {@link Settings}
+ */
 public class Network {
 
+	/** List containing all edges */
 	private List<Edge> edges;
+	/** List containing all junctions */
 	private List<Junction> junctions;
+	/** List containing all vehicle types */
 	private List<VehicleType> vehicleTypes;
+	/** List containing all routes */
 	private List<Route> routes;
+	/** List containing all traffic lights */
 	private List<TrafficLight> trafficLights;
 
 	/**
 	 * Constructor loads all network and route data defined in {@link Constants}
 	 *
-	 * Parsing of all junctions and edges using {@link NetworkXMLReader} Parsing of
-	 * vehicle types, routes, and IDs using {@link RouteXMLReader}
+	 * Parsing of all junctions and edges using {@link NetworkXMLReader} and parsing
+	 * of vehicle types, routes, and IDs using {@link RouteXMLReader}. Saves all
+	 * information to private attributes.
 	 */
 	public Network() {
 		NetworkXMLReader networkXmlReader;

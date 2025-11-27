@@ -2,18 +2,26 @@ package com.simpfi.config;
 
 import com.simpfi.util.Point;
 
- /**
-  * Holds configuration parameters that control how the simulation is displayed
-  * and executed. This includes scaling factors, coordinate offsets,
-  * simulation timestep, and playback speed.
-  */
- public class SimulationConfig {
+/**
+ * Holds configuration parameters that control how the simulation is displayed
+ * and executed. This includes scaling factors, coordinate offsets, simulation
+ * timestep, and playback speed.
+ */
+public class SimulationConfig {
 
+	/** Scale of the map */
 	public double SCALE = Constants.DEFAULT_SCALE;
+	/** Position of the map (top left corner) */
 	public Point OFFSET = new Point(Constants.DEFAULT_OFFSET_X, Constants.DEFAULT_OFFSET_Y);
+	/** Timestep (in ms) is the time between two simulation step */
 	public double TIMESTEP = 0.1;
+	/**
+	 * How fast the simulation is running (will add feature to change this in the
+	 * future)
+	 */
 	public double SIMULATION_SPEED = 2;
-	
+
+	/** The currently chosen route */
 	public String HIGHLIGHTED_ROUTE = "";
 
 	/**
