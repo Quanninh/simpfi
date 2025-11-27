@@ -27,6 +27,8 @@ There are three main components the team uses for the project: Java, TraaS, and 
 Additionally, the team uses GitHub to create a shared repository for members to submit codes, and Notion to distribute tasks.
 
 ## Architecture diagram
+<img width="1256" height="1140" alt="image" src="https://github.com/user-attachments/assets/6d52d6a4-2114-4c9b-9155-29137552aca8" />
+
 From the diagram, three main layers can be observed: GUI & Visualization, SUMO Integration, and Data. Each layer provides separate methods in order to guarantee modularity and coherence in the system’s design.
 
 ### GUI & Visualization Layer
@@ -47,6 +49,8 @@ storage, which is essential for exporting meaningful statistics. Also, the layer
 ensure the consistency and integrity of data throughout different parts of the system.
 
 ## Class Design
+<img width="792" height="960" alt="image" src="https://github.com/user-attachments/assets/c03c2020-f0b2-4035-81f0-bfd46cf0ab62" />
+
 
 ### Overview
 Besides core wrapper classes, the team decided to draw the user interface by defining and
@@ -73,7 +77,8 @@ and the backend (vehicleController and trafficLightController); defines the TraC
 
 
 ## GUI Mockups
-<img width="1086" height="400" alt="Screenshot 2025-11-27 at 23 17 37" src="https://github.com/user-attachments/assets/ce35e8ea-1ea5-40b1-8718-5456802998b3" />
+
+<img width="1436" height="848" alt="Screenshot 2025-11-27 at 23 19 25" src="https://github.com/user-attachments/assets/9bb1188a-608d-4492-a2c1-6dbbc88977f6" />
 
 
 
