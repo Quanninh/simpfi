@@ -6,11 +6,11 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
     <!-- VTypes -->
     <!-- Core vehicle classes -->
-    <vType id="private" vClass="private"/>
-    <vType id="emergency" vClass="emergency"/>
-    <vType id="bus" vClass="bus"/>
-    <vType id="truck" vClass="truck"/>
-    <vType id="motorcycle" vClass="motorcycle"/>
+    <vType  id="private" sigma = "0" minGap = "1" length = "3" tau = "0.2" vClass="private"/>
+    <vType id="emergency" sigma = "0" minGap = "1" length = "3" tau = "0.5" vClass="emergency"/>
+    <vType id="bus" sigma = "0" minGap = "1" length = "3" tau = "0.5" vClass="bus"/>
+    <vType id="truck" sigma = "0" minGap = "1" length = "3" tau = "0.5" vClass="truck"/>
+    <vType id="motorcycle" sigma = "0" minGap = "1" length = "3" tau = "0.5" vClass="motorcycle"/>
 
     <!-- Routes -->
     <route id="r_0" edges="E47 E46 E45 E45.12 E45.35 E30 E4 E6 E7 E8 E9"/>

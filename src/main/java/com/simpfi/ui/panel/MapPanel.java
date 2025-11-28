@@ -40,7 +40,8 @@ public class MapPanel extends Panel {
 
 	/** The default stroke. */
 	private final BasicStroke defaultStroke = new BasicStroke(
-		(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND);
+		(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
+			BasicStroke.JOIN_ROUND);
 
 	/**
 	 * Instantiates a new map panel.
@@ -169,7 +170,7 @@ public class MapPanel extends Panel {
 		float[] dashPattern = { dashLength, dashLength };
 
 		g.setStroke(new BasicStroke((float) (Constants.LANE_DIVIDER_STROKE_SIZE * Settings.config.SCALE),
-			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
+				BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
 		g.setColor(Constants.LANE_DIVIDER_COLOR);
 
 		for (int i = 0; i < laneSize - 1; i++) {
@@ -250,7 +251,7 @@ public class MapPanel extends Panel {
 			Lane fromLane = connect.getFromLane();
 
 			Point[] shape = fromLane.getShape();
-			Point end = translateCoords(shape[1]);
+			Point end = translateCoords(shape[shape.length - 1]);
 
 			int radius = (int) (Constants.TRAFFIC_LIGHT_RADIUS * Settings.config.SCALE);
 			drawCircle(g, end, radius, color);
