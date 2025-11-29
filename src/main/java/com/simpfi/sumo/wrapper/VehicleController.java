@@ -180,7 +180,7 @@ public class VehicleController {
 	public void addVehicle(String vehicleID, String routeID, String vType) throws Exception {
 		System.out.println("Add vehicle " + vehicleID + " on route " + routeID + " of type " + vType);
 
-		connection.do_job_set(de.tudresden.sumo.cmd.Vehicle.addFull(vehicleID, routeID, vType, "now", "best_prob", "base", "avg", "current", "max", "current", "", "", "", 0, 0));
+		connection.do_job_set(de.tudresden.sumo.cmd.Vehicle.addFull(vehicleID, routeID, vType, "now", "best", "base", "avg", "current", "max", "current", "", "", "", 0, 0));
 	}
 
 }
