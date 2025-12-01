@@ -78,6 +78,8 @@ public class Constants {
 	public static final double VEHICLE_UPSCALE = 2;
 	/** When zooming, how much of scale is changed each time. */
 	public static final double SCALE_STEP = 0.1;
+	/** The minimal when zooming in the scale */
+	public static final double MIN_SCALE_VALUE = 1;
 
 	/** Default offset_x of map so when the program launches the map is centered. */
 	public static final double DEFAULT_OFFSET_X = -750;

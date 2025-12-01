@@ -34,6 +34,8 @@ public class SimulationConfig {
 	 */
 	public void modifyScale(double change) {
 		SCALE += change;
+		if (SCALE <= Constants.MIN_SCALE_VALUE)
+			SCALE = Constants.MIN_SCALE_VALUE;
 	}
 
 	/**

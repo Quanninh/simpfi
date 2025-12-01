@@ -25,6 +25,7 @@ import com.simpfi.object.Route;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.object.Vehicle;
 import com.simpfi.sumo.wrapper.VehicleController;
+import com.simpfi.ui.Mouse;
 import com.simpfi.ui.Panel;
 import com.simpfi.util.GraphicsSettings;
 import com.simpfi.util.Point;
@@ -411,6 +412,11 @@ public class MapPanel extends Panel {
 				Settings.config.modifyOffsetX(-Constants.OFFSET_STEP);
 			}
 		});
+		
+		Mouse mouseAction = new Mouse();
+		this.addMouseListener(mouseAction);
+		this.addMouseMotionListener(mouseAction);
+		this.addMouseWheelListener(mouseAction);
 	}
 
 }
