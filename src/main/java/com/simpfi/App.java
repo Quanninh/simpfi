@@ -173,7 +173,7 @@ public class App {
 		injectPanel = new InjectPanel(conn);
 		mapViewPanel = new MapViewPanel();
 		programLightPanel = new ProgramLightsPanel();
-		filterPanel = new FilterPanel();
+		filterPanel = new FilterPanel(conn);
 		inspectPanel = new InspectPanel();
 
 		sidePane = new TabbedPane();
