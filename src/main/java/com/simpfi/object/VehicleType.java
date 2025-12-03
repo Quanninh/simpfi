@@ -11,6 +11,9 @@ public class VehicleType {
 	/** The vehicle class. */
 	private String vClass;
 
+	/** The filter flag */
+	private boolean filterFlag = true; 
+
 	/**
 	 * Instantiates a new vehicle type.
 	 *
@@ -38,6 +41,24 @@ public class VehicleType {
 	 */
 	public String getvClass() {
 		return vClass;
+	}
+
+	/**
+	 * Returns the filter flag.
+	 * 
+	 * @return the filter flag
+	 */
+	public boolean getFilterFlag(){
+		return filterFlag;
+	}
+
+	/**
+	 * Set the filter flag.
+	 * 
+	 * @param flag the state set to the filter flag
+	 */
+	public void setFilterFlag(boolean flag){
+		filterFlag = flag;
 	}
 
 	/**

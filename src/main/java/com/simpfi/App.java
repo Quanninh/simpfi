@@ -158,6 +158,15 @@ public class App {
 		}
 	}
 
+	// /**
+	//  * Public helper to request a map repaint from other UI components.
+	//  */
+	// public static void repaintMap() {
+	// 	if (mapPanel != null) {
+	// 		mapPanel.repaint();
+	// 	}
+	// }
+
 	/**
 	 * Sets up the UI including panels and panes.
 	 *

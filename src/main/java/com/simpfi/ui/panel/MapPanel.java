@@ -107,6 +107,11 @@ public class MapPanel extends Panel {
 			return;
 		}
 
+		// We don't draw vehicles whose type is filtered out
+		if (v.getType() != null && !v.getType().getFilterFlag()) {
+        	return;
+    	}
+
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 
 		g.setColor(v.getVehicleColor());
