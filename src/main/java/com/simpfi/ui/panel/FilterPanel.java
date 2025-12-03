@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 
-//import com.simpfi.App;
 import com.simpfi.config.Settings;
 import com.simpfi.object.VehicleType;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
@@ -50,8 +49,7 @@ public class FilterPanel extends Panel {
 
 	/**
 	 * Attaches change listeners to all vehicle-type checkboxes.
-	 * When a checkbox is toggled, updates the corresponding VehicleType's filterFlag
-	 * and requests a map repaint.
+	 * When a checkbox is toggled, updates the corresponding VehicleType's filterFlag.
 	 */
 	private void attachCheckboxListeners() {
 		for (CheckBox option : vehicleTypeOptions) {
@@ -64,8 +62,6 @@ public class FilterPanel extends Panel {
 						break;
 					}
 				}
-				// // Request map repaint to reflect filter change immediately
-				// App.repaintMap();
 			});
 		}
 	}
