@@ -15,6 +15,8 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import org.geotools.data.shapefile.shp.ShapefileException;
+
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
@@ -41,7 +43,7 @@ public class MapPanel extends Panel {
 
 	/** The default stroke. */
 	private final BasicStroke defaultStroke = new BasicStroke(
-		(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
+			(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
 			BasicStroke.JOIN_ROUND);
 
 	/**
@@ -109,8 +111,8 @@ public class MapPanel extends Panel {
 
 		// We don't draw vehicles whose type is filtered out
 		if (v.getType() != null && !v.getType().getFilterFlag()) {
-        	return;
-    	}
+			return;
+		}
 
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 
@@ -247,6 +249,7 @@ public class MapPanel extends Panel {
 	private void drawObject(Graphics2D g, TrafficLight tl) {
 		String state = tl.getTLState();
 		List<Connection> connections = tl.getConnections();
+//		String previousLaneID = null;
 
 		for (int i = 0; i < connections.size(); i++) {
 			Connection connect = connections.get(i);
@@ -257,8 +260,16 @@ public class MapPanel extends Panel {
 			Lane fromLane = connect.getFromLane();
 
 			Point[] shape = fromLane.getShape();
-			Point end = translateCoords(shape[shape.length - 1]);
 
+			Point end = translateCoords(shape[shape.length - 1]);
+			// If a lane contain 2 connection -> 2 traffic light. If 
+			// we care about this one again, we can comeback this code
+//			if (fromLane.getLaneId().equals(previousLaneID))
+//			{
+//				end.modifyY(4);
+//			}
+			
+//			previousLaneID = fromLane.getLaneId();
 			int radius = (int) (Constants.TRAFFIC_LIGHT_RADIUS * Settings.config.SCALE);
 			drawCircle(g, end, radius, color);
 		}
@@ -417,7 +428,7 @@ public class MapPanel extends Panel {
 				Settings.config.modifyOffsetX(-Constants.OFFSET_STEP);
 			}
 		});
-		
+
 		Mouse mouseAction = new Mouse();
 		this.addMouseListener(mouseAction);
 		this.addMouseMotionListener(mouseAction);

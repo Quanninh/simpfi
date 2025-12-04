@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.simpfi.util.Point;
 
+import de.tudresden.sumo.util.SumoCommand;
+
 /**
  * Creates Lane class (may includes {@link de.tudresden.sumo.cmd.Lane} in the
  * future).
@@ -88,6 +90,7 @@ public class Lane {
 		}
 		return null;
 	}
+	
 
 	/**
 	 * Overrides the built-in method toString() to provide a human-readable

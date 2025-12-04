@@ -5,7 +5,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
-import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 
 public class Mouse extends MouseAdapter {

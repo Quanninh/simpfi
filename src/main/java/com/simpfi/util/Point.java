@@ -66,6 +66,12 @@ public class Point {
 	public void setY(double y) {
 		this.y = y;
 	}
+	
+	// Modify y
+	public void modifyY(double x)
+	{
+		this.y += x;
+	}
 
 	/**
 	 * Method to calculate the distance of two points.

@@ -59,4 +59,10 @@ public class Connection {
 		this.toLane = toLane;
 	}
 
+	@Override
+	public String toString() {
+		return "Connection [fromLane=" + fromLane + ", toLane=" + toLane + "]";
+	}
+		
+
 }
