@@ -102,6 +102,8 @@ public class Constants {
 	public static final Color DEFAULT_COLOR = Color.BLACK;
 	/** Color of the highlighted route. */
 	public static final Color HIGHLIGHTED_ROUTE_COLOR = Color.PINK;
+	/** Color of the highlighted edge. */
+	public static final Color HIGHLIGHTED_EDGE_COLOR = Color.ORANGE;
 	/** Color of the lane. */
 	public static final Color LANE_COLOR = Color.BLACK;
 	/** Color of the lane divider. */
