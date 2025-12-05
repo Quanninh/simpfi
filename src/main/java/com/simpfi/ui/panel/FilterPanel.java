@@ -48,8 +48,7 @@ public class FilterPanel extends Panel {
 	}
 
 	/**
-	 * Attaches change listeners to all vehicle-type checkboxes.
-	 * When a checkbox is toggled, updates the corresponding VehicleType's filterFlag.
+	 * Method used to change the VehicleType's filterFlag state if its check box is toggled.
 	 */
 	private void attachCheckboxListeners() {
 		for (CheckBox option : vehicleTypeOptions) {
