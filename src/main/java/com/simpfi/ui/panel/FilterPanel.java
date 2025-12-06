@@ -3,12 +3,14 @@ package com.simpfi.ui.panel;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
 
 import com.simpfi.config.Settings;
 import com.simpfi.object.Edge;
+import com.simpfi.object.Road;
 import com.simpfi.object.VehicleType;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.ui.CheckBox;
@@ -29,7 +31,7 @@ public class FilterPanel extends Panel implements MouseListener{
 	private CheckBox[] vehicleTypeOptions;
 
 	/** The list of edge checkboxes */
-	private CheckBox[] edgeOptions;
+	private CheckBox[] roadOptions;
 
 	/** 
 	 * Instantiates a new filter panel.
@@ -55,23 +57,23 @@ public class FilterPanel extends Panel implements MouseListener{
 		// Attach listeners to VehicleType checkboxes to update filter when toggled
 		attachCheckboxListenersForVehicleTypes();
 
-		// Filter out vehicles by edges they are on
-		String[] edges = getAllEdgesAsStrings();
-		edgeOptions = new CheckBox[edges.length];
+		// Filter out vehicles by roads they are on
+		String[] roads = getAllRoadsAsStrings();
+		roadOptions = new CheckBox[roads.length];
 
 		// Add UI componets on the map
-		this.add(new Label("Edges: "));
-		for (int i = 0; i < edges.length; i++) {
-			CheckBox edgeOption = new CheckBox(edges[i], true);
-			edgeOption.setAlignmentX(Component.LEFT_ALIGNMENT);
-			edgeOption.addMouseListener(this);
-			edgeOptions[i] = edgeOption;
+		this.add(new Label("Roads: "));
+		for (int i = 0; i < roads.length; i++) {
+			CheckBox roadOption = new CheckBox(roads[i], true);
+			roadOption.setAlignmentX(Component.LEFT_ALIGNMENT);
+			roadOption.addMouseListener(this);
+			roadOptions[i] = roadOption;
 		}
-		ScrollPane edgeScrollPane = new ScrollPane();
-		edgeScrollPane.addCheckBoxLists(edgeOptions);
-		this.add(edgeScrollPane);
+		ScrollPane roadScrollPane = new ScrollPane();
+		roadScrollPane.addCheckBoxLists(roadOptions);
+		this.add(roadScrollPane);
 
-		// // Attach listeners to Edge checkboxes to update filter when toggled
+		// // Attach listeners to Road checkboxes to update filter when toggled
 		// attachCheckboxListenersForEdges();
 	}
 
@@ -115,13 +117,13 @@ public class FilterPanel extends Panel implements MouseListener{
 	public void mouseEntered(MouseEvent e) {
 		// Invoked when the mouse enters a component
 		CheckBox chosenCheckBox = (CheckBox) e.getSource();
-		Settings.config.HIGHLIGHTED_EDGE_FILTER = chosenCheckBox.getText();
+		Settings.config.HIGHLIGHTED_ROAD_FILTER = chosenCheckBox.getText();
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// Invoked when the mouse exits a component
-		Settings.config.HIGHLIGHTED_EDGE_FILTER = ""; // No edge is highlighted
+		Settings.config.HIGHLIGHTED_ROAD_FILTER = ""; // No road is highlighted
 	}
 
 	@Override
@@ -150,18 +152,18 @@ public class FilterPanel extends Panel implements MouseListener{
 	}
 
 	/**
-	 * Returns all edges as strings.
+	 * Returns all roads as strings.
 	 *
-	 * @return the all edges
+	 * @return the all roads
 	 */
-	private String[] getAllEdgesAsStrings() {
-		List<Edge> allEdges = Settings.network.getEdges();
-		String[] edges = new String[allEdges.size()];
+	private String[] getAllRoadsAsStrings() {
+		List<Road> allRoads = Settings.network.getRoads();
+		String[] roads = new String[allRoads.size()];
 
-		for (int i = 0; i < allEdges.size(); i++) {
-			edges[i] = allEdges.get(i).getId();
+		for (int i = 0; i < allRoads.size(); i++) {
+			roads[i] = allRoads.get(i).getId();
 		}
 
-		return edges;
+		return roads;
 	}
 }

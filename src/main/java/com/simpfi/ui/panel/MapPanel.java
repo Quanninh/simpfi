@@ -19,6 +19,7 @@ import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
+import com.simpfi.object.Road;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
 import com.simpfi.object.Route;
@@ -78,10 +79,12 @@ public class MapPanel extends Panel {
 				drawObject(g2D, e, Constants.HIGHLIGHTED_ROUTE_COLOR);
 		}
 
-		// Draw the highlighted Edge (filter hover) in a different color (if any)
-		Edge highlightedEdgeFilter = Edge.searchForEdge(Settings.config.HIGHLIGHTED_EDGE_FILTER, Settings.network.getEdges());
-		if (highlightedEdgeFilter != null) { // Only draw highlighted edge when an edge is chosen
-			drawObject(g2D, highlightedEdgeFilter, Constants.HIGHLIGHTED_EDGE_FILTER_COLOR);
+		// Draw the highlighted Road (filter hover) in a different color (if any)
+		Road highlightedRoad = Road.searchForRoad(Settings.config.HIGHLIGHTED_ROAD_FILTER, Settings.network.getRoads());
+		if (highlightedRoad != null) {
+			for (Edge e : highlightedRoad.getEdgesWithSameBaseName()) {
+				drawObject(g2D, e, Constants.HIGHLIGHTED_ROAD_FILTER_COLOR);
+			}
 		}
 
 

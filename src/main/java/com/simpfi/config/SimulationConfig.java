@@ -27,8 +27,8 @@ public class SimulationConfig {
 	/** The currently chosen route. */
 	public String HIGHLIGHTED_ROUTE = "";
 
-	/** The currently chosen edge when entering the mouse. */
-	public String HIGHLIGHTED_EDGE_FILTER = "";
+	/** The currently chosen edge when entering the mouse (for filter panel). */
+	public String HIGHLIGHTED_ROAD_FILTER = "";
 
 	/**
 	 * Adds a value to the scale.
