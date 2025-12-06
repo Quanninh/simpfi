@@ -15,16 +15,6 @@ public class CheckBox extends JCheckBox {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	// public CheckBox() {
-	// 	super();
-	// 	init();
-	// }
-
-	// public CheckBox(String text) {
-	// 	super(text);
-	// 	init();
-	// }
-
 	/**
 	 * Constructor used to create a check box with a given text and a checked state.
 	 * 
@@ -63,7 +53,7 @@ public class CheckBox extends JCheckBox {
 	}
 
 	/**
-	 * Convenience method to attach an {@link ItemListener} for state changes.
+	 * Method to attach an {@link ItemListener} for state changes.
 	 */
 	public void onChange(ItemListener listener) {
 		this.addItemListener(listener);

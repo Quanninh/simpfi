@@ -1,8 +1,10 @@
 package com.simpfi.config;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import com.simpfi.object.Edge;
+import com.simpfi.object.Road;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Route;
 import com.simpfi.object.TrafficLight;
@@ -73,6 +75,33 @@ public class Network {
 	 */
 	public List<Edge> getEdges() {
 		return edges;
+	}
+
+	/**
+	 * Getter for {@link Road} objects, derived {@link Edge} objects.
+	 *
+	 * @return all parsed Road
+	 */
+	public List<Road> getRoads() {
+		List<Edge> allEdges = getEdges();
+		List<Road> roads = new ArrayList<>();
+
+		// Omit edges that belong to junction and group edges with suffix
+		for (int i = 0; i < allEdges.size(); i++) {
+			// Skip if the edges have "J" and suffix(".") in its name
+			if(allEdges.get(i).getId().charAt(1) != 'J') {
+				// If the edge is a sub-edge, add it to the list of corresponding edges 
+				if(allEdges.get(i).getId().contains(".")){
+					// Here we accept the convention that sub-edges will follow their edge
+					roads.get(roads.size() - 1).addEdge(allEdges.get(i));
+					continue;
+				}
+
+				Edge e = allEdges.get(i);
+				roads.add(new Road(allEdges.get(i).getId(), new Edge[]{ e }));
+			}
+		}
+		return roads;
 	}
 
 	/**

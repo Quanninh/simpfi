@@ -15,11 +15,13 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
+import com.simpfi.object.Road;
 import com.simpfi.object.Route;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.object.Vehicle;
@@ -75,6 +77,14 @@ public class MapPanel extends Panel {
 		Route highlightedRoute = Route.searchForRoute(Settings.config.HIGHLIGHTED_ROUTE, Settings.network.getRoutes());
 		for (Edge e : highlightedRoute.getEdges()) {
 			drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
+		}
+
+		// Draw the highlighted Road (filter hover) in a different color (if any)
+		Road highlightedRoad = Road.searchForRoad(Settings.config.HIGHLIGHTED_ROAD_FILTER, Settings.network.getRoads());
+		if (highlightedRoad != null) {
+			for (Edge e : highlightedRoad.getEdgesWithSameBaseName()) {
+				drawObject(g2D, e, Constants.HIGHLIGHTED_ROAD_FILTER_COLOR);
+			}
 		}
 
 		for (TrafficLight tl : Settings.network.getTrafficLights()) {
@@ -257,8 +267,8 @@ public class MapPanel extends Panel {
 			Lane fromLane = connect.getFromLane();
 
 			Point[] shape = fromLane.getShape();
-
 			Point end = translateCoords(shape[shape.length - 1]);
+
 			// If a lane contain 2 connection -> 2 traffic light. If
 			// we care about this one again, we can comeback this code
 			// if (fromLane.getLaneId().equals(previousLaneID))

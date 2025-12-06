@@ -75,6 +75,9 @@ public class SimulationConfig {
 	/** Color of the junction. */
 	public Color JUNCTION_COLOR = Constants.DEFAULT_JUNCTION_COLOR;
 
+	/** The currently chosen edge when entering the mouse (for filter panel). */
+	public String HIGHLIGHTED_ROAD_FILTER = "";
+
 	/**
 	 * Adds a value to the scale.
 	 * 
