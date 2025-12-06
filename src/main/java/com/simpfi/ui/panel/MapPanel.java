@@ -74,14 +74,17 @@ public class MapPanel extends Panel {
 
 		// Draw the highlighted Route in a different color
 		Route highlightedRoute = Route.searchForRoute(Settings.config.HIGHLIGHTED_ROUTE, Settings.network.getRoutes());
-		for (Edge e : highlightedRoute.getEdges()) {
-			drawObject(g2D, e, Constants.HIGHLIGHTED_ROUTE_COLOR);
+			for (Edge e : highlightedRoute.getEdges()) {
+				drawObject(g2D, e, Constants.HIGHLIGHTED_ROUTE_COLOR);
+		}
+
+		// Draw the highlighted Edge (filter hover) in a different color (if any)
+		Edge highlightedEdgeFilter = Edge.searchForEdge(Settings.config.HIGHLIGHTED_EDGE_FILTER, Settings.network.getEdges());
+		if (highlightedEdgeFilter != null) { // Only draw highlighted edge when an edge is chosen
+			drawObject(g2D, highlightedEdgeFilter, Constants.HIGHLIGHTED_EDGE_FILTER_COLOR);
 		}
 
 
-		// Draw the highlighted Edge in a different color (used in Filter Panel)
-		Edge highlightedEdge = Edge.searchForEdge(Settings.config.HIGHLIGHTED_EDGE, Settings.network.getEdges());
-		drawObject(g2D, highlightedEdge, Constants.HIGHLIGHTED_EDGE_COLOR);
 		for (TrafficLight tl : Settings.network.getTrafficLights()) {
 			try {
 				drawObject(g2D, tl);

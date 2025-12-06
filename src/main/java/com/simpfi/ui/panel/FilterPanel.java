@@ -115,13 +115,13 @@ public class FilterPanel extends Panel implements MouseListener{
 	public void mouseEntered(MouseEvent e) {
 		// Invoked when the mouse enters a component
 		CheckBox chosenCheckBox = (CheckBox) e.getSource();
-		Settings.config.HIGHLIGHTED_EDGE = chosenCheckBox.getText();
+		Settings.config.HIGHLIGHTED_EDGE_FILTER = chosenCheckBox.getText();
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// Invoked when the mouse exits a component
-		Settings.config.HIGHLIGHTED_EDGE = ""; // No edge is highlighted
+		Settings.config.HIGHLIGHTED_EDGE_FILTER = ""; // No edge is highlighted
 	}
 
 	@Override
