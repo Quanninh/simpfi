@@ -22,7 +22,7 @@ public class Label extends JLabel {
 	 */
 	public Label(String string) {
 		this.setText(string);
-		this.setFont(Constants.DEFAULT_FONT);
+		this.setFont(Constants.FONT);
 
 		this.setMaximumSize(new Dimension(Short.MAX_VALUE, this.getPreferredSize().height));
 	}

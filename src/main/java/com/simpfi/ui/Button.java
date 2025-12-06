@@ -20,7 +20,7 @@ public class Button extends JButton {
 	 */
 	public Button(String text) {
 		this.setText(text);
-		this.setFont(Constants.DEFAULT_FONT);
+		this.setFont(Constants.FONT);
 	};
 
 }

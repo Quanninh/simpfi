@@ -38,7 +38,7 @@ public class CheckBox extends JCheckBox {
 
 	/**Some settings for the checkboxes to appear more attractively on the user interface.*/
 	private void init() {
-		this.setFont(Constants.DEFAULT_FONT);
+		this.setFont(Constants.FONT);
         this.setFocusable(false);
 	}
 

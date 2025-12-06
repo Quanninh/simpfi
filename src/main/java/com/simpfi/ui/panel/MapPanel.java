@@ -15,9 +15,6 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import org.geotools.data.shapefile.shp.ShapefileException;
-
-import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
@@ -43,8 +40,8 @@ public class MapPanel extends Panel {
 
 	/** The default stroke. */
 	private final BasicStroke defaultStroke = new BasicStroke(
-			(float) (Constants.DEFAULT_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
-			BasicStroke.JOIN_ROUND);
+		(float) (Settings.config.NORMAL_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
+		BasicStroke.JOIN_ROUND);
 
 	/**
 	 * Instantiates a new map panel.
@@ -77,7 +74,7 @@ public class MapPanel extends Panel {
 		// Draw the highlighted Route in a different color
 		Route highlightedRoute = Route.searchForRoute(Settings.config.HIGHLIGHTED_ROUTE, Settings.network.getRoutes());
 		for (Edge e : highlightedRoute.getEdges()) {
-			drawObject(g2D, e, Constants.HIGHLIGHTED_ROUTE_COLOR);
+			drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
 		}
 
 		for (TrafficLight tl : Settings.network.getTrafficLights()) {
@@ -119,8 +116,8 @@ public class MapPanel extends Panel {
 		g.setColor(v.getVehicleColor());
 
 		Point pos = translateCoords(v.getPosition());
-		int width = (int) (v.getWidth() * Settings.config.SCALE * Constants.VEHICLE_UPSCALE);
-		int height = (int) (v.getHeight() * Settings.config.SCALE * Constants.VEHICLE_UPSCALE);
+		int width = (int) (v.getWidth() * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
+		int height = (int) (v.getHeight() * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
 
 		double angle = v.getAngle();
 		g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
@@ -174,12 +171,12 @@ public class MapPanel extends Panel {
 		 * 
 		 * if want to change -> multiply it by a value
 		 */
-		float dashLength = (float) (Constants.LANE_DIVIDER_DASH_LENGTH * Settings.config.SCALE);
+		float dashLength = (float) (Settings.config.LANE_DIVIDER_DASH_LENGTH * Settings.config.SCALE);
 		float[] dashPattern = { dashLength, dashLength };
 
-		g.setStroke(new BasicStroke((float) (Constants.LANE_DIVIDER_STROKE_SIZE * Settings.config.SCALE),
-				BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
-		g.setColor(Constants.LANE_DIVIDER_COLOR);
+		g.setStroke(new BasicStroke((float) (Settings.config.LANE_DIVIDER_STROKE_SIZE * Settings.config.SCALE),
+			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
+		g.setColor(Settings.config.LANE_DIVIDER_COLOR);
 
 		for (int i = 0; i < laneSize - 1; i++) {
 			Lane lane1 = lanes[i];
@@ -230,7 +227,7 @@ public class MapPanel extends Panel {
 			yPoints[i] = (int) p.getY();
 		}
 
-		float lineThickness = (float) (Constants.LANE_STROKE_SIZE * Settings.config.SCALE);
+		float lineThickness = (float) (Settings.config.LANE_STROKE_SIZE * Settings.config.SCALE);
 
 		g.setColor(c);
 		g.setStroke(new BasicStroke(lineThickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
@@ -249,7 +246,7 @@ public class MapPanel extends Panel {
 	private void drawObject(Graphics2D g, TrafficLight tl) {
 		String state = tl.getTLState();
 		List<Connection> connections = tl.getConnections();
-//		String previousLaneID = null;
+		// String previousLaneID = null;
 
 		for (int i = 0; i < connections.size(); i++) {
 			Connection connect = connections.get(i);
@@ -262,15 +259,15 @@ public class MapPanel extends Panel {
 			Point[] shape = fromLane.getShape();
 
 			Point end = translateCoords(shape[shape.length - 1]);
-			// If a lane contain 2 connection -> 2 traffic light. If 
+			// If a lane contain 2 connection -> 2 traffic light. If
 			// we care about this one again, we can comeback this code
-//			if (fromLane.getLaneId().equals(previousLaneID))
-//			{
-//				end.modifyY(4);
-//			}
-			
-//			previousLaneID = fromLane.getLaneId();
-			int radius = (int) (Constants.TRAFFIC_LIGHT_RADIUS * Settings.config.SCALE);
+			// if (fromLane.getLaneId().equals(previousLaneID))
+			// {
+			// end.modifyY(4);
+			// }
+
+			// previousLaneID = fromLane.getLaneId();
+			int radius = (int) (Settings.config.TRAFFIC_LIGHT_RADIUS * Settings.config.SCALE);
 			drawCircle(g, end, radius, color);
 		}
 	}
@@ -301,8 +298,8 @@ public class MapPanel extends Panel {
 			yPoints[i] = (int) p.getY();
 		}
 
-		g.setColor(Constants.JUNCTION_COLOR);
-		g.setStroke(new BasicStroke((float) (Constants.JUNCTION_STROKE_SIZE * Settings.config.SCALE)));
+		g.setColor(Settings.config.JUNCTION_COLOR);
+		g.setStroke(new BasicStroke((float) (Settings.config.JUNCTION_STROKE_SIZE * Settings.config.SCALE)));
 
 		g.fillPolygon(xPoints, yPoints, size);
 		g.drawPolygon(xPoints, yPoints, size);
@@ -389,21 +386,21 @@ public class MapPanel extends Panel {
 		actionMap.put("zoomIn", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.config.modifyScale(Constants.SCALE_STEP);
+				Settings.config.modifyScale(Settings.config.SCALE_STEP);
 			}
 		});
 
 		actionMap.put("zoomOut", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.config.modifyScale(-Constants.SCALE_STEP);
+				Settings.config.modifyScale(-Settings.config.SCALE_STEP);
 			}
 		});
 
 		actionMap.put("moveUp", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.config.modifyOffsetY(-Constants.OFFSET_STEP);
+				Settings.config.modifyOffsetY(-Settings.config.OFFSET_STEP);
 			}
 
 		});
@@ -411,21 +408,21 @@ public class MapPanel extends Panel {
 		actionMap.put("moveDown", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.config.modifyOffsetY(Constants.OFFSET_STEP);
+				Settings.config.modifyOffsetY(Settings.config.OFFSET_STEP);
 			}
 		});
 
 		actionMap.put("moveRight", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.config.modifyOffsetX(Constants.OFFSET_STEP);
+				Settings.config.modifyOffsetX(Settings.config.OFFSET_STEP);
 			}
 		});
 
 		actionMap.put("moveLeft", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings.config.modifyOffsetX(-Constants.OFFSET_STEP);
+				Settings.config.modifyOffsetX(-Settings.config.OFFSET_STEP);
 			}
 		});
 
