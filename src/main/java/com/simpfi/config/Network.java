@@ -25,6 +25,9 @@ public class Network {
 	/** List containing all edges. */
 	private List<Edge> edges;
 
+	/** List containing all roads. */
+	private List<Road> roads;
+
 	/** List containing all junctions. */
 	private List<Junction> junctions;
 
@@ -38,7 +41,7 @@ public class Network {
 	private List<TrafficLight> trafficLights;
 
 	/** HashMap to map an edge to a road */
-	private static Map<Edge, Road> edgeToRoad = new HashMap<>();
+	private final Map<Edge, Road> edgeToRoad = new HashMap<>();
 
 	/**
 	 * Constructor loads all network and route data defined in {@link Constants}.
@@ -59,6 +62,9 @@ public class Network {
 			vehicleTypes = routeXmlReader.parseVehicleType();
 			routes = routeXmlReader.parseRoute();
 			trafficLights = networkXmlReader.parseTrafficLight(junctions, edges);
+
+			// Build the Road list from the Edge list
+			buildRoadsFromEdges();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,37 +89,11 @@ public class Network {
 	}
 
 	/**
-	 * Getter for {@link Road} objects, derived from {@link Edge} objects.
+	 * Getter for {@link Road} objects.
 	 *
 	 * @return all parsed Road
 	 */
 	public List<Road> getRoads() {
-		List<Edge> allEdges = getEdges();
-		List<Road> roads = new ArrayList<>();
-
-		// Omit edges that belong to junction and group edges with suffix
-		for (int i = 0; i < allEdges.size(); i++) {
-			// Skip if the edges have "J" and suffix(".") in its name
-			if(allEdges.get(i).getId().charAt(1) != 'J') {
-				// If the edge is a sub-edge, add it to the list of corresponding edges 
-				if(allEdges.get(i).getId().contains(".")){
-					// Here we accept the convention that sub-edges will follow their edge
-					Road updatedRoad = roads.get(roads.size() - 1).addEdge(allEdges.get(i));
-
-					// Update the Hash Map
-					Edge e = allEdges.get(i);
-					edgeToRoad.put(e, updatedRoad);
-					continue;
-				}
-
-				Edge e = allEdges.get(i);
-				Road r =new Road(allEdges.get(i).getId(), new Edge[]{ e });
-				roads.add(r);
-				
-				// Update the Hash Map
-				edgeToRoad.put(e, r);
-			}
-		}
 		return roads;
 	}
 
@@ -150,4 +130,33 @@ public class Network {
 		else {return null; }
 	}
 
+	/** Parse the list of roads from the edge list*/
+	private void buildRoadsFromEdges(){
+		roads = new ArrayList<>();
+		edgeToRoad.clear();
+
+		// Omit edges that belong to junction and group edges with suffix
+		for (int i = 0; i < edges.size(); i++) {
+			// Skip if the edges have "J" and suffix(".") in its name
+			if(edges.get(i).getId().charAt(1) != 'J') {
+				// If the edge is a sub-edge, add it to the list of corresponding edges 
+				if(edges.get(i).getId().contains(".")){
+					// Here we accept the convention that sub-edges will follow their edge
+					Road updatedRoad = roads.get(roads.size() - 1).addEdge(edges.get(i));
+
+					// Update the Hash Map
+					Edge e = edges.get(i);
+					edgeToRoad.put(e, updatedRoad);
+				}
+				else {
+				Edge e = edges.get(i);
+				Road r =new Road(edges.get(i).getId(), new Edge[]{ e });
+				roads.add(r);
+				
+				// Update the Hash Map
+				edgeToRoad.put(e, r);
+				}
+			}
+		}
+	}
 }
