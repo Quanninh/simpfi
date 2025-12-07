@@ -27,9 +27,19 @@ public class EdgeController{
 	 *
 	 * @param conn the connection to SUMO
 	 */
-	public EdgeController(SumoConnectionManager conn) {
-		this.connection = conn.getConnection();
-	}
-    
+    public EdgeController(SumoConnectionManager conn){
+        this.connection = conn.getConnection();
+    }
+
+    /** Get all edge ids on the network */
+    @SuppressWarnings("unchecked")
+    public List<String> getEdgeIDs() throws Exception{
+        return (List<String>) connection.do_job_get(de.tudresden.sumo.cmd.Edge.getIDList()); 
+    }
+
+    /** Get the number of vehicles currently on a specific edge*/
+    public int getEdgeVehicleCount(String edgeID) throws Exception{
+        return (Integer) connection.do_job_get(de.tudresden.sumo.cmd.Edge.getLastStepVehicleNumber(edgeID));
+    }    
     
 }
