@@ -117,25 +117,8 @@ public class MapPanel extends Panel {
 
 		// We don't draw vehicles whose type is filtered out
 		if (v.getType() != null && !v.getType().getFilterFlag()) {
-<<<<<<< HEAD
-        	System.out.println("Cut");
-			return;
-    	}
-
-		// We don't draw vehicles which road they are on is filtered out
-		// getRoadID() of vehicle actually retrieve the edge (this is due to SUMO's naming)
-		if (v.getRoadID() != null && v.getRoadID().charAt(1) != 'J') {
-        	if(!(Settings.network.getRoadFromEdge(v.getEdgeFromRoadID())).getFilterFlag()) {
-				System.out.println(Settings.network.getRoadFromEdge(v.getEdgeFromRoadID()).getFilterFlag());
-				return;
-			}
-			System.out.println("Khai ne");
-			System.out.println((Settings.network.getRoadFromEdge(v.getEdgeFromRoadID())).getFilterFlag());
-    	}
-=======
 			return;
 		}
->>>>>>> 7b22c15536eff7616fed199cfdfe01fea751e678
 
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 

@@ -23,15 +23,6 @@ public class ScrollPane extends JScrollPane {
 		init();
 	}
 
-<<<<<<< HEAD
-    public void addCheckBoxLists(CheckBox[] options){
-        for(CheckBox i : options){
-            contentPanel.add(i);
-        }
-        // contentPanel.revalidate();
-        // contentPanel.repaint();
-    }
-=======
 	private void init() {
 		getVerticalScrollBar().setUnitIncrement(16);
 		setFocusable(false);
@@ -48,5 +39,4 @@ public class ScrollPane extends JScrollPane {
 	public void addItem(JComponent item) {
 		contentPanel.add(item);
 	}
->>>>>>> 7b22c15536eff7616fed199cfdfe01fea751e678
 }
