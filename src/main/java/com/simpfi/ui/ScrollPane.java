@@ -31,7 +31,7 @@ public class ScrollPane extends JScrollPane{
         for(CheckBox i : options){
             contentPanel.add(i);
         }
-        contentPanel.revalidate();
-        contentPanel.repaint();
+        // contentPanel.revalidate();
+        // contentPanel.repaint();
     }
 }

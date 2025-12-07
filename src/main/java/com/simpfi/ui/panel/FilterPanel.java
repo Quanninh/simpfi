@@ -2,14 +2,11 @@ package com.simpfi.ui.panel;
 
 import java.awt.Component;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
 
 import com.simpfi.config.Settings;
-import com.simpfi.object.Edge;
 import com.simpfi.object.Road;
 import com.simpfi.object.VehicleType;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
@@ -22,7 +19,7 @@ import com.simpfi.ui.ScrollPane;
 /**
  * A panel for filtering vehicles. This class extends {@link Panel}.
  */
-public class FilterPanel extends Panel implements MouseListener{
+public class FilterPanel extends Panel{
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -66,15 +63,28 @@ public class FilterPanel extends Panel implements MouseListener{
 		for (int i = 0; i < roads.length; i++) {
 			CheckBox roadOption = new CheckBox(roads[i], true);
 			roadOption.setAlignmentX(Component.LEFT_ALIGNMENT);
-			roadOption.addMouseListener(this);
+			// Use a MouseAdapter to highlight the road which is entered by users
+            roadOption.addMouseListener(new java.awt.event.MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					CheckBox chosenCheckBox = (CheckBox) e.getSource();
+					Settings.config.HIGHLIGHTED_ROAD_FILTER = chosenCheckBox.getText();
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					Settings.config.HIGHLIGHTED_ROAD_FILTER = "";
+				}
+			});
+
 			roadOptions[i] = roadOption;
 		}
 		ScrollPane roadScrollPane = new ScrollPane();
 		roadScrollPane.addCheckBoxLists(roadOptions);
 		this.add(roadScrollPane);
-
-		// // Attach listeners to Road checkboxes to update filter when toggled
-		// attachCheckboxListenersForEdges();
+		
+		// Attach listeners to Road checkboxes to update filter when toggled
+		attachCheckboxListenersForRoads();
 	}
 
 	/**
@@ -95,45 +105,23 @@ public class FilterPanel extends Panel implements MouseListener{
 		}
 	}
 
-	// /**
-	//  * Method used to change the Edge's filterFlag state if its check box is toggled.
-	//  */
-	// private void attachCheckboxListenersForEdges() {
-	// 	for (CheckBox edgeOption : edgeOptions) {
-	// 		edgeOption.onChange(e -> {
-	// 			boolean checked = edgeOption.isChecked();
-	// 			// Set flag on the Edge object
-	// 			for (Edge edge : Settings.network.getEdges()) {
-	// 				if (edge.getId().equals(edgeOption.getText())) {
-	// 					edge.setFilterFlag(checked);
-	// 					break;
-	// 				}
-	// 			}
-	// 		});
-	// 	}
-	// }
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// Invoked when the mouse enters a component
-		CheckBox chosenCheckBox = (CheckBox) e.getSource();
-		Settings.config.HIGHLIGHTED_ROAD_FILTER = chosenCheckBox.getText();
+	/**
+	 * Method used to change the Road's filterFlag state if its check box is toggled.
+	 */
+	private void attachCheckboxListenersForRoads() {
+		for (CheckBox roadOption : roadOptions) {
+			roadOption.onChange(e -> {
+				boolean checked = roadOption.isChecked();
+				// Set flag on the Road object
+				for (Road road : Settings.network.getRoads()) {
+					if (road.getId().equals(roadOption.getText())) {
+						road.setFilterFlag(checked);
+						break;
+					}
+				}
+			});
+		}
 	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// Invoked when the mouse exits a component
-		Settings.config.HIGHLIGHTED_ROAD_FILTER = ""; // No road is highlighted
-	}
-
-	@Override
-    public void mouseClicked(MouseEvent e) {}
-
-    @Override
-    public void mousePressed(MouseEvent e) {}
-
-    @Override
-    public void mouseReleased(MouseEvent e) {}
 
 	/**
 	 * Returns all vehicles types as strings.

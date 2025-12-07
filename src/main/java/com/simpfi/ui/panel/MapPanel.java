@@ -19,9 +19,9 @@ import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
-import com.simpfi.object.Road;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
+import com.simpfi.object.Road;
 import com.simpfi.object.Route;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.object.Vehicle;
@@ -119,7 +119,19 @@ public class MapPanel extends Panel {
 
 		// We don't draw vehicles whose type is filtered out
 		if (v.getType() != null && !v.getType().getFilterFlag()) {
-        	return;
+        	System.out.println("Cut");
+			return;
+    	}
+
+		// We don't draw vehicles which road they are on is filtered out
+		// getRoadID() of vehicle actually retrieve the edge (this is due to SUMO's naming)
+		if (v.getRoadID() != null && v.getRoadID().charAt(1) != 'J') {
+        	if(!(Settings.network.getRoadFromEdge(v.getEdgeFromRoadID())).getFilterFlag()) {
+				System.out.println(Settings.network.getRoadFromEdge(v.getEdgeFromRoadID()).getFilterFlag());
+				return;
+			}
+			System.out.println("Khai ne");
+			System.out.println((Settings.network.getRoadFromEdge(v.getEdgeFromRoadID())).getFilterFlag());
     	}
 
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);

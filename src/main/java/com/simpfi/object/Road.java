@@ -16,6 +16,9 @@ public class Road{
     /** The base name (id) of edges */
     String id;
 
+    /** The filter flag */
+	private boolean filterFlag = true;
+
     /**
      * Instantiates a Road.
      * 
@@ -64,12 +67,14 @@ public class Road{
     }
 
     /**
-     * Adds new edge to {@code edgesWithSameBaseName}
+     * Adds new edge to {@code edgesWithSameBaseName} and returns the updated Road.
      * 
-     * @param edge the added edge
+     * @param edge the edge to add
+     * @return the updated road
      */
-    public void addEdge(Edge edge){
+    public Road addEdge(Edge edge){
         this.edgesWithSameBaseName.add(edge);
+        return this;
     }
 
     /**
@@ -86,5 +91,23 @@ public class Road{
 			}
 		}
 		return null;
+	}
+
+    /**
+	 * Returns the filter flag.
+	 * 
+	 * @return the filter flag
+	 */
+	public boolean getFilterFlag(){
+		return filterFlag;
+	}
+
+	/**
+	 * Set the filter flag.
+	 * 
+	 * @param flag the state set to the filter flag
+	 */
+	public void setFilterFlag(boolean flag){
+		filterFlag = flag;
 	}
 }

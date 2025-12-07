@@ -183,6 +183,19 @@ public class Vehicle {
 		default -> Constants.DEFAULT_VEHICLE_COLOR;
 		};
 	}
+	/**
+	 * Returns the edge derived from RoadID.
+	 *
+	 * @return the {@code Edge} object
+	 */
+	public Edge getEdgeFromRoadID(){
+		for (Edge e : Settings.network.getEdges()) {
+			if (e.getId().equals(this.roadID)) {
+				return e;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Overrides the built-in method toString() to provide a human-readable
