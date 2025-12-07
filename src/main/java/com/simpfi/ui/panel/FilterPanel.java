@@ -15,7 +15,6 @@ import com.simpfi.ui.Label;
 import com.simpfi.ui.Panel;
 import com.simpfi.ui.ScrollPane;
 
-
 /**
  * A panel for filtering vehicles. This class extends {@link Panel}.
  */
@@ -30,7 +29,7 @@ public class FilterPanel extends Panel{
 	/** The list of edge checkboxes */
 	private CheckBox[] roadOptions;
 
-	/** 
+	/**
 	 * Instantiates a new filter panel.
 	 *
 	 * @param conn the connection manager (unused but kept for consistency)
@@ -88,7 +87,8 @@ public class FilterPanel extends Panel{
 	}
 
 	/**
-	 * Method used to change the VehicleType's filterFlag state if its check box is toggled.
+	 * Method used to change the VehicleType's filterFlag state if its check box is
+	 * toggled.
 	 */
 	private void attachCheckboxListenersForVehicleTypes() {
 		for (CheckBox option : vehicleTypeOptions) {
