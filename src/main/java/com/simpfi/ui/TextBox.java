@@ -1,13 +1,14 @@
 package com.simpfi.ui;
 
+import java.awt.Dimension;
 import java.text.DecimalFormat;
+import java.util.function.Consumer;
 
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import com.simpfi.config.Constants;
-import com.simpfi.config.Settings;
 
 /**
  * Custom TextBox class that inherits {@link javax.swing.JTextField}. The class
@@ -36,13 +37,13 @@ public class TextBox extends JTextField {
 	private static final long serialVersionUID = 1L;
 
 	/** The default value for the textbox. */
-	private double defaultValue;
+	private Double defaultValue;
 
 	/** Whether the values entered must be a double. */
 	private Boolean mustBeDouble;
 
-	/** The settings type. */
-	private SettingsType type;
+	/** Whether the values entered must be positive. */
+	private Boolean mustBePositive;
 
 	/**
 	 * Constructor for TextBox: In addition to attributes assignment, it: Adds a
@@ -55,42 +56,27 @@ public class TextBox extends JTextField {
 	 *                     OFFSET_Y).
 	 * @param defaultValue initilizes the value displayed in the text box.
 	 */
-	public TextBox(Boolean mustBeDouble, SettingsType type, double defaultValue) {
-		this.mustBeDouble = mustBeDouble;
+	public TextBox(double defaultValue, Boolean mustBeDouble, Boolean mustBePositive) {
 		this.defaultValue = defaultValue;
-		this.type = type;
+		this.mustBeDouble = mustBeDouble;
+		this.mustBePositive = mustBePositive;
 
-		this.setFont(Constants.DEFAULT_FONT);
-
-		this.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				updateSettings();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				updateSettings();
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				updateSettings();
-			}
-
-		});
+		this.setFont(Constants.FONT);
 
 		this.setText(valueTextBox(defaultValue));
-		this.setColumns(8);
+		this.setColumns(6);
+
+		Dimension preferedSize = this.getPreferredSize();
+		preferedSize.setSize(Short.MAX_VALUE, preferedSize.getHeight());
+		this.setMaximumSize(preferedSize);
 	}
 
-	/**
-	 * Make changes to the required values (SETTINGS_SCALE, SETTINGS_OFFSET) if
-	 * mustBeDouble is set to true.
-	 */
-	public void updateSettings() {
+	private String getTextboxValue() {
 		if (!mustBeDouble) {
-			return;
+			return getText();
 		}
 
-		double value;
+		Double value;
 		try {
 			value = Double.parseDouble(this.getText());
 		} catch (Exception e) {
@@ -114,7 +100,35 @@ public class TextBox extends JTextField {
 		default:
 			System.out.println("Unexpected TextBox");
 			break;
+		if (mustBePositive && value <= 0) {
+			value = defaultValue;
 		}
+
+		return value.toString();
+	}
+
+	public void resetToDefault() {
+		setText(defaultValue.toString());
+	}
+
+	public void attachListener(Consumer<String> onChange) {
+		this.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				onChange.accept(getTextboxValue());
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				onChange.accept(getTextboxValue());
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				onChange.accept(getTextboxValue());
+			}
+		});
 	}
 
 	/**

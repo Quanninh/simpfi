@@ -2,7 +2,6 @@ package com.simpfi.object;
 
 import java.awt.Color;
 
-import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.util.Point;
 
@@ -176,12 +175,25 @@ public class Vehicle {
 	 */
 	public Color getVehicleColor() {
 		return switch (type.getId()) {
-		case "truck" -> Constants.TRUCK_COLOR;
-		case "bus" -> Constants.BUS_COLOR;
-		case "motorcycle" -> Constants.MOTORCYCLE_COLOR;
-		case "emergency" -> Constants.EMERGENCY_COLOR;
-		default -> Constants.DEFAULT_VEHICLE_COLOR;
+		case "truck" -> Settings.config.TRUCK_COLOR;
+		case "bus" -> Settings.config.BUS_COLOR;
+		case "motorcycle" -> Settings.config.MOTORCYCLE_COLOR;
+		case "emergency" -> Settings.config.EMERGENCY_COLOR;
+		default -> Settings.config.NORMAL_VEHICLE_COLOR;
 		};
+	}
+	/**
+	 * Returns the edge derived from RoadID.
+	 *
+	 * @return the {@code Edge} object
+	 */
+	public Edge getEdgeFromRoadID(){
+		for (Edge e : Settings.network.getEdges()) {
+			if (e.getId().equals(this.roadID)) {
+				return e;
+			}
+		}
+		return null;
 	}
 
 	/**
