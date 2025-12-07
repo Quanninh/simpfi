@@ -91,7 +91,7 @@ public class Network {
 	/**
 	 * Getter for {@link Road} objects.
 	 *
-	 * @return all parsed Road
+	 * @return all parsed Roads
 	 */
 	public List<Road> getRoads() {
 		return roads;
@@ -124,6 +124,12 @@ public class Network {
 		return trafficLights;
 	}
 
+	/**
+	 * Retrieves the road for the given edge using the {@code edgeToRoad} Map.
+	 * 
+	 * @param e the given edge
+	 * @return the corresponding road if the edge is valid; otherwise {@code null}
+	 */
 	public Road getRoadFromEdge(Edge e){
 		boolean validEdge = edges.contains(e);
 		if(validEdge && e.getId().charAt(1) != 'J') {return edgeToRoad.get(e);}
