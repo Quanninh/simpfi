@@ -12,10 +12,14 @@ import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Lane;
+import com.simpfi.object.Phase;
 import com.simpfi.object.TrafficLight;
 
 import de.tudresden.sumo.cmd.Trafficlight;
 import de.tudresden.sumo.objects.SumoLink;
+import de.tudresden.sumo.objects.SumoTLSController;
+import de.tudresden.sumo.objects.SumoTLSPhase;
+import de.tudresden.sumo.objects.SumoTLSProgram;
 import de.tudresden.sumo.util.SumoCommand;
 import it.polito.appeal.traci.SumoTraciConnection;
 
@@ -31,6 +35,8 @@ public class TrafficLightController {
 	 * The live traffic light states which stores the states of all traffic lights.
 	 */
 	private static Map<String, String> liveTrafficLightStates = new HashMap<>();
+	
+	private static SumoTLSProgram prog;
 
 	/**
 	 * Instantiates a new traffic light controller.
@@ -42,6 +48,14 @@ public class TrafficLightController {
 		this.connection = conn.getConnection();
 		addConnectionToTrafficLight();
 	}
+
+	// Dedicated method to install a program
+    public void installProgram(String tlId, Phase[] myPhases) throws Exception {
+        for (Phase p : myPhases) {
+            prog.add(new SumoTLSPhase((int)p.getDuration(), p.getState()));
+        }
+        this.setCompleteTrafficLight(tlId, prog);
+    }
 
 	/**
 	 * Returns the ID list of all traffic lights.
@@ -73,9 +87,54 @@ public class TrafficLightController {
 	 * @throws Exception if the TraCI connection fails
 	 */
 	public void setDuration(String tlId, double duration) throws Exception {
-		connection.do_job_get(Trafficlight.setPhaseDuration(tlId, duration));
+		connection.do_job_set(Trafficlight.setPhaseDuration(tlId, duration));
+	}
+	
+	public void setCompleteTrafficLight(String tlId, SumoTLSProgram program) throws Exception {
+		connection.do_job_set(Trafficlight.setCompleteRedYellowGreenDefinition(tlId, program));
 	}
 
+	
+	
+	public void setPhase(String tlID, int index) throws Exception {
+		connection.do_job_set(Trafficlight.setPhase(tlID, index));
+	}
+	
+	/**
+	 * Sets the duration.
+	 *
+	 * @param tlId     the traffic light ID
+	 * @param duration the duration
+	 * @throws Exception if the TraCI connection fails
+	 */
+	public double  getDuration(String tlId) throws Exception {
+		return (Double)connection.do_job_get(Trafficlight.getPhaseDuration(tlId));
+	}
+	
+	/**
+	 * Sets the program.
+	 *
+	 * @param tlId     the traffic light ID
+	 * @param duration the duration
+	 * @throws Exception if the TraCI connection fails
+	 */
+	
+	// I am not sure about setting the name of the function. If it is confused, contact Khanh :)))
+	public String getProgramName(String tlId) throws Exception {
+		return (String)connection.do_job_get(Trafficlight.getProgram(tlId));
+	}
+	
+	public SumoTLSController getCompletedTrafficLightDefinition(String tlId) throws Exception {
+		return (SumoTLSController)connection.do_job_get(Trafficlight.getCompleteRedYellowGreenDefinition(tlId));
+	}
+	
+	
+	
+	public Integer getPhase(String tlID) throws Exception{
+		return (Integer) connection.do_job_get(Trafficlight.getPhase(tlID));
+	}
+	
+	
 	/**
 	 * Update the traffic light state.
 	 *
@@ -95,6 +154,7 @@ public class TrafficLightController {
 		return liveTrafficLightStates;
 	}
 
+	
 	/**
 	 * Returns the controlled links.
 	 *
@@ -138,7 +198,6 @@ public class TrafficLightController {
 				Connection connection = new Connection(fromLane, toLane);
 				connections.add(connection);
 			}
-
 			tl.setConnections(connections);
 		}
 

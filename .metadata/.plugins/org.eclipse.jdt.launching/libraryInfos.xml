@@ -13,6 +13,7 @@
     </libraryInfo>
     <libraryInfo home="/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home" version="21.0.1"/>
     <libraryInfo home="/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.aarch64_21.0.8.v20250724-1412/jre" version="21.0.8"/>
+    <libraryInfo home="C:\Program Files\Java\jdk-25" version="25"/>
     <libraryInfo home="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home" version="1.8.0_471">
         <bootpath>
             <entry path="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/resources.jar"/>
@@ -33,6 +34,18 @@
         </extensionDirs>
         <endorsedDirs>
             <entry path="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/endorsed"/>
+        </endorsedDirs>
+    </libraryInfo>
+    <libraryInfo home="C:\Users\khanh\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412\jre" version="21.0.8"/>
+    <libraryInfo home="C:\Users\khanh\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412" version="21.0.8">
+        <bootpath>
+            <entry path="null"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="null"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="null"/>
         </endorsedDirs>
     </libraryInfo>
 </libraryInfos>

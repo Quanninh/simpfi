@@ -71,7 +71,7 @@ public class MapPanel extends Panel {
 		}
 
 		for (Junction j : Settings.network.getJunctions()) {
-			drawObject(g2D, j);
+			drawObject(g2D, j, Constants.JUNCTION_COLOR);
 		}
 
 		// Draw the highlighted Route in a different color
@@ -87,8 +87,16 @@ public class MapPanel extends Panel {
 				e1.printStackTrace();
 			}
 		}
+		// Draw the highlighted Route in a different color
+		TrafficLight highlightedTrafficLight = TrafficLight.searchforTrafficLight(Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT, Settings.network.getTrafficLights());
+		drawObject(g2D, highlightedTrafficLight.getJunction(), Constants.HIGHLIGHTED_CONNECTION_COLOR);
+		
+		// Draw the highlighted Lane is a different color
+		Connection highlightedConnection = Connection.searchforConnection(Settings.config.HIGHLIGHTED_CONNECTION, highlightedTrafficLight.getConnections());
+		drawObject(g2D, highlightedConnection.getFromLane(), Constants.HIGHLIGHTED_CONNECTION_COLOR);
+		drawObject(g2D, highlightedConnection.getToLane(), Constants.HIGHLIGHTED_CONNECTION_COLOR);
 
-		for (Vehicle v : VehicleController.getVehicles()) {
+		for (Vehicle v : VehicleController.getVehicles()) {	
 			try {
 				drawObject(g2D, v);
 			} catch (Exception e) {
@@ -282,7 +290,7 @@ public class MapPanel extends Panel {
 	 * @param j the junction
 	 */
 	// Draw Junction
-	private void drawObject(Graphics2D g, Junction j) {
+	private void drawObject(Graphics2D g, Junction j, Color c) {
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 
 		Point[] shape = j.getShape();
@@ -301,7 +309,7 @@ public class MapPanel extends Panel {
 			yPoints[i] = (int) p.getY();
 		}
 
-		g.setColor(Constants.JUNCTION_COLOR);
+		g.setColor(c);
 		g.setStroke(new BasicStroke((float) (Constants.JUNCTION_STROKE_SIZE * Settings.config.SCALE)));
 
 		g.fillPolygon(xPoints, yPoints, size);

@@ -22,6 +22,9 @@ import com.simpfi.ui.panel.ProgramLightsPanel;
 import com.simpfi.ui.panel.StatisticsPanel;
 import com.simpfi.util.Point;
 
+import de.tudresden.sumo.objects.SumoTLSController;
+import de.tudresden.sumo.objects.SumoTLSProgram;
+
 /**
  * App Class as main application class contains the {@code main} function and is
  * used to run the software.
@@ -80,17 +83,28 @@ public class App {
 		SumoConnectionManager connection = null;
 		try {
 			connection = establishConnection();
-			generateUI(connection);
-
-			vehicleController = new VehicleController(connection);
+			
 			trafficLightController = new TrafficLightController(connection);
-
+			vehicleController = new VehicleController(connection);
+			
+			
+			generateUI(connection);
 			while (true) {
 				long next = System.currentTimeMillis() + stepMs;
 
 				doStep(connection);
 				retrieveData(connection);
 				injectPanel.setHighlightedRoute();
+				programLightPanel.setHighlightedIntersectionTrafficLight();
+				programLightPanel.setHighlightedConnection();
+//				programLightPanel.setHighlightedToLane();\
+				
+				// This one show the current index of phase in the real time 
+//				SumoTLSController tls = trafficLightController.getCompletedTrafficLightDefinition("J0");
+//				String programName = trafficLightController.getProgramName("J0");
+//				SumoTLSProgram prog = tls.get(programName);
+//				
+//				System.out.println(prog.currentPhaseIndex);
 				mapPanel.repaint();
 
 				long sleep = next - System.currentTimeMillis();
@@ -171,8 +185,9 @@ public class App {
 	 * Sets up the UI including panels and panes.
 	 *
 	 * @param conn the connection manager used by the UI
+	 * @throws Exception 
 	 */
-	private static void generateUI(SumoConnectionManager conn) {
+	private static void generateUI(SumoConnectionManager conn) throws Exception {
 		uiSetup();
 		Frame myFrame = new Frame();
 
@@ -181,7 +196,7 @@ public class App {
 		statisticsPanel = new StatisticsPanel();
 		injectPanel = new InjectPanel(conn);
 		mapViewPanel = new MapViewPanel();
-		programLightPanel = new ProgramLightsPanel();
+		programLightPanel = new ProgramLightsPanel(conn);
 		filterPanel = new FilterPanel(conn);
 		inspectPanel = new InspectPanel();
 

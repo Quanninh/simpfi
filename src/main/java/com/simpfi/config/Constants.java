@@ -108,5 +108,9 @@ public class Constants {
 	public static final Color LANE_DIVIDER_COLOR = Color.BLACK;
 	/** Color of the junction. */
 	public static final Color JUNCTION_COLOR = Color.BLACK;
+	/** Color of the highlighted Traffic Light. */
+	public static final Color HIGHLIGHTED_TRAFFIC_LIGHT_COLOR = Color.YELLOW;
+	/** Color of the highlighted Connection. */
+	public static final Color HIGHLIGHTED_CONNECTION_COLOR = Color.YELLOW;
 
 }

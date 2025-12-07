@@ -26,6 +26,10 @@ public class TextBox extends JTextField {
 		OFFSET_X,
 		/** Offset y. */
 		OFFSET_Y,
+		/** Duration */
+		DURATION,
+		/** State */
+		STATE
 	}
 
 	/** The Constant serialVersionUID. */
@@ -103,6 +107,9 @@ public class TextBox extends JTextField {
 			break;
 		case OFFSET_Y:
 			Settings.config.changeOffsetY(value);
+			break;
+		case DURATION:
+			Settings.config.changeDuration(value);
 			break;
 		default:
 			System.out.println("Unexpected TextBox");

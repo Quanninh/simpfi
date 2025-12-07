@@ -26,6 +26,18 @@ public class SimulationConfig {
 
 	/** The currently chosen route. */
 	public String HIGHLIGHTED_ROUTE = "";
+	
+	/** The currently chosen traffic light. */
+	public String HIGHLIGHTED_TRAFFIC_LIGHT = "";
+	
+	/** The currently chosen connection. */
+	public String HIGHLIGHTED_CONNECTION = "";
+	
+	/** The duration ... */
+	public double DURATION = 1;
+	
+	
+	
 
 	/**
 	 * Adds a value to the scale.
@@ -81,6 +93,11 @@ public class SimulationConfig {
 	 */
 	public void changeOffsetY(double newValue) {
 		OFFSET.setY(newValue);
+	}
+	
+	/** Replace the duration with a new duration*/
+	public void changeDuration(double newDuration) {
+		DURATION = newDuration;
 	}
 
 }
