@@ -3,13 +3,11 @@ package com.simpfi.ui.panel;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
 
 import com.simpfi.config.Settings;
-import com.simpfi.object.Edge;
 import com.simpfi.object.Road;
 import com.simpfi.object.VehicleType;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
@@ -18,11 +16,10 @@ import com.simpfi.ui.Label;
 import com.simpfi.ui.Panel;
 import com.simpfi.ui.ScrollPane;
 
-
 /**
  * A panel for filtering vehicles. This class extends {@link Panel}.
  */
-public class FilterPanel extends Panel implements MouseListener{
+public class FilterPanel extends Panel implements MouseListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -33,7 +30,7 @@ public class FilterPanel extends Panel implements MouseListener{
 	/** The list of edge checkboxes */
 	private CheckBox[] roadOptions;
 
-	/** 
+	/**
 	 * Instantiates a new filter panel.
 	 *
 	 * @param conn the connection manager (unused but kept for consistency)
@@ -78,7 +75,8 @@ public class FilterPanel extends Panel implements MouseListener{
 	}
 
 	/**
-	 * Method used to change the VehicleType's filterFlag state if its check box is toggled.
+	 * Method used to change the VehicleType's filterFlag state if its check box is
+	 * toggled.
 	 */
 	private void attachCheckboxListenersForVehicleTypes() {
 		for (CheckBox option : vehicleTypeOptions) {
@@ -96,21 +94,22 @@ public class FilterPanel extends Panel implements MouseListener{
 	}
 
 	// /**
-	//  * Method used to change the Edge's filterFlag state if its check box is toggled.
-	//  */
+	// * Method used to change the Edge's filterFlag state if its check box is
+	// toggled.
+	// */
 	// private void attachCheckboxListenersForEdges() {
-	// 	for (CheckBox edgeOption : edgeOptions) {
-	// 		edgeOption.onChange(e -> {
-	// 			boolean checked = edgeOption.isChecked();
-	// 			// Set flag on the Edge object
-	// 			for (Edge edge : Settings.network.getEdges()) {
-	// 				if (edge.getId().equals(edgeOption.getText())) {
-	// 					edge.setFilterFlag(checked);
-	// 					break;
-	// 				}
-	// 			}
-	// 		});
-	// 	}
+	// for (CheckBox edgeOption : edgeOptions) {
+	// edgeOption.onChange(e -> {
+	// boolean checked = edgeOption.isChecked();
+	// // Set flag on the Edge object
+	// for (Edge edge : Settings.network.getEdges()) {
+	// if (edge.getId().equals(edgeOption.getText())) {
+	// edge.setFilterFlag(checked);
+	// break;
+	// }
+	// }
+	// });
+	// }
 	// }
 
 	@Override
@@ -127,13 +126,16 @@ public class FilterPanel extends Panel implements MouseListener{
 	}
 
 	@Override
-    public void mouseClicked(MouseEvent e) {}
+	public void mouseClicked(MouseEvent e) {
+	}
 
-    @Override
-    public void mousePressed(MouseEvent e) {}
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
 
-    @Override
-    public void mouseReleased(MouseEvent e) {}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
 
 	/**
 	 * Returns all vehicles types as strings.

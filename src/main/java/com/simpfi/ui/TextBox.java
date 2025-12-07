@@ -48,7 +48,7 @@ public class TextBox extends JTextField {
 		this.setFont(Constants.FONT);
 
 		this.setText(valueTextBox(defaultValue));
-		this.setColumns(8);
+		this.setColumns(6);
 
 		Dimension preferedSize = this.getPreferredSize();
 		preferedSize.setSize(Short.MAX_VALUE, preferedSize.getHeight());

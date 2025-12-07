@@ -68,6 +68,8 @@ public class SimulationConfig {
 	public Color NORMAL_COLOR = Constants.DEFAULT_NORMAL_COLOR;
 	/** Color of the highlighted route. */
 	public Color HIGHLIGHTED_ROUTE_COLOR = Constants.DEFAULT_HIGHLIGHTED_ROUTE_COLOR;
+	/** Color of the highlighted edge. */
+	public Color HIGHLIGHTED_ROAD_FILTER_COLOR = Color.ORANGE;
 	/** Color of the lane. */
 	public Color LANE_COLOR = Constants.DEFAULT_LANE_COLOR;
 	/** Color of the lane divider. */
@@ -132,6 +134,20 @@ public class SimulationConfig {
 	 */
 	public void changeOffsetY(double newValue) {
 		OFFSET.setY(newValue);
+	}
+
+	public void resetColorDefaults() {
+		NORMAL_VEHICLE_COLOR = Constants.DEFAULT_NORMAL_VEHICLE_COLOR;
+		TRUCK_COLOR = Constants.DEFAULT_TRUCK_COLOR;
+		BUS_COLOR = Constants.DEFAULT_BUS_COLOR;
+		MOTORCYCLE_COLOR = Constants.DEFAULT_MOTORCYCLE_COLOR;
+		EMERGENCY_COLOR = Constants.DEFAULT_EMERGENCY_COLOR;
+		NORMAL_COLOR = Constants.DEFAULT_NORMAL_COLOR;
+		HIGHLIGHTED_ROUTE_COLOR = Constants.DEFAULT_HIGHLIGHTED_ROUTE_COLOR;
+		HIGHLIGHTED_ROAD_FILTER_COLOR = Color.ORANGE;
+		LANE_COLOR = Constants.DEFAULT_LANE_COLOR;
+		LANE_DIVIDER_COLOR = Constants.DEFAULT_LANE_DIVIDER_COLOR;
+		JUNCTION_COLOR = Constants.DEFAULT_JUNCTION_COLOR;
 	}
 
 }

@@ -15,7 +15,6 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
@@ -83,7 +82,7 @@ public class MapPanel extends Panel {
 		Road highlightedRoad = Road.searchForRoad(Settings.config.HIGHLIGHTED_ROAD_FILTER, Settings.network.getRoads());
 		if (highlightedRoad != null) {
 			for (Edge e : highlightedRoad.getEdgesWithSameBaseName()) {
-				drawObject(g2D, e, Constants.HIGHLIGHTED_ROAD_FILTER_COLOR);
+				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROAD_FILTER_COLOR);
 			}
 		}
 
