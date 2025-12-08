@@ -15,7 +15,6 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
@@ -70,17 +69,19 @@ public class MapPanel extends Panel {
 		}
 
 		for (Junction j : Settings.network.getJunctions()) {
-			drawObject(g2D, j, Constants.JUNCTION_COLOR);
+			drawObject(g2D, j, Settings.config.JUNCTION_COLOR);
 		}
 
 		// Draw the highlighted Route in a different color
-		Route highlightedRoute = Route.searchForRoute(Settings.config.HIGHLIGHTED_ROUTE, Settings.network.getRoutes());
+		Route highlightedRoute = Route.searchForRoute(Settings.highlight.HIGHLIGHTED_ROUTE,
+			Settings.network.getRoutes());
 		for (Edge e : highlightedRoute.getEdges()) {
 			drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
 		}
 
 		// Draw the highlighted Road (filter hover) in a different color (if any)
-		Road highlightedRoad = Road.searchForRoad(Settings.config.HIGHLIGHTED_ROAD_FILTER, Settings.network.getRoads());
+		Road highlightedRoad = Road.searchForRoad(Settings.highlight.HIGHLIGHTED_ROAD_FILTER,
+			Settings.network.getRoads());
 		if (highlightedRoad != null) {
 			for (Edge e : highlightedRoad.getEdgesWithSameBaseName()) {
 				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROAD_FILTER_COLOR);
@@ -94,16 +95,17 @@ public class MapPanel extends Panel {
 				e1.printStackTrace();
 			}
 		}
-		// Draw the highlighted Route in a different color
-		TrafficLight highlightedTrafficLight = TrafficLight.searchforTrafficLight(Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT, Settings.network.getTrafficLights());
-		drawObject(g2D, highlightedTrafficLight.getJunction(), Constants.HIGHLIGHTED_CONNECTION_COLOR);
-		
-		// Draw the highlighted Lane is a different color
-		Connection highlightedConnection = Connection.searchforConnection(Settings.config.HIGHLIGHTED_CONNECTION, highlightedTrafficLight.getConnections());
-		drawObject(g2D, highlightedConnection.getFromLane(), Constants.HIGHLIGHTED_CONNECTION_COLOR);
-		drawObject(g2D, highlightedConnection.getToLane(), Constants.HIGHLIGHTED_CONNECTION_COLOR);
 
-		for (Vehicle v : VehicleController.getVehicles()) {	
+		TrafficLight highlightedTrafficLight = TrafficLight
+			.searchforTrafficLight(Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT, Settings.network.getTrafficLights());
+		Connection highlightedConnection = Connection.searchforConnection(Settings.highlight.HIGHLIGHTED_CONNECTION,
+			highlightedTrafficLight.getConnections());
+
+		drawObject(g2D, highlightedConnection.getFromLane(), Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+		drawObject(g2D, highlightedConnection.getToLane(), Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+		drawObject(g2D, highlightedTrafficLight.getJunction(), Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+
+		for (Vehicle v : VehicleController.getVehicles()) {
 			try {
 				drawObject(g2D, v);
 			} catch (Exception e) {
@@ -130,7 +132,7 @@ public class MapPanel extends Panel {
 		}
 
 		// We don't draw vehicles which run on unselected roads
-		if(v.getRoadID() != null && v.getRoadID().charAt(1) != 'J'){
+		if (v.getRoadID() != null && v.getRoadID().charAt(1) != 'J') {
 			Road road = Settings.network.getRoadFromEdge(v.getEdgeFromRoadID());
 			if (road != null && !road.getFilterFlag()) {
 				return;

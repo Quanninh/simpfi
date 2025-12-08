@@ -1,6 +1,3 @@
-/*
- * 
- */
 package com.simpfi.sumo.wrapper;
 
 import java.util.ArrayList;
@@ -101,27 +98,10 @@ public class TrafficLightController {
 		connection.do_job_set(Trafficlight.setPhase(tlID, index));
 	}
 
-	/**
-	 * Sets the duration.
-	 *
-	 * @param tlId     the traffic light ID
-	 * @param duration the duration
-	 * @throws Exception if the TraCI connection fails
-	 */
 	public double getDuration(String tlId) throws Exception {
 		return (Double) connection.do_job_get(Trafficlight.getPhaseDuration(tlId));
 	}
 
-	/**
-	 * Sets the program.
-	 *
-	 * @param tlId     the traffic light ID
-	 * @param duration the duration
-	 * @throws Exception if the TraCI connection fails
-	 */
-
-	// I am not sure about setting the name of the function. If it is confused,
-	// contact Khanh :)))
 	public String getProgramName(String tlId) throws Exception {
 		return (String) connection.do_job_get(Trafficlight.getProgram(tlId));
 	}
@@ -155,7 +135,6 @@ public class TrafficLightController {
 
 	/**
 	 * Returns the controlled links.
-	 *
 	 * 
 	 * @param tlId the traffic light id which can be specify via junction id
 	 * @return a list of class SumoLink, which is from

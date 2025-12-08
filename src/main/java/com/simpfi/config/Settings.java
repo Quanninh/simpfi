@@ -15,4 +15,7 @@ public class Settings {
 	/** Network properties. */
 	public static Network network = new Network();
 
+	/** Highlighted Stuff. */
+	public static Highlighted highlight = new Highlighted();
+
 }

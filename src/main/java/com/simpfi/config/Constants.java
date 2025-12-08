@@ -116,16 +116,15 @@ public class Constants {
 	public static final Color DEFAULT_HIGHLIGHTED_ROUTE_COLOR = Color.PINK;
 	/** Color of the highlighted edge. */
 	public static final Color DEFAULT_HIGHLIGHTED_ROAD_FILTER_COLOR = Color.ORANGE;
+	/** Color of the highlighted Traffic Light. */
+	public static final Color DEFAULT_HIGHLIGHTED_TRAFFIC_LIGHT_COLOR = Color.YELLOW;
+	/** Color of the highlighted Connection. */
+	public static final Color DEFAULT_HIGHLIGHTED_CONNECTION_COLOR = Color.YELLOW;
 	/** Color of the lane. */
 	public static final Color DEFAULT_LANE_COLOR = Color.BLACK;
 	/** Color of the lane divider. */
 	public static final Color DEFAULT_LANE_DIVIDER_COLOR = Color.BLACK;
 	/** Color of the junction. */
-	public static final Color JUNCTION_COLOR = Color.BLACK;
-	/** Color of the highlighted Traffic Light. */
-	public static final Color HIGHLIGHTED_TRAFFIC_LIGHT_COLOR = Color.YELLOW;
-	/** Color of the highlighted Connection. */
-	public static final Color HIGHLIGHTED_CONNECTION_COLOR = Color.YELLOW;
 	public static final Color DEFAULT_JUNCTION_COLOR = Color.BLACK;
 
 }

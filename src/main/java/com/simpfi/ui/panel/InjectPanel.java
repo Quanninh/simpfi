@@ -1,6 +1,5 @@
 package com.simpfi.ui.panel;
 
-import java.awt.Component;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -12,7 +11,6 @@ import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.VehicleController;
 import com.simpfi.ui.Button;
 import com.simpfi.ui.Dropdown;
-import com.simpfi.ui.Label;
 import com.simpfi.ui.Panel;
 
 /**
@@ -42,15 +40,14 @@ public class InjectPanel extends Panel {
 		String[] vehicleTypes = getAllVehiclesTypesAsStrings();
 		String[] routeIds = getAllRouteIdsAsStrings();
 
-		vehicleTypeDropdown = createDropdownWithLabel("Vehicle Type:", vehicleTypes);
-		routeDropdown = createDropdownWithLabel("Route:", routeIds);
+		vehicleTypeDropdown = Dropdown.createDropdownWithLabel("Vehicle Type:", vehicleTypes, this);
+		routeDropdown = Dropdown.createDropdownWithLabel("Route:", routeIds, this);
 
 		vehicleController = new VehicleController(conn);
 
 		Button addVehicleBtn = new Button("Adding vehicle");
 		addVehicleBtn.addActionListener(e -> addVehicle());
 
-		addVehicleBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.add(addVehicleBtn);
 	}
 
@@ -59,7 +56,7 @@ public class InjectPanel extends Panel {
 	 * chosen route in the dropdown.
 	 */
 	public void setHighlightedRoute() {
-		Settings.config.HIGHLIGHTED_ROUTE = (String) routeDropdown.getSelectedItem();
+		Settings.highlight.HIGHLIGHTED_ROUTE = (String) routeDropdown.getSelectedItem();
 	}
 
 	/**
@@ -74,23 +71,6 @@ public class InjectPanel extends Panel {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-	}
-
-	/**
-	 * Creates a dropdown along with a label.
-	 *
-	 * @param label the label text
-	 * @param items the items
-	 * @return the dropdown
-	 */
-	private Dropdown<String> createDropdownWithLabel(String label, String[] items) {
-		this.add(new Label(label));
-
-		Dropdown<String> dropdown = new Dropdown<String>(items);
-		dropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
-		this.add(dropdown);
-
-		return dropdown;
 	}
 
 	/**

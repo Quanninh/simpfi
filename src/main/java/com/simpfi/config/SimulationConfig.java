@@ -11,9 +11,6 @@ import com.simpfi.util.Point;
  */
 public class SimulationConfig {
 
-	/** The currently chosen route. */
-	public String HIGHLIGHTED_ROUTE = "";
-
 	/** Scale of the map. */
 	public double SCALE = Constants.DEFAULT_SCALE;
 
@@ -26,23 +23,16 @@ public class SimulationConfig {
 	/** How fast the simulation is running */
 	public double SIMULATION_SPEED = Constants.DEFAULT_SIMULATION_SPEED;
 
-	/**
-	 * ***************************************************************************
-	 * MAP DRAWING Configurations needed for drawing of map
-	 * ***************************************************************************.
-	 */
-
-	
-	/** The currently chosen traffic light. */
-	public String HIGHLIGHTED_TRAFFIC_LIGHT = "";
-	
-	/** The currently chosen connection. */
-	public String HIGHLIGHTED_CONNECTION = "";
-	
 	// I will change it in the future, it should not in this
 	/** The duration ... */
 	public double DURATION = 1;
-	
+
+	/**
+	 * ***************************************************************************
+	 * MAP DRAWING Configurations needed for drawing of map
+	 * ***************************************************************************
+	 */
+
 	/** Thin stroke size for all other elements. */
 	public double NORMAL_STROKE_SIZE = Constants.DEFAULT_NORMAL_STROKE_SIZE;
 	/** Stroke size for drawing lanes so that they fit and have no gaps. */
@@ -80,16 +70,17 @@ public class SimulationConfig {
 	/** Color of the highlighted route. */
 	public Color HIGHLIGHTED_ROUTE_COLOR = Constants.DEFAULT_HIGHLIGHTED_ROUTE_COLOR;
 	/** Color of the highlighted edge. */
-	public Color HIGHLIGHTED_ROAD_FILTER_COLOR = Color.ORANGE;
+	public Color HIGHLIGHTED_ROAD_FILTER_COLOR = Constants.DEFAULT_HIGHLIGHTED_ROAD_FILTER_COLOR;
+	/** Color of the highlighted Traffic Light. */
+	public Color HIGHLIGHTED_TRAFFIC_LIGHT_COLOR = Constants.DEFAULT_HIGHLIGHTED_TRAFFIC_LIGHT_COLOR;
+	/** Color of the highlighted Connection. */
+	public Color HIGHLIGHTED_CONNECTION_COLOR = Constants.DEFAULT_HIGHLIGHTED_CONNECTION_COLOR;
 	/** Color of the lane. */
 	public Color LANE_COLOR = Constants.DEFAULT_LANE_COLOR;
 	/** Color of the lane divider. */
 	public Color LANE_DIVIDER_COLOR = Constants.DEFAULT_LANE_DIVIDER_COLOR;
 	/** Color of the junction. */
 	public Color JUNCTION_COLOR = Constants.DEFAULT_JUNCTION_COLOR;
-
-	/** The currently chosen edge when entering the mouse (for filter panel). */
-	public String HIGHLIGHTED_ROAD_FILTER = "";
 
 	/**
 	 * Adds a value to the scale.
@@ -146,8 +137,8 @@ public class SimulationConfig {
 	public void changeOffsetY(double newValue) {
 		OFFSET.setY(newValue);
 	}
-	
-	/** Replace the duration with a new duration*/
+
+	/** Replace the duration with a new duration */
 	public void changeDuration(double newDuration) {
 		DURATION = newDuration;
 	}

@@ -250,15 +250,6 @@ public class App {
 		}
 	}
 
-	// /**
-	// * Public helper to request a map repaint from other UI components.
-	// */
-	// public static void repaintMap() {
-	// if (mapPanel != null) {
-	// mapPanel.repaint();
-	// }
-	// }
-
 	/**
 	 * Sets up the UI including panels and panes.
 	 *
@@ -275,7 +266,7 @@ public class App {
 		injectPanel = new InjectPanel(conn);
 		mapViewPanel = new MapViewPanel();
 		programLightPanel = new ProgramLightsPanel(conn);
-		filterPanel = new FilterPanel(conn);
+		filterPanel = new FilterPanel();
 		inspectPanel = new InspectPanel();
 
 		sidePane = new TabbedPane();

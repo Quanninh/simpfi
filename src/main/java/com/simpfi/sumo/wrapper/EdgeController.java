@@ -9,37 +9,35 @@ import com.simpfi.object.Road;
 
 import it.polito.appeal.traci.SumoTraciConnection;
 
-// This will be implemented once we come to Statistics part
-
 /**
  * Wrapper Class for {@link de.tudresden.sumo.cmd.Edge}.
  */
-public class EdgeController{
+public class EdgeController {
 
-    /** The connection to SUMO. */
+	/** The connection to SUMO. */
 	private SumoTraciConnection connection;
 
-    /** Hash map for mapping Edge ID list of its sub-edges with suffixes (if any) */
+	/** Hash map for mapping Edge ID list of its sub-edges with suffixes (if any) */
 	Map<Edge, Road> edgeMap = new HashMap<>();
 
-    /**
+	/**
 	 * Instantiates a new edge controller.
 	 *
 	 * @param conn the connection to SUMO
 	 */
-    public EdgeController(SumoConnectionManager conn){
-        this.connection = conn.getConnection();
-    }
+	public EdgeController(SumoConnectionManager conn) {
+		this.connection = conn.getConnection();
+	}
 
-    /** Get all edge ids on the network */
-    @SuppressWarnings("unchecked")
-    public List<String> getEdgeIDs() throws Exception{
-        return (List<String>) connection.do_job_get(de.tudresden.sumo.cmd.Edge.getIDList()); 
-    }
+	/** Get all edge ids on the network */
+	@SuppressWarnings("unchecked")
+	public List<String> getEdgeIDs() throws Exception {
+		return (List<String>) connection.do_job_get(de.tudresden.sumo.cmd.Edge.getIDList());
+	}
 
-    /** Get the number of vehicles currently on a specific edge*/
-    public int getEdgeVehicleCount(String edgeID) throws Exception{
-        return (Integer) connection.do_job_get(de.tudresden.sumo.cmd.Edge.getLastStepVehicleNumber(edgeID));
-    }    
-    
+	/** Get the number of vehicles currently on a specific edge */
+	public int getEdgeVehicleCount(String edgeID) throws Exception {
+		return (Integer) connection.do_job_get(de.tudresden.sumo.cmd.Edge.getLastStepVehicleNumber(edgeID));
+	}
+
 }

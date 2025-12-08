@@ -15,7 +15,6 @@ public class ScrollPane extends JScrollPane {
 		// Create inner panel
 		contentPanel = new Panel();
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-		// contentPanel.setPreferredSize(new Dimension(200, 300));
 
 		// Set content panel as viewport
 		setViewportView(contentPanel);

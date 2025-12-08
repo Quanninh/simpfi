@@ -125,12 +125,12 @@ public class MapViewPanel extends Panel {
 		textboxes.add(vehicleUpscaleTextbox);
 
 		TextBox scaleStepTextbox = createTextboxWithLabel("Scale Step", scrollPane, Constants.DEFAULT_SCALE_STEP, true,
-			true, "When zooming, how much of scale is changed each time.");
+			true, "When zooming with keyboard, how much of scale is changed each time.");
 		scaleStepTextbox.attachListener(value -> Settings.config.SCALE_STEP = Double.parseDouble(value));
 		textboxes.add(scaleStepTextbox);
 
 		TextBox offsetStepTextbox = createTextboxWithLabel("Offset Step", scrollPane, Constants.DEFAULT_OFFSET_STEP,
-			true, true, "When moving map, how much of map is moved each time.");
+			true, true, "When moving map with arrow keys, how much of map is moved each time.");
 		offsetStepTextbox.attachListener(value -> Settings.config.OFFSET_STEP = Double.parseDouble(value));
 		textboxes.add(offsetStepTextbox);
 
@@ -208,6 +208,24 @@ public class MapViewPanel extends Panel {
 		});
 		scrollPane.addItem(highlightedRoadFilterColorButton);
 		buttons.add(highlightedRoadFilterColorButton);
+
+		Button highlightedTrafficLightColorButton = new Button("Highlighted Traffic Light Color");
+		highlightedTrafficLightColorButton.addActionListener(e -> {
+			Color color = JColorChooser.showDialog(null, "Color of the highlighted traffic light.",
+				Constants.DEFAULT_HIGHLIGHTED_TRAFFIC_LIGHT_COLOR);
+			Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT_COLOR = color;
+		});
+		scrollPane.addItem(highlightedTrafficLightColorButton);
+		buttons.add(highlightedTrafficLightColorButton);
+
+		Button highlightedConnectionColorButton = new Button("Highlighted Connection Color");
+		highlightedConnectionColorButton.addActionListener(e -> {
+			Color color = JColorChooser.showDialog(null, "Color of the highlighted connection.",
+				Constants.DEFAULT_HIGHLIGHTED_CONNECTION_COLOR);
+			Settings.config.HIGHLIGHTED_CONNECTION_COLOR = color;
+		});
+		scrollPane.addItem(highlightedConnectionColorButton);
+		buttons.add(highlightedConnectionColorButton);
 
 		Button laneColorButton = new Button("Lane Color");
 		laneColorButton.addActionListener(e -> {

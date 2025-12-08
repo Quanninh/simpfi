@@ -18,20 +18,20 @@ import com.simpfi.config.Constants;
 public class TextBox extends JTextField {
 
 	/**
-	 * The Enum SettingsType.
+	 * The Enum SettingsType. //
 	 */
-	public enum SettingsType {
-		/** Scale. */
-		SCALE,
-		/** Offset x. */
-		OFFSET_X,
-		/** Offset y. */
-		OFFSET_Y,
-		/** Duration */
-		DURATION,
-		/** State */
-		STATE
-	}
+	// public enum SettingsType {
+	// /** Scale. */
+	// SCALE,
+	// /** Offset x. */
+	// OFFSET_X,
+	// /** Offset y. */
+	// OFFSET_Y,
+	// /** Duration */
+	// DURATION,
+	// /** State */
+	// STATE
+	// }
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -71,7 +71,7 @@ public class TextBox extends JTextField {
 		this.setMaximumSize(preferedSize);
 	}
 
-	private String getTextboxValue() {
+	public String getTextboxValue() {
 		if (!mustBeDouble) {
 			return getText();
 		}

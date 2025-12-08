@@ -7,8 +7,8 @@ import javax.swing.JCheckBox;
 import com.simpfi.config.Constants;
 
 /**
- * Custom CheckBox class that inherits {@link javax.swing.JCheckBox}.
- * Used to represent a checkbox in the map.
+ * Custom CheckBox class that inherits {@link javax.swing.JCheckBox}. Used to
+ * represent a checkbox in the map.
  */
 public class CheckBox extends JCheckBox {
 
@@ -18,20 +18,14 @@ public class CheckBox extends JCheckBox {
 	/**
 	 * Constructor used to create a check box with a given text and a checked state.
 	 * 
-	 * @param text the text goes with the check box
+	 * @param text     the text goes with the check box
 	 * @param selected boolean value whether the box is ticked or not
 	 */
 	public CheckBox(String text, boolean selected) {
 		super(text, selected);
-		init();
-	}
-
-	/**Some settings for the checkboxes to appear more attractively on the user interface.*/
-	private void init() {
 		this.setFont(Constants.FONT);
-        this.setFocusable(false);
+		this.setFocusable(false);
 	}
-
 
 	/**
 	 * Method used to set the state of the check box.
@@ -41,7 +35,6 @@ public class CheckBox extends JCheckBox {
 	public void setChecked(boolean checked) {
 		this.setSelected(checked);
 	}
-
 
 	/**
 	 * Returns the state of the check box.
