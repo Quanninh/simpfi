@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 
+import com.simpfi.App;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Lane;
@@ -13,6 +14,7 @@ import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.ui.Button;
 import com.simpfi.ui.Dropdown;
+import com.simpfi.ui.Label;
 import com.simpfi.ui.Panel;
 import com.simpfi.ui.TextBox;
 
@@ -37,14 +39,18 @@ public class ProgramLightsPanel extends Panel {
 	private Dropdown<String> connectionDropDown;
 	/** The drop down contain a list of all incoming fromLane string. */
 	private Dropdown<String> phaseDropDown;
+	
+	private Label remainingTimeLabel;
 
 	/** The list of all connections. */
 	private String[] allStringConnection;
 	/** The list of all phases. */
 	private String[] allPhaseString;
 
-	private String userJunctionId = "J0";
+	private String userTrafficLightJunctionId = "J0";
 	private int phaseUserChoose = 0;
+	// I am not sure I need to using it, I mean this one can help me make the clean code
+	private double remainingDuration;
 
 	public ProgramLightsPanel(SumoConnectionManager conn) throws Exception {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -57,8 +63,13 @@ public class ProgramLightsPanel extends Panel {
 		String firstJunctionIDs = allTLJunctionIDs[0];
 		List<Connection> allConnections = getAllConnection(firstJunctionIDs);
 		allStringConnection = getAllStringConnection(allConnections);
+		remainingTimeLabel = new Label("Remaining Time: --");
+		this.add(remainingTimeLabel);
 
 		generateDropdowns(allTLJunctionIDs, firstJunctionIDs);
+//		double currentTime = App.step * Settings.config.TIMESTEP;
+//		remainingDuration = showRemainingDuration(userTrafficLightJunctionId, phaseUserChoose, currentTime);
+//		System.out.println("Traffic Light " + userTrafficLightJunctionId + " Phase " + currentPhase + " remaining time: " + remainingDuration);
 		generateButtons();
 	}
 
@@ -68,10 +79,10 @@ public class ProgramLightsPanel extends Panel {
 		phaseDropDown = Dropdown.createDropdownWithLabel("Phase", getAllPhaseString(firstJunctionIDs), this);
 
 		tlJunctionDropDown.addActionListener(e -> {
-			userJunctionId = (String) tlJunctionDropDown.getSelectedItem();
-			showAllLane(userJunctionId);
+			userTrafficLightJunctionId = (String) tlJunctionDropDown.getSelectedItem();
+			showAllLane(userTrafficLightJunctionId);
 			try {
-				showAllPhase(userJunctionId);
+				showAllPhase(userTrafficLightJunctionId);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -93,7 +104,7 @@ public class ProgramLightsPanel extends Panel {
 		Button showInformationOfTrafficLightButton = new Button("Show Information");
 		showInformationOfTrafficLightButton.addActionListener(e -> {
 			try {
-				showInformationTrafficLight(userJunctionId);
+				showInformationTrafficLight(userTrafficLightJunctionId);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -103,7 +114,7 @@ public class ProgramLightsPanel extends Panel {
 		Button applySwitchPhaseButton = new Button("Switch Phase");
 		applySwitchPhaseButton.addActionListener(e -> {
 			try {
-				applySwitchPhaseListener(userJunctionId);
+				applySwitchPhaseListener(userTrafficLightJunctionId);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -116,7 +127,7 @@ public class ProgramLightsPanel extends Panel {
 		Button applyChangeDurationPhaseButton = new Button("Change Duration");
 		applyChangeDurationPhaseButton.addActionListener(e -> {
 			try {
-				applyChangeDuration(userJunctionId, phaseUserChoose,
+				applyChangeDuration(userTrafficLightJunctionId, phaseUserChoose,
 					Double.parseDouble(durationTextBox.getTextboxValue()));
 			} catch (Exception e1) {
 				e1.printStackTrace();
@@ -265,6 +276,7 @@ public class ProgramLightsPanel extends Panel {
 	}
 
 	public void applyChangeDuration(String trafficLightID, int phaseNumber, double duration) throws Exception {
+		// In the future I will make a class get duration with parameter phaseNumber and trafficLightID
 		SumoTLSProgram program = this.getProgramFromTrafficLight(trafficLightID);
 
 		ArrayList<SumoTLSPhase> listOfPhases = program.phases;
@@ -273,4 +285,25 @@ public class ProgramLightsPanel extends Panel {
 
 		trafficLightController.setCompleteTrafficLight(trafficLightID, program);
 	}
+	
+	public Double showRemainingDuration(String trafficLightID, double currentTime) throws Exception {
+		// In the future I will make a class get duration with parameter phaseNumber and trafficLightID
+		double nextSwitch = trafficLightController.getNextSwitch(trafficLightID);
+		return nextSwitch - currentTime;
+	}
+	
+	public void updateRemainingTime(String trafficLightID, int phaseIndex, double remaingTime) {
+	    remainingTimeLabel.setText(String.format("[TL %s] Phase %d remaining: %.2f", trafficLightID, phaseIndex, remaingTime));
+	}
+
+	
+	// Using just for testing the duration in app java
+	public String getSelectedTrafficLightID() {
+	    return userTrafficLightJunctionId;
+	}
+
+	public int getSelectedPhase() {
+	    return phaseUserChoose;
+	}
+
 }

@@ -73,6 +73,9 @@ public class App {
 
 	/** The side pane. */
 	static TabbedPane sidePane;
+	
+	/** The step. */
+	public static int step;
 
 	/**
 	 * Main function and starting point of application. Sets up TraCI connection,
@@ -153,7 +156,7 @@ public class App {
 	/** Background simulation thread */
 	private static void startSimulationThread(SumoConnectionManager conn, TrafficStatistics stats) {
 		new Thread(() -> {
-			int step = 0;
+			step = 0;
 			long stepMs = (long) (Settings.config.TIMESTEP * 1000);
 
 			// int flag = 0;
@@ -165,25 +168,22 @@ public class App {
 					retrieveData(conn);
 					stats.update(step);
 
+		            String tlId = programLightPanel.getSelectedTrafficLightID();
+		            int currentPhase = trafficLightController.getPhase(tlId);
+		            double currentTime = step * Settings.config.TIMESTEP;
+
+		            
+		            Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
+
 					injectPanel.setHighlightedRoute();
 					programLightPanel.setHighlightedIntersectionTrafficLight();
-					programLightPanel.setHighlightedConnection();
-					// programLightPanel.setHighlightedToLane();\
-
-					// This one show the current index of phase in the real time
-					// SumoTLSController tls =
-					// trafficLightController.getCompletedTrafficLightDefinition("J0");
-					// String programName = trafficLightController.getProgramName("J0");
-					// SumoTLSProgram prog = tls.get(programName);
-					//
-					// System.out.println(prog.currentPhaseIndex);
-					// System.out.println(trafficLightController.getPhase("J0"));
-					// mapPanel.repaint();
+					programLightPanel.setHighlightedConnection();	
 					final int currentStep = step;
 
 					// Update UI on Swing EDT
 					SwingUtilities.invokeLater(() -> {
 						statisticsPanel.updatePanel(currentStep);
+						programLightPanel.updateRemainingTime(tlId, currentPhase, remaining);
 						injectPanel.setHighlightedRoute();
 						mapPanel.repaint();
 					});
