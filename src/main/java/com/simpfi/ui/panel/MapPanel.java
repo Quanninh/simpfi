@@ -88,14 +88,6 @@ public class MapPanel extends Panel {
 			}
 		}
 
-		for (TrafficLight tl : Settings.network.getTrafficLights()) {
-			try {
-				drawObject(g2D, tl);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		}
-
 		TrafficLight highlightedTrafficLight = TrafficLight
 			.searchforTrafficLight(Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT, Settings.network.getTrafficLights());
 		Connection highlightedConnection = Connection.searchforConnection(Settings.highlight.HIGHLIGHTED_CONNECTION,
@@ -104,6 +96,14 @@ public class MapPanel extends Panel {
 		drawObject(g2D, highlightedConnection.getFromLane(), Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
 		drawObject(g2D, highlightedConnection.getToLane(), Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
 		drawObject(g2D, highlightedTrafficLight.getJunction(), Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+
+		for (TrafficLight tl : Settings.network.getTrafficLights()) {
+			try {
+				drawObject(g2D, tl);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
 
 		for (Vehicle v : VehicleController.getVehicles()) {
 			try {
