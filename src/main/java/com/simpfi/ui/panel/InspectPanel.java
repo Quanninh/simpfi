@@ -44,12 +44,25 @@ import com.simpfi.ui.Panel;
 
 public class InspectPanel extends Panel {
 
+    private final VehicleController vehicleController;
+
+    // Aktuell inspiziertes Fahrzeug
+    private String currentVehicleId;
+
+    // UI-Felder
+    private JTextField speedField;
+    private JTextField maxSpeedField;
+    private JTextField accelField;
+    private JLabel modeLabel;
+
     enum Mode {
         PanMODE, SelectMODE
     }
-    private JLabel modeLabel;
     private Mode currentMode = Mode.PanMODE;
 
+   //  public InspectPanel(SumoConnectionManager conn){
+    //   this.vehicleController = new VehicleController(conn);
+   // }
 
 
 	/** The Constant serialVersionUID. */
