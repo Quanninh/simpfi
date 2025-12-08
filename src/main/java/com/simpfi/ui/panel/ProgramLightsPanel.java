@@ -69,9 +69,9 @@ public class ProgramLightsPanel extends Panel {
 
 		tlJunctionDropDown.addActionListener(e -> {
 			userJunctionId = (String) tlJunctionDropDown.getSelectedItem();
-			showLaneInformation(userJunctionId);
+			showAllLane(userJunctionId);
 			try {
-				showPhaseInformation(userJunctionId);
+				showAllPhase(userJunctionId);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -90,6 +90,16 @@ public class ProgramLightsPanel extends Panel {
 	}
 
 	private void generateButtons() {
+		Button showInformationOfTrafficLightButton = new Button("Show Information");
+		showInformationOfTrafficLightButton.addActionListener(e -> {
+			try {
+				showInformationTrafficLight(userJunctionId);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		this.add(showInformationOfTrafficLightButton);
 		Button applySwitchPhaseButton = new Button("Switch Phase");
 		applySwitchPhaseButton.addActionListener(e -> {
 			try {
@@ -159,10 +169,12 @@ public class ProgramLightsPanel extends Panel {
 	// return allFromLaneID;
 	// }
 
+	// I will delete it in the future
 	public String[] getAllStringConnection(List<Connection> allConnections) {
 		String[] allStringConnection = new String[allConnections.size()];
 		for (int i = 0; i < allConnections.size(); i++) {
 			allStringConnection[i] = allConnections.get(i).getFromLane().getLaneId();
+//			System.out.println(allConnections.get(i).getFromLane().getLaneId() + " " + allConnections.get(i).getToLane().getLaneId());
 		}
 		return allStringConnection;
 	}
@@ -185,7 +197,8 @@ public class ProgramLightsPanel extends Panel {
 		return allPhaseNumber;
 	}
 
-	public void showLaneInformation(String JunctionID) {
+	// Will be delete in the future
+	public void showAllLane(String JunctionID) {
 		List<Connection> allConnections = getAllConnection(JunctionID);
 		allStringConnection = getAllStringConnection(allConnections);
 
@@ -195,7 +208,7 @@ public class ProgramLightsPanel extends Panel {
 		}
 	}
 
-	public void showPhaseInformation(String JunctionID) throws Exception {
+	public void showAllPhase(String JunctionID) throws Exception {
 		allPhaseString = this.getAllPhaseString(JunctionID);
 
 		phaseDropDown.removeAllItems();
@@ -215,6 +228,24 @@ public class ProgramLightsPanel extends Panel {
 		}
 
 		return 0;
+	}
+	
+	public void showInformationTrafficLight(String trafficLightID) throws Exception {
+		List<Connection> allConnections = getAllConnection(trafficLightID);
+		allStringConnection = getAllStringConnection(allConnections);
+		
+		//Insert current Phase
+		SumoTLSProgram program = this.getProgramFromTrafficLight(trafficLightID);
+		Integer currentPhaseIndex = program.currentPhaseIndex;
+		SumoTLSPhase phase = program.phases.get(currentPhaseIndex);
+		
+		for (int i = 0; i < allConnections.size(); i++) {
+			String fromLaneID = allConnections.get(i).getFromLane().getLaneId();
+			String toLaneID = allConnections.get(i).getToLane().getLaneId();
+			char signal = getStateofLane(allConnections, fromLaneID, phase);
+			System.out.println(fromLaneID + " to " + toLaneID + " " + signal);
+		}
+		System.out.println("Finished ");
 	}
 
 	public SumoTLSProgram getProgramFromTrafficLight(String trafficLightID) throws Exception {
