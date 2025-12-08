@@ -2,8 +2,8 @@ package com.simpfi.ui.panel;
 
 import java.util.List;
 
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
+import javax.swing.*;
+import javax.swing.JTextField;
 
 import com.simpfi.config.Settings;
 import com.simpfi.object.Route;
@@ -44,7 +44,13 @@ import com.simpfi.ui.Panel;
 
 public class InspectPanel extends Panel {
 
+    enum Mode {
+        PanMODE, SelectMODE
+    }
     private JLabel modeLabel;
+    private Mode currentMode = Mode.PanMODE;
+
+
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
