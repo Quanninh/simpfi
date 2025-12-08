@@ -2,16 +2,18 @@ package com.simpfi;
 
 import java.awt.BorderLayout;
 
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
+import com.simpfi.object.TrafficStatistics;
 import com.simpfi.object.Vehicle;
+import com.simpfi.sumo.wrapper.EdgeController;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.sumo.wrapper.VehicleController;
-import com.simpfi.sumo.wrapper.EdgeController;
 import com.simpfi.ui.Frame;
 import com.simpfi.ui.TabbedPane;
 import com.simpfi.ui.panel.FilterPanel;
@@ -22,9 +24,6 @@ import com.simpfi.ui.panel.MapViewPanel;
 import com.simpfi.ui.panel.ProgramLightsPanel;
 import com.simpfi.ui.panel.StatisticsPanel;
 import com.simpfi.util.Point;
-import com.simpfi.object.TrafficStatistics;
-import javax.swing.SwingUtilities;
-
 
 /**
  * App Class as main application class contains the {@code main} function and is
@@ -82,80 +81,80 @@ public class App {
 	 * @param args the arguments
 	 */
 	// public static void main(String[] args) {
-	// 	long stepMs = (long) (Settings.config.TIMESTEP * 1000);
+	// long stepMs = (long) (Settings.config.TIMESTEP * 1000);
 
-	// 	SumoConnectionManager connection = null;
-	// 	try {
-	// 		TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController, vehicleController);
+	// SumoConnectionManager connection = null;
+	// try {
+	// TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController,
+	// vehicleController);
 
-	// 		connection = establishConnection();
-	// 		generateUI(connection, trafficStatistic);
+	// connection = establishConnection();
+	// generateUI(connection, trafficStatistic);
 
-	// 		vehicleController = new VehicleController(connection);
-	// 		trafficLightController = new TrafficLightController(connection);
-	// 		edgeController = new EdgeController(connection);
+	// vehicleController = new VehicleController(connection);
+	// trafficLightController = new TrafficLightController(connection);
+	// edgeController = new EdgeController(connection);
 
-	// 		//TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController, vehicleController);
-	// 		statisticsPanel = new StatisticsPanel(trafficStatistic);
-			
+	// //TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController,
+	// vehicleController);
+	// statisticsPanel = new StatisticsPanel(trafficStatistic);
 
-	// 		int step = 0;
-	// 		while (true) {
-	// 			final currentStep = step;
-	// 			long next = System.currentTimeMillis() + stepMs;
+	// int step = 0;
+	// while (true) {
+	// final currentStep = step;
+	// long next = System.currentTimeMillis() + stepMs;
 
-	// 			doStep(connection);
-	// 			retrieveData(connection);
+	// doStep(connection);
+	// retrieveData(connection);
 
-	// 			trafficStatistic.update(step);
-	// 			SwingUtilities.invokeLater(() -> statisticsPanel.updatePanel(currentStep));
+	// trafficStatistic.update(step);
+	// SwingUtilities.invokeLater(() -> statisticsPanel.updatePanel(currentStep));
 
-	// 			injectPanel.setHighlightedRoute();
-	// 			mapPanel.repaint();
+	// injectPanel.setHighlightedRoute();
+	// mapPanel.repaint();
 
-	// 			long sleep = next - System.currentTimeMillis();
-	// 			if (sleep > 0) {
-	// 				Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
-	// 			}
-	// 			step++;
-	// 		}
-	// 	} catch (Exception e) {
-	// 		e.printStackTrace();
-	// 	} finally {
-	// 		if (connection != null) {
-	// 			connection.close();
-	// 		}
-	// 	}
+	// long sleep = next - System.currentTimeMillis();
+	// if (sleep > 0) {
+	// Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
+	// }
+	// step++;
+	// }
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// } finally {
+	// if (connection != null) {
+	// connection.close();
+	// }
+	// }
 	// }
 	public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                SumoConnectionManager connection = establishConnection();
+		SwingUtilities.invokeLater(() -> {
+			try {
+				SumoConnectionManager connection = establishConnection();
 
-                vehicleController = new VehicleController(connection);
-                trafficLightController = new TrafficLightController(connection);
-                edgeController = new EdgeController(connection);
+				vehicleController = new VehicleController(connection);
+				trafficLightController = new TrafficLightController(connection);
+				edgeController = new EdgeController(connection);
 
-                TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController, vehicleController);
+				TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController, vehicleController);
 
-                statisticsPanel = new StatisticsPanel(trafficStatistic);
+				statisticsPanel = new StatisticsPanel(trafficStatistic);
 
-                generateUI(connection, trafficStatistic);
+				generateUI(connection, trafficStatistic);
 
-                startSimulationThread(connection, trafficStatistic);
+				startSimulationThread(connection, trafficStatistic);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
 
-
-    /** Background simulation thread */
-    private static void startSimulationThread(SumoConnectionManager conn, TrafficStatistics stats) {
+	/** Background simulation thread */
+	private static void startSimulationThread(SumoConnectionManager conn, TrafficStatistics stats) {
 		new Thread(() -> {
 			int step = 0;
-			long stepMs = (long)(Settings.config.TIMESTEP * 1000);
+			long stepMs = (long) (Settings.config.TIMESTEP * 1000);
 
 			while (true) {
 				long next = System.currentTimeMillis() + stepMs;
@@ -170,12 +169,13 @@ public class App {
 					// Update UI on Swing EDT
 					SwingUtilities.invokeLater(() -> {
 						statisticsPanel.updatePanel(currentStep);
-						mapPanel.repaint();
 						injectPanel.setHighlightedRoute();
+						mapPanel.repaint();
 					});
 
 					long sleep = next - System.currentTimeMillis();
-					if (sleep > 0) Thread.sleep((long)(sleep / Settings.config.SIMULATION_SPEED));
+					if (sleep > 0)
+						Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
 					step++;
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -183,7 +183,6 @@ public class App {
 			}
 		}).start();
 	}
-
 
 	/**
 	 * Do step.
@@ -237,12 +236,12 @@ public class App {
 	}
 
 	// /**
-	//  * Public helper to request a map repaint from other UI components.
-	//  */
+	// * Public helper to request a map repaint from other UI components.
+	// */
 	// public static void repaintMap() {
-	// 	if (mapPanel != null) {
-	// 		mapPanel.repaint();
-	// 	}
+	// if (mapPanel != null) {
+	// mapPanel.repaint();
+	// }
 	// }
 
 	/**
@@ -253,7 +252,6 @@ public class App {
 	private static void generateUI(SumoConnectionManager conn, TrafficStatistics stats) {
 		uiSetup();
 		Frame myFrame = new Frame();
-
 
 		mapPanel = new MapPanel();
 

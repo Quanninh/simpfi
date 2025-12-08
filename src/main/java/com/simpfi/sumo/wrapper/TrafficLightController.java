@@ -16,7 +16,6 @@ import com.simpfi.object.TrafficLight;
 
 import de.tudresden.sumo.cmd.Trafficlight;
 import de.tudresden.sumo.objects.SumoLink;
-import de.tudresden.sumo.util.SumoCommand;
 import it.polito.appeal.traci.SumoTraciConnection;
 
 /**
@@ -98,19 +97,17 @@ public class TrafficLightController {
 	/**
 	 * Returns the controlled links.
 	 *
-
+	 * 
 	 * @param tlId the traffic light id which can be specify via junction id
-	 * @return a list of class SumoLink, which is from {@link de.tudresden.sumo.objects.SumoLink}
-	 *  which contains attribute "from" and "to"
+	 * @return a list of class SumoLink, which is from
+	 *         {@link de.tudresden.sumo.objects.SumoLink} which contains attribute
+	 *         "from" and "to"
 	 * @throws Exception if the TraCI connection fails
 	 */
 	@SuppressWarnings("unchecked")
 	public List<SumoLink> getControlledLinks(String tlId) throws Exception {
 		return (List<SumoLink>) connection.do_job_get(Trafficlight.getControlledLinks(tlId));
 	}
-
-	
-	
 
 	/**
 	 * Adds the connection to the traffic light.
