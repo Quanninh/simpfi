@@ -79,6 +79,10 @@ public class TrafficStatistics {
         return travelTimes;
     }
 
+    public double[] getTravelTimesArray() {
+        return travelTimes.stream().mapToDouble(Long::doubleValue).toArray();
+    }
+
     private double getAverageSpeedOnEdge(String eid){
         double sum = 0;
         int count = 0;
@@ -107,5 +111,14 @@ public class TrafficStatistics {
             }
         }
         return congested;
+    }
+
+    public String getTopCongestionHostspots(int k){
+        return edgeVehicleCount.entrySet().stream()
+        .sorted((a, b) -> b.getValue() - a.getValue())
+        .limit(k)
+        .map(e -> e.getKey() + " (" + e.getValue() + ")")
+        .reduce((a, b) -> a + ", " + b)
+        .orElse("None");
     }
 }
