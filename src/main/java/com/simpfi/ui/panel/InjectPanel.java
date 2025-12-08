@@ -56,7 +56,8 @@ public class InjectPanel extends Panel {
 	 * chosen route in the dropdown.
 	 */
 	public void setHighlightedRoute() {
-		Settings.highlight.HIGHLIGHTED_ROUTE = (String) routeDropdown.getSelectedItem();
+		Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
+			Settings.network.getRoutes());
 	}
 
 	/**

@@ -67,12 +67,13 @@ public class FilterPanel extends Panel {
 				@Override
 				public void mouseEntered(MouseEvent e) {
 					CheckBox chosenCheckBox = (CheckBox) e.getSource();
-					Settings.highlight.HIGHLIGHTED_ROAD_FILTER = chosenCheckBox.getText();
+					Settings.highlight.HIGHLIGHTED_ROAD_FILTER = Road.searchForRoad(chosenCheckBox.getText(),
+						Settings.network.getRoads());
 				}
 
 				@Override
 				public void mouseExited(MouseEvent e) {
-					Settings.highlight.HIGHLIGHTED_ROAD_FILTER = "";
+					Settings.highlight.HIGHLIGHTED_ROAD_FILTER = null;
 				}
 			});
 

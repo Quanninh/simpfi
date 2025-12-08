@@ -123,7 +123,7 @@ public class Constants {
 	/** Color of the lane. */
 	public static final Color DEFAULT_LANE_COLOR = Color.BLACK;
 	/** Color of the lane divider. */
-	public static final Color DEFAULT_LANE_DIVIDER_COLOR = Color.BLACK;
+	public static final Color DEFAULT_LANE_DIVIDER_COLOR = Color.WHITE;
 	/** Color of the junction. */
 	public static final Color DEFAULT_JUNCTION_COLOR = Color.BLACK;
 

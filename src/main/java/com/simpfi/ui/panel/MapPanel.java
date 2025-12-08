@@ -21,7 +21,6 @@ import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
 import com.simpfi.object.Road;
-import com.simpfi.object.Route;
 import com.simpfi.object.TrafficLight;
 import com.simpfi.object.Vehicle;
 import com.simpfi.sumo.wrapper.VehicleController;
@@ -73,29 +72,23 @@ public class MapPanel extends Panel {
 		}
 
 		// Draw the highlighted Route in a different color
-		Route highlightedRoute = Route.searchForRoute(Settings.highlight.HIGHLIGHTED_ROUTE,
-			Settings.network.getRoutes());
-		for (Edge e : highlightedRoute.getEdges()) {
+		for (Edge e : Settings.highlight.HIGHLIGHTED_ROUTE.getEdges()) {
 			drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
 		}
 
 		// Draw the highlighted Road (filter hover) in a different color (if any)
-		Road highlightedRoad = Road.searchForRoad(Settings.highlight.HIGHLIGHTED_ROAD_FILTER,
-			Settings.network.getRoads());
-		if (highlightedRoad != null) {
-			for (Edge e : highlightedRoad.getEdgesWithSameBaseName()) {
+		if (Settings.highlight.HIGHLIGHTED_ROAD_FILTER != null) {
+			for (Edge e : Settings.highlight.HIGHLIGHTED_ROAD_FILTER.getEdgesWithSameBaseName()) {
 				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROAD_FILTER_COLOR);
 			}
 		}
 
-		TrafficLight highlightedTrafficLight = TrafficLight
-			.searchforTrafficLight(Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT, Settings.network.getTrafficLights());
-		Connection highlightedConnection = Connection.searchforConnection(Settings.highlight.HIGHLIGHTED_CONNECTION,
-			highlightedTrafficLight.getConnections());
-
-		drawObject(g2D, highlightedConnection.getFromLane(), Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
-		drawObject(g2D, highlightedConnection.getToLane(), Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
-		drawObject(g2D, highlightedTrafficLight.getJunction(), Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+		drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getFromLane(),
+			Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+		drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getToLane(),
+			Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+		drawObject(g2D, Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getJunction(),
+			Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT_COLOR);
 
 		for (TrafficLight tl : Settings.network.getTrafficLights()) {
 			try {

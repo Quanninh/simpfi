@@ -1,5 +1,10 @@
 package com.simpfi.config;
 
+import com.simpfi.object.Connection;
+import com.simpfi.object.Road;
+import com.simpfi.object.Route;
+import com.simpfi.object.TrafficLight;
+
 public class Highlighted {
 
 	/**
@@ -9,15 +14,15 @@ public class Highlighted {
 	 */
 
 	/** The currently chosen route. */
-	public String HIGHLIGHTED_ROUTE = "";
+	public Route HIGHLIGHTED_ROUTE = null;
 
 	/** The currently chosen traffic light. */
-	public String HIGHLIGHTED_TRAFFIC_LIGHT = "";
+	public TrafficLight HIGHLIGHTED_TRAFFIC_LIGHT = null;
 
 	/** The currently chosen connection. */
-	public String HIGHLIGHTED_CONNECTION = "";
+	public Connection HIGHLIGHTED_CONNECTION = null;
 
 	/** The currently chosen edge when entering the mouse (for filter panel). */
-	public String HIGHLIGHTED_ROAD_FILTER = "";
+	public Road HIGHLIGHTED_ROAD_FILTER = null;
 
 }

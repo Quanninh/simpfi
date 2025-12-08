@@ -120,7 +120,8 @@ public class ProgramLightsPanel extends Panel {
 	 * chosen junction in the dropdown.
 	 */
 	public void setHighlightedIntersectionTrafficLight() {
-		Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT = (String) tlJunctionDropDown.getSelectedItem();
+		Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT = TrafficLight
+			.searchforTrafficLight((String) tlJunctionDropDown.getSelectedItem(), Settings.network.getTrafficLights());
 	}
 
 	//
@@ -129,7 +130,9 @@ public class ProgramLightsPanel extends Panel {
 	// * chosen junction in the dropdown.
 	// */
 	public void setHighlightedConnection() {
-		Settings.highlight.HIGHLIGHTED_CONNECTION = (String) connectionDropDown.getSelectedItem();
+		Settings.highlight.HIGHLIGHTED_CONNECTION = Connection.searchforConnection(
+			(String) connectionDropDown.getSelectedItem(),
+			Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getConnections());
 	}
 
 	public String[] getAllTrafficLightJunctionID() {
