@@ -13,6 +13,7 @@ import com.simpfi.object.Junction;
 import com.simpfi.object.Lane;
 import com.simpfi.object.Phase;
 import com.simpfi.object.TrafficLight;
+import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.util.XMLReader;
 
 /**

@@ -74,17 +74,8 @@ public class TrafficLight {
 	public void setJunction(Junction junction) {
 		this.junction = junction;
 	}
-
-	/**
-	 * Returns the TL state.
-	 *
-	 * @return the TL state
-	 */
-	public String getTLState() {
-		String defaultState = this.getPhase()[0].getState();
-		return TrafficLightController.getLiveTrafficLightStates().getOrDefault(this.getJunction().getId(),
-			defaultState);
-	}
+	
+	
 
 	/**
 	 * Returns the connections.
@@ -104,6 +95,37 @@ public class TrafficLight {
 		this.connections = connections;
 	}
 
+
+	/**
+	 * Returns the TL state.
+	 *
+	 * @return the TL state
+	 */
+	public String getTLState() {
+		String defaultState = this.getPhase()[0].getState();
+		return TrafficLightController.getLiveTrafficLightStates().getOrDefault(this.getJunction().getId(),
+			defaultState);
+	}
+	
+
+//	/**
+//	 * Returns the connections.
+//	 *
+//	 * @return the connections
+//	 */
+//	public List<Connection> getConnections() {
+//		return connections;
+//	}
+//
+//	/**
+//	 * Sets the connections.
+//	 *
+//	 * @param connections the new connections
+//	 */
+//	public void setConnections(List<Connection> connections) {
+//		this.connections = connections;
+//	}
+
 	/**
 	 * Returns the traffic light color. Traffic light signals can be one of the
 	 * letters ryGgsuoO but currently, only ryGg are implemented, the other signals
@@ -121,6 +143,21 @@ public class TrafficLight {
 		default -> Color.BLACK;
 		};
 	}
+	
+	/**
+	 * Search Traffic Light with specific Junction ID
+	 */
+	
+	public static TrafficLight searchforTrafficLight(String id, List<TrafficLight> trafficLights)
+	{
+		for (int i = 0; i < trafficLights.size(); i++) {
+			if (trafficLights.get(i).getJunction().getId().equals(id)) {
+				return trafficLights.get(i);
+			}
+		}
+		return null;
+	}
+	
 
 
 	/**

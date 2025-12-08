@@ -156,6 +156,7 @@ public class App {
 			int step = 0;
 			long stepMs = (long) (Settings.config.TIMESTEP * 1000);
 
+			// int flag = 0;
 			while (true) {
 				long next = System.currentTimeMillis() + stepMs;
 				try {
@@ -164,6 +165,20 @@ public class App {
 					retrieveData(conn);
 					stats.update(step);
 
+					injectPanel.setHighlightedRoute();
+					programLightPanel.setHighlightedIntersectionTrafficLight();
+					programLightPanel.setHighlightedConnection();
+					// programLightPanel.setHighlightedToLane();\
+
+					// This one show the current index of phase in the real time
+					// SumoTLSController tls =
+					// trafficLightController.getCompletedTrafficLightDefinition("J0");
+					// String programName = trafficLightController.getProgramName("J0");
+					// SumoTLSProgram prog = tls.get(programName);
+					//
+					// System.out.println(prog.currentPhaseIndex);
+					// System.out.println(trafficLightController.getPhase("J0"));
+					// mapPanel.repaint();
 					final int currentStep = step;
 
 					// Update UI on Swing EDT
@@ -248,8 +263,9 @@ public class App {
 	 * Sets up the UI including panels and panes.
 	 *
 	 * @param conn the connection manager used by the UI
+	 * @throws Exception
 	 */
-	private static void generateUI(SumoConnectionManager conn, TrafficStatistics stats) {
+	private static void generateUI(SumoConnectionManager conn, TrafficStatistics stats) throws Exception {
 		uiSetup();
 		Frame myFrame = new Frame();
 
@@ -258,7 +274,7 @@ public class App {
 		statisticsPanel = new StatisticsPanel(stats);
 		injectPanel = new InjectPanel(conn);
 		mapViewPanel = new MapViewPanel();
-		programLightPanel = new ProgramLightsPanel();
+		programLightPanel = new ProgramLightsPanel(conn);
 		filterPanel = new FilterPanel(conn);
 		inspectPanel = new InspectPanel();
 

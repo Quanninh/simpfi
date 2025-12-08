@@ -3,7 +3,7 @@ package com.simpfi.object;
 /**
  * Creates Phase class for {@link TrafficLight}.
  */
-public class Phase {
+public class Phase{
 
 	/** The phase duration. */
 	private double duration;

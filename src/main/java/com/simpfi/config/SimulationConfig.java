@@ -32,6 +32,17 @@ public class SimulationConfig {
 	 * ***************************************************************************.
 	 */
 
+	
+	/** The currently chosen traffic light. */
+	public String HIGHLIGHTED_TRAFFIC_LIGHT = "";
+	
+	/** The currently chosen connection. */
+	public String HIGHLIGHTED_CONNECTION = "";
+	
+	// I will change it in the future, it should not in this
+	/** The duration ... */
+	public double DURATION = 1;
+	
 	/** Thin stroke size for all other elements. */
 	public double NORMAL_STROKE_SIZE = Constants.DEFAULT_NORMAL_STROKE_SIZE;
 	/** Stroke size for drawing lanes so that they fit and have no gaps. */
@@ -134,6 +145,11 @@ public class SimulationConfig {
 	 */
 	public void changeOffsetY(double newValue) {
 		OFFSET.setY(newValue);
+	}
+	
+	/** Replace the duration with a new duration*/
+	public void changeDuration(double newDuration) {
+		DURATION = newDuration;
 	}
 
 	public void resetColorDefaults() {

@@ -111,6 +111,8 @@ public class Junction {
 		return null;
 	}
 
+
+
 	/**
 	 * Overrides the built-in method toString() to provide a human-readable
 	 * representation of Junction.
@@ -120,7 +122,9 @@ public class Junction {
 	@Override
 	public String toString() {
 		return "Junction [id=" + id + ", type=" + type + ", shape=" + Arrays.toString(shape) + ", shapeSize="
-			+ shapeSize + ", incomingLane=" + incomingLane + "]";
+				+ shapeSize + ", incomingLane=" + incomingLane + "]";
 	}
+	
+	
 
 }

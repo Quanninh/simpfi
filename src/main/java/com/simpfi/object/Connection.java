@@ -1,5 +1,7 @@
 package com.simpfi.object;
 
+import java.util.List;
+
 /**
  * Represents a directed connection between two lanes in the network. Vehicles
  * can move from one lane to another.
@@ -59,10 +61,24 @@ public class Connection {
 		this.toLane = toLane;
 	}
 
+	/**
+	 * Sets the lane at which the connection ends.
+	 *
+	 * @param toLane the new lane at which the connection ends
+	 */
+	public static Connection searchforConnection(String fromLaneID, List<Connection> allConnections) {
+		for (int i = 0; i < allConnections.size(); i++) {
+			if (allConnections.get(i).fromLane.getLaneId().equals(fromLaneID)) {
+				return allConnections.get(i);
+			}
+		}
+		return null;
+	}
+
 	@Override
 	public String toString() {
-		return "Connection [fromLane=" + fromLane + ", toLane=" + toLane + "]";
+		return fromLane.getLaneId() + "  " + toLane.getLaneId();
 	}
-		
 
+	
 }
