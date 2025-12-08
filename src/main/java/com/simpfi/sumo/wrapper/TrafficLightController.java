@@ -113,6 +113,9 @@ public class TrafficLightController {
 	public Integer getPhase(String tlID) throws Exception {
 		return (Integer) connection.do_job_get(Trafficlight.getPhase(tlID));
 	}
+	public Double getNextSwitch(String tlID) throws Exception {
+		return (Double) connection.do_job_get(Trafficlight.getNextSwitch(tlID)); 
+	}
 
 	/**
 	 * Update the traffic light state.
