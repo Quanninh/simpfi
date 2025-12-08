@@ -83,12 +83,12 @@ public class App {
 		SumoConnectionManager connection = null;
 		try {
 			connection = establishConnection();
-			
+
 			trafficLightController = new TrafficLightController(connection);
 			vehicleController = new VehicleController(connection);
-			
-			
+
 			generateUI(connection);
+			int flag = 0;
 			while (true) {
 				long next = System.currentTimeMillis() + stepMs;
 
@@ -98,13 +98,14 @@ public class App {
 				programLightPanel.setHighlightedIntersectionTrafficLight();
 				programLightPanel.setHighlightedConnection();
 //				programLightPanel.setHighlightedToLane();\
-				
-				// This one show the current index of phase in the real time 
+
+				// This one show the current index of phase in the real time
 //				SumoTLSController tls = trafficLightController.getCompletedTrafficLightDefinition("J0");
 //				String programName = trafficLightController.getProgramName("J0");
 //				SumoTLSProgram prog = tls.get(programName);
 //				
 //				System.out.println(prog.currentPhaseIndex);
+//				System.out.println(trafficLightController.getPhase("J0"));
 				mapPanel.repaint();
 
 				long sleep = next - System.currentTimeMillis();
@@ -173,19 +174,19 @@ public class App {
 	}
 
 	// /**
-	//  * Public helper to request a map repaint from other UI components.
-	//  */
+	// * Public helper to request a map repaint from other UI components.
+	// */
 	// public static void repaintMap() {
-	// 	if (mapPanel != null) {
-	// 		mapPanel.repaint();
-	// 	}
+	// if (mapPanel != null) {
+	// mapPanel.repaint();
+	// }
 	// }
 
 	/**
 	 * Sets up the UI including panels and panes.
 	 *
 	 * @param conn the connection manager used by the UI
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private static void generateUI(SumoConnectionManager conn) throws Exception {
 		uiSetup();

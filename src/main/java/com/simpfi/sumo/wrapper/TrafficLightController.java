@@ -94,7 +94,9 @@ public class TrafficLightController {
 		connection.do_job_set(Trafficlight.setCompleteRedYellowGreenDefinition(tlId, program));
 	}
 
-	
+	public void setProgram(String tlId, String programName) throws Exception {
+		connection.do_job_set(Trafficlight.setRedYellowGreenState(tlId, programName));
+	}
 	
 	public void setPhase(String tlID, int index) throws Exception {
 		connection.do_job_set(Trafficlight.setPhase(tlID, index));

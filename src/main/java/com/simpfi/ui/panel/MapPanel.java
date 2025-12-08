@@ -15,6 +15,7 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
@@ -315,13 +316,8 @@ public class MapPanel extends Panel {
 			yPoints[i] = (int) p.getY();
 		}
 
-<<<<<<< HEAD
-		g.setColor(c);
-		g.setStroke(new BasicStroke((float) (Constants.JUNCTION_STROKE_SIZE * Settings.config.SCALE)));
-=======
 		g.setColor(Settings.config.JUNCTION_COLOR);
 		g.setStroke(new BasicStroke((float) (Settings.config.JUNCTION_STROKE_SIZE * Settings.config.SCALE)));
->>>>>>> 3fcef9f5e3cd0eab029ee660ae4eefe5296719e7
 
 		g.fillPolygon(xPoints, yPoints, size);
 		g.drawPolygon(xPoints, yPoints, size);
