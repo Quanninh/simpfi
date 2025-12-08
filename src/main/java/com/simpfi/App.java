@@ -11,6 +11,7 @@ import com.simpfi.object.Vehicle;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.sumo.wrapper.VehicleController;
+import com.simpfi.sumo.wrapper.EdgeController;
 import com.simpfi.ui.Frame;
 import com.simpfi.ui.TabbedPane;
 import com.simpfi.ui.panel.FilterPanel;
@@ -21,6 +22,8 @@ import com.simpfi.ui.panel.MapViewPanel;
 import com.simpfi.ui.panel.ProgramLightsPanel;
 import com.simpfi.ui.panel.StatisticsPanel;
 import com.simpfi.util.Point;
+import com.simpfi.object.TrafficStatistics;
+import javax.swing.SwingUtilities;
 
 import de.tudresden.sumo.objects.SumoTLSController;
 import de.tudresden.sumo.objects.SumoTLSProgram;
@@ -50,6 +53,9 @@ public class App {
 	/** The traffic light controller. */
 	private static TrafficLightController trafficLightController;
 
+	/** The edge controller */
+	private static EdgeController edgeController;
+
 	/** The statistics panel. */
 	static StatisticsPanel statisticsPanel;
 
@@ -77,49 +83,122 @@ public class App {
 	 *
 	 * @param args the arguments
 	 */
+	// public static void main(String[] args) {
+	// long stepMs = (long) (Settings.config.TIMESTEP * 1000);
+
+	// SumoConnectionManager connection = null;
+	// try {
+	// TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController,
+	// vehicleController);
+
+	// connection = establishConnection();
+	// generateUI(connection, trafficStatistic);
+
+	// vehicleController = new VehicleController(connection);
+	// trafficLightController = new TrafficLightController(connection);
+	// edgeController = new EdgeController(connection);
+
+	// //TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController,
+	// vehicleController);
+	// statisticsPanel = new StatisticsPanel(trafficStatistic);
+
+	// int step = 0;
+	// while (true) {
+	// final currentStep = step;
+	// long next = System.currentTimeMillis() + stepMs;
+
+	// doStep(connection);
+	// retrieveData(connection);
+
+	// trafficStatistic.update(step);
+	// SwingUtilities.invokeLater(() -> statisticsPanel.updatePanel(currentStep));
+
+	// injectPanel.setHighlightedRoute();
+	// mapPanel.repaint();
+
+	// long sleep = next - System.currentTimeMillis();
+	// if (sleep > 0) {
+	// Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
+	// }
+	// step++;
+	// }
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// } finally {
+	// if (connection != null) {
+	// connection.close();
+	// }
+	// }
+	// }
 	public static void main(String[] args) {
-		long stepMs = (long) (Settings.config.TIMESTEP * 1000);
+		SwingUtilities.invokeLater(() -> {
+			try {
+				SumoConnectionManager connection = establishConnection();
 
-		SumoConnectionManager connection = null;
-		try {
-			connection = establishConnection();
+				vehicleController = new VehicleController(connection);
+				trafficLightController = new TrafficLightController(connection);
+				edgeController = new EdgeController(connection);
 
-			trafficLightController = new TrafficLightController(connection);
-			vehicleController = new VehicleController(connection);
+				TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController, vehicleController);
 
-			generateUI(connection);
-			int flag = 0;
+				statisticsPanel = new StatisticsPanel(trafficStatistic);
+
+				generateUI(connection, trafficStatistic);
+
+				startSimulationThread(connection, trafficStatistic);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
+
+	/** Background simulation thread */
+	private static void startSimulationThread(SumoConnectionManager conn, TrafficStatistics stats) {
+		new Thread(() -> {
+			int step = 0;
+			long stepMs = (long) (Settings.config.TIMESTEP * 1000);
+
+//			int flag = 0;
 			while (true) {
 				long next = System.currentTimeMillis() + stepMs;
+				try {
+					// Simulation step
+					doStep(conn);
+					retrieveData(conn);
+					stats.update(step);
 
-				doStep(connection);
-				retrieveData(connection);
-				injectPanel.setHighlightedRoute();
-				programLightPanel.setHighlightedIntersectionTrafficLight();
-				programLightPanel.setHighlightedConnection();
+					injectPanel.setHighlightedRoute();
+					programLightPanel.setHighlightedIntersectionTrafficLight();
+					programLightPanel.setHighlightedConnection();
 //				programLightPanel.setHighlightedToLane();\
 
-				// This one show the current index of phase in the real time
+					// This one show the current index of phase in the real time
 //				SumoTLSController tls = trafficLightController.getCompletedTrafficLightDefinition("J0");
 //				String programName = trafficLightController.getProgramName("J0");
 //				SumoTLSProgram prog = tls.get(programName);
 //				
 //				System.out.println(prog.currentPhaseIndex);
 //				System.out.println(trafficLightController.getPhase("J0"));
-				mapPanel.repaint();
+//				mapPanel.repaint();
+					final int currentStep = step;
 
-				long sleep = next - System.currentTimeMillis();
-				if (sleep > 0) {
-					Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
+					// Update UI on Swing EDT
+					SwingUtilities.invokeLater(() -> {
+						statisticsPanel.updatePanel(currentStep);
+						mapPanel.repaint();
+						injectPanel.setHighlightedRoute();
+					});
+
+					long sleep = next - System.currentTimeMillis();
+					if (sleep > 0)
+						Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
+					step++;
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (connection != null) {
-				connection.close();
-			}
-		}
+		}).start();
 	}
 
 	/**
@@ -188,13 +267,13 @@ public class App {
 	 * @param conn the connection manager used by the UI
 	 * @throws Exception
 	 */
-	private static void generateUI(SumoConnectionManager conn) throws Exception {
+	private static void generateUI(SumoConnectionManager conn, TrafficStatistics stats) throws Exception {
 		uiSetup();
 		Frame myFrame = new Frame();
 
 		mapPanel = new MapPanel();
 
-		statisticsPanel = new StatisticsPanel();
+		statisticsPanel = new StatisticsPanel(stats);
 		injectPanel = new InjectPanel(conn);
 		mapViewPanel = new MapViewPanel();
 		programLightPanel = new ProgramLightsPanel(conn);

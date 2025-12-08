@@ -1,0 +1,111 @@
+package com.simpfi.object;
+
+import com.simpfi.sumo.wrapper.SumoConnectionManager;
+import com.simpfi.sumo.wrapper.VehicleController;
+import com.simpfi.sumo.wrapper.EdgeController;
+import java.util.*;
+import java.util.logging.Logger;
+
+/**
+ * Computes statistics about average speed, vehicle density, travel times, and congestion hotspots.
+ */
+
+public class TrafficStatistics {
+    private SumoConnectionManager sumo;
+    private EdgeController ec;
+    private VehicleController vc;
+
+    private Map<String, Double> vehicleSpeeds = new HashMap<>();
+    private Map<String, Integer> edgeVehicleCount = new HashMap<>();
+    private Map<String, Long> vehicleStartTime = new HashMap<>();
+    private List<Long> travelTimes = new ArrayList<>();
+    private static final Logger logger = Logger.getLogger(TrafficStatistics.class.getName());
+
+    public TrafficStatistics(EdgeController ec, VehicleController vc){
+        this.ec = ec;
+        this.vc = vc;
+    }
+
+    public void update(int currentStep) {
+        try{
+            List<String> vehicleIDs = vc.getAllVehicleIds();
+            for (String vid : vehicleIDs) {
+                double speed = vc.getSpeed(vid);
+                vehicleSpeeds.put(vid, speed);
+
+                if (!vehicleStartTime.containsKey(vid)) {
+                    vehicleStartTime.put(vid, (long) currentStep);
+                }
+            }
+
+            List<String> edgeIDs = ec.getEdgeIDs();
+            for (String eid : edgeIDs){
+                int count = ec.getEdgeVehicleCount(eid);
+                edgeVehicleCount.put(eid, count);
+            }
+            checkExitedVehicles(currentStep);
+        }catch (Exception e){
+            logger.warning("Error updating statistics: " + e.getMessage());
+        }
+    }
+
+    private void checkExitedVehicles(int currentStep){
+        Iterator<Map.Entry<String, Long>> it = vehicleStartTime.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry<String, Long> entry = it.next();
+            String vid = entry.getKey();
+            if(!vehicleSpeeds.containsKey(vid)){
+                long travelTime = currentStep - entry.getValue();
+                travelTimes.add(travelTime);
+                it.remove();
+            }
+
+        }
+    }
+
+    public double getAverageSpeed(){
+        if (vehicleSpeeds.isEmpty()){
+            return 0.0;
+        }
+        double sum = vehicleSpeeds.values().stream().mapToDouble(Double::doubleValue).sum();
+        return sum/vehicleSpeeds.size();
+    }
+
+    public Map<String, Integer> getEdgeDensity(){
+        return edgeVehicleCount;
+    }
+
+    public List<Long> getTravelTimes(){
+        return travelTimes;
+    }
+
+    private double getAverageSpeedOnEdge(String eid){
+        double sum = 0;
+        int count = 0;
+        for (String vid : vehicleSpeeds.keySet()){
+            try {
+                String edge = vc.getRoadID(vid);
+                if (edge.equals(eid)){
+                    sum += vehicleSpeeds.get(vid);
+                    count++;
+                }
+            }catch (Exception e){
+                logger.warning("Error getting edge for vehicle " + vid + ": " + e.getMessage());
+            }
+        }
+        if (count > 0){
+            return sum/count;
+        }else return 0;
+    }
+
+    public List<String> getCongestedEdges(double speedThreshold){
+        List<String> congested = new ArrayList<>();
+        for (String eid : edgeVehicleCount.keySet()){
+            double avrSpeed = getAverageSpeedOnEdge(eid);
+            if (avrSpeed < speedThreshold){
+                congested.add(eid);
+            }
+        }
+        return congested;
+    }
+}

@@ -129,6 +129,14 @@ public class MapPanel extends Panel {
 			return;
 		}
 
+		// We don't draw vehicles which run on unselected roads
+		if(v.getRoadID() != null && v.getRoadID().charAt(1) != 'J'){
+			Road road = Settings.network.getRoadFromEdge(v.getEdgeFromRoadID());
+			if (road != null && !road.getFilterFlag()) {
+				return;
+			}
+		}
+
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 
 		g.setColor(v.getVehicleColor());

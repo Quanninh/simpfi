@@ -71,41 +71,24 @@ public class TextBox extends JTextField {
 		this.setMaximumSize(preferedSize);
 	}
 
-//	private String getTextboxValue() {
-//		if (!mustBeDouble) {
-//			return getText();
-//		}
-//
-//		Double value;
-//		try {
-//			value = Double.parseDouble(this.getText());
-//		} catch (Exception e) {
-//			value = defaultValue;
-//		}
-//
-//		// Depending on the settings type, different values are changed
-//		switch (type) {
-//		case SCALE:
-//			Settings.config.changeScale(value);
-//			break;
-//		case OFFSET_X:
-//			Settings.config.changeOffsetX(value);
-//			break;
-//		case OFFSET_Y:
-//			Settings.config.changeOffsetY(value);
-//			break;
-//		case DURATION:
-//			Settings.config.changeDuration(value);
-//			break;
-//		default:
-//			System.out.println("Unexpected TextBox");
-//			break;
-//		if (mustBePositive && value <= 0) {
-//			value = defaultValue;
-//		}
-//
-//		return value.toString();
-//	}
+	private String getTextboxValue() {
+		if (!mustBeDouble) {
+			return getText();
+		}
+
+		Double value;
+		try {
+			value = Double.parseDouble(this.getText());
+		} catch (Exception e) {
+			value = defaultValue;
+		}
+
+		if (mustBePositive && value <= 0) {
+			value = defaultValue;
+		}
+
+		return value.toString();
+	}
 
 	public void resetToDefault() {
 		setText(defaultValue.toString());
