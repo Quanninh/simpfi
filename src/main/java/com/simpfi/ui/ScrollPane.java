@@ -1,5 +1,7 @@
 package com.simpfi.ui;
 
+import java.awt.Component;
+
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;

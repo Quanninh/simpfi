@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
-
-import com.simpfi.App;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Lane;
@@ -14,8 +12,10 @@ import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.TrafficLightController;
 import com.simpfi.ui.Button;
 import com.simpfi.ui.Dropdown;
-import com.simpfi.ui.Label;
+import com.simpfi.ui.InformationPopUp;
 import com.simpfi.ui.Panel;
+import com.simpfi.ui.ScrollPane;
+import com.simpfi.ui.TextArea;
 import com.simpfi.ui.TextBox;
 
 import de.tudresden.sumo.objects.SumoTLSController;
@@ -35,15 +35,20 @@ public class ProgramLightsPanel extends Panel {
 
 	/** The drop down contain a list of junctions which contain traffic light. */
 	private Dropdown<String> tlJunctionDropDown;
-	/** The drop down contain a list of connection light. */
 	private Dropdown<String> connectionDropDown;
+	
+	/** The drop down contain a list of connection light. */
+	private InformationPopUp infoDialog;
+	private TextArea infoDialogTextArea;
+	
+	
 	/** The drop down contain a list of all incoming fromLane string. */
 	private Dropdown<String> phaseDropDown;
 	
-	private Label remainingTimeLabel;
 
 	/** The list of all connections. */
 	private String[] allStringConnection;
+	
 	/** The list of all phases. */
 	private String[] allPhaseString;
 
@@ -63,20 +68,16 @@ public class ProgramLightsPanel extends Panel {
 		String firstJunctionIDs = allTLJunctionIDs[0];
 		List<Connection> allConnections = getAllConnection(firstJunctionIDs);
 		allStringConnection = getAllStringConnection(allConnections);
-		remainingTimeLabel = new Label("Remaining Time: --");
-		this.add(remainingTimeLabel);
 
 		generateDropdowns(allTLJunctionIDs, firstJunctionIDs);
-//		double currentTime = App.step * Settings.config.TIMESTEP;
-//		remainingDuration = showRemainingDuration(userTrafficLightJunctionId, phaseUserChoose, currentTime);
-//		System.out.println("Traffic Light " + userTrafficLightJunctionId + " Phase " + currentPhase + " remaining time: " + remainingDuration);
 		generateButtons();
 	}
 
 	private void generateDropdowns(String[] allTLJunctionIDs, String firstJunctionIDs) throws Exception {
 		tlJunctionDropDown = Dropdown.createDropdownWithLabel("Select intersection", allTLJunctionIDs, this);
-		connectionDropDown = Dropdown.createDropdownWithLabel("Select Connection ", allStringConnection, this);
 		phaseDropDown = Dropdown.createDropdownWithLabel("Phase", getAllPhaseString(firstJunctionIDs), this);
+		
+		connectionDropDown = Dropdown.createDropdownWithLabel("All Connection", allStringConnection, this);
 
 		tlJunctionDropDown.addActionListener(e -> {
 			userTrafficLightJunctionId = (String) tlJunctionDropDown.getSelectedItem();
@@ -111,6 +112,7 @@ public class ProgramLightsPanel extends Panel {
 			}
 		});
 		this.add(showInformationOfTrafficLightButton);
+		
 		Button applySwitchPhaseButton = new Button("Switch Phase");
 		applySwitchPhaseButton.addActionListener(e -> {
 			try {
@@ -145,14 +147,14 @@ public class ProgramLightsPanel extends Panel {
 			.searchforTrafficLight((String) tlJunctionDropDown.getSelectedItem(), Settings.network.getTrafficLights());
 	}
 
-	//
-	// /**
-	// * Set the highlighted route variable in {@link Settings} to the currently
-	// * chosen junction in the dropdown.
-	// */
+	
+	 /**
+	 * Set the highlighted route variable in {@link Settings} to the currently
+	 * chosen junction in the dropdown.
+	 */
 	public void setHighlightedConnection() {
 		Settings.highlight.HIGHLIGHTED_CONNECTION = Connection.searchforConnection(
-			(String) connectionDropDown.getSelectedItem(),
+			((String) connectionDropDown.getSelectedItem()).split(" -> ")[0],
 			Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getConnections());
 	}
 
@@ -187,8 +189,13 @@ public class ProgramLightsPanel extends Panel {
 	public String[] getAllStringConnection(List<Connection> allConnections) {
 		String[] allStringConnection = new String[allConnections.size()];
 		for (int i = 0; i < allConnections.size(); i++) {
-			allStringConnection[i] = allConnections.get(i).getFromLane().getLaneId();
+			
+			Connection connection = allConnections.get(i);
+			StringBuilder sb = new StringBuilder();
+		    sb.append(connection.getFromLane().getLaneId()).append(" -> ").append(connection.getToLane().getLaneId());
 //			System.out.println(allConnections.get(i).getFromLane().getLaneId() + " " + allConnections.get(i).getToLane().getLaneId());
+		    allStringConnection[i] = sb.toString();
+		    
 		}
 		return allStringConnection;
 	}
@@ -211,7 +218,7 @@ public class ProgramLightsPanel extends Panel {
 		return allPhaseNumber;
 	}
 
-	// Will be delete in the future
+	// Will be change the style in the future
 	public void showAllLane(String JunctionID) {
 		List<Connection> allConnections = getAllConnection(JunctionID);
 		allStringConnection = getAllStringConnection(allConnections);
@@ -245,22 +252,47 @@ public class ProgramLightsPanel extends Panel {
 	}
 	
 	public void showInformationTrafficLight(String trafficLightID) throws Exception {
-		List<Connection> allConnections = getAllConnection(trafficLightID);
-		allStringConnection = getAllStringConnection(allConnections);
-		
-		//Insert current Phase
-		SumoTLSProgram program = this.getProgramFromTrafficLight(trafficLightID);
-		Integer currentPhaseIndex = program.currentPhaseIndex;
-		SumoTLSPhase phase = program.phases.get(currentPhaseIndex);
-		
-		for (int i = 0; i < allConnections.size(); i++) {
-			String fromLaneID = allConnections.get(i).getFromLane().getLaneId();
-			String toLaneID = allConnections.get(i).getToLane().getLaneId();
-			char signal = getStateofLane(allConnections, fromLaneID, phase);
-			System.out.println(fromLaneID + " to " + toLaneID + " " + signal);
-		}
-		System.out.println("Finished ");
+
+	    if (infoDialog == null  || !infoDialog.isDisplayable()) {
+	        infoDialog = new InformationPopUp("Traffic Light Information", false);
+	        infoDialog.setLocationRelativeTo(this);
+	        // This one just demo the content Pane :))) 
+//	        infoDialog.setContentPane(this);
+	        
+	        infoDialogTextArea = new TextArea(false);
+	        
+	        ScrollPane sp = new ScrollPane();
+	        sp.addItem(infoDialogTextArea);
+	        
+	        infoDialog.add(sp);
+	        infoDialog.setVisible(true);
+	    }
+
+	    List<Connection> allConnections = getAllConnection(trafficLightID);
+	    SumoTLSProgram program = this.getProgramFromTrafficLight(trafficLightID);
+	    int currentPhaseIndex = program.currentPhaseIndex;
+	    SumoTLSPhase phase = program.phases.get(currentPhaseIndex);
+
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("Traffic Light: ").append(trafficLightID).append("\n");
+	    sb.append("Current Phase: ").append(currentPhaseIndex).append("\n\n");
+	    sb.append(String.format(" Remaining: %d \n\n", (int) remainingDuration));
+
+	    for (Connection c : allConnections) {
+	        String fromLaneString = c.getFromLane().getLaneId();
+	        String toLaneString = c.getToLane().getLaneId();
+	        char signal = getStateofLane(allConnections, fromLaneString, phase);
+
+	        sb.append("From: ").append(fromLaneString)
+	          .append(" → To: ").append(toLaneString)
+	          .append(" | Signal: ").append(signal)
+	          .append("\n");
+	    }
+
+	    infoDialogTextArea.setText(sb.toString());
 	}
+
+
 
 	public SumoTLSProgram getProgramFromTrafficLight(String trafficLightID) throws Exception {
 		SumoTLSController trafficLightCompleted = trafficLightController
@@ -292,12 +324,20 @@ public class ProgramLightsPanel extends Panel {
 		return nextSwitch - currentTime;
 	}
 	
-	public void updateRemainingTime(String trafficLightID, int phaseIndex, double remaingTime) {
-	    remainingTimeLabel.setText(String.format("[TL %s] Phase %d remaining: %.2f", trafficLightID, phaseIndex, remaingTime));
+	public void updateRemainingTime(String trafficLightID, int phaseIndex, double remainingTime) {
+		this.remainingDuration = remainingTime;
+		
+	    try {
+	        if (infoDialog != null && infoDialog.isVisible()) {
+	            showInformationTrafficLight(trafficLightID);
+	        }
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	    }
 	}
 
 	
-	// Using just for testing the duration in app java
+	// Using just for testing the duration in app.java
 	public String getSelectedTrafficLightID() {
 	    return userTrafficLightJunctionId;
 	}
