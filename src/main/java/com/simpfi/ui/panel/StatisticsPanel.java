@@ -33,6 +33,7 @@ public class StatisticsPanel extends Panel {
 
 	private JLabel avrSpeedLabel;
 	private JLabel hotspotLabel;
+	private JLabel travelTimeLabel;
 
 	private ChartPanel speedChartPanel;
 	private ChartPanel densityChartPanel;
@@ -45,7 +46,19 @@ public class StatisticsPanel extends Panel {
 	}
 
 	private void initUI(){
-		setLayout(new GridLayout(4, 1));
+		setLayout(new BorderLayout());
+
+		JLabel content = new JLabel();
+		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+		content.setBackground(new Color(245, 245, 245));
+
+		JScrollPane scroll = new JScrollPane(content);
+		scroll.setBorder(null);
+		scroll.getVerticalScrollBar().setUnitIncrement(16);
+		add(scroll, BorderLayout.CENTER);
+
+		Font titleFont = new Font("SansSerif", Font.BOLD, 16);
+		Font textFont = new Font("SansSerif", Font.PLAIN, 13);
 
 		speedDataset = new DefaultCategoryDataset();
 		
@@ -58,13 +71,13 @@ public class StatisticsPanel extends Panel {
 		);
 
 		speedChartPanel = new ChartPanel(chart);
-		speedChartPanel.setPreferredSize(new Dimension(220, 150));
-		add(wrapPanel(speedChartPanel));
+		speedChartPanel.setPreferredSize(new Dimension(400, 220));
 
 		avrSpeedLabel = new JLabel("Average speed: 0 km/h");
-		// JLabel summaryPanel = new JLabel();
-		// summaryPanel.add(avrSpeedLabel);
-		add(avrSpeedLabel);
+		avrSpeedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		avrSpeedLabel.setFont(textFont);
+
+		content.add(createCard("Speed Overview", speedChartPanel, avrSpeedLabel, titleFont));
 
 		// Draw Vehicle density chart
 		vehicleDataset =  new DefaultCategoryDataset();
@@ -75,12 +88,13 @@ public class StatisticsPanel extends Panel {
 			vehicleDataset
 		);
 		densityChartPanel = new ChartPanel(vehicleChart);
-		densityChartPanel.setPreferredSize(new Dimension(220, 150));
-		add(wrapPanel(densityChartPanel));
+		densityChartPanel.setPreferredSize(new Dimension(400, 220));
 
 		// Congestion Hotspot
 		hotspotLabel = new JLabel("Hotspot: none");
-		add(hotspotLabel);
+		hotspotLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		hotspotLabel.setFont(textFont);
+		content.add(createCard("Traffic Density", densityChartPanel, hotspotLabel, titleFont));
 
 		// Travel Time Distribution
 		travelTimeDataset = new HistogramDataset();
@@ -95,15 +109,38 @@ public class StatisticsPanel extends Panel {
 			false
 		);
 		travelTimeChartPanel = new ChartPanel(travelChart);
-		travelTimeChartPanel.setPreferredSize(new Dimension(220, 150));
-		add(wrapPanel(travelTimeChartPanel));
+		travelTimeChartPanel.setPreferredSize(new Dimension(400, 220));
+		travelTimeLabel = new JLabel("Travel Time Histogram");
+		travelTimeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		travelTimeLabel.setFont(textFont);
+		content.add(createCard("Travel Time Analysis", travelTimeChartPanel, travelTimeLabel, titleFont));
 	}
 
-	private JPanel wrapPanel(JComponent chart){
-        JPanel p = new JPanel(new BorderLayout());
-        p.add(chart, BorderLayout.CENTER);
-        return p;
-    }
+	private JPanel createCard(String title, JComponent chart, JLabel label, Font titleFont){
+		JPanel card = new JPanel();
+		card.setLayout(new BorderLayout(10, 10));
+		card.setBorder(BorderFactory.createCompoundBorder(
+			BorderFactory.createLineBorder(Color.GRAY, 1),
+			BorderFactory.createEmptyBorder(12, 12, 12, 12)
+		));
+		card.setBackground(Color.WHITE);
+
+		JLabel header = new JLabel(title);
+		header.setFont(titleFont);
+		header.setHorizontalAlignment(SwingConstants.CENTER);
+		card.add(header, BorderLayout.NORTH);
+
+		JPanel chartHolder = new JPanel(new BorderLayout());
+		chartHolder.setOpaque(false);
+		chartHolder.add(chart, BorderLayout.CENTER);
+        card.add(chartHolder, BorderLayout.CENTER);
+
+        card.add(label, BorderLayout.SOUTH);
+
+        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 350));
+
+        return card;
+	}
 
 	/** Update chart at each simulation timestep */
 	public void updatePanel(int step){
@@ -124,14 +161,27 @@ public class StatisticsPanel extends Panel {
 		hotspotLabel.setText("Hotspots: " + hotspots);
 
 		// Travel Time Distribution
-		double[] times = stats.getTravelTimesArray();
-		if (times.length > 0){
-			travelTimeDataset = new HistogramDataset();
-			travelTimeDataset.addSeries("Travel Times", times, 10);
-			travelTimeChartPanel.getChart().getXYPlot().setDataset(travelTimeDataset);
+		SwingUtilities.invokeLater(() -> {
+			double[] times = stats.getTravelTimesArray();
+			
+			if (times.length > 0) {
+				HistogramDataset ds = new HistogramDataset();
+				ds.addSeries("Travel Times", times, 20);
+				
+				travelTimeDataset = ds;
+				travelTimeChartPanel.getChart().getXYPlot().setDataset(ds);
+			}
 			travelTimeChartPanel.repaint();
-		}
+		});
+		
 		speedChartPanel.repaint();
 		densityChartPanel.repaint();
+	}
+
+	private JPanel wrapPanel(JComponent chart, JLabel label){
+		JPanel p = new JPanel(new BorderLayout());
+		p.add(chart, BorderLayout.CENTER);
+		p.add(label, BorderLayout.SOUTH);
+		return p;
 	}
 }

@@ -44,7 +44,7 @@ import com.simpfi.ui.Panel;
 
 public class InspectPanel extends Panel {
 
-    private final VehicleController vehicleController;
+    private VehicleController vehicleController;
 
     // Aktuell inspiziertes Fahrzeug
     private String currentVehicleId;

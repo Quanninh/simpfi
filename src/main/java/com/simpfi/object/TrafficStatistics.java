@@ -49,15 +49,17 @@ public class TrafficStatistics {
         }
     }
 
-    private void checkExitedVehicles(int currentStep){
+    private void checkExitedVehicles(int currentStep) throws Exception {
+        List<String> activeVehicles = vc.getAllVehicleIds();
         Iterator<Map.Entry<String, Long>> it = vehicleStartTime.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry<String, Long> entry = it.next();
             String vid = entry.getKey();
-            if(!vehicleSpeeds.containsKey(vid)){
+            if(!activeVehicles.contains(vid)){
                 long travelTime = currentStep - entry.getValue();
                 travelTimes.add(travelTime);
                 it.remove();
+                vehicleSpeeds.remove(vid);
             }
 
         }
