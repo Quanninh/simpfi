@@ -40,6 +40,7 @@ import com.simpfi.util.Point;
  * 4. Start the simulation loop.
  */
 public class App {
+	// Test branch
 
 	/** The map panel. */
 	private static MapPanel mapPanel;
@@ -83,53 +84,6 @@ public class App {
 	 *
 	 * @param args the arguments
 	 */
-	// public static void main(String[] args) {
-	// long stepMs = (long) (Settings.config.TIMESTEP * 1000);
-
-	// SumoConnectionManager connection = null;
-	// try {
-	// TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController,
-	// vehicleController);
-
-	// connection = establishConnection();
-	// generateUI(connection, trafficStatistic);
-
-	// vehicleController = new VehicleController(connection);
-	// trafficLightController = new TrafficLightController(connection);
-	// edgeController = new EdgeController(connection);
-
-	// //TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController,
-	// vehicleController);
-	// statisticsPanel = new StatisticsPanel(trafficStatistic);
-
-	// int step = 0;
-	// while (true) {
-	// final currentStep = step;
-	// long next = System.currentTimeMillis() + stepMs;
-
-	// doStep(connection);
-	// retrieveData(connection);
-
-	// trafficStatistic.update(step);
-	// SwingUtilities.invokeLater(() -> statisticsPanel.updatePanel(currentStep));
-
-	// injectPanel.setHighlightedRoute();
-	// mapPanel.repaint();
-
-	// long sleep = next - System.currentTimeMillis();
-	// if (sleep > 0) {
-	// Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
-	// }
-	// step++;
-	// }
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// } finally {
-	// if (connection != null) {
-	// connection.close();
-	// }
-	// }
-	// }
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			try {
@@ -140,10 +94,10 @@ public class App {
 				edgeController = new EdgeController(connection);
 
 				TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController, vehicleController);
-
-				statisticsPanel = new StatisticsPanel(trafficStatistic);
-
+				
 				generateUI(connection, trafficStatistic);
+
+				//statisticsPanel = new StatisticsPanel(trafficStatistic);
 
 				startSimulationThread(connection, trafficStatistic);
 
