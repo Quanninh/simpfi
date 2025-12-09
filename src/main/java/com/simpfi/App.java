@@ -1,6 +1,8 @@
 package com.simpfi;
 
 import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -40,7 +42,7 @@ import com.simpfi.util.Point;
  * 4. Start the simulation loop.
  */
 public class App {
-	// Test branch
+	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 
 	/** The map panel. */
 	private static MapPanel mapPanel;
@@ -85,6 +87,8 @@ public class App {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
+		LOGGER.log(Level.INFO,"Application started");
+
 		SwingUtilities.invokeLater(() -> {
 			try {
 				SumoConnectionManager connection = establishConnection();

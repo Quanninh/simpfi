@@ -1,5 +1,6 @@
 run: all
-	java -cp "out:src/main/java/com/simpfi/lib/*" com.simpfi.App
+	java -Djava.util.logging.config.file=src/main/resources/logging.properties \
+	-cp "out:src/main/java/com/simpfi/lib/*" com.simpfi.App
 all:
 	javac -cp "src/main/java/com/simpfi/lib/*" -d out \
     src/main/java/com/simpfi/*.java \
