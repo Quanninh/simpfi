@@ -106,7 +106,7 @@ public class App {
 				startSimulationThread(connection, trafficStatistic);
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.log(Level.SEVERE, "Failed to continue the app",e);
 			}
 		});
 	}
@@ -152,7 +152,7 @@ public class App {
 						Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
 					step++;
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.log(Level.SEVERE,"Failed to continue the background simulation thread",e);
 				}
 			}
 		}).start();

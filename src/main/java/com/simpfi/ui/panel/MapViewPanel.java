@@ -3,6 +3,8 @@ package com.simpfi.ui.panel;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import javax.swing.BoxLayout;
 import javax.swing.JColorChooser;
@@ -20,6 +22,9 @@ import com.simpfi.ui.TextBox;
  */
 public class MapViewPanel extends Panel {
 
+	/** Logger. */
+    private static final Logger logger = Logger.getLogger(MapViewPanel.class.getName());
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -27,9 +32,9 @@ public class MapViewPanel extends Panel {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		ScrollPane scrollPane = new ScrollPane();
 
-		System.out.println("Generating textboxes");
+		logger.log(Level.INFO,"Generating textboxes");
 		List<TextBox> textboxes = generateTextboxes(scrollPane);
-		System.out.println("Generating buttons");
+		logger.log(Level.INFO,"Generating buttons");
 		generateColorButtons(scrollPane);
 
 		Button resetButton = new Button("Reset to defaults");

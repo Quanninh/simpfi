@@ -2,6 +2,8 @@ package com.simpfi.ui.panel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import javax.swing.BoxLayout;
 import com.simpfi.config.Settings;
@@ -26,6 +28,9 @@ import de.tudresden.sumo.objects.SumoTLSProgram;
  * A UI panel used for controlling the Lights. This class extends {@link Panel}.
  */
 public class ProgramLightsPanel extends Panel {
+
+	/** Logger. */
+    private static final Logger logger = Logger.getLogger(ProgramLightsPanel.class.getName());
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -85,7 +90,7 @@ public class ProgramLightsPanel extends Panel {
 			try {
 				showAllPhase(userTrafficLightJunctionId);
 			} catch (Exception e1) {
-				e1.printStackTrace();
+				logger.log(Level.SEVERE,"Failed to show all phases",e1);
 			}
 		});
 
@@ -96,7 +101,7 @@ public class ProgramLightsPanel extends Panel {
 			try {
 				phaseUserChoose = Integer.parseInt(selection.toString().trim());
 			} catch (NumberFormatException ex) {
-				ex.printStackTrace();
+				logger.log(Level.SEVERE,"Failed to parse the phase that user chose", ex);
 			}
 		});
 	}
@@ -108,7 +113,7 @@ public class ProgramLightsPanel extends Panel {
 				showInformationTrafficLight(userTrafficLightJunctionId);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				logger.log(Level.SEVERE, "Failed to show information of traffic lights", e1);
 			}
 		});
 		this.add(showInformationOfTrafficLightButton);
@@ -118,7 +123,7 @@ public class ProgramLightsPanel extends Panel {
 			try {
 				applySwitchPhaseListener(userTrafficLightJunctionId);
 			} catch (Exception e1) {
-				e1.printStackTrace();
+				logger.log(Level.SEVERE, "Failed to apply the switch-phase listener", e1);
 			}
 		});
 		this.add(applySwitchPhaseButton);
@@ -132,7 +137,7 @@ public class ProgramLightsPanel extends Panel {
 				applyChangeDuration(userTrafficLightJunctionId, phaseUserChoose,
 					Double.parseDouble(durationTextBox.getTextboxValue()));
 			} catch (Exception e1) {
-				e1.printStackTrace();
+				logger.log(Level.SEVERE, "Failed to apply changing phase duration", e1);
 			}
 		});
 		this.add(applyChangeDurationPhaseButton);
@@ -205,7 +210,7 @@ public class ProgramLightsPanel extends Panel {
 
 		if (program == null) {
 			// empty dropdown
-			System.out.println("TLS program not ready yet for " + tlId);
+			logger.log(Level.INFO,"TLS program not ready yet for {0}",tlId);
 			return new String[0];
 		}
 
@@ -332,7 +337,7 @@ public class ProgramLightsPanel extends Panel {
 	            showInformationTrafficLight(trafficLightID);
 	        }
 	    } catch (Exception ex) {
-	        ex.printStackTrace();
+	        logger.log(Level.SEVERE, "Problems with update the remaining time", ex);
 	    }
 	}
 
