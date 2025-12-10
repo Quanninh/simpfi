@@ -39,6 +39,24 @@ public class Vehicle {
 	 * completed its journey.
 	 */
 	private Boolean isActive;
+	
+	/** Lights and states */
+	private boolean headlightsOn = true;
+	private boolean brakeOn = false;
+	private boolean turningLeft = false;
+	private boolean turningRight = false;
+	private boolean emergencyFlashing = false;
+
+	public enum Turn {
+        LEFT,
+        RIGHT,
+        STRAIGHT,
+        NONE
+    }
+	private Turn nextTurn = Turn.NONE;
+
+
+
 
 	/**
 	 * Overloaded Constructor assigning provided parameters. Compares the provided
@@ -206,6 +224,51 @@ public class Vehicle {
 	public String toString() {
 		return "Vehicle [id=" + id + ", position=" + position + ", speed=" + speed + ", roadID=" + roadID + ", type="
 			+ type + ", isActive=" + isActive + "]";
+	}
+
+
+	public boolean headlightsOn() {
+		return headlightsOn;
+	}
+
+	public void setHeadLightsOn(boolean state){
+		this.headlightsOn = state;
+	}
+
+	public boolean isBraking(){
+		return brakeOn;
+	}
+
+	public void setBrake(boolean state){
+		this.brakeOn = state;
+	}
+
+	public boolean isTurningLeft(){
+		return turningLeft;
+	}
+	public void setTurningLeft(boolean state){
+		this.turningLeft = state;
+	}
+
+	public boolean isTurningRight(){
+		return turningRight;
+	}
+	public void setTurningRight(boolean state){
+		this.turningRight = state;
+	}
+
+	public boolean isEmergencyFlashing(){
+		return emergencyFlashing;
+	}
+	public void setEmergencyFlashing(boolean state){
+		this.emergencyFlashing = state;
+	}
+
+	public Turn getNextTurn() { 
+		return nextTurn; 
+	}
+    public void setNextTurn(Turn t) { 
+		this.nextTurn = t; 
 	}
 
 }
