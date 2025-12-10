@@ -134,24 +134,150 @@ public class MapPanel extends Panel {
 
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 
-		g.setColor(v.getVehicleColor());
+		//g.setColor(v.getVehicleColor());
 
+		double lengthMultipler = 1.5;
+		double narrowWidth = 0.8;
 		Point pos = translateCoords(v.getPosition());
-		int width = (int) (v.getWidth() * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
-		int height = (int) (v.getHeight() * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
+		int width = (int) (v.getWidth() * lengthMultipler * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
+		int height = (int) (v.getHeight() * narrowWidth * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
 
 		double angle = v.getAngle();
-		g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
+		//g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
 
-		g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2, width, height);
+		int x = (int) pos.getX() - width/2;
+        int y = (int) pos.getY() - height/2;
 
-		// Draw the border of the vehicle
-		// g.setColor(Constants.DEFAULT_COLOR);
-		// g.drawRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2,
-		// width, height);
+		//g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2, width, height);
 
+		// int halfWidth = width / 2;
+		// int halfHeight = height;
+		int drawX = -width / 2;   
+        int drawY = -height;            
+
+		int light = height / 6;
+        int headlightFrontY = drawY + height/6; 
+
+
+		int frontOffset = (int)(height / 2.0); 
+
+		Graphics2D g2 = (Graphics2D) g.create();
+		g2.setStroke(defaultStroke);
+		g2.translate(pos.getX(), pos.getY());
+		g2.rotate(Math.toRadians(v.getAngle() - 90)); 
+		g2.translate(0, height/2);
+
+		// Draw vehicle body
+		g2.setColor(v.getVehicleColor());
+		g2.fillRoundRect(drawX, drawY, width, height, 8, 8);
+
+		
+		// // Front windshield (rounded rectangle) behind headlights
+		// g2.setColor(new Color(40, 40, 40, 180)); // dark glass
+
+		// // Size of the windshield relative to vehicle dimensions
+		// int windowW = (int)(width * 0.4);   // width across the body
+		// int windowH = (int)(height * 0.15); // small height along the vehicle length
+
+		// // Position: centered horizontally, just behind headlights
+		// int windowX = -windowW / 2;
+		// int windowY = drawY + (int)(height * 0.01); // slightly below top/front edge
+
+		// Graphics2D gWindow = (Graphics2D) g2.create();
+		// gWindow.translate(windowX + windowW/2, windowY + windowH/2); 
+		// gWindow.rotate(Math.toRadians(-90)); 
+		// gWindow.fillRoundRect(-windowW/2, -windowH/2, windowW, windowH, 8, 8); 
+		// gWindow.dispose();
+
+
+		// Draw wheels dynamically relative to vehicle dimensions
+		g2.setColor(new Color(30, 30, 30));
+
+		int wheelW = (int)(width * 0.2);
+		int wheelH = (int)(height * 0.15);
+
+		// body rectangle reference
+		int bodyLeft   = drawX;
+		int bodyRight  = drawX + width;
+		int bodyTop    = drawY;
+		int bodyBottom = drawY + height;
+
+		// wheel Y positions
+		int frontWheelY = bodyTop + (int)(height * 0.05);
+		int rearWheelY  = bodyTop + height - wheelH - (int)(height * 0.05);
+
+		// wheel X positions (increase distance between left and right wheels)
+		int leftWheelXFront  = bodyLeft - (int)(wheelW * 0.1);          // front left
+		int rightWheelXFront = bodyRight - wheelW + (int)(wheelW * 0.1); // front right
+
+		int leftWheelXRear   = bodyLeft - (int)(wheelW * 0.1);          // rear left
+		int rightWheelXRear  = bodyRight - wheelW + (int)(wheelW * 0.1); // rear right
+
+		// draw 4 wheels
+		g2.fillRoundRect(leftWheelXFront,  frontWheelY, wheelW, wheelH, 5, 5);
+		g2.fillRoundRect(rightWheelXFront, frontWheelY, wheelW, wheelH, 5, 5);
+
+		g2.fillRoundRect(leftWheelXRear,  rearWheelY, wheelW, wheelH, 5, 5);
+		g2.fillRoundRect(rightWheelXRear, rearWheelY, wheelW, wheelH, 5, 5);
+
+		// Draw Head Lights
+		int lightSize = (int)(height * 0.20);
+
+		int headlightX = bodyRight - lightSize - 2;
+		int headlightY1 = bodyTop + (int)(height * 0.20);
+		int headlightY2 = bodyTop + (int)(height * 0.70);
+
+		if (v.headlightsOn()) {
+			g2.setColor(new Color(255, 255, 200));
+			g2.fillOval(headlightX, headlightY1, lightSize, lightSize);
+			g2.fillOval(headlightX, headlightY2, lightSize, lightSize);
+		}
+
+
+		// Brake lights
+		int brakeX = bodyLeft + 2;
+		int brakeY1 = headlightY1;
+		int brakeY2 = headlightY2;
+
+		g2.setColor(v.isBraking() ? new Color(255, 60, 60) : new Color(150, 0, 0));
+		g2.fillOval(brakeX, brakeY1, lightSize, lightSize);
+		g2.fillOval(brakeX, brakeY2, lightSize, lightSize);
+
+		// Turn signals
+		g2.setColor(new Color(255,150,0));
+
+		if (v.isTurningLeft()) {
+			g2.fillOval(brakeX, brakeY1, lightSize, lightSize);
+			g2.fillOval(brakeX, brakeY2, lightSize, lightSize);
+		}
+		if (v.isTurningRight()) {
+			g2.fillOval(headlightX, headlightY1, lightSize, lightSize);
+			g2.fillOval(headlightX, headlightY2, lightSize, lightSize);
+		}
+
+		g2.dispose(); 
 		loadGraphicsSettings(g, oldSettings);
 	}
+
+	public void updateVehicleStates(int step) {
+		boolean blink = (step / 10) % 2 == 0; // blinking every 10 steps
+
+		for (Vehicle v : VehicleController.getVehicles()) {
+			// Brake light if speed < 2
+			v.setBrake(v.getSpeed() < 2);
+
+			// Headlights always on
+			v.setHeadLightsOn(true);
+
+			// Turn signals based on nextTurn
+			v.setTurningLeft(v.getNextTurn() == Vehicle.Turn.LEFT && blink);
+			v.setTurningRight(v.getNextTurn() == Vehicle.Turn.RIGHT && blink);
+
+			// Emergency flashing
+			v.setEmergencyFlashing(v.getType().getId().equals("emergency") && v.isEmergencyFlashing() && blink);
+		}
+	}
+
 
 	/**
 	 * Draws an {@link Edge} on the map.

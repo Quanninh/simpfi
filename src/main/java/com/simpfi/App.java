@@ -139,6 +139,7 @@ public class App {
 						statisticsPanel.updatePanel(currentStep);
 						programLightPanel.updateRemainingTime(tlId, currentPhase, remaining);
 						injectPanel.setHighlightedRoute();
+						mapPanel.updateVehicleStates(currentStep);
 						mapPanel.repaint();
 					});
 
