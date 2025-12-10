@@ -1,10 +1,16 @@
 package com.simpfi.object;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.simpfi.sumo.wrapper.EdgeController;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.VehicleController;
-import com.simpfi.sumo.wrapper.EdgeController;
-import java.util.*;
-import java.util.logging.Logger;
 
 /**
  * Computes statistics about average speed, vehicle density, travel times, and congestion hotspots.
@@ -45,7 +51,7 @@ public class TrafficStatistics {
             }
             checkExitedVehicles(currentStep);
         }catch (Exception e){
-            logger.warning("Error updating statistics: " + e.getMessage());
+            logger.log(Level.WARNING,"Error updating statistics: ", e);
         }
     }
 
@@ -96,7 +102,7 @@ public class TrafficStatistics {
                     count++;
                 }
             }catch (Exception e){
-                logger.warning("Error getting edge for vehicle " + vid + ": " + e.getMessage());
+                logger.log(Level.WARNING,"Error getting edge for vehicle " + vid, e);
             }
         }
         if (count > 0){
