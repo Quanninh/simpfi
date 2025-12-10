@@ -10,6 +10,7 @@ import com.simpfi.config.Settings;
 import com.simpfi.object.Road;
 import com.simpfi.object.VehicleType;
 import com.simpfi.ui.CheckBox;
+import com.simpfi.ui.RangeSlider;
 import com.simpfi.ui.Label;
 import com.simpfi.ui.Panel;
 import com.simpfi.ui.ScrollPane;
@@ -34,8 +35,12 @@ public class FilterPanel extends Panel {
 	public FilterPanel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+		// Filter Vehicles by Vehicle Type
 		generateVehicleTypeFilter(getAllVehiclesTypesAsStrings());
+		// Filter Vehicles by Road
 		generateRoadFilter(getAllRoadsAsStrings());
+		// Filter Vehicles by speed
+		generateSpeedFilter();
 	}
 
 	private void generateVehicleTypeFilter(String[] vehicleTypes) {
@@ -85,6 +90,12 @@ public class FilterPanel extends Panel {
 		this.add(roadScrollPane);
 
 		attachCheckboxListenersForRoads();
+
+	}
+
+	private void generateSpeedFilter(){
+		this.add(new Label("Speed: "));
+		this.add(new RangeSlider(0, 200));
 	}
 
 	/**
@@ -156,4 +167,16 @@ public class FilterPanel extends Panel {
 
 		return roads;
 	}
+
+	// private TextBox createTextboxWithLabel(String text, double defaultValue, Boolean mustBeDouble,
+	// 	Boolean mustBePositive, String tooltip) {
+	// 	Label label = new Label(text);
+	// 	// Make the label slightly smaller compared to the heading
+	// 	label.setFont("SansSerif", Font.PLAIN, 12);
+
+	// 	TextBox textbox = new TextBox(defaultValue, mustBeDouble, mustBePositive);
+	// 	textbox.setToolTipText(tooltip);
+
+	// 	return textbox;
+	// }
 }
