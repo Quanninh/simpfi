@@ -42,7 +42,7 @@ import com.simpfi.util.Point;
  * 4. Start the simulation loop.
  */
 public class App {
-	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
+	private static final Logger logger = Logger.getLogger(App.class.getName());
 
 	/** The map panel. */
 	private static MapPanel mapPanel;
@@ -87,7 +87,7 @@ public class App {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
-		LOGGER.log(Level.INFO,"Application started");
+		logger.log(Level.INFO,"Application started");
 
 		SwingUtilities.invokeLater(() -> {
 			try {
