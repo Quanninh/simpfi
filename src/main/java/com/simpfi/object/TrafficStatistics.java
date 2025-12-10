@@ -25,6 +25,8 @@ public class TrafficStatistics {
     private Map<String, Integer> edgeVehicleCount = new HashMap<>();
     private Map<String, Long> vehicleStartTime = new HashMap<>();
     private List<Long> travelTimes = new ArrayList<>();
+
+    /** Logger. */
     private static final Logger logger = Logger.getLogger(TrafficStatistics.class.getName());
 
     public TrafficStatistics(EdgeController ec, VehicleController vc){

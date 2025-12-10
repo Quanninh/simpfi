@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
@@ -15,6 +17,9 @@ import it.polito.appeal.traci.SumoTraciConnection;
  * Wrapper Class for {@link de.tudresden.sumo.cmd.Vehicle}.
  */
 public class VehicleController {
+
+	/** Logger. */
+    private static final Logger logger = Logger.getLogger(VehicleController.class.getName());
 
 	/** The connection to SUMO. */
 	private SumoTraciConnection connection;
@@ -178,9 +183,9 @@ public class VehicleController {
 	 * @throws Exception if the TraCI connection fails
 	 */
 	public void addVehicle(String vehicleID, String routeID, String vType) throws Exception {
-		System.out.println("Add vehicle " + vehicleID + " on route " + routeID + " of type " + vType);
+		logger.log(Level.INFO,"Add vehicle {0} on route {1} of type {2}", 
+					new Object[]{vehicleID, routeID, vType});
 
 		connection.do_job_set(de.tudresden.sumo.cmd.Vehicle.addFull(vehicleID, routeID, vType, "now", "best", "base", "avg", "current", "max", "current", "", "", "", 0, 0));
 	}
-
 }

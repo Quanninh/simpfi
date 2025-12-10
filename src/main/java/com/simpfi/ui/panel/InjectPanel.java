@@ -1,6 +1,8 @@
 package com.simpfi.ui.panel;
 
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import javax.swing.BoxLayout;
 
@@ -17,6 +19,9 @@ import com.simpfi.ui.Panel;
  * A panel for injecting vehicles. This class extends {@link Panel}.
  */
 public class InjectPanel extends Panel {
+
+	/** Logger. */
+    private static final Logger logger = Logger.getLogger(InjectPanel.class.getName());
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -70,7 +75,8 @@ public class InjectPanel extends Panel {
 			String vehicleIds = VehicleController.generateVehicleID();
 			vehicleController.addVehicle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
 		} catch (Exception e1) {
-			e1.printStackTrace();
+			logger.log(Level.SEVERE,String.format("Failed to add vehicle (type=%s, route=%s)", 
+        userChoiceVehicleType, userChoiceRoute),e1);
 		}
 	}
 

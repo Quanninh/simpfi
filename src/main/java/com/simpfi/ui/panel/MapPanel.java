@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -34,6 +36,9 @@ import com.simpfi.util.Point;
  * objects on the user interface such as vehicles, edges, lanes, etc.
  */
 public class MapPanel extends Panel {
+
+	/** Logger. */
+    private static final Logger logger = Logger.getLogger(MapPanel.class.getName());
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -94,7 +99,7 @@ public class MapPanel extends Panel {
 			try {
 				drawObject(g2D, tl);
 			} catch (Exception e1) {
-				e1.printStackTrace();
+				logger.log(Level.SEVERE, String.format("Failed to draw the traffic light (%s) in Map Panel!",tl.toString()),e1);
 			}
 		}
 
@@ -102,7 +107,7 @@ public class MapPanel extends Panel {
 			try {
 				drawObject(g2D, v);
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.log(Level.SEVERE, String.format("Failed to draw the vehicle (%s) in Map Panel!",v.toString()),e);
 			}
 		}
 	}

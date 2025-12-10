@@ -1,5 +1,8 @@
 package com.simpfi.sumo.wrapper;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.simpfi.config.Settings;
 
 import it.polito.appeal.traci.SumoTraciConnection;
@@ -9,6 +12,9 @@ import it.polito.appeal.traci.SumoTraciConnection;
  * Java programs and SUMO via TraCI.
  */
 public class SumoConnectionManager {
+
+	/** Logger. */
+	private static final Logger logger = Logger.getLogger(SumoConnectionManager.class.getName());
 
 	/** The connection to SUMO. */
 	private SumoTraciConnection connection;
@@ -37,7 +43,7 @@ public class SumoConnectionManager {
 		connection.runServer();
 		connection.setOrder(1);
 
-		System.out.println("SUMO launched and TraCI connected.");
+		logger.log(Level.INFO,"SUMO launched and TraCI connected.");
 	}
 
 	/**
@@ -65,9 +71,9 @@ public class SumoConnectionManager {
 		try {
 			if (connection != null)
 				connection.close();
-			System.out.println("TraCI connection closed.");
+			logger.log(Level.INFO,"TraCI connection closed.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,"Closing is not done properly",e);
 		}
 	}
 }
