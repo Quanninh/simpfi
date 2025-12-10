@@ -70,15 +70,17 @@ public class Vehicle {
 	 * @param angle  the angle
 	 * @param width  the width
 	 * @param height the height
+	 * @param speed the speed
 	 */
 
-	public Vehicle(String id, Point point, String roadID, String type, double angle, double width, double height) {
+	public Vehicle(String id, Point point, String roadID, String type, double angle, double width, double height, double speed) {
 		this.id = id;
 		this.position = point;
 		this.roadID = roadID;
 		this.angle = angle;
 		this.width = width;
 		this.height = height;
+		this.speed = speed;
 
 		this.type = null;
 

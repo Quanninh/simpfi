@@ -137,6 +137,11 @@ public class MapPanel extends Panel {
 			}
 		}
 
+		// We don't draw vehicles which are not with the filtered speed range
+		if (v.getSpeed() < Settings.highlight.LOWER_BOUND_LIMIT || v.getSpeed() > Settings.highlight.UPPER_BOUND_LIMIT) {
+			return;
+		}
+
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 
 		//g.setColor(v.getVehicleColor());

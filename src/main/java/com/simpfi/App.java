@@ -197,8 +197,9 @@ public class App {
 			String type = vehicleController.getTypeID(vid);
 			double width = vehicleController.getWidth(vid);
 			double height = vehicleController.getHeight(vid);
+			double speed = vehicleController.getSpeed(vid);
 
-			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height);
+			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height, speed);
 
 			VehicleController.updateVehicleMap(v);
 		}

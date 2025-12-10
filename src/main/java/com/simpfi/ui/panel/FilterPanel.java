@@ -95,7 +95,15 @@ public class FilterPanel extends Panel {
 
 	private void generateSpeedFilter(){
 		this.add(new Label("Speed: "));
-		this.add(new RangeSlider(0, 200));
+		// speed is measured by m/s
+		RangeSlider rs = new RangeSlider(0, 60);
+		this.add(rs);
+		
+		// Update Settings whenever slider changes
+		rs.addChangeListener(e -> {
+			Settings.highlight.LOWER_BOUND_LIMIT = rs.getLowValue();
+			Settings.highlight.UPPER_BOUND_LIMIT = rs.getHighValue();
+		});
 	}
 
 	/**

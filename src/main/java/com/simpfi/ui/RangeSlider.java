@@ -30,7 +30,7 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 
     /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-    
+
     private int min;
     private int max;
     private int lowValue;
@@ -133,8 +133,8 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
         g2D.setFont(g2D.getFont().deriveFont(11f));
         String minS = String.valueOf(min);
         String maxS = String.valueOf(max);
-        g2D.drawString(minS, x0 - g2D.getFontMetrics().stringWidth(minS)/2, trackY + 20);
-        g2D.drawString(maxS, x1 - g2D.getFontMetrics().stringWidth(maxS)/2, trackY + 20);
+        g2D.drawString(minS, x0 - g2D.getFontMetrics().stringWidth(minS)/2, trackY + 25);
+        g2D.drawString(maxS, x1 - g2D.getFontMetrics().stringWidth(maxS)/2, trackY + 25);
 
         // draw thumbs
         drawThumb(g2D, lowX, h/2, lowValue);
