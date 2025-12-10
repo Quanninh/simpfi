@@ -163,6 +163,12 @@ public class MapPanel extends Panel {
 		int light = height / 6;
         int headlightFrontY = drawY + height/6; 
 
+		int bodyLeft = drawX;
+		int bodyRight = drawX + width;
+		int bodyTop = drawY;
+		int bodyBottom = drawY + height;
+
+
 
 		int frontOffset = (int)(height / 2.0); 
 
@@ -194,36 +200,6 @@ public class MapPanel extends Panel {
 		// gWindow.fillRoundRect(-windowW/2, -windowH/2, windowW, windowH, 8, 8); 
 		// gWindow.dispose();
 
-
-		// Draw wheels dynamically relative to vehicle dimensions
-		g2.setColor(new Color(30, 30, 30));
-
-		int wheelW = (int)(width * 0.2);
-		int wheelH = (int)(height * 0.15);
-
-		// body rectangle reference
-		int bodyLeft   = drawX;
-		int bodyRight  = drawX + width;
-		int bodyTop    = drawY;
-		int bodyBottom = drawY + height;
-
-		// wheel Y positions
-		int frontWheelY = bodyTop + (int)(height * 0.05);
-		int rearWheelY  = bodyTop + height - wheelH - (int)(height * 0.05);
-
-		// wheel X positions (increase distance between left and right wheels)
-		int leftWheelXFront  = bodyLeft - (int)(wheelW * 0.1);          // front left
-		int rightWheelXFront = bodyRight - wheelW + (int)(wheelW * 0.1); // front right
-
-		int leftWheelXRear   = bodyLeft - (int)(wheelW * 0.1);          // rear left
-		int rightWheelXRear  = bodyRight - wheelW + (int)(wheelW * 0.1); // rear right
-
-		// draw 4 wheels
-		g2.fillRoundRect(leftWheelXFront,  frontWheelY, wheelW, wheelH, 5, 5);
-		g2.fillRoundRect(rightWheelXFront, frontWheelY, wheelW, wheelH, 5, 5);
-
-		g2.fillRoundRect(leftWheelXRear,  rearWheelY, wheelW, wheelH, 5, 5);
-		g2.fillRoundRect(rightWheelXRear, rearWheelY, wheelW, wheelH, 5, 5);
 
 		// Draw Head Lights
 		int lightSize = (int)(height * 0.20);
