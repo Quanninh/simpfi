@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
@@ -21,6 +23,8 @@ import com.simpfi.util.reader.RouteXMLReader;
  * for all other classes through {@link Settings}.
  */
 public class Network {
+	/** Logger. */
+	private static final Logger LOGGER = Logger.getLogger(Network.class.getName());
 
 	/** List containing all edges. */
 	private List<Edge> edges;
@@ -65,8 +69,10 @@ public class Network {
 
 			// Build the Road list from the Edge list
 			buildRoadsFromEdges();
+
+			LOGGER.info("Network successfully loaded");
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Failed to load network configuration", e);
 		}
 	}
 
@@ -136,7 +142,7 @@ public class Network {
 		else {return null; }
 	}
 
-	/** Parse the list of roads from the edge list*/
+	/** Parse the list of roads from the edge list. */
 	private void buildRoadsFromEdges(){
 		roads = new ArrayList<>();
 		edgeToRoad.clear();
