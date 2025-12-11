@@ -23,9 +23,22 @@ import com.simpfi.ui.Panel;
 // instr -> sie sind nun im select modus, klicken sie auf das fahrzeug,das Sie inspecten möchten.
 // Zum verlassen des Modus " " klicken Sie erneut auf change Mode Button
 
+
 //LOGIK:
 //auf Punkt auf der map klicken -> programm bezieht von SUMO alle fahrzeugdaten und berechnet, wo das
 //näheste vehikel vom geklickten punkt aus gesehen ist.
+//
+//WICHTIG: Man soll MEHRERE verhicles uswählen können, die dann in einer liste aufgeführt werden
+//choose vehicleS -> user stats ändern lassen -> confirm choices
+
+// Button zum Modus changen zw SELECT MODE und PAN MODE
+//
+//
+// BUTTON für SELECT ALL
+// "group by" dropdown mit | vehicle type | color | (speed)
+// fahzeuge werden nach dem ersten char ihres type sortiert
+
+
 
 //Stats:
 // ID
@@ -39,33 +52,69 @@ import com.simpfi.ui.Panel;
 // Immer code so schreiben, dass er executable ist
 //Javax swing
 
-//next:
-//Button ""
 
 public class InspectPanel extends Panel {
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
     private VehicleController vehicleController;
 
     // Aktuell inspiziertes Fahrzeug
     private String currentVehicleId;
 
-    // UI-Felder
     private JTextField speedField;
     private JTextField maxSpeedField;
     private JTextField accelField;
+
     private JLabel modeLabel;
+    private JLabel instructionLabel;
 
     enum Mode {
         PanMODE, SelectMODE
     }
     private Mode currentMode = Mode.PanMODE;
 
-   //  public InspectPanel(SumoConnectionManager conn){
-    //   this.vehicleController = new VehicleController(conn);
-   // }
+    public InspectPanel(SumoConnectionManager conn) {
+
+        this.vehicleController = new VehicleController(conn);
+
+         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+        modeLabel = new JLabel("Current Mode: PAN");
+        this.add(modeLabel);
 
+        instructionLabel = new JLabel("Click 'Change Mode' to enter Select Mode.");
+        this.add(instructionLabel);
+
+        // Mode-Change Button
+        JButton changeModeButton = new JButton("Change Mode");
+        changeModeButton.addActionListener(e -> toggleMode());
+        this.add(changeModeButton);
+
+        // Platz für spätere Input-Felder (Speed, Accel usw.)
+        // speedField = new JTextField(10);
+        // this.add(speedField);
+
+    }
+    private void toggleMode() {
+        if (currentMode == Mode.PanMODE) {
+            currentMode = Mode.SelectMODE;
+            modeLabel.setText("Current Mode: SELECT");
+            instructionLabel.setText("Select Mode: Click a vehicle on the map to inspect it.");
+        } else {
+            currentMode = Mode.PanMODE;
+            modeLabel.setText("Current Mode: PAN");
+            instructionLabel.setText("Pan Mode: Drag the map freely.");
+        }
+
+        // Wenn du später MapPanel hast:
+        // mapPanel.setMode(currentMode);
+    }
+
+
+    public Mode getCurrentMode() {
+        return currentMode;
+    }
 }
