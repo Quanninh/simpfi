@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-12-04 21:12:37 by Eclipse SUMO netedit Version 1.24.0
+<!-- generated on 2025-12-10 13:08:57 by Eclipse SUMO netedit Version 1.24.0
 -->
 
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
-    <!--  VTypes  -->
-    <!--  Core vehicle classes  -->
-     <vType  id="private" sigma = "0" minGap = "1" length = "3" tau = "0.5" vClass="private"/>
-    <vType id="emergency" sigma = "0" minGap = "1" length = "3" tau = "0.5" vClass="emergency"/>
-    <vType id="bus" sigma = "0" minGap = "1" length = "3" tau = "0.5" vClass="bus"/>
-    <vType id="truck" sigma = "0" minGap = "1" length = "3" tau = "0.5" vClass="truck"/>
-    <vType id="motorcycle" sigma = "0" minGap = "1" length = "3" tau = "0.5" vClass="motorcycle"/>
+    <!-- VTypes -->
+    <vType id="bus" length="3.00" minGap="1.00" vClass="bus" sigma="0" tau="0.5"/>
+    <vType id="emergency" length="3.00" minGap="1.00" vClass="emergency" sigma="0" tau="0.5"/>
+    <vType id="motorcycle" length="3.00" minGap="1.00" vClass="motorcycle" sigma="0" tau="0.5"/>
+    <vType id="private" length="3.00" minGap="1.00" vClass="private" sigma="0" tau="0.5"/>
+    <vType id="truck" length="3.00" minGap="1.00" vClass="truck" sigma="0" tau="0.5"/>
     <!-- Routes -->
     <route id="r_0" edges="E0 E45 E45.12 E45.35 E30 E4 E6 E7 -E22 E34 E37 E38"/>
     <route id="r_1" edges="E47 E46 E45 E45.12 E45.35 E30 E4 E6 E7 E8 -E11 -E13 -E17 E18 E21 E22 -E7 -E6 -E4 -E30 E43 E44 -E37 -E36 -E22 -E21 -E20 -E16"/>
@@ -18,4 +17,10 @@
     <route id="r_3" edges="E50 E55 -E42 -E39 -E30 E43 E44 -E37 -E35 E22 -E7 -E6 -E3"/>
     <route id="r_4" edges="E5 -E6 -E4 -E30 E43 -E42 -E39 -E62 -E24"/>
     <route id="r_5" edges="-E59 E55 -E42 -E39 E4 E6 E7 E8 -E11 -E13 -E17 E18 E21 E22 -E7 -E6 -E4 E39 E41 E44 E38"/>
+    <!-- Vehicles, persons and containers (sorted by depart) -->
+    <flow id="f_0" type="bus" begin="0.00" route="r_0" end="3600.00" vehsPerHour="1800"/>
+    <flow id="f_1" type="emergency" begin="0.00" route="r_0" end="3600.00" vehsPerHour="1800"/>
+    <flow id="f_2" type="private" begin="0.00" route="r_0" end="3600.00" vehsPerHour="1800"/>
+    <flow id="f_3" type="truck" begin="0.00" route="r_0" end="3600.00" vehsPerHour="1800"/>
+    <flow id="f_4" type="bus" begin="0.00" route="r_0" end="3600.00" vehsPerHour="1800"/>
 </routes>

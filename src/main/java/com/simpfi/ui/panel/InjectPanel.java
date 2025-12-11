@@ -69,14 +69,14 @@ public class InjectPanel extends Panel {
 	 * Adds a vehicle to the route.
 	 */
 	private void addVehicle() {
-		try {
+			String vehicleIds = VehicleController.generateVehicleID();
 			String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
 			String userChoiceRoute = routeDropdown.getSelectedItem().toString();
-			String vehicleIds = VehicleController.generateVehicleID();
+			try {
 			vehicleController.addVehicle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
 		} catch (Exception e1) {
-			logger.log(Level.SEVERE,String.format("Failed to add vehicle (type=%s, route=%s)", 
-        userChoiceVehicleType, userChoiceRoute),e1);
+			logger.log(Level.SEVERE,String.format("Failed to add vehicle (type= %s , route= %s )",
+					userChoiceVehicleType,  userChoiceRoute),e1);
 		}
 	}
 
