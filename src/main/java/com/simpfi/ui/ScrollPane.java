@@ -20,6 +20,7 @@ public class ScrollPane extends JScrollPane {
 
 		// Set content panel as viewport
 		setViewportView(contentPanel);
+		this.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		init();
 	}
@@ -39,5 +40,7 @@ public class ScrollPane extends JScrollPane {
 
 	public void addItem(JComponent item) {
 		contentPanel.add(item);
+		contentPanel.revalidate();
+		contentPanel.repaint();
 	}
 }

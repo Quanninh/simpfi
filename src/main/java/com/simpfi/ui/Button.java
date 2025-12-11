@@ -1,7 +1,5 @@
 package com.simpfi.ui;
 
-import java.awt.Component;
-
 import javax.swing.JButton;
 
 import com.simpfi.config.Constants;
@@ -23,7 +21,6 @@ public class Button extends JButton {
 	public Button(String text) {
 		this.setText(text);
 		this.setFont(Constants.FONT);
-		setAlignmentX(Component.LEFT_ALIGNMENT);
 	};
 
 }

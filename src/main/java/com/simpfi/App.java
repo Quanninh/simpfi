@@ -76,7 +76,7 @@ public class App {
 
 	/** The side pane. */
 	static TabbedPane sidePane;
-	
+
 	/** The step. */
 	public static int step;
 
@@ -87,7 +87,7 @@ public class App {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
-		logger.log(Level.INFO,"Application started");
+		logger.log(Level.INFO, "Application started");
 
 		SwingUtilities.invokeLater(() -> {
 			try {
@@ -98,15 +98,15 @@ public class App {
 				edgeController = new EdgeController(connection);
 
 				TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController, vehicleController);
-				
+
 				generateUI(connection, trafficStatistic);
 
-				//statisticsPanel = new StatisticsPanel(trafficStatistic);
+				// statisticsPanel = new StatisticsPanel(trafficStatistic);
 
 				startSimulationThread(connection, trafficStatistic);
 
 			} catch (Exception e) {
-				logger.log(Level.SEVERE, "Failed to continue the app",e);
+				logger.log(Level.SEVERE, "Failed to continue the app", e);
 			}
 		});
 	}
@@ -126,16 +126,15 @@ public class App {
 					retrieveData(conn);
 					stats.update(step);
 
-		            String tlId = programLightPanel.getSelectedTrafficLightID();
-		            int currentPhase = trafficLightController.getPhase(tlId);
-		            double currentTime = step * Settings.config.TIMESTEP;
+					String tlId = programLightPanel.getSelectedTrafficLightID();
+					int currentPhase = trafficLightController.getPhase(tlId);
+					double currentTime = step * Settings.config.TIMESTEP;
 
-		            
-		            Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
+					Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
 
 					injectPanel.setHighlightedRoute();
 					programLightPanel.setHighlightedIntersectionTrafficLight();
-					programLightPanel.setHighlightedConnection();	
+					programLightPanel.setHighlightedConnection();
 					final int currentStep = step;
 
 					// Update UI on Swing EDT
@@ -152,7 +151,7 @@ public class App {
 						Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
 					step++;
 				} catch (Exception e) {
-					logger.log(Level.SEVERE,"Failed to continue the background simulation thread",e);
+					logger.log(Level.SEVERE, "Failed to continue the background simulation thread", e);
 				}
 			}
 		}).start();

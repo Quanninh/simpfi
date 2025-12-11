@@ -1,5 +1,6 @@
 package com.simpfi.ui;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.text.DecimalFormat;
 import java.util.function.Consumer;
@@ -16,22 +17,6 @@ import com.simpfi.config.Constants;
  * and y.
  */
 public class TextBox extends JTextField {
-
-	/**
-	 * The Enum SettingsType. //
-	 */
-	// public enum SettingsType {
-	// /** Scale. */
-	// SCALE,
-	// /** Offset x. */
-	// OFFSET_X,
-	// /** Offset y. */
-	// OFFSET_Y,
-	// /** Duration */
-	// DURATION,
-	// /** State */
-	// STATE
-	// }
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -66,9 +51,8 @@ public class TextBox extends JTextField {
 		this.setText(valueTextBox(defaultValue));
 		this.setColumns(6);
 
-		Dimension preferedSize = this.getPreferredSize();
-		preferedSize.setSize(Short.MAX_VALUE, preferedSize.getHeight());
-		this.setMaximumSize(preferedSize);
+		this.setMaximumSize(new Dimension(Short.MAX_VALUE, this.getPreferredSize().height));
+		this.setAlignmentX(Component.LEFT_ALIGNMENT);
 	}
 
 	public String getTextboxValue() {

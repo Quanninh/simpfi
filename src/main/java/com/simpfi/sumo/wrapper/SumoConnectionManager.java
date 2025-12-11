@@ -31,7 +31,7 @@ public class SumoConnectionManager {
 	 * @throws Exception if the TraCI connection fails
 	 */
 	public SumoConnectionManager(String cfg) throws Exception {
-		ProcessBuilder pb = new ProcessBuilder("sumo-gui", "-c", cfg, "--start", "--quit-on-end", "--remote-port",
+		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg, "--start", "--quit-on-end", "--remote-port",
 			String.valueOf(port), "--step-length", String.valueOf(Settings.config.TIMESTEP));
 		pb.inheritIO();
 		pb.start();
@@ -43,7 +43,7 @@ public class SumoConnectionManager {
 		connection.runServer();
 		connection.setOrder(1);
 
-		logger.log(Level.INFO,"SUMO launched and TraCI connected.");
+		logger.log(Level.INFO, "SUMO launched and TraCI connected.");
 	}
 
 	/**
@@ -71,9 +71,9 @@ public class SumoConnectionManager {
 		try {
 			if (connection != null)
 				connection.close();
-			logger.log(Level.INFO,"TraCI connection closed.");
+			logger.log(Level.INFO, "TraCI connection closed.");
 		} catch (Exception e) {
-			logger.log(Level.SEVERE,"Closing is not done properly",e);
+			logger.log(Level.SEVERE, "Closing is not done properly", e);
 		}
 	}
 }
