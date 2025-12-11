@@ -88,10 +88,6 @@ public class StatisticsPanel extends Panel {
 		this.setMaximumSize(new Dimension(330, this.getMaximumSize().height));
 		this.setPreferredSize(this.getMaximumSize());
 
-		// Label content = new Label("");
-		// content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-		// content.setBackground(new Color(245, 0, 0));
-
 		ScrollPane scrollPane = new ScrollPane();
 		scrollPane.setPreferredSize(this.getPreferredSize());
 		// scroll.setBorder(null);

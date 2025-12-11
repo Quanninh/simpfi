@@ -1,11 +1,15 @@
 package com.simpfi.ui.panel;
 
+import java.awt.Dimension;
+import javax.swing.JTextField;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import javax.swing.BoxLayout;
 
+import com.simpfi.ui.Label;
+import com.simpfi.sumo.wrapper.VehicleInjectionController;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
@@ -33,6 +37,13 @@ public class InjectPanel extends Panel {
 	private Dropdown<String> vehicleTypeDropdown;
 	/** The route dropdown for user to select routes to add vehicle to. */
 	private Dropdown<String> routeDropdown;
+	/** Single, Batch Random, Batch on specific route */
+	private Dropdown<String> modeDropdown;
+
+
+	private javax.swing.JTextField countField;
+	private final VehicleInjectionController vic;
+
 
 	/**
 	 * Instantiates a new inject panel.
@@ -44,14 +55,40 @@ public class InjectPanel extends Panel {
 
 		String[] vehicleTypes = getAllVehiclesTypesAsStrings();
 		String[] routeIds = getAllRouteIdsAsStrings();
+		String[] modes = {"Batch Random", "Batch on Route", "Single"};
+		modeDropdown = Dropdown.createDropdownWithLabel("Mode:", modes, this);
+
+		Label label = new Label("Number of vehicles to inject:");
+        this.add(label);
+
+		countField = new JTextField("10");
+		countField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
+		countField.setAlignmentX(LEFT_ALIGNMENT);
+		this.add(countField);
+
+		// Hide Mode text box
+		modeDropdown.addActionListener(e -> {
+			String selectedMode = modeDropdown.getSelectedItem().toString();
+			countField.setVisible(!selectedMode.equals("Single")); 
+			label.setVisible(!selectedMode.equals("Single")); 
+
+			countField.getParent().revalidate();
+			countField.getParent().repaint();
+		});
+
 
 		vehicleTypeDropdown = Dropdown.createDropdownWithLabel("Vehicle Type:", vehicleTypes, this);
 		routeDropdown = Dropdown.createDropdownWithLabel("Route:", routeIds, this);
 
 		vehicleController = new VehicleController(conn);
 
+		vic = new VehicleInjectionController(vehicleController);
+		// Button batchBtn = new Button("Inject Vehicles");
+		// batchBtn.addActionListener(e -> injectVehicles());
+		// this.add(batchBtn);
+
 		Button addVehicleBtn = new Button("Adding vehicle");
-		addVehicleBtn.addActionListener(e -> addVehicle());
+		addVehicleBtn.addActionListener(e -> injectVehicles());
 
 		this.add(addVehicleBtn);
 	}
@@ -110,6 +147,31 @@ public class InjectPanel extends Panel {
 		}
 
 		return routeIds;
+	}
+
+	private void injectVehicles(){
+		String mode = modeDropdown.getSelectedItem().toString();
+		String type = vehicleTypeDropdown.getSelectedItem().toString();
+		String route = routeDropdown.getSelectedItem().toString();
+		int count = 1;
+		try {
+			count = Integer.parseInt(countField.getText().trim());
+		}catch(NumberFormatException ex) {
+			logger.warning("Invalid batch number. Using 1.");
+		}
+		switch(mode){
+			case "Single":
+				addVehicle();
+				break;
+			case "Batch Random":
+				vic.injectRandom(count, type);
+				break;
+			case "Batch on Route":
+				vic.injectOnRoute(route, count, type);
+				break;
+			default:
+				logger.warning("Unknown mode selected: ");
+		}
 	}
 
 }
