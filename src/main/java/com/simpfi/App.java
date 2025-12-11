@@ -226,7 +226,7 @@ public class App {
 		mapViewPanel = new MapViewPanel();
 		programLightPanel = new ProgramLightsPanel(conn);
 		filterPanel = new FilterPanel();
-		inspectPanel = new InspectPanel(conn);
+		inspectPanel = new InspectPanel(conn, mapPanel);
 
 		sidePane = new TabbedPane();
 
