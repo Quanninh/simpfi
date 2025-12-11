@@ -115,7 +115,23 @@ public class InspectPanel extends Panel {
         vehicleListModel = new DefaultListModel<>();
         vehicleList = new JList<>(vehicleListModel);
         vehicleList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION); // mehrere auswählen
-        vehicleList.addListSelectionListener(e -> updateStatsFields());
+        vehicleList.addListSelectionListener(e -> {
+            int index = vehicleList.getSelectedIndex();
+            if (index == -1) return;
+
+            String value = vehicleListModel.get(index);
+
+            // Block-Header ignorieren
+            if (value.startsWith("---")) {
+                vehicleList.clearSelection(); // deselect
+                return;
+            }
+
+            // Index in selectedVehicles bestimmen
+            int vehicleIndex = getVehicleIndexFromListIndex(index);
+            updateStatsFields(vehicleIndex);
+        });
+
         JScrollPane scrollPane = new JScrollPane(vehicleList);
         scrollPane.setPreferredSize(new Dimension(200, 150));
         listPanel.add(scrollPane, BorderLayout.CENTER);
@@ -298,25 +314,20 @@ public class InspectPanel extends Panel {
         }
     }
 
-    private void updateStatsFields() {
-        int index = vehicleList.getSelectedIndex();
-        if (index == -1) return;
+    private void updateStatsFields(int vehicleIndex) {
+        if (vehicleIndex < 0 || vehicleIndex >= selectedVehicles.size()) return;
+        Vehicle v = selectedVehicles.get(vehicleIndex);
 
-        Vehicle v = selectedVehicles.get(index);
-
-        // Speed
         vehicleTextBoxes.get(0).setText(String.valueOf(v.getSpeed()));
 
-        // Color → Label
         Color c = v.getVehicleColor();
         if (c != null) {
             vehicleStaticLabels.get(0).setText("R:" + c.getRed() + " G:" + c.getGreen() + " B:" + c.getBlue());
         }
 
-        // Type → Label
-        vehicleStaticLabels.get(1).setText(v.getType().toString());
-
+        vehicleStaticLabels.get(1).setText(v.getType().getId());
     }
+
 
 
     private void confirmStats() {
@@ -347,8 +358,10 @@ public class InspectPanel extends Panel {
 
         switch (criteria) {
             case "Vehicle Type":
-                selectedVehicles.sort((v1, v2) -> v1.getType().toString().compareTo(v2.getType().toString()));
+                selectedVehicles.sort((v1, v2) ->
+                        v1.getType().toString().compareTo(v2.getType().toString()));
                 break;
+
             case "Color":
                 selectedVehicles.sort((v1, v2) -> {
                     Color c1 = v1.getVehicleColor();
@@ -356,13 +369,33 @@ public class InspectPanel extends Panel {
                     return Integer.compare(c1.getRGB(), c2.getRGB());
                 });
                 break;
+
             case "Speed":
-                selectedVehicles.sort((v1, v2) -> Double.compare(v1.getSpeed(), v2.getSpeed()));
+                selectedVehicles.sort((v1, v2) ->
+                        Double.compare(v1.getSpeed(), v2.getSpeed()));
                 break;
         }
-        //refresh
+
+        // Refresh + Kategorien anzeigen
         vehicleListModel.clear();
+
+        String lastGroup = "";
+
         for (Vehicle v : selectedVehicles) {
+            String currentGroup = "";
+
+            switch (criteria) {
+                case "Vehicle Type": currentGroup = v.getType().getId(); break;
+                case "Color": currentGroup = "RGB: " + v.getVehicleColor().getRGB(); break;
+                case "Speed": currentGroup = String.format("%.1f km/h", v.getSpeed()); break;
+            }
+
+            // Bei neuem Block → Überschrift einfügen
+            if (!currentGroup.equals(lastGroup)) {
+                vehicleListModel.addElement("--- " + currentGroup + " ---");
+                lastGroup = currentGroup;
+            }
+
             vehicleListModel.addElement(v.getID());
         }
     }
@@ -377,6 +410,17 @@ public class InspectPanel extends Panel {
         parent.addItem(textbox);
 
         return textbox;
+    }
+
+    //Methode um herauszufinden, welche Zeilen die Header sind
+    private int getVehicleIndexFromListIndex(int listIndex) {
+        int count = -1;
+        for (int i = 0; i <= listIndex; i++) {
+            if (!vehicleListModel.get(i).startsWith("---")) {
+                count++;
+            }
+        }
+        return count;
     }
 
 
