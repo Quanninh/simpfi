@@ -63,14 +63,14 @@ public class InspectPanel extends Panel {
         this.setLayout(new BorderLayout());
 
         // content
-        JPanel contentPanel = new JPanel();
+        JPanel contentPanel = new Panel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 
         // Panel für Liste, Buttons und Dropdown
-        JPanel listPanel = new JPanel();
+        JPanel listPanel = new Panel();
         listPanel.setLayout(new BorderLayout());
 
-    // Fahrzeugliste in ScrollPane
+        // Fahrzeugliste in ScrollPane
         vehicleListModel = new DefaultListModel<>();
         vehicleList = new JList<>(vehicleListModel);
         vehicleList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -294,6 +294,7 @@ public class InspectPanel extends Panel {
 
     private void addVehicleToInspect(Vehicle v) {
         // Prüfen Fahrzeug mit derselben ID schon in der Liste ist
+        //stream anschauen
         boolean alreadyAdded = selectedVehicles.stream()
                 .anyMatch(vehicle -> vehicle.getID().equals(v.getID()));
 
@@ -448,8 +449,4 @@ public class InspectPanel extends Panel {
         return count;
     }
 
-
-    public Mode getCurrentMode() {
-        return currentMode;
-    }
 }
