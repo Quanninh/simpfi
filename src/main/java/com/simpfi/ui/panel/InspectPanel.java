@@ -25,7 +25,6 @@ import com.simpfi.ui.Button;
 import com.simpfi.ui.Dropdown;
 import com.simpfi.ui.Panel;
 import com.simpfi.object.Vehicle;
-import java.awt.Color;
 
 
 import com.simpfi.ui.panel.MapPanel;
@@ -90,7 +89,9 @@ public class InspectPanel extends Panel {
     private JList<String> vehicleList;
     private JButton confirmButton;
     private JButton changeModeButton;
-    private JComboBox<String> colorDropdown;
+    private JButton selectAllButton;
+    private JButton clearButton;
+    private JComboBox<String> groupByDropdown;
 
 
     enum Mode { PanMODE, SelectMODE }
@@ -107,17 +108,75 @@ public class InspectPanel extends Panel {
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 
-// Fahrzeugliste
+// Panel für Liste + Buttons + Dropdown
+        JPanel listPanel = new JPanel();
+        listPanel.setLayout(new BorderLayout());
+
+// Fahrzeugliste in ScrollPane
         vehicleListModel = new DefaultListModel<>();
         vehicleList = new JList<>(vehicleListModel);
-        vehicleList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        vehicleList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION); // mehrere auswählen
         vehicleList.addListSelectionListener(e -> updateStatsFields());
         JScrollPane scrollPane = new JScrollPane(vehicleList);
-        scrollPane.setPreferredSize(new Dimension(200, 100));
-        contentPanel.add(scrollPane);
+        scrollPane.setPreferredSize(new Dimension(200, 150));
+        listPanel.add(scrollPane, BorderLayout.CENTER);
+
+// Panel rechts für Buttons und Dropdown
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+
+        selectAllButton = new JButton("Select All");
+        selectAllButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        selectAllButton.addActionListener(e -> {
+            // Liste vorher leeren
+            selectedVehicles.clear();
+            vehicleListModel.clear();
+
+            // Alle Fahrzeuge aus SUMO holen
+            List<Vehicle> allVehicles = VehicleController.getVehicles();
+            selectedVehicles.addAll(allVehicles);
+
+            // IDs zur JList hinzufügen
+            for (Vehicle v : allVehicles) {
+                vehicleListModel.addElement(v.getID());
+            }
+
+            // Alle Einträge auswählen
+            if (!allVehicles.isEmpty()) {
+                vehicleList.setSelectionInterval(0, allVehicles.size() - 1);
+            }
+        });
+
+        buttonPanel.add(selectAllButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0,5)));
+
+        clearButton = new JButton("Clear");
+        clearButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        clearButton.addActionListener(e -> {
+            // Alle ausgewählten entfernen
+            int[] selectedIndices = vehicleList.getSelectedIndices();
+            for (int i = selectedIndices.length - 1; i >= 0; i--) {
+                int index = selectedIndices[i];
+                selectedVehicles.remove(index);
+                vehicleListModel.remove(index);
+            }
+        });
+        buttonPanel.add(clearButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0,10)));
+
+// Group By Dropdown
+        groupByDropdown = new JComboBox<>(new String[]{"Vehicle Type", "Color", "Speed"});
+        groupByDropdown.setAlignmentX(Component.CENTER_ALIGNMENT);
+        groupByDropdown.addActionListener(e -> groupVehicles());
+        buttonPanel.add(new JLabel("Group By:"));
+        buttonPanel.add(groupByDropdown);
+
+        listPanel.add(buttonPanel, BorderLayout.EAST);
+
+// Ganzes ListPanel zum Content Panel hinzufügen
+        contentPanel.add(listPanel);
 
 // ======= STATS PANEL =======
-// Inneres Panel für die Stats
         JPanel statsPanel = new JPanel();
         statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
 
@@ -134,13 +193,13 @@ public class InspectPanel extends Panel {
         JLabel colorLabel = new JLabel("Color:");
         colorLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         colorField = new JTextField();
-        colorField.setEditable(false); // Nicht bearbeitbar
+        colorField.setEditable(false);
         colorField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
         statsPanel.add(colorLabel);
         statsPanel.add(colorField);
         statsPanel.add(Box.createRigidArea(new Dimension(0,5)));
 
-// Acceleration / Type (optional, falls du später wieder einfügen willst)
+// Acceleration / Type (optional)
         JLabel typeLabel = new JLabel("Acceleration:");
         typeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         typeField = new JTextField();
@@ -159,6 +218,7 @@ public class InspectPanel extends Panel {
         contentPanel.add(confirmButton);
 
         this.add(contentPanel, BorderLayout.CENTER);
+
 
         // ======= BOTTOM-BEREICH =======
         JPanel bottomPanel = new JPanel();
@@ -275,6 +335,30 @@ public class InspectPanel extends Panel {
         }
     }
 
+    private void groupVehicles() {
+        String criteria = (String) groupByDropdown.getSelectedItem();
+
+        switch (criteria) {
+            case "Vehicle Type":
+                selectedVehicles.sort((v1, v2) -> v1.getType().toString().compareTo(v2.getType().toString()));
+                break;
+            case "Color":
+                selectedVehicles.sort((v1, v2) -> {
+                    Color c1 = v1.getVehicleColor();
+                    Color c2 = v2.getVehicleColor();
+                    return Integer.compare(c1.getRGB(), c2.getRGB());
+                });
+                break;
+            case "Speed":
+                selectedVehicles.sort((v1, v2) -> Double.compare(v1.getSpeed(), v2.getSpeed()));
+                break;
+        }
+        //refresh
+        vehicleListModel.clear();
+        for (Vehicle v : selectedVehicles) {
+            vehicleListModel.addElement(v.getID());
+        }
+    }
 
 
 
