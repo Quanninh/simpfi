@@ -42,7 +42,12 @@ public class FilterPanel extends Panel {
 		// Filter Vehicles by speed
 		generateSpeedFilter();
 	}
-
+	
+	/**
+	 * Method used to set up the vehicle-type filter.
+	 * 
+	 * @param vehicleTypes the list of vehicle types
+	 */
 	private void generateVehicleTypeFilter(String[] vehicleTypes) {
 		vehicleTypeOptions = new CheckBox[vehicleTypes.length];
 
@@ -58,6 +63,11 @@ public class FilterPanel extends Panel {
 		attachCheckboxListenersForVehicleTypes();
 	}
 
+	/**
+	 * Method used to set up the road filter.
+	 * 
+	 * @param roads the list of roads
+	 */
 	private void generateRoadFilter(String[] roads) {
 		roadOptions = new CheckBox[roads.length];
 
@@ -93,6 +103,11 @@ public class FilterPanel extends Panel {
 
 	}
 
+	/**
+	 * Method used to set up the speed filter 
+	 * and attach necessary listeners to its range slider.
+	 * 
+	 */
 	private void generateSpeedFilter(){
 		this.add(new Label("Speed: "));
 		// speed is measured by m/s
