@@ -98,11 +98,14 @@ public class FilterPanel extends Panel {
 		// speed is measured by m/s
 		RangeSlider rs = new RangeSlider(0, 60);
 		this.add(rs);
-		
-		// Update Settings whenever slider changes
+		Label speedRange = new Label("Range: "+Settings.highlight.LOWER_BOUND_LIMIT+ " - "+ Settings.highlight.UPPER_BOUND_LIMIT);
+		// speedRange.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.add(speedRange);
+		// Update lower and upper bound whenever slider changes
 		rs.addChangeListener(e -> {
 			Settings.highlight.LOWER_BOUND_LIMIT = rs.getLowValue();
 			Settings.highlight.UPPER_BOUND_LIMIT = rs.getHighValue();
+			speedRange.setText("Range: "+Settings.highlight.LOWER_BOUND_LIMIT+ " - "+ Settings.highlight.UPPER_BOUND_LIMIT);
 		});
 	}
 
