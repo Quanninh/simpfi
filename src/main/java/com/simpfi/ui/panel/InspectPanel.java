@@ -7,12 +7,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Map;
+
 import java.util.List;
 
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
 
 
+import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
@@ -22,6 +25,7 @@ import com.simpfi.ui.Button;
 import com.simpfi.ui.Dropdown;
 import com.simpfi.ui.Panel;
 import com.simpfi.object.Vehicle;
+import java.awt.Color;
 
 
 import com.simpfi.ui.panel.MapPanel;
@@ -44,7 +48,6 @@ import com.simpfi.ui.panel.MapPanel;
 //choose vehicleS -> user stats ändern lassen -> confirm choices
 
 // Button zum Modus changen zw SELECT MODE und PAN MODE
-//
 //
 // BUTTON für SELECT ALL
 // "group by" dropdown mit | vehicle type | color | (speed)
@@ -77,9 +80,9 @@ public class InspectPanel extends Panel {
     private List<Vehicle> selectedVehicles = new ArrayList<>();
 
     // UI
+    private JTextField typeField;
     private JTextField speedField;
-    private JTextField maxSpeedField;
-    private JTextField accelField;
+    private JTextField colorField;
 
     private JLabel modeLabel;
     private JLabel instructionLabel;
@@ -87,6 +90,8 @@ public class InspectPanel extends Panel {
     private JList<String> vehicleList;
     private JButton confirmButton;
     private JButton changeModeButton;
+    private JComboBox<String> colorDropdown;
+
 
     enum Mode { PanMODE, SelectMODE }
     private Mode currentMode = Mode.PanMODE;
@@ -102,7 +107,7 @@ public class InspectPanel extends Panel {
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 
-        // Fahrzeugliste
+// Fahrzeugliste
         vehicleListModel = new DefaultListModel<>();
         vehicleList = new JList<>(vehicleListModel);
         vehicleList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -111,25 +116,46 @@ public class InspectPanel extends Panel {
         scrollPane.setPreferredSize(new Dimension(200, 100));
         contentPanel.add(scrollPane);
 
-        // Stats-Felder
-        JPanel statsPanel = new JPanel(new GridLayout(3,2));
-        statsPanel.add(new JLabel("Speed:"));
+// ======= STATS PANEL =======
+// Inneres Panel für die Stats
+        JPanel statsPanel = new JPanel();
+        statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
+
+// Speed
+        JLabel speedLabel = new JLabel("Speed:");
+        speedLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         speedField = new JTextField();
+        speedField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+        statsPanel.add(speedLabel);
         statsPanel.add(speedField);
+        statsPanel.add(Box.createRigidArea(new Dimension(0,5)));
 
-        statsPanel.add(new JLabel("Max Speed:"));
-        maxSpeedField = new JTextField();
-        statsPanel.add(maxSpeedField);
+// Color (nur anzeigen, nicht editierbar)
+        JLabel colorLabel = new JLabel("Color:");
+        colorLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        colorField = new JTextField();
+        colorField.setEditable(false); // Nicht bearbeitbar
+        colorField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+        statsPanel.add(colorLabel);
+        statsPanel.add(colorField);
+        statsPanel.add(Box.createRigidArea(new Dimension(0,5)));
 
-        statsPanel.add(new JLabel("Acceleration:"));
-        accelField = new JTextField();
-        statsPanel.add(accelField);
+// Acceleration / Type (optional, falls du später wieder einfügen willst)
+        JLabel typeLabel = new JLabel("Acceleration:");
+        typeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        typeField = new JTextField();
+        typeField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+        statsPanel.add(typeLabel);
+        statsPanel.add(typeField);
+        statsPanel.add(Box.createRigidArea(new Dimension(0,5)));
 
         contentPanel.add(statsPanel);
 
-        // Confirm Button
+// Confirm Button
         confirmButton = new JButton("Confirm Changes");
+        confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         confirmButton.addActionListener(e -> confirmStats());
+        contentPanel.add(Box.createRigidArea(new Dimension(0,5)));
         contentPanel.add(confirmButton);
 
         this.add(contentPanel, BorderLayout.CENTER);
@@ -215,10 +241,15 @@ public class InspectPanel extends Panel {
     private void updateStatsFields() {
         int index = vehicleList.getSelectedIndex();
         if (index == -1) return;
+
         Vehicle v = selectedVehicles.get(index);
 
+        // Nur Speed anzeigen
         speedField.setText(String.valueOf(v.getSpeed()));
-        // Optional: maxSpeedField und accelField, falls aus SUMO lesbar
+
+        // Farbe nur anzeigen (kein Ändern)
+        Color vColor = v.getVehicleColor(); // falls Vehicle.getVehicleColor() verfügbar ist
+        colorField.setText(vColor != null ? "R:" + vColor.getRed() + " G:" + vColor.getGreen() + " B:" + vColor.getBlue() : "");
     }
 
     private void confirmStats() {
@@ -230,18 +261,10 @@ public class InspectPanel extends Panel {
 
         try {
             double newSpeed = Double.parseDouble(speedField.getText());
-            double newMaxSpeed = Double.parseDouble(maxSpeedField.getText());
-            double newAccel = Double.parseDouble(accelField.getText());
 
-            // Änderungen direkt in SUMO
+            // Nur Speed kann geändert werden
             sumoConnectionManager.getConnection().do_job_set(
                     de.tudresden.sumo.cmd.Vehicle.setSpeed(vehicleID, newSpeed)
-            );
-            sumoConnectionManager.getConnection().do_job_set(
-                    de.tudresden.sumo.cmd.Vehicle.setMaxSpeed(vehicleID, newMaxSpeed)
-            );
-            sumoConnectionManager.getConnection().do_job_set(
-                    de.tudresden.sumo.cmd.Vehicle.setAccel(vehicleID, newAccel)
             );
 
         } catch (NumberFormatException ex) {
@@ -251,6 +274,10 @@ public class InspectPanel extends Panel {
             ex.printStackTrace();
         }
     }
+
+
+
+
 
     public Mode getCurrentMode() {
         return currentMode;
