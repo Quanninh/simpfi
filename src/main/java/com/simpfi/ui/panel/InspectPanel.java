@@ -9,22 +9,21 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Map;
 
-import java.util.List;
-
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
 
 
-import com.simpfi.config.Constants;
 import com.simpfi.config.Settings;
-import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.VehicleController;
 import com.simpfi.ui.Button;
 import com.simpfi.ui.Dropdown;
 import com.simpfi.ui.Panel;
+import com.simpfi.ui.ScrollPane;
+import com.simpfi.ui.TextBox;
 import com.simpfi.object.Vehicle;
+
 
 
 import com.simpfi.ui.panel.MapPanel;
@@ -78,13 +77,9 @@ public class InspectPanel extends Panel {
     // Aktuell ausgewählte Fahrzeuge
     private List<Vehicle> selectedVehicles = new ArrayList<>();
 
-    // UI
-    private JTextField typeField;
-    private JTextField speedField;
-    private JTextField colorField;
-
     private JLabel modeLabel;
     private JLabel instructionLabel;
+    private JLabel groupByLabel;
     private DefaultListModel<String> vehicleListModel;
     private JList<String> vehicleList;
     private JButton confirmButton;
@@ -92,6 +87,10 @@ public class InspectPanel extends Panel {
     private JButton selectAllButton;
     private JButton clearButton;
     private JComboBox<String> groupByDropdown;
+    private List<TextBox> vehicleTextBoxes;
+    private ScrollPane statsScrollPane;
+    private List<JLabel> vehicleStaticLabels;
+
 
 
     enum Mode { PanMODE, SelectMODE }
@@ -164,51 +163,52 @@ public class InspectPanel extends Panel {
         buttonPanel.add(clearButton);
         buttonPanel.add(Box.createRigidArea(new Dimension(0,10)));
 
+// Group By Label über dem Dropdown
+        groupByLabel = new JLabel("Group By:");
+        groupByLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // linksbündig
+        buttonPanel.add(groupByLabel);
+
 // Group By Dropdown
         groupByDropdown = new JComboBox<>(new String[]{"Vehicle Type", "Color", "Speed"});
-        groupByDropdown.setAlignmentX(Component.CENTER_ALIGNMENT);
+        groupByDropdown.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25)); // nur eine Zeile hoch
+        groupByDropdown.setAlignmentX(Component.CENTER_ALIGNMENT); // linksbündig
         groupByDropdown.addActionListener(e -> groupVehicles());
-        buttonPanel.add(new JLabel("Group By:"));
         buttonPanel.add(groupByDropdown);
+
+// Abstand nach unten
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         listPanel.add(buttonPanel, BorderLayout.EAST);
 
 // Ganzes ListPanel zum Content Panel hinzufügen
         contentPanel.add(listPanel);
 
-// ======= STATS PANEL =======
-        JPanel statsPanel = new JPanel();
-        statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
+// --- Stats Panel als ScrollPane ---
+        statsScrollPane = new ScrollPane();
+        statsScrollPane.setPreferredSize(new Dimension(300, 200));
+        vehicleTextBoxes = new ArrayList<>();
+        vehicleStaticLabels = new ArrayList<>();
 
-// Speed
-        JLabel speedLabel = new JLabel("Speed:");
-        speedLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        speedField = new JTextField();
-        speedField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
-        statsPanel.add(speedLabel);
-        statsPanel.add(speedField);
-        statsPanel.add(Box.createRigidArea(new Dimension(0,5)));
+// Speed (Zahl)
+        TextBox speedTextbox = createTextboxWithLabel("Speed", statsScrollPane, 0.0, true, true, "Speed of the vehicle");
+        vehicleTextBoxes.add(speedTextbox);
 
-// Color (nur anzeigen, nicht editierbar)
-        JLabel colorLabel = new JLabel("Color:");
-        colorLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        colorField = new JTextField();
-        colorField.setEditable(false);
-        colorField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
-        statsPanel.add(colorLabel);
-        statsPanel.add(colorField);
-        statsPanel.add(Box.createRigidArea(new Dimension(0,5)));
+// --- COLOR (als Label, nicht editierbar)
+        statsScrollPane.addItem(new JLabel("Color"));
+        JLabel colorLabel = new JLabel("R:0 G:0 B:0");
+        statsScrollPane.addItem(colorLabel);
+        vehicleStaticLabels.add(colorLabel);
 
-// Acceleration / Type (optional)
-        JLabel typeLabel = new JLabel("Acceleration:");
-        typeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        typeField = new JTextField();
-        typeField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
-        statsPanel.add(typeLabel);
-        statsPanel.add(typeField);
-        statsPanel.add(Box.createRigidArea(new Dimension(0,5)));
+// --- VEHICLE TYPE (als Label, nicht editierbar)
+        statsScrollPane.addItem(new JLabel("Vehicle Type"));
+        JLabel typeLabel = new JLabel("");
+        statsScrollPane.addItem(typeLabel);
+        vehicleStaticLabels.add(typeLabel);
 
-        contentPanel.add(statsPanel);
+
+        JPanel statsWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        statsWrapper.add(statsScrollPane);
+        contentPanel.add(statsWrapper);
 
 // Confirm Button
         confirmButton = new JButton("Confirm Changes");
@@ -304,13 +304,20 @@ public class InspectPanel extends Panel {
 
         Vehicle v = selectedVehicles.get(index);
 
-        // Nur Speed anzeigen
-        speedField.setText(String.valueOf(v.getSpeed()));
+        // Speed
+        vehicleTextBoxes.get(0).setText(String.valueOf(v.getSpeed()));
 
-        // Farbe nur anzeigen (kein Ändern)
-        Color vColor = v.getVehicleColor(); // falls Vehicle.getVehicleColor() verfügbar ist
-        colorField.setText(vColor != null ? "R:" + vColor.getRed() + " G:" + vColor.getGreen() + " B:" + vColor.getBlue() : "");
+        // Color → Label
+        Color c = v.getVehicleColor();
+        if (c != null) {
+            vehicleStaticLabels.get(0).setText("R:" + c.getRed() + " G:" + c.getGreen() + " B:" + c.getBlue());
+        }
+
+        // Type → Label
+        vehicleStaticLabels.get(1).setText(v.getType().toString());
+
     }
+
 
     private void confirmStats() {
         int index = vehicleList.getSelectedIndex();
@@ -320,7 +327,7 @@ public class InspectPanel extends Panel {
         String vehicleID = v.getID();
 
         try {
-            double newSpeed = Double.parseDouble(speedField.getText());
+            double newSpeed = Double.parseDouble(vehicleTextBoxes.get(0).getText());
 
             // Nur Speed kann geändert werden
             sumoConnectionManager.getConnection().do_job_set(
@@ -359,6 +366,19 @@ public class InspectPanel extends Panel {
             vehicleListModel.addElement(v.getID());
         }
     }
+
+    private TextBox createTextboxWithLabel(String labelText, ScrollPane parent, double defaultValue,
+                                           Boolean mustBeDouble, Boolean mustBePositive, String tooltip) {
+        JLabel label = new JLabel(labelText);
+        TextBox textbox = new TextBox(defaultValue, mustBeDouble, mustBePositive);
+        textbox.setToolTipText(tooltip);
+
+        parent.addItem(label);
+        parent.addItem(textbox);
+
+        return textbox;
+    }
+
 
 
 
