@@ -7,14 +7,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Map;
-
-import javax.swing.JTextField;
 import java.awt.BorderLayout;
 
-
 import com.simpfi.config.Settings;
-import com.simpfi.object.VehicleType;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.VehicleController;
 import com.simpfi.ui.Button;
@@ -25,46 +20,11 @@ import com.simpfi.ui.TextBox;
 import com.simpfi.object.Vehicle;
 
 
-
-import com.simpfi.ui.panel.MapPanel;
-
 /**
  * A UI panel used for inspecting vehicles. This class extends {@link Panel}.
  */
-//UI:
-// Button zum wechseln zwischen den Modi "Select Mode" und "Pan Mode" -> kurze instruction was die modi sind!
-// user instruction und current mode change(kleines fenster ganz unten), wenn button gelickt wird
-// instr -> sie sind nun im select modus, klicken sie auf das fahrzeug,das Sie inspecten möchten.
-// Zum verlassen des Modus " " klicken Sie erneut auf change Mode Button
-
-
-//LOGIK:
-//auf Punkt auf der map klicken -> programm bezieht von SUMO alle fahrzeugdaten und berechnet, wo das
-//näheste vehikel vom geklickten punkt aus gesehen ist.
-//
-//WICHTIG: Man soll MEHRERE verhicles uswählen können, die dann in einer liste aufgeführt werden
-//choose vehicleS -> user stats ändern lassen -> confirm choices
-
-// Button zum Modus changen zw SELECT MODE und PAN MODE
-//
-// BUTTON für SELECT ALL
-// "group by" dropdown mit | vehicle type | color | (speed)
-// fahzeuge werden nach dem ersten char ihres type sortiert
-
-
-
-//Stats:
-// ID
-// Coordinates, + Lane, edge, ... ??
-// Speed
-// ------------------
-// color
-// destination
-
-//WICHTIG!
-// Immer code so schreiben, dass er executable ist
-//Javax swing
-
+//Confirm changes doesnt work yet, because it only changes speed, which cant be changed due to predefined routes
+//of vehicles
 
 public class InspectPanel extends Panel {
 
@@ -72,9 +32,8 @@ public class InspectPanel extends Panel {
 
     private VehicleController vehicleController;
     private SumoConnectionManager sumoConnectionManager;
-    private MapPanel mapPanel; // Referenz auf MapPanel
+    private MapPanel mapPanel;
 
-    // Aktuell ausgewählte Fahrzeuge
     private List<Vehicle> selectedVehicles = new ArrayList<>();
 
     private JLabel modeLabel;
@@ -103,18 +62,18 @@ public class InspectPanel extends Panel {
 
         this.setLayout(new BorderLayout());
 
-        // ======= CONTENT-BEREICH =======
-        JPanel contentPanel = new JPanel();
+        // content
+        JPanel contentPanel = new Panel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 
-// Panel für Liste + Buttons + Dropdown
-        JPanel listPanel = new JPanel();
+        // Panel für Liste, Buttons und Dropdown
+        JPanel listPanel = new Panel();
         listPanel.setLayout(new BorderLayout());
 
-// Fahrzeugliste in ScrollPane
+        // Fahrzeugliste in ScrollPane
         vehicleListModel = new DefaultListModel<>();
         vehicleList = new JList<>(vehicleListModel);
-        vehicleList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION); // mehrere auswählen
+        vehicleList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         vehicleList.addListSelectionListener(e -> {
             int listIndex = vehicleList.getSelectedIndex();
             if (listIndex == -1) return;
@@ -127,7 +86,7 @@ public class InspectPanel extends Panel {
                 return;
             }
 
-            // Bereinigten Index in selectedVehicles bekommen
+            // neuer Index in selectedVehicles
             int vehicleIndex = getVehicleIndexFromListIndex(listIndex);
             updateStatsFields(vehicleIndex);
         });
@@ -136,7 +95,7 @@ public class InspectPanel extends Panel {
         scrollPane.setPreferredSize(new Dimension(200, 150));
         listPanel.add(scrollPane, BorderLayout.CENTER);
 
-// Panel rechts für Buttons und Dropdown
+        // Panel rechts für SelectAll, Clear und Dropdown
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
@@ -147,7 +106,7 @@ public class InspectPanel extends Panel {
             selectedVehicles.clear();
             vehicleListModel.clear();
 
-            // Alle Fahrzeuge aus SUMO holen
+            // all vehicles aus SUMO holen
             List<Vehicle> allVehicles = VehicleController.getVehicles();
             selectedVehicles.addAll(allVehicles);
 
@@ -155,7 +114,6 @@ public class InspectPanel extends Panel {
             for (Vehicle v : allVehicles) {
                 vehicleListModel.addElement(v.getID());
             }
-
             // Alle Einträge auswählen
             if (!allVehicles.isEmpty()) {
                 vehicleList.setSelectionInterval(0, allVehicles.size() - 1);
@@ -168,7 +126,7 @@ public class InspectPanel extends Panel {
         clearButton = new JButton("Clear");
         clearButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         clearButton.addActionListener(e -> {
-            // Schritt 1: Select All simulieren
+            // Select All simulieren
             selectedVehicles.clear();
             vehicleListModel.clear();
             List<Vehicle> allVehicles = VehicleController.getVehicles();
@@ -180,7 +138,7 @@ public class InspectPanel extends Panel {
                 vehicleList.setSelectionInterval(0, allVehicles.size() - 1);
             }
 
-            // Schritt 2: Alles wieder löschen
+            //alles löschen
             selectedVehicles.clear();
             vehicleListModel.clear();
         });
@@ -188,12 +146,12 @@ public class InspectPanel extends Panel {
         buttonPanel.add(clearButton);
         buttonPanel.add(Box.createRigidArea(new Dimension(0,10)));
 
-// Group By Label über dem Dropdown
+// GroupBy Label über dem Dropdown
         groupByLabel = new JLabel("Group By:");
         groupByLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // linksbündig
         buttonPanel.add(groupByLabel);
 
-// Group By Dropdown
+// GroupBy Dropdown
         groupByDropdown = new JComboBox<>(new String[]{"None","Vehicle Type", "Color", "Speed"});
         groupByDropdown.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25)); // nur eine Zeile hoch
         groupByDropdown.setAlignmentX(Component.CENTER_ALIGNMENT); // linksbündig
@@ -208,47 +166,47 @@ public class InspectPanel extends Panel {
 // Ganzes ListPanel zum Content Panel hinzufügen
         contentPanel.add(listPanel);
 
-// --- Stats Panel als ScrollPane ---
+// Stats Panel als ScrollPane
         statsScrollPane = new ScrollPane();
         statsScrollPane.setPreferredSize(new Dimension(300, 200));
         vehicleTextBoxes = new ArrayList<>();
         vehicleStaticLabels = new ArrayList<>();
 
-// --- STAT-Felder initialisieren ---
+// stats-felder initialisieren
         TextBox speedTextbox = createTextboxWithLabel("Speed", statsScrollPane, 0.0, true, true, "Speed of the vehicle");
         vehicleTextBoxes.add(speedTextbox);
 
-// Max Speed (Label, nicht editierbar)
+// Max Speed Label
         statsScrollPane.addItem(new JLabel("Max Speed"));
         JLabel maxSpeedLabel = new JLabel("0.0");
         statsScrollPane.addItem(maxSpeedLabel);
         vehicleStaticLabels.add(maxSpeedLabel);
 
-// Acceleration (Label, nicht editierbar)
+// Acceleration Label
         statsScrollPane.addItem(new JLabel("Acceleration"));
         JLabel accelerationLabel = new JLabel("0.0");
         statsScrollPane.addItem(accelerationLabel);
         vehicleStaticLabels.add(accelerationLabel);
 
-// Distance Traveled (Label, nicht editierbar)
+// Distance Traveled Label
         statsScrollPane.addItem(new JLabel("Distance Traveled"));
         JLabel distanceLabel = new JLabel("0.0");
         statsScrollPane.addItem(distanceLabel);
         vehicleStaticLabels.add(distanceLabel);
 
-// Route (Label, nicht editierbar)
+// Route Label
         statsScrollPane.addItem(new JLabel("Route"));
         JLabel routeLabel = new JLabel("");
         statsScrollPane.addItem(routeLabel);
         vehicleStaticLabels.add(routeLabel);
 
-// Color (Label)
+// Color Label
         statsScrollPane.addItem(new JLabel("Color"));
         JLabel colorLabel = new JLabel("R:0 G:0 B:0");
         statsScrollPane.addItem(colorLabel);
         vehicleStaticLabels.add(colorLabel);
 
-// Vehicle Type (Label)
+// Vehicle Type Label
         statsScrollPane.addItem(new JLabel("Vehicle Type"));
         JLabel typeLabel = new JLabel("");
         statsScrollPane.addItem(typeLabel);
@@ -267,7 +225,7 @@ public class InspectPanel extends Panel {
         this.add(contentPanel, BorderLayout.CENTER);
 
 
-        // ======= BOTTOM-BEREICH =======
+        // bottom Panel mit change mode, current mode und instructions
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
 
@@ -335,7 +293,8 @@ public class InspectPanel extends Panel {
     }
 
     private void addVehicleToInspect(Vehicle v) {
-        // Prüfen, ob ein Fahrzeug mit derselben ID bereits in der Liste ist
+        // Prüfen Fahrzeug mit derselben ID schon in der Liste ist
+        //stream anschauen
         boolean alreadyAdded = selectedVehicles.stream()
                 .anyMatch(vehicle -> vehicle.getID().equals(v.getID()));
 
@@ -376,8 +335,6 @@ public class InspectPanel extends Panel {
     }
 
 
-
-
     private void confirmStats() {
         int listIndex = vehicleList.getSelectedIndex();
         if (listIndex == -1) return;
@@ -395,12 +352,11 @@ public class InspectPanel extends Panel {
         try {
             double newSpeed = Double.parseDouble(vehicleTextBoxes.get(0).getText());
 
-            // Speed in SUMO setzen
+            // Speed set
             sumoConnectionManager.getConnection().do_job_set(
                     de.tudresden.sumo.cmd.Vehicle.setSpeed(vehicleID, newSpeed)
             );
 
-            // Feedback
             JOptionPane.showMessageDialog(this, "Vehicle speed updated successfully.", "Info", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (NumberFormatException ex) {
@@ -411,11 +367,11 @@ public class InspectPanel extends Panel {
         }
     }
 
-
+//für group by methode
     private void groupVehicles() {
         String criteria = (String) groupByDropdown.getSelectedItem();
 
-        // Bei "None" keine Sortierung und keine Header
+        // Bei None keine Sortierung und keine Header
         if (criteria.equals("None")) {
             vehicleListModel.clear();
             for (Vehicle v : selectedVehicles) {
@@ -424,7 +380,7 @@ public class InspectPanel extends Panel {
             return;
         }
 
-        // Ansonsten sortieren + Header einfügen
+        // Ansonsten sortieren und Header einfügen
         switch (criteria) {
             case "Vehicle Type":
                 selectedVehicles.sort((v1, v2) ->
@@ -445,7 +401,7 @@ public class InspectPanel extends Panel {
                 break;
         }
 
-        // Refresh + Kategorien anzeigen
+        // Refresh und Kategorien(Header) anzeigen
         vehicleListModel.clear();
         String lastGroup = "";
 
@@ -458,7 +414,7 @@ public class InspectPanel extends Panel {
                 case "Speed": currentGroup = String.format("%.1f km/h", v.getSpeed()); break;
             }
 
-            // Bei neuem Block → Überschrift einfügen
+            // Bei neuem Block  Überschrift einfügen
             if (!currentGroup.equals(lastGroup)) {
                 vehicleListModel.addElement("--- " + currentGroup + " ---");
                 lastGroup = currentGroup;
@@ -481,7 +437,8 @@ public class InspectPanel extends Panel {
         return textbox;
     }
 
-    //Methode um herauszufinden, welche Zeilen die Header sind
+    //Methode um herauszufinden welche Zeilen die Header sind
+    //für Vehicle list
     private int getVehicleIndexFromListIndex(int listIndex) {
         int count = -1;
         for (int i = 0; i <= listIndex; i++) {
@@ -492,12 +449,4 @@ public class InspectPanel extends Panel {
         return count;
     }
 
-
-
-
-
-
-    public Mode getCurrentMode() {
-        return currentMode;
-    }
 }
