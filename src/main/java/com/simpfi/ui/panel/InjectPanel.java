@@ -21,7 +21,7 @@ import com.simpfi.ui.Panel;
 public class InjectPanel extends Panel {
 
 	/** Logger. */
-    private static final Logger logger = Logger.getLogger(InjectPanel.class.getName());
+	private static final Logger logger = Logger.getLogger(InjectPanel.class.getName());
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -62,21 +62,21 @@ public class InjectPanel extends Panel {
 	 */
 	public void setHighlightedRoute() {
 		Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
-			Settings.network.getRoutes());
+				Settings.network.getRoutes());
 	}
 
 	/**
 	 * Adds a vehicle to the route.
 	 */
 	private void addVehicle() {
-			String vehicleIds = VehicleController.generateVehicleID();
-			String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
-			String userChoiceRoute = routeDropdown.getSelectedItem().toString();
-			try {
+		String vehicleIds = VehicleController.generateVehicleID();
+		String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
+		String userChoiceRoute = routeDropdown.getSelectedItem().toString();
+		try {
 			vehicleController.addVehicle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
 		} catch (Exception e1) {
-			logger.log(Level.SEVERE,String.format("Failed to add vehicle (type= %s , route= %s )",
-					userChoiceVehicleType,  userChoiceRoute),e1);
+			logger.log(Level.SEVERE, String.format("Failed to add vehicle (type= %s , route= %s )",
+					userChoiceVehicleType, userChoiceRoute), e1);
 		}
 	}
 

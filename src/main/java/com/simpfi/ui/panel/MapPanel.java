@@ -1,5 +1,6 @@
 package com.simpfi.ui.panel;
 
+import java.awt.Polygon;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -137,9 +138,12 @@ public class MapPanel extends Panel {
 			}
 		}
 
-		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
+		// We don't draw vehicles which are not with the filtered speed range
+		if (v.getSpeed() < Settings.highlight.LOWER_BOUND_LIMIT || v.getSpeed() > Settings.highlight.UPPER_BOUND_LIMIT) {
+			return;
+		}
 
-		//g.setColor(v.getVehicleColor());
+		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 
 		double lengthMultipler = 1.5;
 		double narrowWidth = 0.8;
@@ -148,22 +152,20 @@ public class MapPanel extends Panel {
 		int height = (int) (v.getHeight() * narrowWidth * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
 
 		double angle = v.getAngle();
-		//g.rotate(Math.toRadians(angle), pos.getX(), pos.getY());
 
 		int x = (int) pos.getX() - width/2;
         int y = (int) pos.getY() - height/2;
 
-		//g.fillRect((int) pos.getX() - width / 2, (int) pos.getY() - height / 2, width, height);
-
-		// int halfWidth = width / 2;
-		// int halfHeight = height;
 		int drawX = -width / 2;   
         int drawY = -height;            
 
 		int light = height / 6;
         int headlightFrontY = drawY + height/6; 
 
-
+		int bodyLeft = drawX;
+		int bodyRight = drawX + width;
+		int bodyTop = drawY;
+		int bodyBottom = drawY + height;
 		int frontOffset = (int)(height / 2.0); 
 
 		Graphics2D g2 = (Graphics2D) g.create();
@@ -177,53 +179,79 @@ public class MapPanel extends Panel {
 		g2.fillRoundRect(drawX, drawY, width, height, 8, 8);
 
 		
-		// // Front windshield (rounded rectangle) behind headlights
-		// g2.setColor(new Color(40, 40, 40, 180)); // dark glass
+		// 4 Windows
 
-		// // Size of the windshield relative to vehicle dimensions
-		// int windowW = (int)(width * 0.4);   // width across the body
-		// int windowH = (int)(height * 0.15); // small height along the vehicle length
+		Color windowColor = new Color(30, 30, 30, 180);
 
-		// // Position: centered horizontally, just behind headlights
-		// int windowX = -windowW / 2;
-		// int windowY = drawY + (int)(height * 0.01); // slightly below top/front edge
+		// local bounding box
+		int BX = drawX;
+		int BY = drawY;
+		int BW = width;
+		int BH = height;
 
-		// Graphics2D gWindow = (Graphics2D) g2.create();
-		// gWindow.translate(windowX + windowW/2, windowY + windowH/2); 
-		// gWindow.rotate(Math.toRadians(-90)); 
-		// gWindow.fillRoundRect(-windowW/2, -windowH/2, windowW, windowH, 8, 8); 
-		// gWindow.dispose();
+		int cx = BX + BW / 2;   // center X
+		int cy = BY + BH / 2;   // center Y
 
+		// SIZE FACTORS
+		int inward = (int)(BH * 0.18);  // inward small edge length
+		int outward = (int)(BH * 0.40); // outward wide edge length
 
-		// Draw wheels dynamically relative to vehicle dimensions
-		g2.setColor(new Color(30, 30, 30));
+		// increase factor for width
+		double widthFactor = 3.0; 
 
-		int wheelW = (int)(width * 0.2);
-		int wheelH = (int)(height * 0.15);
+		// FRONT WINDOW
+		int fShortW = (int)(inward * widthFactor);  
+		int fLongW  = (int)(outward * widthFactor); 
+		int fTopY = BY + (int)(BH * 0.05);
+		int fBotY = fTopY + (int)(BH * 0.30);
 
-		// body rectangle reference
-		int bodyLeft   = drawX;
-		int bodyRight  = drawX + width;
-		int bodyTop    = drawY;
-		int bodyBottom = drawY + height;
+		Polygon poly = new Polygon();
+		poly.addPoint(cx - fLongW/2, fTopY);    // wide top-left
+		poly.addPoint(cx + fLongW/2, fTopY);    // wide top-right
+		poly.addPoint(cx + fShortW/2, fBotY);   // short bottom-right (toward center)
+		poly.addPoint(cx - fShortW/2, fBotY);   // short bottom-left
+		g2.setColor(windowColor);
+		g2.fillPolygon(poly);
 
-		// wheel Y positions
-		int frontWheelY = bodyTop + (int)(height * 0.05);
-		int rearWheelY  = bodyTop + height - wheelH - (int)(height * 0.05);
+		// REAR WINDOW
+		int rBotY = BY + BH - (int)(BH * 0.05);
+		int rTopY = rBotY - (int)(BH * 0.30);
 
-		// wheel X positions (increase distance between left and right wheels)
-		int leftWheelXFront  = bodyLeft - (int)(wheelW * 0.1);          // front left
-		int rightWheelXFront = bodyRight - wheelW + (int)(wheelW * 0.1); // front right
+		poly = new Polygon();
+		poly.addPoint(cx - fShortW/2, rTopY);   // short inner top-left
+		poly.addPoint(cx + fShortW/2, rTopY);   // short inner top-right
+		poly.addPoint(cx + fLongW/2, rBotY);    // wide bottom-right
+		poly.addPoint(cx - fLongW/2, rBotY);    // wide bottom-left
+		g2.fillPolygon(poly);
 
-		int leftWheelXRear   = bodyLeft - (int)(wheelW * 0.1);          // rear left
-		int rightWheelXRear  = bodyRight - wheelW + (int)(wheelW * 0.1); // rear right
+		// LEFT WINDOW (short edge faces center → right side)
+		int lLeftX = BX + (int)(BW * 0.02);
+		int lRightX = lLeftX + (int)(BW * 0.32);  // vertical thickness
 
-		// draw 4 wheels
-		g2.fillRoundRect(leftWheelXFront,  frontWheelY, wheelW, wheelH, 5, 5);
-		g2.fillRoundRect(rightWheelXFront, frontWheelY, wheelW, wheelH, 5, 5);
+		int lShortW = inward;
+		int lLongW  = outward;
 
-		g2.fillRoundRect(leftWheelXRear,  rearWheelY, wheelW, wheelH, 5, 5);
-		g2.fillRoundRect(rightWheelXRear, rearWheelY, wheelW, wheelH, 5, 5);
+		int lTopY = cy - (int)(BH * 0.14);
+		int lBotY = cy + (int)(BH * 0.14);
+
+		poly = new Polygon();
+		poly.addPoint(lLeftX, cy - (lLongW/2)); // wide top-left
+		poly.addPoint(lLeftX, cy + (lLongW/2)); // wide bottom-left
+		poly.addPoint(lRightX, cy + (lShortW/2)); // short inward edge bottom
+		poly.addPoint(lRightX, cy - (lShortW/2)); // short inward edge top
+		g2.fillPolygon(poly);
+
+		// RIGHT WINDOW (short edge faces center → left side)
+		int rRightX = BX + BW - (int)(BW * 0.05);
+		int rLeftX  = rRightX - (int)(BW * 0.32);
+
+		poly = new Polygon();
+		poly.addPoint(rLeftX, cy - (lShortW/2)); // short inward edge top
+		poly.addPoint(rLeftX, cy + (lShortW/2)); // short inward edge bottom
+		poly.addPoint(rRightX, cy + (lLongW/2));  // wide bottom-right
+		poly.addPoint(rRightX, cy - (lLongW/2));  // wide top-right
+		g2.fillPolygon(poly);
+
 
 		// Draw Head Lights
 		int lightSize = (int)(height * 0.20);
@@ -237,7 +265,6 @@ public class MapPanel extends Panel {
 			g2.fillOval(headlightX, headlightY1, lightSize, lightSize);
 			g2.fillOval(headlightX, headlightY2, lightSize, lightSize);
 		}
-
 
 		// Brake lights
 		int brakeX = bodyLeft + 2;
@@ -259,7 +286,6 @@ public class MapPanel extends Panel {
 			g2.fillOval(headlightX, headlightY1, lightSize, lightSize);
 			g2.fillOval(headlightX, headlightY2, lightSize, lightSize);
 		}
-
 		g2.dispose(); 
 		loadGraphicsSettings(g, oldSettings);
 	}

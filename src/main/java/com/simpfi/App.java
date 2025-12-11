@@ -42,7 +42,7 @@ import com.simpfi.util.Point;
  * 4. Start the simulation loop.
  */
 public class App {
-	private static final Logger LOGGER = Logger.getLogger(App.class.getName());
+	private static final Logger logger = Logger.getLogger(App.class.getName());
 
 	/** The map panel. */
 	private static MapPanel mapPanel;
@@ -87,7 +87,7 @@ public class App {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
-		LOGGER.log(Level.INFO,"Application started");
+		logger.log(Level.INFO,"Application started");
 
 		SwingUtilities.invokeLater(() -> {
 			try {
@@ -106,7 +106,7 @@ public class App {
 				startSimulationThread(connection, trafficStatistic);
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.log(Level.SEVERE, "Failed to continue the app",e);
 			}
 		});
 	}
@@ -152,7 +152,7 @@ public class App {
 						Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
 					step++;
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.log(Level.SEVERE,"Failed to continue the background simulation thread",e);
 				}
 			}
 		}).start();
@@ -197,8 +197,9 @@ public class App {
 			String type = vehicleController.getTypeID(vid);
 			double width = vehicleController.getWidth(vid);
 			double height = vehicleController.getHeight(vid);
+			double speed = vehicleController.getSpeed(vid);
 
-			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height);
+			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height, speed);
 
 			VehicleController.updateVehicleMap(v);
 		}
