@@ -55,7 +55,7 @@ public class InjectPanel extends Panel {
 
 		String[] vehicleTypes = getAllVehiclesTypesAsStrings();
 		String[] routeIds = getAllRouteIdsAsStrings();
-		String[] modes = {"Batch Random", "Batch on Route", "Single"};
+		String[] modes = {"Batch on Route", "Batch Random", "Single"};
 		modeDropdown = Dropdown.createDropdownWithLabel("Mode:", modes, this);
 
 		Label label = new Label("Number of vehicles to inject:");
@@ -79,6 +79,15 @@ public class InjectPanel extends Panel {
 
 		vehicleTypeDropdown = Dropdown.createDropdownWithLabel("Vehicle Type:", vehicleTypes, this);
 		routeDropdown = Dropdown.createDropdownWithLabel("Route:", routeIds, this);
+
+		// Hide route text box when choosing batch random
+		modeDropdown.addActionListener(e -> {
+			String selectedMode = modeDropdown.getSelectedItem().toString();
+			routeDropdown.setVisible(!selectedMode.equals("Batch Random")); 
+
+			countField.getParent().revalidate();
+			countField.getParent().repaint();
+		});
 
 		vehicleController = new VehicleController(conn);
 
