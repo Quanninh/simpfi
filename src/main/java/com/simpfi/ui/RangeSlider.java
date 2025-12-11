@@ -30,28 +30,50 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The minimum value of the Range Slider. */
 	private int min;
+
+	/** The maximum value of the Range Slider. */
 	private int max;
+
+	/** The current value that the lower-value thumb holds. */
 	private int lowValue;
+
+	/** The current value that the upper-value thumb holds. */
 	private int highValue;
 
+	/**
+	 * The height of the track measured in pixels. Also used to make the track
+	 * rounded.
+	 * 
+	 */
 	private final int trackHeight = 6;
+
+	/** The radius of each thumb. */
 	private final int thumbRadius = 8;
 	// space left/right for thumbs
+	/** Padding used to keep the Range Slider away from the edges. */
 	private final int padding = 12;
-	private final int preferredWidth = 200;
+
+	/** The perferred width for the Range Slider. */
+	private final int preferredWidth = 340;
+
+	/** The perferred height for the Range Slider. */
 	private final int preferredHeight = 48;
 
+	/** The states of the Range Slider when users interact with it. */
 	private enum Dragging {
 		NONE, LOW, HIGH
 	}
 
 	private Dragging dragging = Dragging.NONE;
 
+	/** A list of listeners. */
 	private final List<ChangeListener> listeners = new ArrayList<>();
-	// Offset inside thumb for smooth and continuous dragging
+
+	/** The mouse offset inside thumb for smooth and continuous dragging. */
 	private int mouseOffset = 0;
-	// minimal difference between low and high thumbs
+	/** The minimal difference between low and high thumbs. */
 	private final int minGap = 1;
 
 	/** The default stroke. */
@@ -59,6 +81,14 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 		(float) (Settings.config.NORMAL_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
 		BasicStroke.JOIN_ROUND);
 
+	/**
+	 * Instantiate a Range Slider, set the positions of two thumbs to the two ends
+	 * initially. Also set the preferred size of the Range Slider.
+	 * 
+	 * @param min the minimum value of the Range Slider
+	 * @param max the maximum value of the Range Slider
+	 * 
+	 */
 	public RangeSlider(int min, int max) {
 		this.setAlignmentX(Component.LEFT_ALIGNMENT);
 		if (min >= max)
@@ -75,15 +105,95 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 		setMinimumSize(new Dimension(120, preferredHeight));
 	}
 
-	/* --- Getters/Setters --- */
+	// <<<<<<<HEAD
+	//
+	// /* --- Getters/Setters --- */
+	// public int getLowValue() {
+	// return lowValue;
+	// }
+	//
+	// public int getHighValue() {
+	// return highValue;
+	// }
+	//
+	// public void setLowValue(int val) {
+	// lowValue = clamp(val);
+	// ensureOrder();
+	// repaint();
+	// fireChange();
+	// }
+	//
+	// public void setHighValue(int val) {
+	// highValue = clamp(val);
+	// ensureOrder();
+	// repaint();
+	// fireChange();
+	// }
+	//
+	// public void addChangeListener(ChangeListener l) {
+	// listeners.add(l);
+	// }
+	//
+	// public void removeChangeListener(ChangeListener l) {
+	// listeners.remove(l);
+	// }
+	//
+	// private void fireChange() {
+	// ChangeEvent e = new ChangeEvent(this);
+	// for (ChangeListener l : listeners)
+	// l.stateChanged(e);
+	// }
+	//
+	// private int clamp(int v) {
+	// return Math.max(min, Math.min(max, v));
+	// }
+	//
+	// // Check this again
+	// private void ensureOrder() {
+	// if (highValue < lowValue) {
+	// int tmp = highValue;
+	// highValue = lowValue;
+	// lowValue = tmp;
+	// }
+	// if (highValue - lowValue < minGap) {
+	// if (dragging == Dragging.LOW)
+	// lowValue = highValue - minGap;
+	// else if (dragging == Dragging.HIGH)
+	// highValue = lowValue + minGap;
+	// }
+	// lowValue = clamp(lowValue);
+	// highValue = clamp(highValue);
+	// }
+	//
+	// /* --- Rendering --- */
+	// @Override
+	// protected void paintComponent(Graphics g) {
+	// super.paintComponent(g);
+	// =======
+
+	/**
+	 * Get the low value.
+	 * 
+	 * @return the low value
+	 */
 	public int getLowValue() {
 		return lowValue;
 	}
 
+	/**
+	 * Get the high value.
+	 * 
+	 * @return the high value
+	 */
 	public int getHighValue() {
 		return highValue;
 	}
 
+	/**
+	 * Set the low value.
+	 * 
+	 * @param val the value to set to the low value
+	 */
 	public void setLowValue(int val) {
 		lowValue = clamp(val);
 		ensureOrder();
@@ -91,6 +201,11 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 		fireChange();
 	}
 
+	/**
+	 * Set the high value.
+	 * 
+	 * @param val the value to set to the high value
+	 */
 	public void setHighValue(int val) {
 		highValue = clamp(val);
 		ensureOrder();
@@ -98,25 +213,47 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 		fireChange();
 	}
 
+	/**
+	 * Method to attach a {@link ChangeListener} for state changes.
+	 * 
+	 * @param l the ChangeListener to add
+	 */
 	public void addChangeListener(ChangeListener l) {
 		listeners.add(l);
 	}
 
+	/**
+	 * Method to remove a {@link ChangeListener}.
+	 * 
+	 * @param l the ChangeListener to remove
+	 */
 	public void removeChangeListener(ChangeListener l) {
 		listeners.remove(l);
 	}
 
+	/**
+	 * Notifies all registered {@link ChangeListener}s that the slider's values have
+	 * changed.
+	 */
 	private void fireChange() {
 		ChangeEvent e = new ChangeEvent(this);
 		for (ChangeListener l : listeners)
 			l.stateChanged(e);
 	}
 
-	private int clamp(int v) {
-		return Math.max(min, Math.min(max, v));
+	/**
+	 * Method to ensure the passed value stay within the required range.
+	 * 
+	 * @param val the value to
+	 */
+	private int clamp(int val) {
+		return Math.max(min, Math.min(max, val));
 	}
 
-	// Check this again
+	/**
+	 * Method to ensure the low value and the high value stays within the correct
+	 * order and keep the defined minimum gap.
+	 */
 	private void ensureOrder() {
 		if (highValue < lowValue) {
 			int tmp = highValue;
@@ -133,7 +270,12 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 		highValue = clamp(highValue);
 	}
 
-	/* --- Rendering --- */
+	/**
+	 * Overrides the built-in method paintComponent from {@link java.awt.Component}
+	 * to draw the Range Slider.
+	 * 
+	 * @param g the {@link Graphics}
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -153,7 +295,8 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 
 		// draw baseline
 		g2D.setColor(new Color(200, 200, 200));
-		// (x0, trackY) is top-left corner; x1 - x0 is width; trackHeight is height,
+		// (x0, trackY) is top-left corner; x1 - x0 is width; trackHeight is height; the
+		// next two trackHeights make the shape rounded
 		g2D.fillRoundRect(x0, trackY, x1 - x0, trackHeight, trackHeight, trackHeight);
 
 		// fill selected range
@@ -177,27 +320,91 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 		g2D.dispose();
 	}
 
-	private void drawThumb(Graphics2D g2D, int cx, int cy, int value) {
+	// <<<<<<<HEAD
+	//
+	// private void drawThumb(Graphics2D g2D, int cx, int cy, int value) {
+	// // outer border
+	// g2D.setColor(Color.BLACK);
+	// // first two arguements is the top-left coordinate of the rectangle bounding
+	// the
+	// // oval
+	// g2D.fillOval(cx - thumbRadius - 1, cy - thumbRadius - 1, thumbRadius * 2 + 2,
+	// thumbRadius * 2 + 2);
+	// // inner thumb
+	// g2D.setColor(Color.WHITE);
+	// g2D.fillOval(cx - thumbRadius, cy - thumbRadius, thumbRadius * 2, thumbRadius
+	// * 2);
+	// // label value above thumb
+	// String s = String.valueOf(value);
+	// g2D.setColor(Color.BLACK);
+	// FontMetrics fm = g2D.getFontMetrics();
+	// // Move the string to the left by half of its String Width => Center the
+	// thumb
+	// int sx = cx - fm.stringWidth(s) / 2;
+	// // Make the string slightly above the thumb
+	// int sy = cy - thumbRadius - 6;
+	// g2D.drawString(s, sx, sy);
+	// }
+	//
+	// /* --- Coordinate mapping --- */
+	// private int valueToX(int val) {
+	// int x0 = padding;
+	// int x1 = getWidth() - padding;
+	// double frac = (double) (val - min) / (double) (max - min);
+	// return x0 + (int) Math.round(frac * (x1 - x0));
+	// }
+	//
+	// private int xToValue(int x) {
+	// int x0 = padding;
+	// int x1 = getWidth() - padding;
+	// double frac = (double) (x - x0) / (double) (x1 - x0);
+	// int v = min + (int) Math.round(frac * (max - min));
+	// return clamp(v);
+	// }
+	//
+	// /* --- Mouse handling --- */
+	//
+	// @Override
+	// public void mousePressed(MouseEvent e) {
+	// int mx = e.getX();
+	// int my = e.getY();
+	// int lx = valueToX(lowValue);
+	// int hx = valueToX(highValue);
+	// =======
+
+	/**
+	 * Method used to draw the thumb of the Range Slider.
+	 * 
+	 * @param g     the {@link Graphics2D}
+	 * @param cx    the value on the x-axis of the thumb
+	 * @param cy    the value on the y-axis of the thumb
+	 * @param value the value drawn on the thumb
+	 */
+	private void drawThumb(Graphics2D g, int cx, int cy, int value) {
 		// outer border
-		g2D.setColor(Color.BLACK);
+		g.setColor(Color.BLACK);
 		// first two arguements is the top-left coordinate of the rectangle bounding the
 		// oval
-		g2D.fillOval(cx - thumbRadius - 1, cy - thumbRadius - 1, thumbRadius * 2 + 2, thumbRadius * 2 + 2);
+		g.fillOval(cx - thumbRadius - 1, cy - thumbRadius - 1, thumbRadius * 2 + 2, thumbRadius * 2 + 2);
 		// inner thumb
-		g2D.setColor(Color.WHITE);
-		g2D.fillOval(cx - thumbRadius, cy - thumbRadius, thumbRadius * 2, thumbRadius * 2);
+		g.setColor(Color.WHITE);
+		g.fillOval(cx - thumbRadius, cy - thumbRadius, thumbRadius * 2, thumbRadius * 2);
 		// label value above thumb
 		String s = String.valueOf(value);
-		g2D.setColor(Color.BLACK);
-		FontMetrics fm = g2D.getFontMetrics();
+		g.setColor(Color.BLACK);
+		FontMetrics fm = g.getFontMetrics();
 		// Move the string to the left by half of its String Width => Center the thumb
 		int sx = cx - fm.stringWidth(s) / 2;
 		// Make the string slightly above the thumb
 		int sy = cy - thumbRadius - 6;
-		g2D.drawString(s, sx, sy);
+		g.drawString(s, sx, sy);
 	}
 
-	/* --- Coordinate mapping --- */
+	/**
+	 * Method to map the value to the corresponding coordinate.
+	 * 
+	 * @param val the value
+	 */
 	private int valueToX(int val) {
 		int x0 = padding;
 		int x1 = getWidth() - padding;
@@ -205,20 +412,29 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 		return x0 + (int) Math.round(frac * (x1 - x0));
 	}
 
+	/**
+	 * Method to map the coordinate to the corresponding value.
+	 * 
+	 * @param x the coordinate, value on the x-axis
+	 */
 	private int xToValue(int x) {
 		int x0 = padding;
 		int x1 = getWidth() - padding;
 		double frac = (double) (x - x0) / (double) (x1 - x0);
-		int v = min + (int) Math.round(frac * (max - min));
-		return clamp(v);
+		int val = min + (int) Math.round(frac * (max - min));
+		return clamp(val);
 	}
 
-	/* --- Mouse handling --- */
-
+	/**
+	 * Overrides the method mousePressed() to compute the suitable {@code dragging}
+	 * value.
+	 * 
+	 * @param e the mouse event
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		int mx = e.getX();
-		int my = e.getY();
+		// int my = e.getY();
 		int lx = valueToX(lowValue);
 		int hx = valueToX(highValue);
 
@@ -237,11 +453,23 @@ public class RangeSlider extends JComponent implements MouseListener, MouseMotio
 		}
 	}
 
+	/**
+	 * Overrides the method mouseReleased() to set the value of {@code dragging} to
+	 * {@code Dragging.NONE} when users release the mouse.
+	 * 
+	 * @param e the mouse event
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		dragging = Dragging.NONE;
 	}
 
+	/**
+	 * Overrides the method mouseDragged() to update the thumb positions and repaint
+	 * the Range Slider accordingly.
+	 * 
+	 * @param e the mouse event
+	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if (dragging == Dragging.NONE)
