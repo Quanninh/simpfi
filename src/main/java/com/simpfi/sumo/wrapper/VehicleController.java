@@ -131,7 +131,52 @@ public class VehicleController {
 		return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getHeight(vId));
 	}
 
-	/**
+    /**
+     * Returns the maximum speed of the vehicle.
+     *
+     * @param vId the vehicle ID
+     * @return the maximum speed
+     * @throws Exception if the TraCI connection fails
+     */
+    public double getMaxSpeed(String vId) throws Exception {
+        return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getMaxSpeed(vId));
+    }
+
+    /**
+     * Returns the acceleration of the vehicle.
+     *
+     * @param vId the vehicle ID
+     * @return the acceleration
+     * @throws Exception if the TraCI connection fails
+     */
+    public double getAcceleration(String vId) throws Exception {
+        return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getAccel(vId));
+    }
+
+    /**
+     * Returns the distance traveled by the vehicle since simulation start.
+     *
+     * @param vId the vehicle ID
+     * @return the distance traveled
+     * @throws Exception if the TraCI connection fails
+     */
+    public double getDistance(String vId) throws Exception {
+        return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getDistance(vId));
+    }
+
+    /**
+     * Returns the route of the vehicle as a list of edge IDs.
+     *
+     * @param vId the vehicle ID
+     * @return the route
+     * @throws Exception if the TraCI connection fails
+     */
+    public List<String> getRoute(String vId) throws Exception {
+        return (List<String>) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getRoute(vId));
+    }
+
+
+    /**
 	 * Returns the vehicles list.
 	 *
 	 * @return the vehicles list

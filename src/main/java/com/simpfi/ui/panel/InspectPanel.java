@@ -116,19 +116,19 @@ public class InspectPanel extends Panel {
         vehicleList = new JList<>(vehicleListModel);
         vehicleList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION); // mehrere auswählen
         vehicleList.addListSelectionListener(e -> {
-            int index = vehicleList.getSelectedIndex();
-            if (index == -1) return;
+            int listIndex = vehicleList.getSelectedIndex();
+            if (listIndex == -1) return;
 
-            String value = vehicleListModel.get(index);
+            String value = vehicleListModel.get(listIndex);
 
-            // Block-Header ignorieren
+            // Header ignorieren
             if (value.startsWith("---")) {
                 vehicleList.clearSelection(); // deselect
                 return;
             }
 
-            // Index in selectedVehicles bestimmen
-            int vehicleIndex = getVehicleIndexFromListIndex(index);
+            // Bereinigten Index in selectedVehicles bekommen
+            int vehicleIndex = getVehicleIndexFromListIndex(listIndex);
             updateStatsFields(vehicleIndex);
         });
 
@@ -168,14 +168,23 @@ public class InspectPanel extends Panel {
         clearButton = new JButton("Clear");
         clearButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         clearButton.addActionListener(e -> {
-            // Alle ausgewählten entfernen
-            int[] selectedIndices = vehicleList.getSelectedIndices();
-            for (int i = selectedIndices.length - 1; i >= 0; i--) {
-                int index = selectedIndices[i];
-                selectedVehicles.remove(index);
-                vehicleListModel.remove(index);
+            // Schritt 1: Select All simulieren
+            selectedVehicles.clear();
+            vehicleListModel.clear();
+            List<Vehicle> allVehicles = VehicleController.getVehicles();
+            selectedVehicles.addAll(allVehicles);
+            for (Vehicle v : allVehicles) {
+                vehicleListModel.addElement(v.getID());
             }
+            if (!allVehicles.isEmpty()) {
+                vehicleList.setSelectionInterval(0, allVehicles.size() - 1);
+            }
+
+            // Schritt 2: Alles wieder löschen
+            selectedVehicles.clear();
+            vehicleListModel.clear();
         });
+
         buttonPanel.add(clearButton);
         buttonPanel.add(Box.createRigidArea(new Dimension(0,10)));
 
@@ -185,7 +194,7 @@ public class InspectPanel extends Panel {
         buttonPanel.add(groupByLabel);
 
 // Group By Dropdown
-        groupByDropdown = new JComboBox<>(new String[]{"Vehicle Type", "Color", "Speed"});
+        groupByDropdown = new JComboBox<>(new String[]{"None","Vehicle Type", "Color", "Speed"});
         groupByDropdown.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25)); // nur eine Zeile hoch
         groupByDropdown.setAlignmentX(Component.CENTER_ALIGNMENT); // linksbündig
         groupByDropdown.addActionListener(e -> groupVehicles());
@@ -205,23 +214,45 @@ public class InspectPanel extends Panel {
         vehicleTextBoxes = new ArrayList<>();
         vehicleStaticLabels = new ArrayList<>();
 
-// Speed (Zahl)
+// --- STAT-Felder initialisieren ---
         TextBox speedTextbox = createTextboxWithLabel("Speed", statsScrollPane, 0.0, true, true, "Speed of the vehicle");
         vehicleTextBoxes.add(speedTextbox);
 
-// --- COLOR (als Label, nicht editierbar)
+// Max Speed (Label, nicht editierbar)
+        statsScrollPane.addItem(new JLabel("Max Speed"));
+        JLabel maxSpeedLabel = new JLabel("0.0");
+        statsScrollPane.addItem(maxSpeedLabel);
+        vehicleStaticLabels.add(maxSpeedLabel);
+
+// Acceleration (Label, nicht editierbar)
+        statsScrollPane.addItem(new JLabel("Acceleration"));
+        JLabel accelerationLabel = new JLabel("0.0");
+        statsScrollPane.addItem(accelerationLabel);
+        vehicleStaticLabels.add(accelerationLabel);
+
+// Distance Traveled (Label, nicht editierbar)
+        statsScrollPane.addItem(new JLabel("Distance Traveled"));
+        JLabel distanceLabel = new JLabel("0.0");
+        statsScrollPane.addItem(distanceLabel);
+        vehicleStaticLabels.add(distanceLabel);
+
+// Route (Label, nicht editierbar)
+        statsScrollPane.addItem(new JLabel("Route"));
+        JLabel routeLabel = new JLabel("");
+        statsScrollPane.addItem(routeLabel);
+        vehicleStaticLabels.add(routeLabel);
+
+// Color (Label)
         statsScrollPane.addItem(new JLabel("Color"));
         JLabel colorLabel = new JLabel("R:0 G:0 B:0");
         statsScrollPane.addItem(colorLabel);
         vehicleStaticLabels.add(colorLabel);
 
-// --- VEHICLE TYPE (als Label, nicht editierbar)
+// Vehicle Type (Label)
         statsScrollPane.addItem(new JLabel("Vehicle Type"));
         JLabel typeLabel = new JLabel("");
         statsScrollPane.addItem(typeLabel);
         vehicleStaticLabels.add(typeLabel);
-
-
         JPanel statsWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
         statsWrapper.add(statsScrollPane);
         contentPanel.add(statsWrapper);
@@ -318,32 +349,59 @@ public class InspectPanel extends Panel {
         if (vehicleIndex < 0 || vehicleIndex >= selectedVehicles.size()) return;
         Vehicle v = selectedVehicles.get(vehicleIndex);
 
-        vehicleTextBoxes.get(0).setText(String.valueOf(v.getSpeed()));
+        // Speed (editierbar)
+        vehicleTextBoxes.get(0).setText(String.format("%.2f", v.getSpeed()));
 
+        // Max Speed
+        vehicleStaticLabels.get(0).setText(String.format("%.2f", v.getMaxSpeed()));
+
+        // Acceleration
+        vehicleStaticLabels.get(1).setText(String.format("%.2f", v.getAcceleration()));
+
+        // Distance Traveled
+        vehicleStaticLabels.get(2).setText(String.format("%.2f", v.getDistance()));
+
+        // Route
+        List<String> edges = v.getRoute(); // Annahme: getRoute() liefert List<String>
+        vehicleStaticLabels.get(3).setText(String.join(" -> ", edges));
+
+        // Color
         Color c = v.getVehicleColor();
         if (c != null) {
-            vehicleStaticLabels.get(0).setText("R:" + c.getRed() + " G:" + c.getGreen() + " B:" + c.getBlue());
+            vehicleStaticLabels.get(4).setText("R:" + c.getRed() + " G:" + c.getGreen() + " B:" + c.getBlue());
         }
 
-        vehicleStaticLabels.get(1).setText(v.getType().getId());
+        // Vehicle Type
+        vehicleStaticLabels.get(5).setText(v.getType().getId());
     }
 
 
 
-    private void confirmStats() {
-        int index = vehicleList.getSelectedIndex();
-        if (index == -1) return;
 
-        Vehicle v = selectedVehicles.get(index);
+    private void confirmStats() {
+        int listIndex = vehicleList.getSelectedIndex();
+        if (listIndex == -1) return;
+
+        String value = vehicleListModel.get(listIndex);
+        if (value.startsWith("---")) {
+            JOptionPane.showMessageDialog(this, "Please select a valid vehicle, not a header.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int vehicleIndex = getVehicleIndexFromListIndex(listIndex);
+        Vehicle v = selectedVehicles.get(vehicleIndex);
         String vehicleID = v.getID();
 
         try {
             double newSpeed = Double.parseDouble(vehicleTextBoxes.get(0).getText());
 
-            // Nur Speed kann geändert werden
+            // Speed in SUMO setzen
             sumoConnectionManager.getConnection().do_job_set(
                     de.tudresden.sumo.cmd.Vehicle.setSpeed(vehicleID, newSpeed)
             );
+
+            // Feedback
+            JOptionPane.showMessageDialog(this, "Vehicle speed updated successfully.", "Info", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Invalid number format!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -353,9 +411,20 @@ public class InspectPanel extends Panel {
         }
     }
 
+
     private void groupVehicles() {
         String criteria = (String) groupByDropdown.getSelectedItem();
 
+        // Bei "None" keine Sortierung und keine Header
+        if (criteria.equals("None")) {
+            vehicleListModel.clear();
+            for (Vehicle v : selectedVehicles) {
+                vehicleListModel.addElement(v.getID());
+            }
+            return;
+        }
+
+        // Ansonsten sortieren + Header einfügen
         switch (criteria) {
             case "Vehicle Type":
                 selectedVehicles.sort((v1, v2) ->
@@ -378,7 +447,6 @@ public class InspectPanel extends Panel {
 
         // Refresh + Kategorien anzeigen
         vehicleListModel.clear();
-
         String lastGroup = "";
 
         for (Vehicle v : selectedVehicles) {
@@ -399,6 +467,7 @@ public class InspectPanel extends Panel {
             vehicleListModel.addElement(v.getID());
         }
     }
+
 
     private TextBox createTextboxWithLabel(String labelText, ScrollPane parent, double defaultValue,
                                            Boolean mustBeDouble, Boolean mustBePositive, String tooltip) {
@@ -422,6 +491,7 @@ public class InspectPanel extends Panel {
         }
         return count;
     }
+
 
 
 

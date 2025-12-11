@@ -1,6 +1,7 @@
 package com.simpfi;
 
 import java.awt.BorderLayout;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -197,8 +198,12 @@ public class App {
 			double width = vehicleController.getWidth(vid);
 			double height = vehicleController.getHeight(vid);
 			double speed = vehicleController.getSpeed(vid);
+            double maxSpeed = vehicleController.getMaxSpeed(vid);
+            double acceleration = vehicleController.getAcceleration(vid);
+            double distance = vehicleController.getDistance(vid);
+            List<String> route = vehicleController.getRoute(vid);
 
-			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height, speed);
+			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height, speed, maxSpeed, acceleration, distance, route);
 
 			VehicleController.updateVehicleMap(v);
 		}
