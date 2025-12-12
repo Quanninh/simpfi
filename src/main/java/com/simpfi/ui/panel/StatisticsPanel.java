@@ -10,8 +10,6 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -47,11 +45,11 @@ public class StatisticsPanel extends Panel {
 	private HistogramDataset travelTimeDataset;
 
 	/** Label showing the current average speed. */
-	private JLabel avrSpeedLabel;
+	private Label avrSpeedLabel;
 	/** Label showing top congestion hotspots. */
-	private JLabel hotspotLabel;
+	private Label hotspotLabel;
 	/** Label describing the travel time histogram. */
-	private JLabel travelTimeLabel;
+	private Label travelTimeLabel;
 
 	/** Chart panel for displaying average speed. */
 	private ChartPanel speedChartPanel;
@@ -104,7 +102,7 @@ public class StatisticsPanel extends Panel {
 		speedChartPanel = new ChartPanel(chart);
 		speedChartPanel.setPreferredSize(new Dimension(200, 220));
 
-		avrSpeedLabel = new JLabel("Average speed: 0 km/h");
+		avrSpeedLabel = new Label("Average speed: 0 km/h");
 		avrSpeedLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		avrSpeedLabel.setFont(textFont);
 
@@ -118,7 +116,7 @@ public class StatisticsPanel extends Panel {
 		densityChartPanel.setPreferredSize(new Dimension(200, 220));
 
 		// Congestion Hotspot
-		hotspotLabel = new JLabel("Hotspot: none");
+		hotspotLabel = new Label("Hotspot: none");
 		hotspotLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		hotspotLabel.setFont(textFont);
 		scrollPane.addItem(createCard("Traffic Density", densityChartPanel, hotspotLabel, titleFont));
@@ -129,7 +127,7 @@ public class StatisticsPanel extends Panel {
 			"Frequency", travelTimeDataset, PlotOrientation.VERTICAL, true, true, false);
 		travelTimeChartPanel = new ChartPanel(travelChart);
 		travelTimeChartPanel.setPreferredSize(new Dimension(200, 220));
-		travelTimeLabel = new JLabel("Travel Time Histogram");
+		travelTimeLabel = new Label("Travel Time Histogram");
 		travelTimeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		travelTimeLabel.setFont(textFont);
 		scrollPane.addItem(createCard("Travel Time Analysis", travelTimeChartPanel, travelTimeLabel, titleFont));
@@ -149,7 +147,7 @@ public class StatisticsPanel extends Panel {
 	 * @param titleFont the font to use for the title
 	 * @return a {@link JPanel} containing the chart, label, and title
 	 */
-	private JPanel createCard(String title, JComponent chart, JLabel label, Font titleFont) {
+	private Panel createCard(String title, JComponent chart, Label label, Font titleFont) {
 		Panel card = new Panel();
 		card.setLayout(new BorderLayout(10, 10));
 		card.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1),
@@ -161,7 +159,7 @@ public class StatisticsPanel extends Panel {
 		header.setHorizontalAlignment(SwingConstants.CENTER);
 		card.add(header, BorderLayout.NORTH);
 
-		JPanel chartHolder = new JPanel(new BorderLayout());
+		Panel chartHolder = new Panel();
 		chartHolder.setOpaque(false);
 		chartHolder.add(chart, BorderLayout.CENTER);
 		card.add(chartHolder, BorderLayout.CENTER);
@@ -234,8 +232,8 @@ public class StatisticsPanel extends Panel {
 	 * @param label the label component
 	 * @return a {@link JPanel} containing both the chart and label
 	 */
-	private JPanel wrapPanel(JComponent chart, JLabel label) {
-		JPanel p = new JPanel(new BorderLayout());
+	private Panel wrapPanel(JComponent chart, Label label) {
+		Panel p = new Panel();
 		p.add(chart, BorderLayout.CENTER);
 		p.add(label, BorderLayout.SOUTH);
 		return p;
