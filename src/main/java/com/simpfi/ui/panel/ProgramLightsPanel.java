@@ -80,12 +80,17 @@ public class ProgramLightsPanel extends Panel {
 
 	private void generateDropdowns(String[] allTLJunctionIDs, String firstJunctionIDs) throws Exception {
 		tlJunctionDropDown = Dropdown.createDropdownWithLabel("Select intersection", allTLJunctionIDs, this);
+		tlJunctionDropDown.addItem("None");
+
 		phaseDropDown = Dropdown.createDropdownWithLabel("Phase", getAllPhaseString(firstJunctionIDs), this);
 		
 		connectionDropDown = Dropdown.createDropdownWithLabel("All Connection", allStringConnection, this);
+		connectionDropDown.addItem("None");
 
 		tlJunctionDropDown.addActionListener(e -> {
-			userTrafficLightJunctionId = (String) tlJunctionDropDown.getSelectedItem();
+			// Update highlighted traffic light
+			Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT = TrafficLight
+				.searchforTrafficLight(userTrafficLightJunctionId, Settings.network.getTrafficLights());
 			showAllLane(userTrafficLightJunctionId);
 			try {
 				showAllPhase(userTrafficLightJunctionId);
@@ -102,6 +107,16 @@ public class ProgramLightsPanel extends Panel {
 				phaseUserChoose = Integer.parseInt(selection.toString().trim());
 			} catch (NumberFormatException ex) {
 				logger.log(Level.SEVERE,"Failed to parse the phase that user chose", ex);
+			}
+		});
+
+		// Add a listener to update highlighted connection when connection dropdown changes
+		connectionDropDown.addActionListener(e -> {
+			Object selectedConnection = connectionDropDown.getSelectedItem();
+			if (selectedConnection != null && Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT != null) {
+				Settings.highlight.HIGHLIGHTED_CONNECTION = Connection.searchforConnection(
+					((String) selectedConnection).split(" -> ")[0],
+					Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getConnections());
 			}
 		});
 	}
@@ -143,25 +158,25 @@ public class ProgramLightsPanel extends Panel {
 		this.add(applyChangeDurationPhaseButton);
 	}
 
-	/**
-	 * Set the highlighted route variable in {@link Settings} to the currently
-	 * chosen junction in the dropdown.
-	 */
-	public void setHighlightedIntersectionTrafficLight() {
-		Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT = TrafficLight
-			.searchforTrafficLight((String) tlJunctionDropDown.getSelectedItem(), Settings.network.getTrafficLights());
-	}
+	// /**
+	//  * Set the highlighted route variable in {@link Settings} to the currently
+	//  * chosen junction in the dropdown.
+	//  */
+	// public void setHighlightedIntersectionTrafficLight() {
+	// 	Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT = TrafficLight
+	// 		.searchforTrafficLight((String) tlJunctionDropDown.getSelectedItem(), Settings.network.getTrafficLights());
+	// }
 
 	
-	 /**
-	 * Set the highlighted route variable in {@link Settings} to the currently
-	 * chosen junction in the dropdown.
-	 */
-	public void setHighlightedConnection() {
-		Settings.highlight.HIGHLIGHTED_CONNECTION = Connection.searchforConnection(
-			((String) connectionDropDown.getSelectedItem()).split(" -> ")[0],
-			Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getConnections());
-	}
+	//  /**
+	//  * Set the highlighted route variable in {@link Settings} to the currently
+	//  * chosen junction in the dropdown.
+	//  */
+	// public void setHighlightedConnection() {
+	// 	Settings.highlight.HIGHLIGHTED_CONNECTION = Connection.searchforConnection(
+	// 		((String) connectionDropDown.getSelectedItem()).split(" -> ")[0],
+	// 		Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getConnections());
+	// }
 
 	public String[] getAllTrafficLightJunctionID() {
 		List<TrafficLight> allTrafficLights = Settings.network.getTrafficLights();

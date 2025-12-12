@@ -77,9 +77,11 @@ public class MapPanel extends Panel {
 			drawObject(g2D, j, Settings.config.JUNCTION_COLOR);
 		}
 
-		// Draw the highlighted Route in a different color
-		for (Edge e : Settings.highlight.HIGHLIGHTED_ROUTE.getEdges()) {
+		// Draw the highlighted Route in a different color (if any)
+		if (Settings.highlight.HIGHLIGHTED_ROUTE != null) {
+			for (Edge e : Settings.highlight.HIGHLIGHTED_ROUTE.getEdges()) {
 			drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
+		}
 		}
 
 		// Draw the highlighted Road (filter hover) in a different color (if any)
@@ -89,12 +91,17 @@ public class MapPanel extends Panel {
 			}
 		}
 
-		drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getFromLane(),
+		if (Settings.highlight.HIGHLIGHTED_CONNECTION != null) {
+			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getFromLane(),
 			Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
-		drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getToLane(),
+			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getToLane(),
 			Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
-		drawObject(g2D, Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getJunction(),
+		}
+
+		if (Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT != null) {
+			drawObject(g2D, Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getJunction(),
 			Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT_COLOR);
+		}
 
 		for (TrafficLight tl : Settings.network.getTrafficLights()) {
 			try {

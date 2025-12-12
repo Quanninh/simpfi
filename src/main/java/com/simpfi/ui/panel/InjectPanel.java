@@ -89,6 +89,12 @@ public class InjectPanel extends Panel {
 			countField.getParent().repaint();
 		});
 
+		// Automatically update highlighted route when route dropdown changes
+		routeDropdown.addActionListener(e -> {
+			Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
+					Settings.network.getRoutes());
+		});
+
 		vehicleController = new VehicleController(conn);
 
 		vic = new VehicleInjectionController(vehicleController);

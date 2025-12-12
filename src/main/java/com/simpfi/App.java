@@ -133,16 +133,12 @@ public class App {
 
 					Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
 
-					injectPanel.setHighlightedRoute();
-					programLightPanel.setHighlightedIntersectionTrafficLight();
-					programLightPanel.setHighlightedConnection();
 					final int currentStep = step;
 
 					// Update UI on Swing EDT
 					SwingUtilities.invokeLater(() -> {
 						statisticsPanel.updatePanel(currentStep);
 						programLightPanel.updateRemainingTime(tlId, currentPhase, remaining);
-						injectPanel.setHighlightedRoute();
 						mapPanel.updateVehicleStates(currentStep);
 						mapPanel.repaint();
 					});
@@ -191,7 +187,6 @@ public class App {
 
 		for (String vid : vehicleController.getAllVehicleIds()) {
 			Point pos = vehicleController.getPosition(vid);
-			// double speed = vehicleController.getSpeed(vid);
 			String edge = vehicleController.getRoadID(vid);
 			double angle = vehicleController.getAngle(vid);
 			String type = vehicleController.getTypeID(vid);
