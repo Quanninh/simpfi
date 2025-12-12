@@ -31,7 +31,7 @@ public class SumoConnectionManager {
 	 * @throws Exception if the TraCI connection fails
 	 */
 	public SumoConnectionManager(String cfg) throws Exception {
-		ProcessBuilder pb = new ProcessBuilder("sumo-gui", "-c", cfg, "--start", "--quit-on-end", "--remote-port",
+		ProcessBuilder pb = new ProcessBuilder("sumo", "-c", cfg, "--start", "--quit-on-end", "--remote-port",
 			String.valueOf(port), "--step-length", String.valueOf(Settings.config.TIMESTEP));
 		pb.inheritIO();
 		pb.start();

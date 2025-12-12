@@ -291,7 +291,7 @@ public class MapPanel extends Panel {
 	}
 
 	public void updateVehicleStates(int step) {
-		boolean blink = (step / 1) % 2 == 0; // blinking every 10 steps
+		boolean blink = (step / 10) % 2 == 0; // blinking every 10 steps
 
 		for (Vehicle v : VehicleController.getVehicles()) {
 			// Brake light if speed < 2
