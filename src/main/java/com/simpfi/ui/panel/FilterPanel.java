@@ -42,7 +42,12 @@ public class FilterPanel extends Panel {
 		// Filter Vehicles by speed
 		generateSpeedFilter();
 	}
-
+	
+	/**
+	 * Method used to set up the vehicle-type filter.
+	 * 
+	 * @param vehicleTypes the list of vehicle types
+	 */
 	private void generateVehicleTypeFilter(String[] vehicleTypes) {
 		vehicleTypeOptions = new CheckBox[vehicleTypes.length];
 
@@ -58,6 +63,11 @@ public class FilterPanel extends Panel {
 		attachCheckboxListenersForVehicleTypes();
 	}
 
+	/**
+	 * Method used to set up the road filter.
+	 * 
+	 * @param roads the list of roads
+	 */
 	private void generateRoadFilter(String[] roads) {
 		roadOptions = new CheckBox[roads.length];
 
@@ -93,16 +103,24 @@ public class FilterPanel extends Panel {
 
 	}
 
+	/**
+	 * Method used to set up the speed filter 
+	 * and attach necessary listeners to its range slider.
+	 * 
+	 */
 	private void generateSpeedFilter(){
 		this.add(new Label("Speed: "));
 		// speed is measured by m/s
 		RangeSlider rs = new RangeSlider(0, 60);
 		this.add(rs);
-		
-		// Update Settings whenever slider changes
+		Label speedRange = new Label("Range: "+Settings.highlight.LOWER_BOUND_LIMIT+ " - "+ Settings.highlight.UPPER_BOUND_LIMIT);
+		// speedRange.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.add(speedRange);
+		// Update lower and upper bound whenever slider changes
 		rs.addChangeListener(e -> {
 			Settings.highlight.LOWER_BOUND_LIMIT = rs.getLowValue();
 			Settings.highlight.UPPER_BOUND_LIMIT = rs.getHighValue();
+			speedRange.setText("Range: "+Settings.highlight.LOWER_BOUND_LIMIT+ " - "+ Settings.highlight.UPPER_BOUND_LIMIT);
 		});
 	}
 

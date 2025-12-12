@@ -1,6 +1,7 @@
 package com.simpfi;
 
 import java.awt.BorderLayout;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -77,7 +78,7 @@ public class App {
 
 	/** The side pane. */
 	static TabbedPane sidePane;
-	
+
 	/** The step. */
 	public static int step;
 
@@ -88,7 +89,7 @@ public class App {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
-		logger.log(Level.INFO,"Application started");
+		logger.log(Level.INFO, "Application started");
 
 		SwingUtilities.invokeLater(() -> {
 			try {
@@ -99,15 +100,15 @@ public class App {
 				edgeController = new EdgeController(connection);
 
 				TrafficStatistics trafficStatistic = new TrafficStatistics(edgeController, vehicleController);
-				
+
 				generateUI(connection, trafficStatistic);
 
-				//statisticsPanel = new StatisticsPanel(trafficStatistic);
+				// statisticsPanel = new StatisticsPanel(trafficStatistic);
 
 				startSimulationThread(connection, trafficStatistic);
 
 			} catch (Exception e) {
-				logger.log(Level.SEVERE, "Failed to continue the app",e);
+				logger.log(Level.SEVERE, "Failed to continue the app", e);
 			}
 		});
 	}
@@ -127,18 +128,14 @@ public class App {
 					retrieveData(conn);
 					stats.update(step);
 
-		            String tlId = programLightPanel.getSelectedTrafficLightID();
-		            int currentPhase = trafficLightController.getPhase(tlId);
-		            double currentTime = step * Settings.config.TIMESTEP;
-		            
-		            
-
-		            
-		            Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
+					String tlId = programLightPanel.getSelectedTrafficLightID();
+					int currentPhase = trafficLightController.getPhase(tlId);
+					double currentTime = step * Settings.config.TIMESTEP;
+					Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
 
 					injectPanel.setHighlightedRoute();
 					programLightPanel.setHighlightedIntersectionTrafficLight();
-					programLightPanel.setHighlightedConnection();	
+					programLightPanel.setHighlightedConnection();
 					final int currentStep = step;
 
 					// Update UI on Swing EDT
@@ -173,7 +170,7 @@ public class App {
 //						System.out.println(vehicleController.getVehicleNumberInLane("E30_1"));
 //					}
 				} catch (Exception e) {
-					logger.log(Level.SEVERE,"Failed to continue the background simulation thread",e);
+					logger.log(Level.SEVERE, "Failed to continue the background simulation thread", e);
 				}
 			}
 		}).start();
@@ -219,8 +216,12 @@ public class App {
 			double width = vehicleController.getWidth(vid);
 			double height = vehicleController.getHeight(vid);
 			double speed = vehicleController.getSpeed(vid);
+            double maxSpeed = vehicleController.getMaxSpeed(vid);
+            double acceleration = vehicleController.getAcceleration(vid);
+            double distance = vehicleController.getDistance(vid);
+            List<String> route = vehicleController.getRoute(vid);
 
-			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height, speed);
+			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height, speed, maxSpeed, acceleration, distance, route);
 
 			VehicleController.updateVehicleMap(v);
 		}
@@ -248,7 +249,7 @@ public class App {
 		mapViewPanel = new MapViewPanel();
 		programLightPanel = new ProgramLightsPanel(conn);
 		filterPanel = new FilterPanel();
-		inspectPanel = new InspectPanel();
+		inspectPanel = new InspectPanel(conn, mapPanel);
 
 		sidePane = new TabbedPane();
 

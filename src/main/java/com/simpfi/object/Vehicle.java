@@ -5,6 +5,9 @@ import java.awt.Color;
 import com.simpfi.config.Settings;
 import com.simpfi.util.Point;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Creates Vehicle class.
  */
@@ -34,7 +37,12 @@ public class Vehicle {
 	/** The vehicle height. */
 	private double height;
 
-	/**
+    private double maxSpeed;
+    private double acceleration;
+    private double distance;
+    private List<String> route;
+
+    /**
 	 * The active state of the vehicle. A vehicle is considered inactive if it has
 	 * completed its journey.
 	 */
@@ -73,7 +81,7 @@ public class Vehicle {
 	 * @param speed the speed
 	 */
 
-	public Vehicle(String id, Point point, String roadID, String type, double angle, double width, double height, double speed) {
+	public Vehicle(String id, Point point, String roadID, String type, double angle, double width, double height, double speed, double maxSpeed, double acceleration, double distance, List<String> route) {
 		this.id = id;
 		this.position = point;
 		this.roadID = roadID;
@@ -83,6 +91,11 @@ public class Vehicle {
 		this.speed = speed;
 
 		this.type = null;
+
+        this.route = route;
+        this.maxSpeed = maxSpeed;
+        this.acceleration = acceleration;
+        this.distance = distance;
 
 		for (VehicleType vType : Settings.network.getVehicleTypes()) {
 			if (vType.getId().equals(type)) {
@@ -178,7 +191,16 @@ public class Vehicle {
 		return isActive;
 	}
 
-	/**
+    public double getMaxSpeed() { return maxSpeed; }
+
+    public double getAcceleration() { return acceleration; }
+
+    public double getDistance() { return distance; }
+
+    public List<String> getRoute() { return route; }
+
+
+    /**
 	 * Sets the active state of vehicle.
 	 *
 	 * @param isActive the active state of vehicle
