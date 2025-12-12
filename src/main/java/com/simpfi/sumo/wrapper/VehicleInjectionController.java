@@ -41,7 +41,7 @@ public class VehicleInjectionController{
     /**
      * Inject a single vehicle on a specific route
      */
-    private void addSingle(String vid, String routeId, String vType){
+    public void addSingle(String vid, String routeId, String vType){
         try{
             vehicleController.addVehicle(vid, routeId, vType);
         }catch(Exception e){

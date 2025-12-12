@@ -92,12 +92,9 @@ public class InjectPanel extends Panel {
 		vehicleController = new VehicleController(conn);
 
 		vic = new VehicleInjectionController(vehicleController);
-		// Button batchBtn = new Button("Inject Vehicles");
-		// batchBtn.addActionListener(e -> injectVehicles());
-		// this.add(batchBtn);
 
 		Button addVehicleBtn = new Button("Adding vehicle");
-		addVehicleBtn.addActionListener(e -> injectVehicles());
+		addVehicleBtn.addActionListener(e -> addVehicle());
 
 		this.add(addVehicleBtn);
 	}
@@ -115,14 +112,28 @@ public class InjectPanel extends Panel {
 	 * Adds a vehicle to the route.
 	 */
 	private void addVehicle() {
+		String mode = modeDropdown.getSelectedItem().toString();
 		String vehicleIds = VehicleController.generateVehicleID();
 		String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
 		String userChoiceRoute = routeDropdown.getSelectedItem().toString();
+		int count = 1;
 		try {
-			vehicleController.addVehicle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
-		} catch (Exception e1) {
-			logger.log(Level.SEVERE, String.format("Failed to add vehicle (type= %s , route= %s )",
-					userChoiceVehicleType, userChoiceRoute), e1);
+			count = Integer.parseInt(countField.getText().trim());
+		}catch(NumberFormatException ex) {
+			logger.warning("Invalid batch number. Using 1.");
+		}
+		switch(mode){
+			case "Single":
+				vic.addSingle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
+				break;
+			case "Batch Random":
+				vic.injectRandom(count, userChoiceVehicleType);
+				break;
+			case "Batch on Route":
+				vic.injectOnRoute(userChoiceRoute, count, userChoiceVehicleType);
+				break;
+			default:
+				logger.warning("Unknown mode selected: ");
 		}
 	}
 
@@ -157,30 +168,4 @@ public class InjectPanel extends Panel {
 
 		return routeIds;
 	}
-
-	private void injectVehicles(){
-		String mode = modeDropdown.getSelectedItem().toString();
-		String type = vehicleTypeDropdown.getSelectedItem().toString();
-		String route = routeDropdown.getSelectedItem().toString();
-		int count = 1;
-		try {
-			count = Integer.parseInt(countField.getText().trim());
-		}catch(NumberFormatException ex) {
-			logger.warning("Invalid batch number. Using 1.");
-		}
-		switch(mode){
-			case "Single":
-				addVehicle();
-				break;
-			case "Batch Random":
-				vic.injectRandom(count, type);
-				break;
-			case "Batch on Route":
-				vic.injectOnRoute(route, count, type);
-				break;
-			default:
-				logger.warning("Unknown mode selected: ");
-		}
-	}
-
 }
