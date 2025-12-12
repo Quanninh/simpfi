@@ -83,12 +83,10 @@ public class ProgramLightsPanel extends Panel {
 
 	private void generateDropdowns(String[] allTLJunctionIDs, String firstJunctionIDs) throws Exception {
 		tlJunctionDropDown = Dropdown.createDropdownWithLabel("Select intersection", allTLJunctionIDs, this);
-		tlJunctionDropDown.addItem("None");
 
 		phaseDropDown = Dropdown.createDropdownWithLabel("Phase", getAllPhaseString(firstJunctionIDs), this);
 		
 		connectionDropDown = Dropdown.createDropdownWithLabel("All Connection", allStringConnection, this);
-		connectionDropDown.addItem("None");
 
 		tlJunctionDropDown.addActionListener(e -> {
 			// Update highlighted traffic light
