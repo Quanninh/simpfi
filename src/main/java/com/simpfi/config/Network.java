@@ -7,8 +7,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
 import com.simpfi.object.Junction;
+import com.simpfi.object.Lane;
 import com.simpfi.object.Road;
 import com.simpfi.object.Route;
 import com.simpfi.object.TrafficLight;
@@ -43,6 +45,9 @@ public class Network {
 
 	/** List containing all traffic lights. */
 	private List<TrafficLight> trafficLights;
+	
+	/** List containing all the lanes */
+	private List<Lane> lanes = new ArrayList<Lane>();
 
 	/** HashMap to map an edge to a road */
 	private final Map<Edge, Road> edgeToRoad = new HashMap<>();
@@ -129,6 +134,22 @@ public class Network {
 	public List<TrafficLight> getTrafficLights() {
 		return trafficLights;
 	}
+	
+	/**
+	 * Getter for {@link Lane} objects.
+	 *
+	 * @return all parsed traffic lights
+	 */
+	public List<Lane> getAllFromLanes() {
+		for (int i = 0; i < trafficLights.size(); i++) {
+			List<Connection> allConnections = trafficLights.get(i).getConnections();
+			for (int j = 0; j < allConnections.size(); j++) {
+				lanes.add(allConnections.get(j).getFromLane());
+			}
+		}
+		return lanes;
+	}
+	
 
 	/**
 	 * Retrieves the road for the given edge using the {@code edgeToRoad} Map.

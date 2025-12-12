@@ -34,6 +34,8 @@ public class TrafficLightController {
 
 	private static SumoTLSProgram prog;
 
+	private VehicleController vehicleController;
+
 	/**
 	 * Instantiates a new traffic light controller.
 	 *
@@ -43,6 +45,7 @@ public class TrafficLightController {
 	public TrafficLightController(SumoConnectionManager conn) throws Exception {
 		this.connection = conn.getConnection();
 		addConnectionToTrafficLight();
+		vehicleController = new VehicleController(conn);
 	}
 
 	// Dedicated method to install a program
@@ -90,10 +93,6 @@ public class TrafficLightController {
 		connection.do_job_set(Trafficlight.setCompleteRedYellowGreenDefinition(tlId, program));
 	}
 
-	public void setProgram(String tlId, String programName) throws Exception {
-		connection.do_job_set(Trafficlight.setRedYellowGreenState(tlId, programName));
-	}
-
 	public void setPhase(String tlID, int index) throws Exception {
 		connection.do_job_set(Trafficlight.setPhase(tlID, index));
 	}
@@ -113,8 +112,9 @@ public class TrafficLightController {
 	public Integer getPhase(String tlID) throws Exception {
 		return (Integer) connection.do_job_get(Trafficlight.getPhase(tlID));
 	}
+
 	public Double getNextSwitch(String tlID) throws Exception {
-		return (Double) connection.do_job_get(Trafficlight.getNextSwitch(tlID)); 
+		return (Double) connection.do_job_get(Trafficlight.getNextSwitch(tlID));
 	}
 
 	/**
@@ -178,7 +178,66 @@ public class TrafficLightController {
 			}
 			tl.setConnections(connections);
 		}
-
 	}
 
+	/** * Show all the signal of the specific connection */
+	public char getStateofLane(List<Connection> allConnections, String laneId, SumoTLSPhase phase) {
+		String stateofPhase = phase.phasedef;
+
+		for (int i = 0; i < allConnections.size(); i++) {
+			Lane fromLane = allConnections.get(i).getFromLane();
+			if (fromLane.getLaneId().equals(laneId)) {
+				return stateofPhase.charAt(i);
+			}
+		}
+		return 0;
+	}
+
+	/** Get the program from the specific traffic light */
+	public SumoTLSProgram getProgramFromTrafficLight(String trafficLightID) throws Exception {
+		SumoTLSController trafficLightCompleted = this.getCompletedTrafficLightDefinition(trafficLightID);
+		String programName = this.getProgramName(trafficLightID);
+		return trafficLightCompleted.get(programName);
+	}
+
+	// Update the duration if the number of lane is larger than 3
+	public void updateTrafficLightByNumberOfVehicle(List<TrafficLight> trafficLights) throws Exception {
+		for (int i = 0; i < trafficLights.size(); i++) {
+			String trafficLightID = trafficLights.get(i).getJunction().getId();
+			SumoTLSProgram program = getProgramFromTrafficLight(trafficLightID);
+			SumoTLSPhase currentPhase = program.phases.get(program.currentPhaseIndex);
+			Phase defaultPhase = TrafficLight.searchforTrafficLight(trafficLightID, trafficLights)
+					.getPhase()[program.currentPhaseIndex];
+
+			List<Connection> allConnection = trafficLights.get(i).getConnections();
+			int flag = 0; // The flag shows if the traffic light, there exists a lane with high cogestion
+							// or not
+			for (int j = 0; j < allConnection.size(); j++) {
+				Lane fromLane = allConnection.get(j).getFromLane();
+				int numberofVehicleInLane = vehicleController.getVehicleNumberInLane(fromLane.getLaneId());
+				if (numberofVehicleInLane >= 3) {
+					flag = 1;
+					break;
+				}
+			}
+			if (flag == 1) {
+				currentPhase.duration = defaultPhase.getDuration() + 5;
+			} else {
+				currentPhase.duration = defaultPhase.getDuration();
+			}
+			this.setCompleteTrafficLight(trafficLightID, program);
+		}
+	}
+
+	public void setDefaultTrafficLight(List<TrafficLight> trafficLights) throws Exception {
+		for (int i = 0; i < trafficLights.size(); i++) {
+			String trafficLightID = trafficLights.get(i).getJunction().getId();
+			SumoTLSProgram program = getProgramFromTrafficLight(trafficLightID);
+			SumoTLSPhase currentPhase = program.phases.get(program.currentPhaseIndex);
+			Phase defaultPhase = TrafficLight.searchforTrafficLight(trafficLightID, trafficLights)
+					.getPhase()[program.currentPhaseIndex];
+			currentPhase.duration = defaultPhase.getDuration();
+			this.setCompleteTrafficLight(trafficLightID, program);
+		}
+	}
 }

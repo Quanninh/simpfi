@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.simpfi.config.Constants;
+import com.simpfi.config.Network;
 import com.simpfi.config.Settings;
 import com.simpfi.object.TrafficStatistics;
 import com.simpfi.object.Vehicle;
@@ -130,7 +131,6 @@ public class App {
 					String tlId = programLightPanel.getSelectedTrafficLightID();
 					int currentPhase = trafficLightController.getPhase(tlId);
 					double currentTime = step * Settings.config.TIMESTEP;
-
 					Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
 
 					final int currentStep = step;
@@ -139,6 +139,20 @@ public class App {
 					SwingUtilities.invokeLater(() -> {
 						statisticsPanel.updatePanel(currentStep);
 						programLightPanel.updateRemainingTime(tlId, currentPhase, remaining);
+						
+						// Just for testing update Traffic Light 
+						try {
+							if (programLightPanel.isAdaptiveMode)
+							trafficLightController.updateTrafficLightByNumberOfVehicle(Settings.network.getTrafficLights());
+							else {
+								trafficLightController.setDefaultTrafficLight(Settings.network.getTrafficLights());
+							}
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						injectPanel.setHighlightedRoute();
 						mapPanel.updateVehicleStates(currentStep);
 						mapPanel.repaint();
 					});
@@ -147,6 +161,11 @@ public class App {
 					if (sleep > 0)
 						Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
 					step++;
+					
+//					// Just for testing the number of vehicle in specific Lane
+//					if (step % 5 == 0) {
+//						System.out.println(vehicleController.getVehicleNumberInLane("E30_1"));
+//					}
 				} catch (Exception e) {
 					logger.log(Level.SEVERE, "Failed to continue the background simulation thread", e);
 				}

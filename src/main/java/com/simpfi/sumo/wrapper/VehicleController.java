@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import com.simpfi.object.Vehicle;
 import com.simpfi.util.Point;
 
+import de.tudresden.sumo.cmd.Lane;
 import de.tudresden.sumo.objects.SumoPosition2D;
 import it.polito.appeal.traci.SumoTraciConnection;
 
@@ -232,5 +233,10 @@ public class VehicleController {
 					new Object[]{vehicleID, routeID, vType});
 
 		connection.do_job_set(de.tudresden.sumo.cmd.Vehicle.addFull(vehicleID, routeID, vType, "now", "best", "base", "avg", "current", "max", "current", "", "", "", 0, 0));
+	}
+	
+	// Get the number of vehicle in specific Lane
+	public int getVehicleNumberInLane(String laneId) throws Exception {
+		return (int) connection.do_job_get(Lane.getLastStepVehicleNumber(laneId));
 	}
 }
