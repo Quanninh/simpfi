@@ -1,22 +1,21 @@
 package com.simpfi.ui.panel;
 
 import java.awt.Dimension;
-import javax.swing.JTextField;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.logging.Level;
 
 import javax.swing.BoxLayout;
+import javax.swing.JTextField;
 
-import com.simpfi.ui.Label;
-import com.simpfi.sumo.wrapper.VehicleInjectionController;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Route;
 import com.simpfi.object.VehicleType;
 import com.simpfi.sumo.wrapper.SumoConnectionManager;
 import com.simpfi.sumo.wrapper.VehicleController;
+import com.simpfi.sumo.wrapper.VehicleInjectionController;
 import com.simpfi.ui.Button;
 import com.simpfi.ui.Dropdown;
+import com.simpfi.ui.Label;
 import com.simpfi.ui.Panel;
 
 /**
@@ -89,7 +88,7 @@ public class InjectPanel extends Panel {
 			countField.getParent().repaint();
 		});
 
-		// Automatically update highlighted route when route dropdown changes
+		// Update highlighted route when route dropdown changes
 		routeDropdown.addActionListener(e -> {
 			Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
 					Settings.network.getRoutes());
@@ -105,14 +104,14 @@ public class InjectPanel extends Panel {
 		this.add(addVehicleBtn);
 	}
 
-	/**
-	 * Set the highlighted route variable in {@link Settings} to the currently
-	 * chosen route in the dropdown.
-	 */
-	public void setHighlightedRoute() {
-		Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
-				Settings.network.getRoutes());
-	}
+	// /**
+	//  * Set the highlighted route variable in {@link Settings} to the currently
+	//  * chosen route in the dropdown.
+	//  */
+	// public void setHighlightedRoute() {
+	// 	Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
+	// 			Settings.network.getRoutes());
+	// }
 
 	/**
 	 * Adds a vehicle to the route.

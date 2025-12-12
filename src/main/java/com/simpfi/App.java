@@ -10,7 +10,6 @@ import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.simpfi.config.Constants;
-import com.simpfi.config.Network;
 import com.simpfi.config.Settings;
 import com.simpfi.object.TrafficStatistics;
 import com.simpfi.object.Vehicle;
@@ -149,10 +148,9 @@ public class App {
 							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
+							logger.log(Level.SEVERE, "Test update Traffic Light in App.java failed!",e);
 						}
 						
-						injectPanel.setHighlightedRoute();
 						mapPanel.updateVehicleStates(currentStep);
 						mapPanel.repaint();
 					});
