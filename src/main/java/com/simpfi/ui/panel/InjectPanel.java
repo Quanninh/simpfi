@@ -41,11 +41,14 @@ public class InjectPanel extends Panel {
 	/** Single, Batch Random, Batch on specific route */
 	private Dropdown<String> modeDropdown;
 
-
 	private javax.swing.JTextField countField;
+<<<<<<< HEAD
 
 	private final VehicleInjectionController vic;
+=======
+>>>>>>> 0ae278d2c0295ad1b568338e123c593d78b41d03
 
+	private final VehicleInjectionController vic;
 
 	/**
 	 * Instantiates a new inject panel.
@@ -57,11 +60,11 @@ public class InjectPanel extends Panel {
 
 		String[] vehicleTypes = getAllVehiclesTypesAsStrings();
 		String[] routeIds = getAllRouteIdsAsStrings();
-		String[] modes = {"Batch on Route", "Batch Random", "Single"};
+		String[] modes = { "Batch on Route", "Batch Random", "Single" };
 		modeDropdown = Dropdown.createDropdownWithLabel("Mode:", modes, this);
 
 		Label label = new Label("Number of vehicles to inject:");
-        this.add(label);
+		this.add(label);
 
 		countField = new JTextField("10");
 		countField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
@@ -71,13 +74,12 @@ public class InjectPanel extends Panel {
 		// Hide Mode text box
 		modeDropdown.addActionListener(e -> {
 			String selectedMode = modeDropdown.getSelectedItem().toString();
-			countField.setVisible(!selectedMode.equals("Single")); 
-			label.setVisible(!selectedMode.equals("Single")); 
+			countField.setVisible(!selectedMode.equals("Single"));
+			label.setVisible(!selectedMode.equals("Single"));
 
 			countField.getParent().revalidate();
 			countField.getParent().repaint();
 		});
-
 
 		vehicleTypeDropdown = Dropdown.createDropdownWithLabel("Vehicle Type:", vehicleTypes, this);
 		routeDropdown = Dropdown.createDropdownWithLabel("Route:", routeIds, this);
@@ -85,7 +87,7 @@ public class InjectPanel extends Panel {
 		// Hide route text box when choosing batch random
 		modeDropdown.addActionListener(e -> {
 			String selectedMode = modeDropdown.getSelectedItem().toString();
-			routeDropdown.setVisible(!selectedMode.equals("Batch Random")); 
+			routeDropdown.setVisible(!selectedMode.equals("Batch Random"));
 
 			countField.getParent().revalidate();
 			countField.getParent().repaint();
@@ -94,26 +96,26 @@ public class InjectPanel extends Panel {
 		// Update highlighted route when route dropdown changes
 		routeDropdown.addActionListener(e -> {
 			Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
-					Settings.network.getRoutes());
+				Settings.network.getRoutes());
 		});
 
 		vehicleController = new VehicleController(conn);
 
 		vic = new VehicleInjectionController(vehicleController);
 
-		Button addVehicleBtn = new Button("Adding vehicle");
+		Button addVehicleBtn = new Button("Add vehicle");
 		addVehicleBtn.addActionListener(e -> addVehicle());
 
 		this.add(addVehicleBtn);
 	}
 
-	// /**
-	//  * Set the highlighted route variable in {@link Settings} to the currently
-	//  * chosen route in the dropdown.
-	//  */
+	/**
+	 * Set the highlighted route variable in {@link Settings} to the currently
+	 * chosen route in the dropdown.
+	 */
 	public void setHighlightedRoute() {
 		Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
-				Settings.network.getRoutes());
+			Settings.network.getRoutes());
 	}
 
 	/**
@@ -128,7 +130,7 @@ public class InjectPanel extends Panel {
 		int tempCount;
 		try {
 			tempCount = Integer.parseInt(countField.getText().trim());
-		}catch(NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			logger.warning("Invalid batch number. Using 1.");
 			tempCount = 1;
 		}
