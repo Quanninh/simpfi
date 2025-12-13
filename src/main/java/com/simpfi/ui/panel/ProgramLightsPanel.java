@@ -80,9 +80,16 @@ public class ProgramLightsPanel extends Panel {
 	private StatisticsPanel sp;
 	private TrafficStatistics stats;
 	
+	/** Indicates whether the traffic lights are in adaptive mode. */
 	public boolean isAdaptiveMode = false;
+
+	/** Button on choosing Traffic Light state: static or adaptive */
 	private Button changingAdaptiveModeOrStaticMode = null;
+
+	/** Label displaying the current traffic light mode. */
 	private Label modeOfTraffic;
+
+	/** Text area showing feedback about adaptive traffic control impacts. */
 	public TextArea textArea;
 
 
