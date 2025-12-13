@@ -8,3 +8,2023 @@ Dec 13, 2025 10:54:04 PM com.simpfi.ui.panel.MapViewPanel <init>
 INFO: Generating textboxes
 Dec 13, 2025 10:54:04 PM com.simpfi.ui.panel.MapViewPanel <init>
 INFO: Generating buttons
+Dec 13, 2025 11:21:03 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 11:21:03 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 11:21:08 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 11:21:09 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 11:21:09 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons
+Dec 13, 2025 11:47:55 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 11:47:55 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 11:48:01 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 11:48:01 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 11:48:01 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_1 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_2 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_3 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_4 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_5 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_6 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_7 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_8 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_9 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_10 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_11 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_12 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_13 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_14 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_15 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_16 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_17 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_18 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_19 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_20 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_21 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_22 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_23 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_24 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_25 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_26 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_27 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_28 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_29 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_30 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_31 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_32 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_33 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_34 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_35 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_36 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_37 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_38 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_39 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_40 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_41 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_42 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_43 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_44 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_45 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_46 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_47 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_48 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_49 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_50 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_51 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_52 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_53 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_54 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_55 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_56 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_57 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_58 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_59 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_60 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_61 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_62 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_63 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_64 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_65 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_66 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_67 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_68 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_69 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_70 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_71 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_72 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_73 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_74 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_75 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_76 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_77 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_78 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_79 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_80 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_81 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_82 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_83 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_84 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_85 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_86 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_87 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_88 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_89 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_90 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_91 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_92 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_93 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_94 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_95 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_96 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_97 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_98 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_99 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_100 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_101 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_102 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_103 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_104 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_105 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_106 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_107 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_108 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_109 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_110 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_111 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_112 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_113 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_114 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_115 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_116 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_117 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_118 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_119 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_120 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_121 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_122 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_123 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_124 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_125 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_126 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_127 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_128 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_129 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_130 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_131 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_132 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_133 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_134 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_135 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_136 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_137 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_138 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_139 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_140 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_141 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_142 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_143 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_144 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_145 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_146 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_147 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_148 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_149 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_150 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_151 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_152 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_153 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_154 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_155 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_156 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_157 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_158 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_159 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_160 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_161 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_162 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_163 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_164 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_165 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_166 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_167 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_168 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_169 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_170 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_171 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_172 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_173 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_174 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_175 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_176 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_177 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_178 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_179 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_180 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_181 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_182 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_183 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_184 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_185 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_186 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_187 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_188 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_189 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_190 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_191 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_192 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_193 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_194 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_195 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_196 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_197 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_198 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_199 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_200 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_201 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_202 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_203 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_204 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_205 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_206 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_207 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_208 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_209 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_210 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_211 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_212 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_213 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_214 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_215 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_216 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_217 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_218 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_219 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_220 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_221 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_222 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_223 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_224 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_225 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_226 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_227 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_228 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_229 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_230 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_231 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_232 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_233 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_234 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_235 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_236 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_237 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_238 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_239 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_240 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_241 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_242 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_243 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_244 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_245 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_246 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_247 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_248 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_249 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_250 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_251 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_252 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_253 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_254 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_255 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_256 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_257 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_258 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_259 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_260 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_261 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_262 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_263 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_264 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_265 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_266 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_267 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_268 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_269 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_270 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_271 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_272 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_273 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_274 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_275 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_276 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_277 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_278 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_279 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_280 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_281 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_282 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_283 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_284 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_285 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_286 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_287 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_288 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_289 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_290 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_291 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_292 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_293 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_294 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_295 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_296 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_297 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_298 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_299 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_300 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_301 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_302 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_303 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_304 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_305 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_306 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_307 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_308 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_309 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_310 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_311 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_312 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_313 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_314 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_315 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_316 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_317 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_318 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_319 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_320 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_321 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_322 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_323 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_324 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_325 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_326 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_327 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_328 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_329 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_330 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_331 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_332 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_333 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_334 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_335 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_336 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_337 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_338 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_339 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_340 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_341 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_342 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_343 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_344 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_345 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_346 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_347 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_348 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_349 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_350 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_351 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_352 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_353 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_354 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_355 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_356 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_357 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_358 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_359 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_360 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_361 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_362 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_363 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_364 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_365 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_366 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_367 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_368 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_369 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_370 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_371 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_372 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_373 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_374 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_375 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_376 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_377 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_378 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_379 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_380 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_381 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_382 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_383 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_384 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_385 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_386 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_387 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_388 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_389 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_390 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_391 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_392 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_393 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_394 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_395 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_396 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_397 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_398 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_399 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_400 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_401 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_402 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_403 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_404 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_405 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_406 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_407 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_408 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_409 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_410 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_411 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_412 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_413 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_414 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_415 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_416 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_417 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_418 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_419 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_420 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_421 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_422 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_423 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_424 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_425 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_426 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_427 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_428 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_429 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_430 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_431 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_432 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_433 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_434 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_435 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_436 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_437 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_438 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_439 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_440 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_441 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_442 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_443 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_444 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_445 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_446 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_447 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_448 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_449 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_450 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_451 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_452 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_453 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_454 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_455 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_456 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_457 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_458 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_459 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_460 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_461 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_462 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_463 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_464 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_465 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_466 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_467 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_468 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_469 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_470 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_471 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_472 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_473 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_474 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_475 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_476 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_477 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_478 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_479 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_480 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_481 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_482 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_483 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_484 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_485 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_486 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_487 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_488 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_489 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_490 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_491 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_492 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_493 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_494 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_495 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_496 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_497 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_498 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_499 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_500 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_501 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_502 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_503 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_504 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_505 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_506 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_507 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_508 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_509 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_510 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_511 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_512 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_513 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_514 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_515 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_516 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_517 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_518 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_519 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_520 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_521 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_522 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_523 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_524 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_525 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_526 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_527 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_528 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_529 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_530 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_531 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_532 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_533 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_534 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_535 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_536 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_537 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_538 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_539 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_540 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_541 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_542 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_543 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_544 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_545 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_546 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_547 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_548 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_549 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_550 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_551 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_552 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_553 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_554 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_555 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_556 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_557 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_558 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_559 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_560 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_561 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_562 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_563 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_564 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_565 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_566 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_567 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_568 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_569 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_570 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_571 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_572 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_573 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_574 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_575 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_576 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_577 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_578 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_579 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_580 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_581 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_582 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_583 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_584 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_585 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_586 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_587 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_588 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_589 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_590 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_591 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_592 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_593 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_594 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_595 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_596 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_597 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_598 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_599 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_600 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_601 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_602 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_603 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_604 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_605 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_606 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_607 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_608 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_609 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_610 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_611 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_612 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_613 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_614 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_615 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_616 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_617 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_618 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_619 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_620 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_621 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_622 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_623 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_624 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_625 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_626 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_627 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_628 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_629 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_630 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_631 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_632 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_633 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_634 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_635 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_636 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_637 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_638 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_639 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_640 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_641 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_642 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_643 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_644 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_645 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_646 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_647 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_648 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_649 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_650 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_651 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_652 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_653 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_654 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_655 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_656 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_657 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_658 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_659 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_660 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_661 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_662 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_663 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_664 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_665 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_666 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_667 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_668 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_669 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_670 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_671 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_672 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_673 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_674 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_675 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_676 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_677 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_678 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_679 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_680 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_681 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_682 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_683 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_684 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_685 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_686 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_687 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_688 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_689 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_690 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_691 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_692 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_693 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_694 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_695 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_696 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_697 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_698 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_699 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_700 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_701 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_702 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_703 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_704 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_705 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_706 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_707 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_708 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_709 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_710 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_711 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_712 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_713 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_714 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_715 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_716 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_717 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_718 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_719 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_720 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_721 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_722 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_723 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_724 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_725 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_726 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_727 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_728 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_729 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_730 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_731 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_732 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_733 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_734 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_735 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_736 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_737 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_738 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_739 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_740 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_741 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_742 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_743 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_744 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_745 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_746 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_747 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_748 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_749 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_750 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_751 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_752 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_753 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_754 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_755 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_756 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_757 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_758 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_759 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_760 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_761 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_762 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_763 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_764 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_765 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_766 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_767 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_768 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_769 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_770 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_771 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_772 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_773 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_774 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_775 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_776 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_777 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_778 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_779 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_780 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_781 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_782 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_783 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_784 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_785 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_786 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_787 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_788 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_789 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_790 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_791 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_792 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_793 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_794 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_795 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_796 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_797 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_798 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_799 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_800 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_801 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_802 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_803 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_804 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_805 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_806 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_807 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_808 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_809 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_810 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_811 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_812 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_813 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_814 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_815 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_816 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_817 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_818 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_819 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_820 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_821 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_822 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_823 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_824 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_825 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_826 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_827 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_828 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_829 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_830 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_831 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_832 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_833 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_834 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_835 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_836 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_837 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_838 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_839 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_840 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_841 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_842 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_843 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_844 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_845 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_846 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_847 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_848 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_849 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_850 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_851 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_852 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_853 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_854 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_855 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_856 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_857 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_858 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_859 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_860 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_861 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_862 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_863 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_864 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_865 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_866 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_867 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_868 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_869 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_870 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_871 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_872 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_873 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_874 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_875 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_876 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_877 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_878 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_879 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_880 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_881 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_882 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_883 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_884 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_885 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_886 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_887 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_888 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_889 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_890 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_891 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_892 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_893 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_894 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_895 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_896 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_897 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_898 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_899 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_900 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_901 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_902 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_903 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_904 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_905 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_906 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_907 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_908 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_909 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_910 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_911 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_912 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_913 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_914 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_915 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_916 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_917 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_918 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_919 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_920 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_921 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_922 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_923 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_924 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_925 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_926 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_927 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_928 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_929 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_930 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_931 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_932 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_933 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_934 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_935 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_936 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_937 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_938 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_939 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_940 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_941 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_942 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_943 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_944 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_945 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_946 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_947 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_948 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_949 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_950 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_951 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_952 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_953 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_954 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_955 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_956 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_957 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_958 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_959 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_960 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_961 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_962 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_963 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_964 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_965 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_966 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_967 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_968 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_969 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_970 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_971 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_972 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_973 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_974 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_975 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_976 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_977 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_978 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_979 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_980 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_981 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_982 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_983 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_984 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_985 on route r_1 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_986 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_987 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_988 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_989 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_990 on route r_4 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_991 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_992 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_993 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_994 on route r_0 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_995 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_996 on route r_5 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_997 on route r_3 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_998 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_999 on route r_2 of type bus
+Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
+INFO: Add vehicle v_1000 on route r_5 of type bus

@@ -107,6 +107,7 @@ public class App {
 	public static void main(String[] args) {
 		logger.log(Level.INFO, "Application started");
 
+		//=======Event Dispatch Thread========
 		SwingUtilities.invokeLater(() -> {
 			try {
 				SumoConnectionManager connection = establishConnection();
@@ -119,7 +120,6 @@ public class App {
 
 				generateUI(connection, trafficStatistic);
 
-				// statisticsPanel = new StatisticsPanel(trafficStatistic);
 				startDataThread(trafficStatistic);
 				startSimulationThread(connection, trafficStatistic);
 
@@ -193,6 +193,7 @@ public class App {
 
 					lastStep = currentStep;
 
+					// Event Dispatch Thread
 					SwingUtilities.invokeLater(() -> {
 						long uiStart = System.nanoTime();
 

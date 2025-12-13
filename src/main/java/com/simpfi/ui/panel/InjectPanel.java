@@ -43,7 +43,7 @@ public class InjectPanel extends Panel {
 
 
 	private javax.swing.JTextField countField;
-	
+
 	private final VehicleInjectionController vic;
 
 
@@ -118,31 +118,37 @@ public class InjectPanel extends Panel {
 
 	/**
 	 * Adds a vehicle to the route.
+	 * Crate a Thread for adding vehicles
 	 */
 	private void addVehicle() {
 		String mode = modeDropdown.getSelectedItem().toString();
-		String vehicleIds = VehicleController.generateVehicleID();
-		String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
-		String userChoiceRoute = routeDropdown.getSelectedItem().toString();
-		int count = 1;
+		final String vehicleIds = VehicleController.generateVehicleID();
+		final String userChoiceVehicleType = vehicleTypeDropdown.getSelectedItem().toString();
+		final String userChoiceRoute = routeDropdown.getSelectedItem().toString();
+		int tempCount;
 		try {
-			count = Integer.parseInt(countField.getText().trim());
+			tempCount = Integer.parseInt(countField.getText().trim());
 		}catch(NumberFormatException ex) {
 			logger.warning("Invalid batch number. Using 1.");
+			tempCount = 1;
 		}
-		switch(mode){
-			case "Single":
-				vic.addSingle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
-				break;
-			case "Batch Random":
-				vic.injectRandom(count, userChoiceVehicleType);
-				break;
-			case "Batch on Route":
-				vic.injectOnRoute(userChoiceRoute, count, userChoiceVehicleType);
-				break;
-			default:
-				logger.warning("Unknown mode selected: ");
-		}
+		final int count = tempCount;
+
+		new Thread(() -> {
+			switch(mode){
+				case "Single":
+					vic.addSingle(vehicleIds, userChoiceRoute, userChoiceVehicleType);
+					break;
+				case "Batch Random":
+					vic.injectRandom(count, userChoiceVehicleType);
+					break;
+				case "Batch on Route":
+					vic.injectOnRoute(userChoiceRoute, count, userChoiceVehicleType);
+					break;
+				default:
+					logger.warning("Unknown mode selected: ");
+			}
+		}, "AddVehicleThread").start();
 	}
 
 	/**
