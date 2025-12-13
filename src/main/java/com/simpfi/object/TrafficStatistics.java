@@ -176,16 +176,24 @@ public class TrafficStatistics {
      * @param speedThreshold the speed below which an edge is considered congested 
      * @return a list of edge IDs that are congested 
      */
-    public List<String> getCongestedEdges(double speedThreshold){
-        List<String> congested = new ArrayList<>();
-        for (String eid : edgeVehicleCount.keySet()){
+    public List<String> getCongestedEdges(double speedThreshold) {
+    List<String> congested = new ArrayList<>();
+    for (String eid : edgeVehicleCount.keySet()) {
+        try {
+            int vehicleCount = ec.getEdgeVehicleCount(eid); 
+            if (vehicleCount == 0) continue; 
+
             double avrSpeed = getAverageSpeedOnEdge(eid);
-            if (avrSpeed < speedThreshold){
+            if (avrSpeed < speedThreshold) {
                 congested.add(eid);
             }
+        } catch (Exception ex) {
+            System.err.println("Error getting vehicle count for edge " + eid + ": " + ex.getMessage());
         }
-        return congested;
     }
+    return congested;
+}
+
 
     /** 
      * Returns a string representing the top K congestion hotspots sorted by vehicle count. 

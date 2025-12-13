@@ -137,6 +137,18 @@ public class App {
 					Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
 
 					final int currentStep = step;
+					// Just for testing update Traffic Light 
+					try {
+						if (programLightPanel.isAdaptiveMode)
+						trafficLightController.updateTrafficLightByNumberOfVehicle(Settings.network.getTrafficLights());
+						else {
+							trafficLightController.setDefaultTrafficLight(Settings.network.getTrafficLights());
+						}
+						
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
 					// Update UI on Swing EDT
 					SwingUtilities.invokeLater(() -> {
@@ -161,6 +173,17 @@ public class App {
 						}
 						
 						mapPanel.updateVehicleStates(currentStep);
+
+					});
+				
+
+					if (currentStep % 10 == 0) { 
+						SwingUtilities.invokeLater(() -> programLightPanel.showImpactOfTimingChange());
+					}
+
+					SwingUtilities.invokeLater(() -> {
+						injectPanel.setHighlightedRoute();
+						if (step % 10 == 0) mapPanel.updateVehicleStates(currentStep);
 						mapPanel.repaint();
 
 						// Test frame time
@@ -262,6 +285,8 @@ public class App {
 		injectPanel = new InjectPanel(conn);
 		mapViewPanel = new MapViewPanel();
 		programLightPanel = new ProgramLightsPanel(conn);
+		programLightPanel.setStatisticsPanel(statisticsPanel);
+		programLightPanel.setStats(stats);
 		filterPanel = new FilterPanel();
 		inspectPanel = new InspectPanel(conn, mapPanel);
 

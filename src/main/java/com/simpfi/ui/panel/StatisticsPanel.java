@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Map;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -24,7 +25,8 @@ import com.simpfi.object.TrafficStatistics;
 import com.simpfi.ui.Label;
 import com.simpfi.ui.Panel;
 import com.simpfi.ui.ScrollPane;
-
+import com.simpfi.ui.TextArea;
+import com.simpfi.ui.panel.ProgramLightsPanel;
 /**
  * A UI panel used for displaying simulation statistics. This class extends
  * {@link Panel}.
@@ -57,6 +59,8 @@ public class StatisticsPanel extends Panel {
 	private ChartPanel densityChartPanel;
 	/** Chart panel for displaying travel time distribution. */
 	private ChartPanel travelTimeChartPanel;
+
+
 
 	/**
 	 * Constructs a StatisticsPanel with a given {@link TrafficStatistics} object.
@@ -204,21 +208,25 @@ public class StatisticsPanel extends Panel {
 		hotspotLabel.setText("Hotspots: " + hotspots);
 
 		// Travel Time Distribution
-		SwingUtilities.invokeLater(() -> {
+		if (step % 10 == 0){
 			double[] times = stats.getTravelTimesArray();
+			SwingUtilities.invokeLater(() -> {
+				if (times.length > 0) {
+					HistogramDataset ds = new HistogramDataset();
+					ds.addSeries("Travel Times", times, 20);
 
-			if (times.length > 0) {
-				HistogramDataset ds = new HistogramDataset();
-				ds.addSeries("Travel Times", times, 20);
-
-				travelTimeDataset = ds;
-				travelTimeChartPanel.getChart().getXYPlot().setDataset(ds);
-			}
-			travelTimeChartPanel.repaint();
+					travelTimeDataset = ds;
+					travelTimeChartPanel.getChart().getXYPlot().setDataset(ds);
+				}
+				travelTimeChartPanel.repaint();
+			});
+		}
+		
+		SwingUtilities.invokeLater(() -> {
+			speedChartPanel.repaint();
+			densityChartPanel.repaint();
 		});
 
-		speedChartPanel.repaint();
-		densityChartPanel.repaint();
 	}
 
 	/**
@@ -237,5 +245,17 @@ public class StatisticsPanel extends Panel {
 		p.add(chart, BorderLayout.CENTER);
 		p.add(label, BorderLayout.SOUTH);
 		return p;
+	}
+
+
+	double calculateAverageTimeTravel(double[] travelTimes){
+		if (travelTimes.length == 0) {return 0;}
+		double sum = 0.0;
+		if (travelTimes.length != 0){
+			for (double i : travelTimes){
+				sum += i;
+			}
+		}
+		return sum/travelTimes.length;
 	}
 }

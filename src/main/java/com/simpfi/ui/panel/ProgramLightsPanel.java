@@ -1,11 +1,28 @@
 package com.simpfi.ui.panel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import java.awt.Dimension;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.SwingConstants;
 import javax.swing.BoxLayout;
+<<<<<<< HEAD
+=======
+import javax.swing.SwingUtilities;
+
+>>>>>>> 6acc2d0 (Update Statistic for adaptive and static traffic light)
 
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
@@ -20,6 +37,8 @@ import com.simpfi.ui.Panel;
 import com.simpfi.ui.ScrollPane;
 import com.simpfi.ui.TextArea;
 import com.simpfi.ui.TextBox;
+import com.simpfi.ui.panel.StatisticsPanel;
+import com.simpfi.object.TrafficStatistics;
 
 import de.tudresden.sumo.objects.SumoTLSPhase;
 import de.tudresden.sumo.objects.SumoTLSProgram;
@@ -61,10 +80,14 @@ public class ProgramLightsPanel extends Panel {
 	private int phaseUserChoose = 0;
 	// I am not sure I need to using it, I mean this one can help me make the clean code
 	private double remainingDuration;
+	private StatisticsPanel sp;
+	private TrafficStatistics stats;
 	
 	public boolean isAdaptiveMode = false;
 	private Button changingAdaptiveModeOrStaticMode = null;
 	private Label modeOfTraffic;
+	public TextArea textArea;
+
 
 	public ProgramLightsPanel(SumoConnectionManager conn) throws Exception {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -78,8 +101,18 @@ public class ProgramLightsPanel extends Panel {
 		List<Connection> allConnections = getAllConnection(firstJunctionIDs);
 		allStringConnection = getAllStringConnection(allConnections);
 
+
 		generateDropdowns(allTLJunctionIDs, firstJunctionIDs);
 		generateButtons();
+		generateFeedbackCard();
+	}
+
+	public void setStatisticsPanel(StatisticsPanel statisticsPanel){
+		this.sp = statisticsPanel;
+	}
+
+	public void setStats(TrafficStatistics stats){
+		this.stats = stats;
 	}
 
 	private void generateDropdowns(String[] allTLJunctionIDs, String firstJunctionIDs) throws Exception {
@@ -325,6 +358,7 @@ public class ProgramLightsPanel extends Panel {
 		ArrayList<SumoTLSPhase> listOfPhases = program.phases;
 		SumoTLSPhase phase = listOfPhases.get(phaseNumber);
 		phase.duration = duration;
+		showImpactOfTimingChange();
 
 		trafficLightController.setCompleteTrafficLight(trafficLightID, program);
 	}
@@ -370,5 +404,66 @@ public class ProgramLightsPanel extends Panel {
 	public int getSelectedPhase() {
 	    return phaseUserChoose;
 	}
+
+	private Panel createCard(String title, TextArea textArea, Font titleFont) {
+		Panel card = new Panel();
+		card.setLayout(new BorderLayout(10, 10));
+		card.setBorder(BorderFactory.createCompoundBorder(
+			BorderFactory.createLineBorder(Color.GRAY, 1),
+			BorderFactory.createEmptyBorder(12, 12, 12, 12)
+		));
+		card.setBackground(Color.WHITE);
+
+		Label header = new Label(title);
+		header.setFont(titleFont);
+		header.setHorizontalAlignment(SwingConstants.CENTER);
+		card.add(header, BorderLayout.NORTH);
+
+		// Wrap TextArea in a scroll pane if necessary
+		ScrollPane scroll = new ScrollPane();
+		scroll.addItem(textArea);
+		card.add(scroll, BorderLayout.CENTER);
+
+		card.setMaximumSize(new Dimension(300, 200));
+		card.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+		return card;
+	}
+
+
+
+	public void showImpactOfTimingChange(){
+		double avgSpeed = stats.getAverageSpeed();
+		int totalCongestion = stats.getCongestedEdges(10.0).size();
+		double avgTravelTime = stats.getTravelTimesArray().length > 0 ?
+							Arrays.stream(stats.getTravelTimesArray()).average().orElse(0) : 0;
+
+		SwingUtilities.invokeLater(() -> {
+			updateImpactDisplay(avgSpeed, totalCongestion, avgTravelTime);
+		});
+	}
+
+	public void updateImpactDisplay(double avgSpeed, int congestedCount, double avgTravelTime) {
+		String feedback =
+			"Impact of Timing Adjustment:\n" +
+			"Average Speed: " + String.format("%.2f m/s", avgSpeed) + "\n" +
+			"Congested Edges: " + congestedCount + "\n" +
+			"Average Travel Time: " + String.format("%.2f sec", avgTravelTime);
+		    SwingUtilities.invokeLater(() -> textArea.setText(feedback));
+
+	}
+
+	private void generateFeedbackCard() {
+		textArea = new TextArea(false);
+		textArea.setEditable(false);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+
+		Font titleFont = new Font("SansSerif", Font.BOLD, 16);
+		Panel feedbackCard = createCard("Adaptive Feedback", textArea, titleFont);
+		this.add(feedbackCard);
+	}
+
+
 
 }
