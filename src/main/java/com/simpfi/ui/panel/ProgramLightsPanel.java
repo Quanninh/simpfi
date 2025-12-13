@@ -18,11 +18,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 import javax.swing.BoxLayout;
-<<<<<<< HEAD
-=======
-import javax.swing.SwingUtilities;
 
->>>>>>> 6acc2d0 (Update Statistic for adaptive and static traffic light)
+import javax.swing.SwingUtilities;
 
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
