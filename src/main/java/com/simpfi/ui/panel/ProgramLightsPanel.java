@@ -2,10 +2,11 @@ package com.simpfi.ui.panel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
+
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.TrafficLight;
@@ -89,6 +90,7 @@ public class ProgramLightsPanel extends Panel {
 		connectionDropDown = Dropdown.createDropdownWithLabel("All Connection", allStringConnection, this);
 
 		tlJunctionDropDown.addActionListener(e -> {
+			userTrafficLightJunctionId = (String) tlJunctionDropDown.getSelectedItem();
 			// Update highlighted traffic light
 			Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT = TrafficLight
 				.searchforTrafficLight(userTrafficLightJunctionId, Settings.network.getTrafficLights());
