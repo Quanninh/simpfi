@@ -35,6 +35,7 @@ public class EdgeController {
 		return (Integer) connection.do_job_get(de.tudresden.sumo.cmd.Edge.getLastStepVehicleNumber(edgeID));
 	}
 
+	/** Get the average speed on a specific edge */
 	public double getMeanSpeed(String edgeID) throws Exception {
 		return (Double) connection.do_job_get(de.tudresden.sumo.cmd.Edge.getLastStepMeanSpeed(edgeID));
 	}

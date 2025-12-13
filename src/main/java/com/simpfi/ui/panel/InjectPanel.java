@@ -34,13 +34,16 @@ public class InjectPanel extends Panel {
 
 	/** The vehicle type dropdown for user to select vehicle types to add. */
 	private Dropdown<String> vehicleTypeDropdown;
+
 	/** The route dropdown for user to select routes to add vehicle to. */
 	private Dropdown<String> routeDropdown;
+
 	/** Single, Batch Random, Batch on specific route */
 	private Dropdown<String> modeDropdown;
 
 
 	private javax.swing.JTextField countField;
+	
 	private final VehicleInjectionController vic;
 
 

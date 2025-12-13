@@ -100,8 +100,8 @@ public class TrafficLightController {
 	 * @throws Exception if the TraCI connection fails
 	 */
 
-	public void setPhase(String tlID, int index) throws Exception {
-		connection.do_job_set(Trafficlight.setPhase(tlID, index));
+	public void setPhase(String tlId, int index) throws Exception {
+		connection.do_job_set(Trafficlight.setPhase(tlId, index));
 	}
 
 	/**
@@ -148,8 +148,8 @@ public class TrafficLightController {
 	 * @throws Exception if the TraCI connection fails
 	 */
 
-	public Double getNextSwitch(String tlID) throws Exception {
-		return (Double) connection.do_job_get(Trafficlight.getNextSwitch(tlID));
+	public Double getNextSwitch(String tlId) throws Exception {
+		return (Double) connection.do_job_get(Trafficlight.getNextSwitch(tlId));
 	}
 
 	/**

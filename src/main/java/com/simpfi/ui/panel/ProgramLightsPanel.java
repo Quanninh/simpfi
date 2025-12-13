@@ -86,16 +86,17 @@ public class ProgramLightsPanel extends Panel {
 	
 	private StatisticsPanel sp; // This one is not use ??
 	private TrafficStatistics stats;
-	
-	/** Check the mode is adaptive or not. */
+
+	/** Indicates whether the traffic lights are in adaptive mode. */
 	public boolean isAdaptiveMode = false;
-	
-	/** Button for user to choose the mode adaptive or static. */
+
+	/** Button on choosing Traffic Light state: static or adaptive */
 	private Button changingAdaptiveModeOrStaticMode = null;
-	
-	/** Label for showing the current mode of the traffic. */
+
+	/** Label displaying the current traffic light mode. */
 	private Label modeOfTraffic;
-	
+
+	/** Text area showing feedback about adaptive traffic control impacts. */
 	public TextArea textArea;
 
 	/**
@@ -367,7 +368,7 @@ public class ProgramLightsPanel extends Panel {
 	        infoDialog = new InformationPopUp("Traffic Light Information", false);
 	        infoDialog.setLocationRelativeTo(this);
 	        // This one just demo the content Pane :))) 
-//	        infoDialog.setContentPane(this);
+            // infoDialog.setContentPane(this);
 	        
 	        infoDialogTextArea = new TextArea(false);
 	        
@@ -587,6 +588,7 @@ public class ProgramLightsPanel extends Panel {
 
 	}
 
+	/** Compute average travel time */
 	double calculateAverageTimeTravel(double[] travelTimes){
 		if (travelTimes.length == 0) {return 0;}
 		double sum = 0.0;

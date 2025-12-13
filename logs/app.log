@@ -1,0 +1,10 @@
+Dec 13, 2025 10:53:58 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 10:53:58 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 10:54:03 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 10:54:04 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 10:54:04 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons

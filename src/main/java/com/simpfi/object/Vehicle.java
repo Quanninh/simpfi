@@ -250,49 +250,112 @@ public class Vehicle {
 			+ type + ", isActive=" + isActive + "]";
 	}
 
-
+	/**
+	 * Returns whether the vehicle's headlights are currently on.
+	 * 
+	 * @return {@code true} if headlights are on, {@code false} otherwise
+	 */
 	public boolean headlightsOn() {
 		return headlightsOn;
 	}
 
+
+	/**
+	 * Sets the state of the vehicle's headlights.
+	 * 
+	 * @param state {@code true} to turn headlights on, {@code false} to turn them off
+	 */
 	public void setHeadLightsOn(boolean state){
 		this.headlightsOn = state;
 	}
 
+	/**
+	 * Returns whether the vehicle is currently braking.
+	 * 
+	 * @return {@code true} if brakes are applied, {@code false} otherwise
+	 */
 	public boolean isBraking(){
 		return brakeOn;
 	}
 
+	/**
+	 * Sets the braking state of the vehicle.
+	 * 
+	 * @param state {@code true} to apply brakes, {@code false} to release them
+	 */
 	public void setBrake(boolean state){
 		this.brakeOn = state;
 	}
 
+	/**
+	 * Returns whether the vehicle is currently turning left.
+	 * 
+	 * @return {@code true} if the left turn signal is active, {@code false} otherwise
+	 */
 	public boolean isTurningLeft(){
 		return turningLeft;
 	}
+
+	/**
+	 * Sets the left turn signal state.
+	 * 
+	 * @param state {@code true} to indicate a left turn, {@code false} otherwise
+	 */
 	public void setTurningLeft(boolean state){
 		this.turningLeft = state;
 	}
 
+	/**
+	 * Returns whether the vehicle is currently turning right.
+	 * 
+	 * @return {@code true} if the right turn signal is active, {@code false} otherwise
+	 */
 	public boolean isTurningRight(){
 		return turningRight;
 	}
+
+	/**
+	 * Sets the right turn signal state.
+	 * 
+	 * @param state {@code true} to indicate a right turn, {@code false} otherwise
+	 */
 	public void setTurningRight(boolean state){
 		this.turningRight = state;
 	}
 
+	/**
+	 * Returns whether the vehicle's emergency lights are flashing.
+	 * 
+	 * @return {@code true} if emergency lights are on, {@code false} otherwise
+	 */
 	public boolean isEmergencyFlashing(){
 		return emergencyFlashing;
 	}
+
+	/**
+	 * Sets the state of the vehicle's emergency lights.
+	 * 
+	 * @param state {@code true} to turn on emergency lights, {@code false} to turn them off
+	 */
 	public void setEmergencyFlashing(boolean state){
 		this.emergencyFlashing = state;
 	}
 
+	/**
+	 * Returns the next turn that the vehicle will take.
+	 * 
+	 * @return a {@link Turn} object representing the next turn
+	 */
 	public Turn getNextTurn() { 
 		return nextTurn; 
 	}
+
+	/**
+	 * Sets the next turn for the vehicle.
+	 * 
+	 * @param t a {@link Turn} object representing the next turn
+	 */
     public void setNextTurn(Turn t) { 
 		this.nextTurn = t; 
 	}
-
 }

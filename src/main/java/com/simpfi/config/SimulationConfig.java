@@ -157,7 +157,9 @@ public class SimulationConfig {
 	}
 	
 	
-
+	/**
+	 * Method used to reset all customed colors to default.
+	 */
 	public void resetColorDefaults() {
 		NORMAL_VEHICLE_COLOR = Constants.DEFAULT_NORMAL_VEHICLE_COLOR;
 		TRUCK_COLOR = Constants.DEFAULT_TRUCK_COLOR;
