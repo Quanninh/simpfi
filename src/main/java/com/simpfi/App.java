@@ -122,6 +122,10 @@ public class App {
 			while (true) {
 				long next = System.currentTimeMillis() + stepMs;
 				try {
+					// Test frame time
+					long startTime = System.nanoTime();
+
+
 					// Simulation step
 					doStep(conn);
 					retrieveData(conn);
@@ -136,6 +140,11 @@ public class App {
 
 					// Update UI on Swing EDT
 					SwingUtilities.invokeLater(() -> {
+
+						// Test frame time
+						long uiStart = System.nanoTime();
+
+
 						statisticsPanel.updatePanel(currentStep);
 						programLightPanel.updateRemainingTime(tlId, currentPhase, remaining);
 						
@@ -153,7 +162,18 @@ public class App {
 						
 						mapPanel.updateVehicleStates(currentStep);
 						mapPanel.repaint();
+
+						// Test frame time
+						long uiEnd = System.nanoTime();
+    					logger.log(Level.FINE,"UI frame time (ms): {0}",(uiEnd - uiStart) / 1_000_000.0);
 					});
+
+					// Test frame time
+					long endTime = System.nanoTime();
+					logger.log(Level.FINE,
+						"Simulation step total time (ms): {0}",
+						(endTime - startTime) / 1_000_000.0
+					);
 
 					long sleep = next - System.currentTimeMillis();
 					if (sleep > 0)
