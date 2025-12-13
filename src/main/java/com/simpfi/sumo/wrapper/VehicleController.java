@@ -20,7 +20,7 @@ import it.polito.appeal.traci.SumoTraciConnection;
 public class VehicleController {
 
 	/** Logger. */
-    private static final Logger logger = Logger.getLogger(VehicleController.class.getName());
+	private static final Logger logger = Logger.getLogger(VehicleController.class.getName());
 
 	/** The connection to SUMO. */
 	private SumoTraciConnection connection;
@@ -63,6 +63,10 @@ public class VehicleController {
 	 */
 	public double getSpeed(String vId) throws Exception {
 		return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getSpeed(vId));
+	}
+
+	public void setSpeed(String vId, double newSpeed) throws Exception {
+		connection.do_job_set(de.tudresden.sumo.cmd.Vehicle.setSpeed(vId, newSpeed));
 	}
 
 	/**
@@ -132,52 +136,51 @@ public class VehicleController {
 		return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getHeight(vId));
 	}
 
-    /**
-     * Returns the maximum speed of the vehicle.
-     *
-     * @param vId the vehicle ID
-     * @return the maximum speed
-     * @throws Exception if the TraCI connection fails
-     */
-    public double getMaxSpeed(String vId) throws Exception {
-        return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getMaxSpeed(vId));
-    }
+	/**
+	 * Returns the maximum speed of the vehicle.
+	 *
+	 * @param vId the vehicle ID
+	 * @return the maximum speed
+	 * @throws Exception if the TraCI connection fails
+	 */
+	public double getMaxSpeed(String vId) throws Exception {
+		return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getMaxSpeed(vId));
+	}
 
-    /**
-     * Returns the acceleration of the vehicle.
-     *
-     * @param vId the vehicle ID
-     * @return the acceleration
-     * @throws Exception if the TraCI connection fails
-     */
-    public double getAcceleration(String vId) throws Exception {
-        return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getAccel(vId));
-    }
+	/**
+	 * Returns the acceleration of the vehicle.
+	 *
+	 * @param vId the vehicle ID
+	 * @return the acceleration
+	 * @throws Exception if the TraCI connection fails
+	 */
+	public double getAcceleration(String vId) throws Exception {
+		return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getAccel(vId));
+	}
 
-    /**
-     * Returns the distance traveled by the vehicle since simulation start.
-     *
-     * @param vId the vehicle ID
-     * @return the distance traveled
-     * @throws Exception if the TraCI connection fails
-     */
-    public double getDistance(String vId) throws Exception {
-        return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getDistance(vId));
-    }
+	/**
+	 * Returns the distance traveled by the vehicle since simulation start.
+	 *
+	 * @param vId the vehicle ID
+	 * @return the distance traveled
+	 * @throws Exception if the TraCI connection fails
+	 */
+	public double getDistance(String vId) throws Exception {
+		return (double) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getDistance(vId));
+	}
 
-    /**
-     * Returns the route of the vehicle as a list of edge IDs.
-     *
-     * @param vId the vehicle ID
-     * @return the route
-     * @throws Exception if the TraCI connection fails
-     */
-    public List<String> getRoute(String vId) throws Exception {
-        return (List<String>) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getRoute(vId));
-    }
+	/**
+	 * Returns the route of the vehicle as a list of edge IDs.
+	 *
+	 * @param vId the vehicle ID
+	 * @return the route
+	 * @throws Exception if the TraCI connection fails
+	 */
+	public List<String> getRoute(String vId) throws Exception {
+		return (List<String>) connection.do_job_get(de.tudresden.sumo.cmd.Vehicle.getRoute(vId));
+	}
 
-
-    /**
+	/**
 	 * Returns the vehicles list.
 	 *
 	 * @return the vehicles list
@@ -229,12 +232,12 @@ public class VehicleController {
 	 * @throws Exception if the TraCI connection fails
 	 */
 	public void addVehicle(String vehicleID, String routeID, String vType) throws Exception {
-		logger.log(Level.INFO,"Add vehicle {0} on route {1} of type {2}", 
-					new Object[]{vehicleID, routeID, vType});
+		logger.log(Level.INFO, "Add vehicle {0} on route {1} of type {2}", new Object[] { vehicleID, routeID, vType });
 
-		connection.do_job_set(de.tudresden.sumo.cmd.Vehicle.addFull(vehicleID, routeID, vType, "now", "best", "base", "avg", "current", "max", "current", "", "", "", 0, 0));
+		connection.do_job_set(de.tudresden.sumo.cmd.Vehicle.addFull(vehicleID, routeID, vType, "now", "best", "base",
+			"avg", "current", "max", "current", "", "", "", 0, 0));
 	}
-	
+
 	// Get the number of vehicle in specific Lane
 	public int getVehicleNumberInLane(String laneId) throws Exception {
 		return (int) connection.do_job_get(Lane.getLastStepVehicleNumber(laneId));

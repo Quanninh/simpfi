@@ -132,13 +132,9 @@ public class App {
 
 					// ===== Traffic light logic (SIMULATION THREAD ONLY) =====
 					if (programLightPanel.isAdaptiveMode) {
-						trafficLightController.updateTrafficLightByNumberOfVehicle(
-							Settings.network.getTrafficLights()
-						);
+						trafficLightController.updateTrafficLightByNumberOfVehicle(Settings.network.getTrafficLights());
 					} else {
-						trafficLightController.setDefaultTrafficLight(
-							Settings.network.getTrafficLights()
-						);
+						trafficLightController.setDefaultTrafficLight(Settings.network.getTrafficLights());
 					}
 
 					// ===== Data for UI =====
@@ -146,8 +142,7 @@ public class App {
 					final String tlId = programLightPanel.getSelectedTrafficLightID();
 					final int currentPhase = trafficLightController.getPhase(tlId);
 					final double currentTime = currentStep * Settings.config.TIMESTEP;
-					final Double remaining =
-							programLightPanel.showRemainingDuration(tlId, currentTime);
+					final Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
 
 					// ===== UI update (ONE invokeLater ONLY) =====
 					SwingUtilities.invokeLater(() -> {
@@ -157,9 +152,7 @@ public class App {
 						statisticsPanel.updatePanel(currentStep);
 
 						// Traffic light UI
-						programLightPanel.updateRemainingTime(
-							tlId, currentPhase, remaining
-						);
+						programLightPanel.updateRemainingTime(tlId, currentPhase, remaining);
 
 						if (currentStep % 10 == 0) {
 							programLightPanel.showImpactOfTimingChange();
@@ -173,20 +166,12 @@ public class App {
 						mapPanel.repaint();
 
 						long uiEnd = System.nanoTime();
-						logger.log(
-							Level.FINE,
-							"UI frame time (ms): {0}",
-							(uiEnd - uiStart) / 1_000_000.0
-						);
+						logger.log(Level.FINE, "UI frame time (ms): {0}", (uiEnd - uiStart) / 1_000_000.0);
 					});
 
 					// ===== Simulation timing =====
 					long simEnd = System.nanoTime();
-					logger.log(
-						Level.FINE,
-						"Simulation step total time (ms): {0}",
-						(simEnd - simStart) / 1_000_000.0
-					);
+					logger.log(Level.FINE, "Simulation step total time (ms): {0}", (simEnd - simStart) / 1_000_000.0);
 
 					// ===== Sleep =====
 					long sleep = next - System.currentTimeMillis();
@@ -197,16 +182,11 @@ public class App {
 					step++;
 
 				} catch (Exception e) {
-					logger.log(
-						Level.SEVERE,
-						"Failed to continue the background simulation thread",
-						e
-					);
+					logger.log(Level.SEVERE, "Failed to continue the background simulation thread", e);
 				}
 			}
 		}, "SimulationThread").start();
 	}
-
 
 	/**
 	 * Do step.
@@ -247,12 +227,13 @@ public class App {
 			double width = vehicleController.getWidth(vid);
 			double height = vehicleController.getHeight(vid);
 			double speed = vehicleController.getSpeed(vid);
-            double maxSpeed = vehicleController.getMaxSpeed(vid);
-            double acceleration = vehicleController.getAcceleration(vid);
-            double distance = vehicleController.getDistance(vid);
-            List<String> route = vehicleController.getRoute(vid);
+			double maxSpeed = vehicleController.getMaxSpeed(vid);
+			double acceleration = vehicleController.getAcceleration(vid);
+			double distance = vehicleController.getDistance(vid);
+			List<String> route = vehicleController.getRoute(vid);
 
-			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height, speed, maxSpeed, acceleration, distance, route);
+			Vehicle v = new Vehicle(vid, pos, edge, type, angle, width, height, speed, maxSpeed, acceleration, distance,
+				route);
 
 			VehicleController.updateVehicleMap(v);
 		}
