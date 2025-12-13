@@ -10,6 +10,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.logging.Level;
@@ -73,19 +74,84 @@ public class MapPanel extends Panel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D) g;
+
+		AffineTransform old = g2D.getTransform();
+
 		g2D.setStroke(defaultStroke);
 
+		/*
+		 * At initial, -Setting.congic.offset.get(X) is in translateCoord But if I let
+		 * it, when I rotate, it translate the coordinate very weird and not nature, So
+		 * that why, I need to get X, Y and then I rotate
+		 */
+		// g2D.translate(
+		// -Settings.config.OFFSET.getX(),
+		// -Settings.config.OFFSET.getY()
+		// );
+		// // We need to take the offset before rotating
+		//
+		// // It is rotate only the center of the map Point ( 0, 0 ) and it is constant
+		// // If You want to rotate in other map, just translate the map to another
+		// Point you want
+		//
+		// g2D.rotate(Math.toRadians(Settings.config.ANGLE));
+
 		// Render static layer (edges, junctions) once and cache it
-		// if (Settings.config.getStaticLayerDirty()) {
-		renderStaticLayer();
-		Settings.config.setStaticLayerDirty(false);
-		// }
+		if (Settings.config.getStaticLayerDirty()) {
+			renderStaticLayer();
+			Settings.config.setStaticLayerDirty(false);
+		}
 
 		// Draw cached static layer
 		if (staticLayer != null) {
 			g2D.drawImage(staticLayer, 0, 0, null);
 		}
 
+		// Draw the highlighted Route in a different color (if any)
+		if (Settings.highlight.HIGHLIGHTED_ROUTE != null) {
+			for (Edge e : Settings.highlight.HIGHLIGHTED_ROUTE.getEdges()) {
+				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
+			}
+		}
+
+		// Draw the highlighted Road (filter hover) in a different color (if any)
+		if (Settings.highlight.HIGHLIGHTED_ROAD_FILTER != null) {
+			for (Edge e : Settings.highlight.HIGHLIGHTED_ROAD_FILTER.getEdgesWithSameBaseName()) {
+				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROAD_FILTER_COLOR);
+			}
+		}
+
+		if (Settings.highlight.HIGHLIGHTED_CONNECTION != null) {
+			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getFromLane(),
+				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getToLane(),
+				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+		}
+
+		if (Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT != null) {
+			drawObject(g2D, Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getJunction(),
+				Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT_COLOR);
+		}
+
+		for (TrafficLight tl : Settings.network.getTrafficLights()) {
+			try {
+				drawObject(g2D, tl);
+			} catch (Exception e1) {
+				logger.log(Level.SEVERE,
+					String.format("Failed to draw the traffic light (%s) in Map Panel!", tl.toString()), e1);
+			}
+		}
+		for (Vehicle v : VehicleController.getVehicles()) {
+			try {
+				drawObject(g2D, v);
+			} catch (Exception e) {
+				logger.log(Level.SEVERE, String.format("Failed to draw the vehicle (%s) in Map Panel!", v.toString()),
+					e);
+			}
+		}
+
+		// Avoid changing too immediately, because it keep increase the angle
+		g2D.setTransform(old);
 	}
 
 	/**
@@ -295,6 +361,7 @@ public class MapPanel extends Panel {
 			// Emergency flashing
 			v.setEmergencyFlashing(v.getType().getId().equals("emergency") && v.isEmergencyFlashing() && blink);
 		}
+
 	}
 
 	/**
@@ -488,7 +555,30 @@ public class MapPanel extends Panel {
 	}
 
 	/**
-	 * Save the current graphics settings.
+	 * <<<<<<< HEAD Converts the real-world coordinate to the map coordinate.
+	 * 
+	 * @param before the real-world coordinate
+	 * @return the map coordinate
+	 */
+	private Point translateCoords(Point before) {
+		Point after = new Point();
+
+		// -1 here to flip the Y-axis, because Y increases downward in graphics
+		// coordinates
+
+		// I will let this one at normally, But after implementing the rotation, please
+		// delete
+		// -Settings.config.OFFSET.getX() and getY() to the code that I commented ( In
+		// rotation logic )
+		after.setX(before.getX() * Settings.config.SCALE - Settings.config.OFFSET.getX());
+		after.setY(before.getY() * Settings.config.SCALE * -1 - Settings.config.OFFSET.getY());
+
+		return after;
+	}
+
+	/**
+	 * ======= >>>>>>> 84e85451bae5391d59500f3dbb8c2a8ecc67950d Save the current
+	 * graphics settings.
 	 *
 	 * @param g the {@link Graphics2D}
 	 * @return the graphics settings
@@ -529,52 +619,6 @@ public class MapPanel extends Panel {
 		// Draw junctions (static, cached)
 		for (Junction j : Settings.network.getJunctions()) {
 			drawObject(g2D, j, Settings.config.JUNCTION_COLOR);
-		}
-		// Draw the highlighted Route in a different color (if any)
-		if (Settings.highlight.HIGHLIGHTED_ROUTE != null) {
-			for (Edge e : Settings.highlight.HIGHLIGHTED_ROUTE.getEdges()) {
-				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
-			}
-		}
-
-		// Draw the highlighted Road (filter hover) in a different color (if any)
-		if (Settings.highlight.HIGHLIGHTED_ROAD_FILTER != null) {
-			for (Edge e : Settings.highlight.HIGHLIGHTED_ROAD_FILTER.getEdgesWithSameBaseName()) {
-				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROAD_FILTER_COLOR);
-			}
-		}
-
-		if (Settings.highlight.HIGHLIGHTED_CONNECTION != null) {
-			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getFromLane(),
-				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
-			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getToLane(),
-				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
-		}
-
-		if (Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT != null) {
-			drawObject(g2D, Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getJunction(),
-				Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT_COLOR);
-		}
-
-		for (TrafficLight tl : Settings.network.getTrafficLights()) {
-			try {
-				drawObject(g2D, tl);
-			} catch (Exception e1) {
-				logger.log(Level.SEVERE,
-					String.format("Failed to draw the traffic light (%s) in Map Panel!", tl.toString()), e1);
-			}
-		}
-		List<Vehicle> vehicleList = VehicleController.getVehicles();
-		for (Vehicle v : vehicleList) {
-			try {
-				boolean isVehicleDrawn = drawObject(g2D, v);
-				if (!isVehicleDrawn) {
-					System.out.println("ERROR VEHICLE IS NOT DRAWN");
-				}
-			} catch (Exception e) {
-				logger.log(Level.SEVERE, String.format("Failed to draw the vehicle (%s) in Map Panel!", v.toString()),
-					e);
-			}
 		}
 
 		g2D.dispose();
@@ -650,6 +694,8 @@ public class MapPanel extends Panel {
 				Settings.config.invalidateStaticLayer(); // Invalidate cache when pan changes
 			}
 		});
+
+		// TODO: Modify the angle using mouse
 
 		Mouse mouseAction = new Mouse();
 		this.addMouseListener(mouseAction);
