@@ -306,7 +306,7 @@ public class ProgramLightsPanel extends Panel {
 	        infoDialog = new InformationPopUp("Traffic Light Information", false);
 	        infoDialog.setLocationRelativeTo(this);
 	        // This one just demo the content Pane :))) 
-//	        infoDialog.setContentPane(this);
+            // infoDialog.setContentPane(this);
 	        
 	        infoDialogTextArea = new TextArea(false);
 	        
@@ -340,9 +340,6 @@ public class ProgramLightsPanel extends Panel {
 
 	    infoDialogTextArea.setText(sb.toString());
 	}
-
-
-
 
 	public void applySwitchPhaseListener(String trafficLightID) throws Exception {
 		trafficLightController.setPhase(trafficLightID, phaseUserChoose);
@@ -494,6 +491,7 @@ public class ProgramLightsPanel extends Panel {
 
 	}
 
+	/** Compute average travel time */
 	double calculateAverageTimeTravel(double[] travelTimes){
 		if (travelTimes.length == 0) {return 0;}
 		double sum = 0.0;
