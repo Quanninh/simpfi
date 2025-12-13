@@ -238,7 +238,7 @@ public class VehicleController {
 			"avg", "current", "max", "current", "", "", "", 0, 0));
 	}
 
-	// Get the number of vehicle in specific Lane
+	/** * Get the number of vehicle in specific Lane */ 
 	public int getVehicleNumberInLane(String laneId) throws Exception {
 		return (int) connection.do_job_get(Lane.getLastStepVehicleNumber(laneId));
 	}
