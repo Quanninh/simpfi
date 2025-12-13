@@ -166,7 +166,6 @@ public class App {
 						}
 
 						// Map
-						injectPanel.setHighlightedRoute();
 						if (currentStep % 10 == 0) {
 							mapPanel.updateVehicleStates(currentStep);
 						}
