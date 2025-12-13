@@ -329,3 +329,1845 @@ java.lang.Throwable: Runtime.exit(0)
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
 
+Dec 13, 2025 3:21:49 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 3:21:49 PM sun.awt.windows.WToolkit <clinit>
+FINE: Win version: 0x6658000a = 1717043210 (Windows Vista)
+Dec 13, 2025 3:21:49 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 3:21:49 PM java.lang.ProcessBuilder start
+FINE: ProcessBuilder.start(): pid: 13660, dir: null, cmd: "sumo"
+java.lang.RuntimeException: ProcessBuilder.start() debug
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1147)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at com.simpfi.sumo.wrapper.SumoConnectionManager.<init>(SumoConnectionManager.java:37)
+	at com.simpfi.App.establishConnection(App.java:196)
+	at com.simpfi.App.lambda$0(App.java:96)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:21:54 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.properties.version=3
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont.height=12
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionHeight=22
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonWidth=37
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonHeight=22
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont.height=12
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionHeight=22
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonWidth=22
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonHeight=22
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.sizingBorderWidth=1
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font.height=12
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.height=19
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.buttonWidth=19
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.width=17
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.height=17
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font.height=12
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font.height=12
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font.height=12
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.hspacing=75
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.vspacing=75
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.icon.titleWrappingOn=true
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font.height=12
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionGradientColor=java.awt.Color[r=185,g=209,b=234]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionGradientColor=java.awt.Color[r=215,g=228,b=242]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.hotTrackedColor=java.awt.Color[r=0,g=102,b=204]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.darkShadowColor=java.awt.Color[r=105,g=105,b=105]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.highlightColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.lightColor=java.awt.Color[r=227,g=227,b=227]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.shadowColor=java.awt.Color[r=160,g=160,b=160]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.button.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.desktop.backgroundColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionColor=java.awt.Color[r=153,g=180,b=209]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeBorderColor=java.awt.Color[r=180,g=180,b=180]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.color=java.awt.Color[r=100,g=100,b=100]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.backgroundColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.captionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveBorderColor=java.awt.Color[r=244,g=247,b=252]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionColor=java.awt.Color[r=191,g=205,b=219]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightColor=java.awt.Color[r=0,g=120,b=215]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightTextColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.mdi.backgroundColor=java.awt.Color[r=171,g=171,b=171]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menubar.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.scrollbar.backgroundColor=java.awt.Color[r=200,g=200,b=200]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.text.grayedTextColor=java.awt.Color[r=109,g=109,b=109]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.backgroundColor=java.awt.Color[r=255,g=255,b=225]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.caret.width=1
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.fullWindowDragsOn=true
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.text.fontSmoothingOn=true
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingType=2
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingContrast=1200
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingOrientation=1
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.width=4
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.height=4
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: DnD.gestureMotionThreshold=2
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.mouse.numButtons=5
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.multiClickInterval=500
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.dynamicLayoutSupported=true
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.wheelMousePresent=true
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.captionGradientsOn=true
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.item.hotTrackingOn=true
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.menu.keyboardCuesOn=false
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.highContrast.on=false
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showHiddenFiles=false
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showAttribCol=false
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.default=WinPlaySound(.Default)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.close=WinPlaySound(Close)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.maximize=WinPlaySound(Maximize)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.minimize=WinPlaySound(Minimize)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuCommand=WinPlaySound(MenuCommand)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuPopup=WinPlaySound(MenuPopup)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.open=WinPlaySound(Open)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreDown=WinPlaySound(RestoreDown)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreUp=WinPlaySound(RestoreUp)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.asterisk=WinPlaySound(SystemAsterisk)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exclamation=WinPlaySound(SystemExclamation)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exit=WinPlaySound(SystemExit)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.hand=WinPlaySound(SystemHand)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.question=WinPlaySound(SystemQuestion)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.start=WinPlaySound(SystemStart)
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font=java.awt.Font[family=Monospaced,name=Monospaced,style=plain,size=13]
+Dec 13, 2025 3:21:54 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font.height=13
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font=java.awt.Font[family=Microsoft Sans Serif,name=Microsoft Sans Serif,style=plain,size=11]
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font.height=11
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font.height=16
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font=java.awt.Font[family=Tahoma,name=Tahoma,style=plain,size=10]
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font.height=10
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font=java.awt.Font[family=Dialog,name=8514oem,style=plain,size=18]
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font.height=18
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font.height=16
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font=java.awt.Font[family=Dialog,name=Fixedsys,style=plain,size=18]
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font.height=18
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.xpstyle.themeActive=true
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.dllName=C:\WINDOWS\resources\themes\Aero\Aero.msstyles
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.sizeName=NormalSize
+Dec 13, 2025 3:21:55 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.colorName=NormalColor
+Dec 13, 2025 3:21:55 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 3:21:55 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons
+Dec 13, 2025 3:22:03 PM sun.awt.windows.WWindowPeer notifyWindowStateChanged
+FINE: Reporting state change %x -> %x
+Dec 13, 2025 3:22:04 PM java.lang.Shutdown logRuntimeExit
+FINE: Runtime.exit() called with status: 0
+java.lang.Throwable: Runtime.exit(0)
+	at java.base/java.lang.Shutdown.logRuntimeExit(Shutdown.java:179)
+	at java.base/java.lang.Shutdown.exit(Shutdown.java:160)
+	at java.base/java.lang.Runtime.exit(Runtime.java:188)
+	at java.base/java.lang.System.exit(System.java:1920)
+	at java.desktop/javax.swing.JFrame.processWindowEvent(JFrame.java:311)
+	at java.desktop/java.awt.Window.processEvent(Window.java:2044)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at com.formdev.flatlaf.ui.FlatTitlePane.close(FlatTitlePane.java:986)
+	at com.formdev.flatlaf.ui.FlatTitlePane.lambda$createButtons$3(FlatTitlePane.java:370)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:22:38 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 3:22:38 PM sun.awt.windows.WToolkit <clinit>
+FINE: Win version: 0x6658000a = 1717043210 (Windows Vista)
+Dec 13, 2025 3:22:38 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 3:22:38 PM java.lang.ProcessBuilder start
+FINE: ProcessBuilder.start(): pid: 35268, dir: null, cmd: "sumo"
+java.lang.RuntimeException: ProcessBuilder.start() debug
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1147)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at com.simpfi.sumo.wrapper.SumoConnectionManager.<init>(SumoConnectionManager.java:37)
+	at com.simpfi.App.establishConnection(App.java:196)
+	at com.simpfi.App.lambda$0(App.java:96)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:22:43 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.properties.version=3
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont.height=12
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionHeight=22
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonWidth=37
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonHeight=22
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont.height=12
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionHeight=22
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonWidth=22
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonHeight=22
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.sizingBorderWidth=1
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font.height=12
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.height=19
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.buttonWidth=19
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.width=17
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.height=17
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font.height=12
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font.height=12
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font.height=12
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.hspacing=75
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.vspacing=75
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.icon.titleWrappingOn=true
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font.height=12
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionGradientColor=java.awt.Color[r=185,g=209,b=234]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionGradientColor=java.awt.Color[r=215,g=228,b=242]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.hotTrackedColor=java.awt.Color[r=0,g=102,b=204]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.darkShadowColor=java.awt.Color[r=105,g=105,b=105]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.highlightColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.lightColor=java.awt.Color[r=227,g=227,b=227]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.shadowColor=java.awt.Color[r=160,g=160,b=160]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.button.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.desktop.backgroundColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionColor=java.awt.Color[r=153,g=180,b=209]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeBorderColor=java.awt.Color[r=180,g=180,b=180]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.color=java.awt.Color[r=100,g=100,b=100]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.backgroundColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.captionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveBorderColor=java.awt.Color[r=244,g=247,b=252]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionColor=java.awt.Color[r=191,g=205,b=219]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightColor=java.awt.Color[r=0,g=120,b=215]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightTextColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.mdi.backgroundColor=java.awt.Color[r=171,g=171,b=171]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menubar.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.scrollbar.backgroundColor=java.awt.Color[r=200,g=200,b=200]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.text.grayedTextColor=java.awt.Color[r=109,g=109,b=109]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.backgroundColor=java.awt.Color[r=255,g=255,b=225]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.caret.width=1
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.fullWindowDragsOn=true
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.text.fontSmoothingOn=true
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingType=2
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingContrast=1200
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingOrientation=1
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.width=4
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.height=4
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: DnD.gestureMotionThreshold=2
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.mouse.numButtons=5
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.multiClickInterval=500
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.dynamicLayoutSupported=true
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.wheelMousePresent=true
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.captionGradientsOn=true
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.item.hotTrackingOn=true
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.menu.keyboardCuesOn=false
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.highContrast.on=false
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showHiddenFiles=false
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showAttribCol=false
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.default=WinPlaySound(.Default)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.close=WinPlaySound(Close)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.maximize=WinPlaySound(Maximize)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.minimize=WinPlaySound(Minimize)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuCommand=WinPlaySound(MenuCommand)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuPopup=WinPlaySound(MenuPopup)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.open=WinPlaySound(Open)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreDown=WinPlaySound(RestoreDown)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreUp=WinPlaySound(RestoreUp)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.asterisk=WinPlaySound(SystemAsterisk)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exclamation=WinPlaySound(SystemExclamation)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exit=WinPlaySound(SystemExit)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.hand=WinPlaySound(SystemHand)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.question=WinPlaySound(SystemQuestion)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.start=WinPlaySound(SystemStart)
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font=java.awt.Font[family=Monospaced,name=Monospaced,style=plain,size=13]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font.height=13
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font=java.awt.Font[family=Microsoft Sans Serif,name=Microsoft Sans Serif,style=plain,size=11]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font.height=11
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font.height=16
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font=java.awt.Font[family=Tahoma,name=Tahoma,style=plain,size=10]
+Dec 13, 2025 3:22:43 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font.height=10
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font=java.awt.Font[family=Dialog,name=8514oem,style=plain,size=18]
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font.height=18
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font.height=16
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font=java.awt.Font[family=Dialog,name=Fixedsys,style=plain,size=18]
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font.height=18
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.xpstyle.themeActive=true
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.dllName=C:\WINDOWS\resources\themes\Aero\Aero.msstyles
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.sizeName=NormalSize
+Dec 13, 2025 3:22:44 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.colorName=NormalColor
+Dec 13, 2025 3:22:44 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 3:22:44 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons
+Dec 13, 2025 3:23:18 PM sun.awt.windows.WWindowPeer notifyWindowStateChanged
+FINE: Reporting state change %x -> %x
+Dec 13, 2025 3:23:41 PM java.lang.Shutdown logRuntimeExit
+FINE: Runtime.exit() called with status: 0
+java.lang.Throwable: Runtime.exit(0)
+	at java.base/java.lang.Shutdown.logRuntimeExit(Shutdown.java:179)
+	at java.base/java.lang.Shutdown.exit(Shutdown.java:160)
+	at java.base/java.lang.Runtime.exit(Runtime.java:188)
+	at java.base/java.lang.System.exit(System.java:1920)
+	at java.desktop/javax.swing.JFrame.processWindowEvent(JFrame.java:311)
+	at java.desktop/java.awt.Window.processEvent(Window.java:2044)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at com.formdev.flatlaf.ui.FlatTitlePane.close(FlatTitlePane.java:986)
+	at com.formdev.flatlaf.ui.FlatTitlePane.lambda$createButtons$3(FlatTitlePane.java:370)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:23:53 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 3:23:53 PM sun.awt.windows.WToolkit <clinit>
+FINE: Win version: 0x6658000a = 1717043210 (Windows Vista)
+Dec 13, 2025 3:23:53 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 3:23:53 PM java.lang.ProcessBuilder start
+FINE: ProcessBuilder.start(): pid: 3728, dir: null, cmd: "sumo"
+java.lang.RuntimeException: ProcessBuilder.start() debug
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1147)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at com.simpfi.sumo.wrapper.SumoConnectionManager.<init>(SumoConnectionManager.java:37)
+	at com.simpfi.App.establishConnection(App.java:196)
+	at com.simpfi.App.lambda$0(App.java:96)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:23:58 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.properties.version=3
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont.height=12
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionHeight=22
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonWidth=37
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonHeight=22
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont.height=12
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionHeight=22
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonWidth=22
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonHeight=22
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.sizingBorderWidth=1
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font.height=12
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.height=19
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.buttonWidth=19
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.width=17
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.height=17
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font.height=12
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font.height=12
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font.height=12
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.hspacing=75
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.vspacing=75
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.icon.titleWrappingOn=true
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font.height=12
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionGradientColor=java.awt.Color[r=185,g=209,b=234]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionGradientColor=java.awt.Color[r=215,g=228,b=242]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.hotTrackedColor=java.awt.Color[r=0,g=102,b=204]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.darkShadowColor=java.awt.Color[r=105,g=105,b=105]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.highlightColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.lightColor=java.awt.Color[r=227,g=227,b=227]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.shadowColor=java.awt.Color[r=160,g=160,b=160]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.button.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.desktop.backgroundColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionColor=java.awt.Color[r=153,g=180,b=209]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeBorderColor=java.awt.Color[r=180,g=180,b=180]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.color=java.awt.Color[r=100,g=100,b=100]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.backgroundColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.captionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveBorderColor=java.awt.Color[r=244,g=247,b=252]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionColor=java.awt.Color[r=191,g=205,b=219]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightColor=java.awt.Color[r=0,g=120,b=215]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightTextColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.mdi.backgroundColor=java.awt.Color[r=171,g=171,b=171]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menubar.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.scrollbar.backgroundColor=java.awt.Color[r=200,g=200,b=200]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.text.grayedTextColor=java.awt.Color[r=109,g=109,b=109]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.backgroundColor=java.awt.Color[r=255,g=255,b=225]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.caret.width=1
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.fullWindowDragsOn=true
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.text.fontSmoothingOn=true
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingType=2
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingContrast=1200
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingOrientation=1
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.width=4
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.height=4
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: DnD.gestureMotionThreshold=2
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.mouse.numButtons=5
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.multiClickInterval=500
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.dynamicLayoutSupported=true
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.wheelMousePresent=true
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.captionGradientsOn=true
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.item.hotTrackingOn=true
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.menu.keyboardCuesOn=false
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.highContrast.on=false
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showHiddenFiles=false
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showAttribCol=false
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.default=WinPlaySound(.Default)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.close=WinPlaySound(Close)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.maximize=WinPlaySound(Maximize)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.minimize=WinPlaySound(Minimize)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuCommand=WinPlaySound(MenuCommand)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuPopup=WinPlaySound(MenuPopup)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.open=WinPlaySound(Open)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreDown=WinPlaySound(RestoreDown)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreUp=WinPlaySound(RestoreUp)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.asterisk=WinPlaySound(SystemAsterisk)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exclamation=WinPlaySound(SystemExclamation)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exit=WinPlaySound(SystemExit)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.hand=WinPlaySound(SystemHand)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.question=WinPlaySound(SystemQuestion)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.start=WinPlaySound(SystemStart)
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font=java.awt.Font[family=Monospaced,name=Monospaced,style=plain,size=13]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font.height=13
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font=java.awt.Font[family=Microsoft Sans Serif,name=Microsoft Sans Serif,style=plain,size=11]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font.height=11
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font.height=16
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font=java.awt.Font[family=Tahoma,name=Tahoma,style=plain,size=10]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font.height=10
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font=java.awt.Font[family=Dialog,name=8514oem,style=plain,size=18]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font.height=18
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font.height=16
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font=java.awt.Font[family=Dialog,name=Fixedsys,style=plain,size=18]
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font.height=18
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.xpstyle.themeActive=true
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.dllName=C:\WINDOWS\resources\themes\Aero\Aero.msstyles
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.sizeName=NormalSize
+Dec 13, 2025 3:23:58 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.colorName=NormalColor
+Dec 13, 2025 3:23:59 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 3:23:59 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons
+Dec 13, 2025 3:24:00 PM sun.awt.windows.WWindowPeer notifyWindowStateChanged
+FINE: Reporting state change %x -> %x
+Dec 13, 2025 3:24:22 PM java.lang.Shutdown logRuntimeExit
+FINE: Runtime.exit() called with status: 0
+java.lang.Throwable: Runtime.exit(0)
+	at java.base/java.lang.Shutdown.logRuntimeExit(Shutdown.java:179)
+	at java.base/java.lang.Shutdown.exit(Shutdown.java:160)
+	at java.base/java.lang.Runtime.exit(Runtime.java:188)
+	at java.base/java.lang.System.exit(System.java:1920)
+	at java.desktop/javax.swing.JFrame.processWindowEvent(JFrame.java:311)
+	at java.desktop/java.awt.Window.processEvent(Window.java:2044)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at com.formdev.flatlaf.ui.FlatTitlePane.close(FlatTitlePane.java:986)
+	at com.formdev.flatlaf.ui.FlatTitlePane.lambda$createButtons$3(FlatTitlePane.java:370)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:29:24 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 3:29:24 PM sun.awt.windows.WToolkit <clinit>
+FINE: Win version: 0x6658000a = 1717043210 (Windows Vista)
+Dec 13, 2025 3:29:24 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 3:29:25 PM java.lang.ProcessBuilder start
+FINE: ProcessBuilder.start(): pid: 12772, dir: null, cmd: "sumo"
+java.lang.RuntimeException: ProcessBuilder.start() debug
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1147)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at com.simpfi.sumo.wrapper.SumoConnectionManager.<init>(SumoConnectionManager.java:37)
+	at com.simpfi.App.establishConnection(App.java:196)
+	at com.simpfi.App.lambda$0(App.java:96)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:29:30 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.properties.version=3
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont.height=12
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionHeight=22
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonWidth=37
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonHeight=22
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont.height=12
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionHeight=22
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonWidth=22
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonHeight=22
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.sizingBorderWidth=1
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font.height=12
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.height=19
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.buttonWidth=19
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.width=17
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.height=17
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font.height=12
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font.height=12
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font.height=12
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.hspacing=75
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.vspacing=75
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.icon.titleWrappingOn=true
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font.height=12
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionGradientColor=java.awt.Color[r=185,g=209,b=234]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionGradientColor=java.awt.Color[r=215,g=228,b=242]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.hotTrackedColor=java.awt.Color[r=0,g=102,b=204]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.darkShadowColor=java.awt.Color[r=105,g=105,b=105]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.highlightColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.lightColor=java.awt.Color[r=227,g=227,b=227]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.shadowColor=java.awt.Color[r=160,g=160,b=160]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.button.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.desktop.backgroundColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionColor=java.awt.Color[r=153,g=180,b=209]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeBorderColor=java.awt.Color[r=180,g=180,b=180]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.color=java.awt.Color[r=100,g=100,b=100]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.backgroundColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.captionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveBorderColor=java.awt.Color[r=244,g=247,b=252]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionColor=java.awt.Color[r=191,g=205,b=219]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightColor=java.awt.Color[r=0,g=120,b=215]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightTextColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.mdi.backgroundColor=java.awt.Color[r=171,g=171,b=171]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menubar.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.scrollbar.backgroundColor=java.awt.Color[r=200,g=200,b=200]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.text.grayedTextColor=java.awt.Color[r=109,g=109,b=109]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.backgroundColor=java.awt.Color[r=255,g=255,b=225]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.caret.width=1
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.fullWindowDragsOn=true
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.text.fontSmoothingOn=true
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingType=2
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingContrast=1200
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingOrientation=1
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.width=4
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.height=4
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: DnD.gestureMotionThreshold=2
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.mouse.numButtons=5
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.multiClickInterval=500
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.dynamicLayoutSupported=true
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.wheelMousePresent=true
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.captionGradientsOn=true
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.item.hotTrackingOn=true
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.menu.keyboardCuesOn=false
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.highContrast.on=false
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showHiddenFiles=false
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showAttribCol=false
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.default=WinPlaySound(.Default)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.close=WinPlaySound(Close)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.maximize=WinPlaySound(Maximize)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.minimize=WinPlaySound(Minimize)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuCommand=WinPlaySound(MenuCommand)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuPopup=WinPlaySound(MenuPopup)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.open=WinPlaySound(Open)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreDown=WinPlaySound(RestoreDown)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreUp=WinPlaySound(RestoreUp)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.asterisk=WinPlaySound(SystemAsterisk)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exclamation=WinPlaySound(SystemExclamation)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exit=WinPlaySound(SystemExit)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.hand=WinPlaySound(SystemHand)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.question=WinPlaySound(SystemQuestion)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.start=WinPlaySound(SystemStart)
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font=java.awt.Font[family=Monospaced,name=Monospaced,style=plain,size=13]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font.height=13
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font=java.awt.Font[family=Microsoft Sans Serif,name=Microsoft Sans Serif,style=plain,size=11]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font.height=11
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font.height=16
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font=java.awt.Font[family=Tahoma,name=Tahoma,style=plain,size=10]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font.height=10
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font=java.awt.Font[family=Dialog,name=8514oem,style=plain,size=18]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font.height=18
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font.height=16
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font=java.awt.Font[family=Dialog,name=Fixedsys,style=plain,size=18]
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font.height=18
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.xpstyle.themeActive=true
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.dllName=C:\WINDOWS\resources\themes\Aero\Aero.msstyles
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.sizeName=NormalSize
+Dec 13, 2025 3:29:30 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.colorName=NormalColor
+Dec 13, 2025 3:29:30 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 3:29:30 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons
+Dec 13, 2025 3:29:52 PM sun.awt.windows.WWindowPeer notifyWindowStateChanged
+FINE: Reporting state change %x -> %x
+Dec 13, 2025 3:31:05 PM java.lang.Shutdown logRuntimeExit
+FINE: Runtime.exit() called with status: 0
+java.lang.Throwable: Runtime.exit(0)
+	at java.base/java.lang.Shutdown.logRuntimeExit(Shutdown.java:179)
+	at java.base/java.lang.Shutdown.exit(Shutdown.java:160)
+	at java.base/java.lang.Runtime.exit(Runtime.java:188)
+	at java.base/java.lang.System.exit(System.java:1920)
+	at java.desktop/javax.swing.JFrame.processWindowEvent(JFrame.java:311)
+	at java.desktop/java.awt.Window.processEvent(Window.java:2044)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at com.formdev.flatlaf.ui.FlatTitlePane.close(FlatTitlePane.java:986)
+	at com.formdev.flatlaf.ui.FlatTitlePane.lambda$createButtons$3(FlatTitlePane.java:370)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:31:07 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 3:31:07 PM sun.awt.windows.WToolkit <clinit>
+FINE: Win version: 0x6658000a = 1717043210 (Windows Vista)
+Dec 13, 2025 3:31:07 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 3:31:07 PM java.lang.ProcessBuilder start
+FINE: ProcessBuilder.start(): pid: 14436, dir: null, cmd: "sumo"
+java.lang.RuntimeException: ProcessBuilder.start() debug
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1147)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at com.simpfi.sumo.wrapper.SumoConnectionManager.<init>(SumoConnectionManager.java:37)
+	at com.simpfi.App.establishConnection(App.java:196)
+	at com.simpfi.App.lambda$0(App.java:96)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:31:12 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.properties.version=3
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont.height=12
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionHeight=22
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonWidth=37
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonHeight=22
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont.height=12
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionHeight=22
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonWidth=22
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonHeight=22
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.sizingBorderWidth=1
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font.height=12
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.height=19
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.buttonWidth=19
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.width=17
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.height=17
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font.height=12
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font.height=12
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font.height=12
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.hspacing=75
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.vspacing=75
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.icon.titleWrappingOn=true
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font.height=12
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionGradientColor=java.awt.Color[r=185,g=209,b=234]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionGradientColor=java.awt.Color[r=215,g=228,b=242]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.hotTrackedColor=java.awt.Color[r=0,g=102,b=204]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.darkShadowColor=java.awt.Color[r=105,g=105,b=105]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.highlightColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.lightColor=java.awt.Color[r=227,g=227,b=227]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.shadowColor=java.awt.Color[r=160,g=160,b=160]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.button.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.desktop.backgroundColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionColor=java.awt.Color[r=153,g=180,b=209]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeBorderColor=java.awt.Color[r=180,g=180,b=180]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.color=java.awt.Color[r=100,g=100,b=100]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.backgroundColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.captionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveBorderColor=java.awt.Color[r=244,g=247,b=252]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionColor=java.awt.Color[r=191,g=205,b=219]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightColor=java.awt.Color[r=0,g=120,b=215]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightTextColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.mdi.backgroundColor=java.awt.Color[r=171,g=171,b=171]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menubar.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.scrollbar.backgroundColor=java.awt.Color[r=200,g=200,b=200]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.text.grayedTextColor=java.awt.Color[r=109,g=109,b=109]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.backgroundColor=java.awt.Color[r=255,g=255,b=225]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.caret.width=1
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.fullWindowDragsOn=true
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.text.fontSmoothingOn=true
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingType=2
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingContrast=1200
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingOrientation=1
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.width=4
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.height=4
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: DnD.gestureMotionThreshold=2
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.mouse.numButtons=5
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.multiClickInterval=500
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.dynamicLayoutSupported=true
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.wheelMousePresent=true
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.captionGradientsOn=true
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.item.hotTrackingOn=true
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.menu.keyboardCuesOn=false
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.highContrast.on=false
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showHiddenFiles=false
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showAttribCol=false
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.default=WinPlaySound(.Default)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.close=WinPlaySound(Close)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.maximize=WinPlaySound(Maximize)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.minimize=WinPlaySound(Minimize)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuCommand=WinPlaySound(MenuCommand)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuPopup=WinPlaySound(MenuPopup)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.open=WinPlaySound(Open)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreDown=WinPlaySound(RestoreDown)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreUp=WinPlaySound(RestoreUp)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.asterisk=WinPlaySound(SystemAsterisk)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exclamation=WinPlaySound(SystemExclamation)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exit=WinPlaySound(SystemExit)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.hand=WinPlaySound(SystemHand)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.question=WinPlaySound(SystemQuestion)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.start=WinPlaySound(SystemStart)
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font=java.awt.Font[family=Monospaced,name=Monospaced,style=plain,size=13]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font.height=13
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font=java.awt.Font[family=Microsoft Sans Serif,name=Microsoft Sans Serif,style=plain,size=11]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font.height=11
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font.height=16
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font=java.awt.Font[family=Tahoma,name=Tahoma,style=plain,size=10]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font.height=10
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font=java.awt.Font[family=Dialog,name=8514oem,style=plain,size=18]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font.height=18
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font.height=16
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font=java.awt.Font[family=Dialog,name=Fixedsys,style=plain,size=18]
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font.height=18
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.xpstyle.themeActive=true
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.dllName=C:\WINDOWS\resources\themes\Aero\Aero.msstyles
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.sizeName=NormalSize
+Dec 13, 2025 3:31:12 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.colorName=NormalColor
+Dec 13, 2025 3:31:13 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 3:31:13 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons
+Dec 13, 2025 3:31:17 PM sun.awt.windows.WWindowPeer notifyWindowStateChanged
+FINE: Reporting state change %x -> %x
+Dec 13, 2025 3:32:46 PM java.lang.Shutdown logRuntimeExit
+FINE: Runtime.exit() called with status: 0
+java.lang.Throwable: Runtime.exit(0)
+	at java.base/java.lang.Shutdown.logRuntimeExit(Shutdown.java:179)
+	at java.base/java.lang.Shutdown.exit(Shutdown.java:160)
+	at java.base/java.lang.Runtime.exit(Runtime.java:188)
+	at java.base/java.lang.System.exit(System.java:1920)
+	at java.desktop/javax.swing.JFrame.processWindowEvent(JFrame.java:311)
+	at java.desktop/java.awt.Window.processEvent(Window.java:2044)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at com.formdev.flatlaf.ui.FlatTitlePane.close(FlatTitlePane.java:986)
+	at com.formdev.flatlaf.ui.FlatTitlePane.lambda$createButtons$3(FlatTitlePane.java:370)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:45:33 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 3:45:33 PM sun.awt.windows.WToolkit <clinit>
+FINE: Win version: 0x6658000a = 1717043210 (Windows Vista)
+Dec 13, 2025 3:45:33 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 3:45:33 PM java.lang.ProcessBuilder start
+FINE: ProcessBuilder.start(): pid: 34344, dir: null, cmd: "sumo"
+java.lang.RuntimeException: ProcessBuilder.start() debug
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1147)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at com.simpfi.sumo.wrapper.SumoConnectionManager.<init>(SumoConnectionManager.java:37)
+	at com.simpfi.App.establishConnection(App.java:196)
+	at com.simpfi.App.lambda$0(App.java:96)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+Dec 13, 2025 3:45:38 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.properties.version=3
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont.height=12
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionHeight=22
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonWidth=37
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonHeight=22
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont.height=12
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionHeight=22
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonWidth=22
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonHeight=22
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.sizingBorderWidth=1
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font.height=12
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.height=19
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.buttonWidth=19
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.width=17
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.height=17
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font.height=12
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font.height=12
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font.height=12
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.hspacing=75
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.vspacing=75
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.icon.titleWrappingOn=true
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font.height=12
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionGradientColor=java.awt.Color[r=185,g=209,b=234]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionGradientColor=java.awt.Color[r=215,g=228,b=242]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.hotTrackedColor=java.awt.Color[r=0,g=102,b=204]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.darkShadowColor=java.awt.Color[r=105,g=105,b=105]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.highlightColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.lightColor=java.awt.Color[r=227,g=227,b=227]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.shadowColor=java.awt.Color[r=160,g=160,b=160]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.button.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.desktop.backgroundColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionColor=java.awt.Color[r=153,g=180,b=209]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeBorderColor=java.awt.Color[r=180,g=180,b=180]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.color=java.awt.Color[r=100,g=100,b=100]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.backgroundColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.captionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveBorderColor=java.awt.Color[r=244,g=247,b=252]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionColor=java.awt.Color[r=191,g=205,b=219]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionTextColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightColor=java.awt.Color[r=0,g=120,b=215]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightTextColor=java.awt.Color[r=255,g=255,b=255]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.mdi.backgroundColor=java.awt.Color[r=171,g=171,b=171]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menubar.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.scrollbar.backgroundColor=java.awt.Color[r=200,g=200,b=200]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.text.grayedTextColor=java.awt.Color[r=109,g=109,b=109]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.backgroundColor=java.awt.Color[r=255,g=255,b=225]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.textColor=java.awt.Color[r=0,g=0,b=0]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.caret.width=1
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.fullWindowDragsOn=true
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.text.fontSmoothingOn=true
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingType=2
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingContrast=1200
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingOrientation=1
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.width=4
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.height=4
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: DnD.gestureMotionThreshold=2
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.mouse.numButtons=5
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.multiClickInterval=500
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.dynamicLayoutSupported=true
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.wheelMousePresent=true
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.captionGradientsOn=true
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.item.hotTrackingOn=true
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.menu.keyboardCuesOn=false
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.highContrast.on=false
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showHiddenFiles=false
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showAttribCol=false
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.default=WinPlaySound(.Default)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.close=WinPlaySound(Close)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.maximize=WinPlaySound(Maximize)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.minimize=WinPlaySound(Minimize)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuCommand=WinPlaySound(MenuCommand)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuPopup=WinPlaySound(MenuPopup)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.open=WinPlaySound(Open)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreDown=WinPlaySound(RestoreDown)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreUp=WinPlaySound(RestoreUp)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.asterisk=WinPlaySound(SystemAsterisk)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exclamation=WinPlaySound(SystemExclamation)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exit=WinPlaySound(SystemExit)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.hand=WinPlaySound(SystemHand)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.question=WinPlaySound(SystemQuestion)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.start=WinPlaySound(SystemStart)
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font=java.awt.Font[family=Monospaced,name=Monospaced,style=plain,size=13]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font.height=13
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font=java.awt.Font[family=Microsoft Sans Serif,name=Microsoft Sans Serif,style=plain,size=11]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font.height=11
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font.height=16
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font=java.awt.Font[family=Tahoma,name=Tahoma,style=plain,size=10]
+Dec 13, 2025 3:45:38 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font.height=10
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font=java.awt.Font[family=Dialog,name=8514oem,style=plain,size=18]
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font.height=18
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=16]
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font.height=16
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font=java.awt.Font[family=Dialog,name=Fixedsys,style=plain,size=18]
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font.height=18
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.xpstyle.themeActive=true
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.dllName=C:\WINDOWS\resources\themes\Aero\Aero.msstyles
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.sizeName=NormalSize
+Dec 13, 2025 3:45:39 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.colorName=NormalColor
+Dec 13, 2025 3:45:39 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 3:45:39 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons
+Dec 13, 2025 3:45:42 PM sun.awt.windows.WWindowPeer notifyWindowStateChanged
+FINE: Reporting state change %x -> %x
+Dec 13, 2025 3:48:24 PM java.lang.Shutdown logRuntimeExit
+FINE: Runtime.exit() called with status: 0
+java.lang.Throwable: Runtime.exit(0)
+	at java.base/java.lang.Shutdown.logRuntimeExit(Shutdown.java:179)
+	at java.base/java.lang.Shutdown.exit(Shutdown.java:160)
+	at java.base/java.lang.Runtime.exit(Runtime.java:188)
+	at java.base/java.lang.System.exit(System.java:1920)
+	at java.desktop/javax.swing.JFrame.processWindowEvent(JFrame.java:311)
+	at java.desktop/java.awt.Window.processEvent(Window.java:2044)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at com.formdev.flatlaf.ui.FlatTitlePane.close(FlatTitlePane.java:986)
+	at com.formdev.flatlaf.ui.FlatTitlePane.lambda$createButtons$3(FlatTitlePane.java:370)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+

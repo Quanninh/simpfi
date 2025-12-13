@@ -99,6 +99,9 @@ public class Constants {
 	public static final Point DEFAULT_OFFSET = new Point(-750, -250);
 	/** When moving map, how much of map is moved each time. */
 	public static final double DEFAULT_OFFSET_STEP = 10;
+	
+	/** Default angle to rotate the map*/
+	public static final double DEFAULT_ANGLE = 0;
 
 	/** Color of the default vehicle. */
 	public static final Color DEFAULT_NORMAL_VEHICLE_COLOR = new Color(225, 247, 12);

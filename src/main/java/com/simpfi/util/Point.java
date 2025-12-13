@@ -1,5 +1,7 @@
 package com.simpfi.util;
 
+import com.simpfi.config.Settings;
+
 /**
  * Create 2-dimensional coordinates to better represent object classes such as
  * Lane &amp; Junction.
@@ -66,10 +68,9 @@ public class Point {
 	public void setY(double y) {
 		this.y = y;
 	}
-	
+
 	// Modify y
-	public void modifyY(double x)
-	{
+	public void modifyY(double x) {
 		this.y += x;
 	}
 
@@ -115,6 +116,31 @@ public class Point {
 	@Override
 	public String toString() {
 		return "(" + x + ", " + y + ")";
+	}
+
+	/**
+	 * Converts the real-world coordinate to the map coordinate.
+	 * 
+	 * @return the map coordinate
+	 */
+	public Point fromWorldToMap() {
+		Point after = new Point();
+
+		// -1 here to flip the Y-axis, because Y increases downward in graphics
+		// coordinates
+		after.setX(x * Settings.config.SCALE - Settings.config.OFFSET.getX());
+		after.setY(y * Settings.config.SCALE * -1 - Settings.config.OFFSET.getY());
+
+		return after;
+	}
+
+	public Point fromMapToWorld() {
+		Point after = new Point();
+
+		after.setX((x + Settings.config.OFFSET.getX()) / Settings.config.SCALE);
+		after.setY(-(y + Settings.config.OFFSET.getY()) / Settings.config.SCALE);
+
+		return after;
 	}
 
 }

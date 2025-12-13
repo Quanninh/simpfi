@@ -10,6 +10,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.logging.Level;
@@ -42,7 +43,7 @@ import com.simpfi.util.Point;
 public class MapPanel extends Panel {
 
 	/** Logger. */
-    private static final Logger logger = Logger.getLogger(MapPanel.class.getName());
+	private static final Logger logger = Logger.getLogger(MapPanel.class.getName());
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -73,7 +74,27 @@ public class MapPanel extends Panel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D) g;
+
+		AffineTransform old = g2D.getTransform();
+
 		g2D.setStroke(defaultStroke);
+
+		/*
+		 * At initial, -Setting.congic.offset.get(X) is in translateCoord But if I let
+		 * it, when I rotate, it translate the coordinate very weird and not nature, So
+		 * that why, I need to get X, Y and then I rotate
+		 */
+		// g2D.translate(
+		// -Settings.config.OFFSET.getX(),
+		// -Settings.config.OFFSET.getY()
+		// );
+		// // We need to take the offset before rotating
+		//
+		// // It is rotate only the center of the map Point ( 0, 0 ) and it is constant
+		// // If You want to rotate in other map, just translate the map to another
+		// Point you want
+		//
+		// g2D.rotate(Math.toRadians(Settings.config.ANGLE));
 
 		// Render static layer (edges, junctions) once and cache it
 		if (Settings.config.getStaticLayerDirty()) {
@@ -89,8 +110,8 @@ public class MapPanel extends Panel {
 		// Draw the highlighted Route in a different color (if any)
 		if (Settings.highlight.HIGHLIGHTED_ROUTE != null) {
 			for (Edge e : Settings.highlight.HIGHLIGHTED_ROUTE.getEdges()) {
-			drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
-		}
+				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
+			}
 		}
 
 		// Draw the highlighted Road (filter hover) in a different color (if any)
@@ -102,31 +123,35 @@ public class MapPanel extends Panel {
 
 		if (Settings.highlight.HIGHLIGHTED_CONNECTION != null) {
 			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getFromLane(),
-			Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
 			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getToLane(),
-			Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
 		}
 
 		if (Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT != null) {
 			drawObject(g2D, Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getJunction(),
-			Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT_COLOR);
+				Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT_COLOR);
 		}
 
 		for (TrafficLight tl : Settings.network.getTrafficLights()) {
 			try {
 				drawObject(g2D, tl);
 			} catch (Exception e1) {
-				logger.log(Level.SEVERE, String.format("Failed to draw the traffic light (%s) in Map Panel!",tl.toString()),e1);
+				logger.log(Level.SEVERE,
+					String.format("Failed to draw the traffic light (%s) in Map Panel!", tl.toString()), e1);
 			}
 		}
-
 		for (Vehicle v : VehicleController.getVehicles()) {
 			try {
 				drawObject(g2D, v);
 			} catch (Exception e) {
-				logger.log(Level.SEVERE, String.format("Failed to draw the vehicle (%s) in Map Panel!",v.toString()),e);
+				logger.log(Level.SEVERE, String.format("Failed to draw the vehicle (%s) in Map Panel!", v.toString()),
+					e);
 			}
 		}
+
+		// Avoid changing too immediately, because it keep increase the angle
+		g2D.setTransform(old);
 	}
 
 	/**
@@ -135,77 +160,79 @@ public class MapPanel extends Panel {
 	 * @param g the {@link Graphics2D}
 	 * @param v the {@link Vehicle}
 	 */
-	private void drawObject(Graphics2D g, Vehicle v) {
+	private boolean drawObject(Graphics2D g, Vehicle v) {
 		// We don't draw inactive vehicles
 		if (v == null || !v.getIsActive()) {
-			return;
+			System.out.println("ERROR 1" + v.toString());
+			return false;
 		}
 
 		// Implement Lazy Drawing: only vehicles within the view are drawn
-		Point position = translateCoords(v.getPosition());
+		Point position = v.getPosition().fromWorldToMap();
 		// We use getWidth() here only for approximate threshold
 		// If the vehicle is long, consider changing it to length/2
-        int size = (int) (v.getWidth() * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
-        // Skip if vehicle is off-screen
-        if (position.getX() < -size || position.getX() > getWidth() + size ||
-            position.getY() < -size || position.getY() > getHeight() + size) {
-            return;
-        }
+		int size = (int) (v.getWidth() * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
+		// Skip if vehicle is off-screen
+		if (position.getX() < -size || position.getX() > getWidth() + size || position.getY() < -size
+			|| position.getY() > getHeight() + size) {
+			return true;
+		}
 
 		// We don't draw vehicles whose type is filtered out
 		if (v.getType() != null && !v.getType().getFilterFlag()) {
-			return;
+			System.out.println("ERROR 2");
+			return false;
 		}
 
 		// We don't draw vehicles which run on unselected roads
 		if (v.getRoadID() != null && v.getRoadID().charAt(1) != 'J') {
 			Road road = Settings.network.getRoadFromEdge(v.getEdgeFromRoadID());
 			if (road != null && !road.getFilterFlag()) {
-				return;
+				System.out.println("ERROR 3");
+				return false;
 			}
 		}
 
 		// We don't draw vehicles which are not with the filtered speed range
-		if (v.getSpeed() < Settings.highlight.LOWER_BOUND_LIMIT || v.getSpeed() > Settings.highlight.UPPER_BOUND_LIMIT) {
-			return;
+		if (v.getSpeed() < Settings.highlight.LOWER_BOUND_LIMIT
+			|| v.getSpeed() > Settings.highlight.UPPER_BOUND_LIMIT) {
+			System.out.println("ERROR 4");
+			return false;
 		}
 
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
 
 		double lengthMultipler = 1.5;
 		double narrowWidth = 0.8;
-		Point pos = translateCoords(v.getPosition());
+		Point pos = v.getPosition().fromWorldToMap();
 		int width = (int) (v.getWidth() * lengthMultipler * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
 		int height = (int) (v.getHeight() * narrowWidth * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
 
-		double angle = v.getAngle();
+		int x = (int) pos.getX() - width / 2;
+		int y = (int) pos.getY() - height / 2;
 
-		int x = (int) pos.getX() - width/2;
-        int y = (int) pos.getY() - height/2;
-
-		int drawX = -width / 2;   
-        int drawY = -height;            
+		int drawX = -width / 2;
+		int drawY = -height;
 
 		int light = height / 6;
-        int headlightFrontY = drawY + height/6; 
+		int headlightFrontY = drawY + height / 6;
 
 		int bodyLeft = drawX;
 		int bodyRight = drawX + width;
 		int bodyTop = drawY;
 		int bodyBottom = drawY + height;
-		int frontOffset = (int)(height / 2.0); 
+		int frontOffset = (int) (height / 2.0);
 
 		Graphics2D g2 = (Graphics2D) g.create();
 		g2.setStroke(defaultStroke);
 		g2.translate(pos.getX(), pos.getY());
-		g2.rotate(Math.toRadians(v.getAngle() - 90)); 
-		g2.translate(0, height/2);
+		g2.rotate(Math.toRadians(v.getAngle() - 90));
+		g2.translate(0, height / 2);
 
 		// Draw vehicle body
 		g2.setColor(v.getVehicleColor());
 		g2.fillRoundRect(drawX, drawY, width, height, 8, 8);
 
-		
 		// 4 Windows
 
 		Color windowColor = new Color(30, 30, 30, 180);
@@ -216,76 +243,75 @@ public class MapPanel extends Panel {
 		int BW = width;
 		int BH = height;
 
-		int cx = BX + BW / 2;   // center X
-		int cy = BY + BH / 2;   // center Y
+		int cx = BX + BW / 2; // center X
+		int cy = BY + BH / 2; // center Y
 
 		// SIZE FACTORS
-		int inward = (int)(BH * 0.18);  // inward small edge length
-		int outward = (int)(BH * 0.40); // outward wide edge length
+		int inward = (int) (BH * 0.18); // inward small edge length
+		int outward = (int) (BH * 0.40); // outward wide edge length
 
 		// increase factor for width
-		double widthFactor = 3.0; 
+		double widthFactor = 3.0;
 
 		// FRONT WINDOW
-		int fShortW = (int)(inward * widthFactor);  
-		int fLongW  = (int)(outward * widthFactor); 
-		int fTopY = BY + (int)(BH * 0.05);
-		int fBotY = fTopY + (int)(BH * 0.30);
+		int fShortW = (int) (inward * widthFactor);
+		int fLongW = (int) (outward * widthFactor);
+		int fTopY = BY + (int) (BH * 0.05);
+		int fBotY = fTopY + (int) (BH * 0.30);
 
 		Polygon poly = new Polygon();
-		poly.addPoint(cx - fLongW/2, fTopY);    // wide top-left
-		poly.addPoint(cx + fLongW/2, fTopY);    // wide top-right
-		poly.addPoint(cx + fShortW/2, fBotY);   // short bottom-right (toward center)
-		poly.addPoint(cx - fShortW/2, fBotY);   // short bottom-left
+		poly.addPoint(cx - fLongW / 2, fTopY); // wide top-left
+		poly.addPoint(cx + fLongW / 2, fTopY); // wide top-right
+		poly.addPoint(cx + fShortW / 2, fBotY); // short bottom-right (toward center)
+		poly.addPoint(cx - fShortW / 2, fBotY); // short bottom-left
 		g2.setColor(windowColor);
 		g2.fillPolygon(poly);
 
 		// REAR WINDOW
-		int rBotY = BY + BH - (int)(BH * 0.05);
-		int rTopY = rBotY - (int)(BH * 0.30);
+		int rBotY = BY + BH - (int) (BH * 0.05);
+		int rTopY = rBotY - (int) (BH * 0.30);
 
 		poly = new Polygon();
-		poly.addPoint(cx - fShortW/2, rTopY);   // short inner top-left
-		poly.addPoint(cx + fShortW/2, rTopY);   // short inner top-right
-		poly.addPoint(cx + fLongW/2, rBotY);    // wide bottom-right
-		poly.addPoint(cx - fLongW/2, rBotY);    // wide bottom-left
+		poly.addPoint(cx - fShortW / 2, rTopY); // short inner top-left
+		poly.addPoint(cx + fShortW / 2, rTopY); // short inner top-right
+		poly.addPoint(cx + fLongW / 2, rBotY); // wide bottom-right
+		poly.addPoint(cx - fLongW / 2, rBotY); // wide bottom-left
 		g2.fillPolygon(poly);
 
 		// LEFT WINDOW (short edge faces center → right side)
-		int lLeftX = BX + (int)(BW * 0.02);
-		int lRightX = lLeftX + (int)(BW * 0.32);  // vertical thickness
+		int lLeftX = BX + (int) (BW * 0.02);
+		int lRightX = lLeftX + (int) (BW * 0.32); // vertical thickness
 
 		int lShortW = inward;
-		int lLongW  = outward;
+		int lLongW = outward;
 
-		int lTopY = cy - (int)(BH * 0.14);
-		int lBotY = cy + (int)(BH * 0.14);
+		int lTopY = cy - (int) (BH * 0.14);
+		int lBotY = cy + (int) (BH * 0.14);
 
 		poly = new Polygon();
-		poly.addPoint(lLeftX, cy - (lLongW/2)); // wide top-left
-		poly.addPoint(lLeftX, cy + (lLongW/2)); // wide bottom-left
-		poly.addPoint(lRightX, cy + (lShortW/2)); // short inward edge bottom
-		poly.addPoint(lRightX, cy - (lShortW/2)); // short inward edge top
+		poly.addPoint(lLeftX, cy - (lLongW / 2)); // wide top-left
+		poly.addPoint(lLeftX, cy + (lLongW / 2)); // wide bottom-left
+		poly.addPoint(lRightX, cy + (lShortW / 2)); // short inward edge bottom
+		poly.addPoint(lRightX, cy - (lShortW / 2)); // short inward edge top
 		g2.fillPolygon(poly);
 
 		// RIGHT WINDOW (short edge faces center → left side)
-		int rRightX = BX + BW - (int)(BW * 0.05);
-		int rLeftX  = rRightX - (int)(BW * 0.32);
+		int rRightX = BX + BW - (int) (BW * 0.05);
+		int rLeftX = rRightX - (int) (BW * 0.32);
 
 		poly = new Polygon();
-		poly.addPoint(rLeftX, cy - (lShortW/2)); // short inward edge top
-		poly.addPoint(rLeftX, cy + (lShortW/2)); // short inward edge bottom
-		poly.addPoint(rRightX, cy + (lLongW/2));  // wide bottom-right
-		poly.addPoint(rRightX, cy - (lLongW/2));  // wide top-right
+		poly.addPoint(rLeftX, cy - (lShortW / 2)); // short inward edge top
+		poly.addPoint(rLeftX, cy + (lShortW / 2)); // short inward edge bottom
+		poly.addPoint(rRightX, cy + (lLongW / 2)); // wide bottom-right
+		poly.addPoint(rRightX, cy - (lLongW / 2)); // wide top-right
 		g2.fillPolygon(poly);
 
-
 		// Draw Head Lights
-		int lightSize = (int)(height * 0.20);
+		int lightSize = (int) (height * 0.20);
 
 		int headlightX = bodyRight - lightSize - 2;
-		int headlightY1 = bodyTop + (int)(height * 0.20);
-		int headlightY2 = bodyTop + (int)(height * 0.70);
+		int headlightY1 = bodyTop + (int) (height * 0.20);
+		int headlightY2 = bodyTop + (int) (height * 0.70);
 
 		if (v.headlightsOn()) {
 			g2.setColor(new Color(255, 255, 200));
@@ -303,7 +329,7 @@ public class MapPanel extends Panel {
 		g2.fillOval(brakeX, brakeY2, lightSize, lightSize);
 
 		// Turn signals
-		g2.setColor(new Color(255,150,0));
+		g2.setColor(new Color(255, 150, 0));
 
 		if (v.isTurningLeft()) {
 			g2.fillOval(brakeX, brakeY1, lightSize, lightSize);
@@ -313,8 +339,9 @@ public class MapPanel extends Panel {
 			g2.fillOval(headlightX, headlightY1, lightSize, lightSize);
 			g2.fillOval(headlightX, headlightY2, lightSize, lightSize);
 		}
-		g2.dispose(); 
+		g2.dispose();
 		loadGraphicsSettings(g, oldSettings);
+		return true;
 	}
 
 	public void updateVehicleStates(int step) {
@@ -334,8 +361,8 @@ public class MapPanel extends Panel {
 			// Emergency flashing
 			v.setEmergencyFlashing(v.getType().getId().equals("emergency") && v.isEmergencyFlashing() && blink);
 		}
-	}
 
+	}
 
 	/**
 	 * Draws an {@link Edge} on the map.
@@ -393,10 +420,10 @@ public class MapPanel extends Panel {
 			int pointsCnt = Math.min(lane1.getShapeSize(), lane2.getShapeSize());
 
 			for (int j = 0; j < pointsCnt - 1; j++) {
-				Point p11 = translateCoords(shape1[j]);
-				Point p12 = translateCoords(shape2[j]);
-				Point p21 = translateCoords(shape1[j + 1]);
-				Point p22 = translateCoords(shape2[j + 1]);
+				Point p11 = shape1[j].fromWorldToMap();
+				Point p12 = shape2[j].fromWorldToMap();
+				Point p21 = shape1[j + 1].fromWorldToMap();
+				Point p22 = shape2[j + 1].fromWorldToMap();
 				Point from = p11.add(p12).scale(0.5);
 				Point to = p21.add(p22).scale(0.5);
 				g.drawLine((int) from.getX(), (int) from.getY(), (int) to.getX(), (int) to.getY());
@@ -427,7 +454,7 @@ public class MapPanel extends Panel {
 		int[] yPoints = new int[size];
 
 		for (int i = 0; i < size; i++) {
-			Point p = translateCoords(shape[i]);
+			Point p = shape[i].fromWorldToMap();
 			xPoints[i] = (int) p.getX();
 			yPoints[i] = (int) p.getY();
 		}
@@ -462,7 +489,7 @@ public class MapPanel extends Panel {
 			Lane fromLane = connect.getFromLane();
 
 			Point[] shape = fromLane.getShape();
-			Point end = translateCoords(shape[shape.length - 1]);
+			Point end = shape[shape.length - 1].fromWorldToMap();
 
 			// If a lane contain 2 connection -> 2 traffic light. If
 			// we care about this one again, we can comeback this code
@@ -498,7 +525,7 @@ public class MapPanel extends Panel {
 		int[] yPoints = new int[size];
 
 		for (int i = 0; i < size; i++) {
-			Point p = translateCoords(shape[i]);
+			Point p = shape[i].fromWorldToMap();
 			xPoints[i] = (int) p.getX();
 			yPoints[i] = (int) p.getY();
 		}
@@ -528,7 +555,7 @@ public class MapPanel extends Panel {
 	}
 
 	/**
-	 * Converts the real-world coordinate to the map coordinate.
+	 * <<<<<<< HEAD Converts the real-world coordinate to the map coordinate.
 	 * 
 	 * @param before the real-world coordinate
 	 * @return the map coordinate
@@ -538,6 +565,11 @@ public class MapPanel extends Panel {
 
 		// -1 here to flip the Y-axis, because Y increases downward in graphics
 		// coordinates
+
+		// I will let this one at normally, But after implementing the rotation, please
+		// delete
+		// -Settings.config.OFFSET.getX() and getY() to the code that I commented ( In
+		// rotation logic )
 		after.setX(before.getX() * Settings.config.SCALE - Settings.config.OFFSET.getX());
 		after.setY(before.getY() * Settings.config.SCALE * -1 - Settings.config.OFFSET.getY());
 
@@ -545,7 +577,8 @@ public class MapPanel extends Panel {
 	}
 
 	/**
-	 * Save the current graphics settings.
+	 * ======= >>>>>>> 84e85451bae5391d59500f3dbb8c2a8ecc67950d Save the current
+	 * graphics settings.
 	 *
 	 * @param g the {@link Graphics2D}
 	 * @return the graphics settings
@@ -567,8 +600,8 @@ public class MapPanel extends Panel {
 	}
 
 	/**
-	 * Render static layer (edges, junctions) and cache as BufferedImage.
-	 * This is rendered once per zoom/pan operation.
+	 * Render static layer (edges, junctions) and cache as BufferedImage. This is
+	 * rendered once per zoom/pan operation.
 	 */
 	private void renderStaticLayer() {
 
@@ -617,7 +650,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyScale(Settings.config.SCALE_STEP);
-				Settings.config.invalidateStaticLayer();  // Invalidate cache when zoom changes
+				Settings.config.invalidateStaticLayer(); // Invalidate cache when zoom changes
 			}
 		});
 
@@ -625,7 +658,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyScale(-Settings.config.SCALE_STEP);
-				Settings.config.invalidateStaticLayer();  // Invalidate cache when zoom changes
+				Settings.config.invalidateStaticLayer(); // Invalidate cache when zoom changes
 			}
 		});
 
@@ -633,7 +666,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyOffsetY(-Settings.config.OFFSET_STEP);
-				Settings.config.invalidateStaticLayer();  // Invalidate cache when pan changes
+				Settings.config.invalidateStaticLayer(); // Invalidate cache when pan changes
 			}
 
 		});
@@ -642,7 +675,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyOffsetY(Settings.config.OFFSET_STEP);
-				Settings.config.invalidateStaticLayer();  // Invalidate cache when pan changes
+				Settings.config.invalidateStaticLayer(); // Invalidate cache when pan changes
 			}
 		});
 
@@ -650,7 +683,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyOffsetX(Settings.config.OFFSET_STEP);
-				Settings.config.invalidateStaticLayer();  // Invalidate cache when pan changes
+				Settings.config.invalidateStaticLayer(); // Invalidate cache when pan changes
 			}
 		});
 
@@ -658,9 +691,11 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyOffsetX(-Settings.config.OFFSET_STEP);
-				Settings.config.invalidateStaticLayer();  // Invalidate cache when pan changes
+				Settings.config.invalidateStaticLayer(); // Invalidate cache when pan changes
 			}
 		});
+
+		// TODO: Modify the angle using mouse
 
 		Mouse mouseAction = new Mouse();
 		this.addMouseListener(mouseAction);
