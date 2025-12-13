@@ -22,9 +22,13 @@ public class SimulationConfig {
 
 	/** Timestep (in ms) is the time between two simulation step. */
 	public double TIMESTEP = Constants.DEFAULT_TIMESTEP;
+	
+	/** The angle to rotate the map */
+	public double ANGLE = Constants.DEFAULT_ANGLE;
 
 	/** How fast the simulation is running */
 	public double SIMULATION_SPEED = Constants.DEFAULT_SIMULATION_SPEED;
+	
 
 	// I will change it in the future, it should not in this
 	/** The duration ... */
@@ -113,7 +117,13 @@ public class SimulationConfig {
 	public void modifyOffsetY(double change) {
 		OFFSET.setY(OFFSET.getY() + change);
 	}
-
+	
+	/**
+	 * Add a value to the angle
+	 */
+	public void modifyAngle(double change) {
+		ANGLE += change;
+	}
 	/**
 	 * Replace scale with a new value.
 	 * 
@@ -142,9 +152,11 @@ public class SimulationConfig {
 	}
 
 	/** Replace the duration with a new duration */
-	public void changeDuration(double newDuration) {
-		DURATION = newDuration;
+	public void changeAngle(double newAngle) {
+		ANGLE = newAngle;
 	}
+	
+	
 
 	public void resetColorDefaults() {
 		NORMAL_VEHICLE_COLOR = Constants.DEFAULT_NORMAL_VEHICLE_COLOR;

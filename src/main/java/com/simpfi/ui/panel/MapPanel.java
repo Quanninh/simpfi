@@ -11,6 +11,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,19 +74,38 @@ public class MapPanel extends Panel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2D = (Graphics2D) g;
+		
+		AffineTransform old = g2D.getTransform();
+		
 		g2D.setStroke(defaultStroke);
+		
+		/* At initial, -Setting.congic.offset.get(X) is in translateCoord
+		 * But if I let it, when I rotate, it translate the coordinate very weird and not nature,
+		 * So that why, I need to get X, Y and then I rotate*/
+//		g2D.translate(
+//				-Settings.config.OFFSET.getX(),
+//				-Settings.config.OFFSET.getY()
+//				);
+//		// We need to take the offset before rotating 
+//		
+//		// It is rotate only the center of the map Point ( 0, 0 ) and it is constant
+//		// If You want to rotate in other map, just translate the map to another Point you want
+//		
+//		g2D.rotate(Math.toRadians(Settings.config.ANGLE));
 
 		// Render static layer (edges, junctions) once and cache it
 		if (Settings.config.getStaticLayerDirty()) {
 			renderStaticLayer();
 			Settings.config.setStaticLayerDirty(false);
 		}
+		
 
 		// Draw cached static layer
 		if (staticLayer != null) {
 			g2D.drawImage(staticLayer, 0, 0, null);
 		}
 
+		
 		// Draw the highlighted Route in a different color (if any)
 		if (Settings.highlight.HIGHLIGHTED_ROUTE != null) {
 			for (Edge e : Settings.highlight.HIGHLIGHTED_ROUTE.getEdges()) {
@@ -127,6 +147,9 @@ public class MapPanel extends Panel {
 				logger.log(Level.SEVERE, String.format("Failed to draw the vehicle (%s) in Map Panel!",v.toString()),e);
 			}
 		}
+		
+		// Avoid changing too immediately, because it keep increase the angle
+		g2D.setTransform(old);
 	}
 
 	/**
@@ -334,6 +357,7 @@ public class MapPanel extends Panel {
 			// Emergency flashing
 			v.setEmergencyFlashing(v.getType().getId().equals("emergency") && v.isEmergencyFlashing() && blink);
 		}
+		
 	}
 
 
@@ -538,8 +562,11 @@ public class MapPanel extends Panel {
 
 		// -1 here to flip the Y-axis, because Y increases downward in graphics
 		// coordinates
-		after.setX(before.getX() * Settings.config.SCALE - Settings.config.OFFSET.getX());
-		after.setY(before.getY() * Settings.config.SCALE * -1 - Settings.config.OFFSET.getY());
+		
+		// I will let this one at normally, But after implementing the rotation, please delete 
+		// -Settings.config.OFFSET.getX() and getY() to the code that I commented ( In rotation logic )
+		after.setX(before.getX() * Settings.config.SCALE -Settings.config.OFFSET.getX());
+		after.setY(before.getY() * Settings.config.SCALE * -1 -Settings.config.OFFSET.getY());
 
 		return after;
 	}
@@ -661,6 +688,8 @@ public class MapPanel extends Panel {
 				Settings.config.invalidateStaticLayer();  // Invalidate cache when pan changes
 			}
 		});
+		
+		// TODO: Modify the angle using mouse
 
 		Mouse mouseAction = new Mouse();
 		this.addMouseListener(mouseAction);

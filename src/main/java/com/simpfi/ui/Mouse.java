@@ -24,11 +24,15 @@ public class Mouse extends MouseAdapter {
 		int dx = currentPoint.x - previousPoint.x;
 		int dy = currentPoint.y - previousPoint.y;
 
-		Settings.config.modifyOffsetX(-dx);
-		Settings.config.modifyOffsetY(-dy);
-
+		if (event.isControlDown()) {
+			Settings.config.modifyAngle(dx);
+		} else {
+			Settings.config.modifyOffsetX(-dx);
+			Settings.config.modifyOffsetY(-dy);
+		}
 		previousPoint = currentPoint;
 		Settings.config.invalidateStaticLayer();
+		event.getComponent().repaint();
 	}
 
 	@Override
@@ -36,6 +40,9 @@ public class Mouse extends MouseAdapter {
 		double rotation = event.getPreciseWheelRotation();
 		Settings.config.modifyScale(-rotation);
 		Settings.config.invalidateStaticLayer();
+		
+		// Apply the change immediately
+		event.getComponent().repaint();
 	}
 
 }
