@@ -460,9 +460,8 @@ public class ProgramLightsPanel extends Panel {
 	 */
 	public void showImpactOfTimingChange(){
 		double avgSpeed = stats.getAverageSpeed();
-		int totalCongestion = stats.getCongestedEdges(10.0).size();
-		double avgTravelTime = stats.getTravelTimesArray().length > 0 ?
-							Arrays.stream(stats.getTravelTimesArray()).average().orElse(0) : 0;
+		int totalCongestion = stats.getLastCongestedEdgeCount();
+		double avgTravelTime = calculateAverageTimeTravel(stats.getTravelTimesArray());
 
 		SwingUtilities.invokeLater(() -> {
 			updateImpactDisplay(avgSpeed, totalCongestion, avgTravelTime);
@@ -494,7 +493,18 @@ public class ProgramLightsPanel extends Panel {
 		    SwingUtilities.invokeLater(() -> textArea.setText(feedback));
 
 	}
-	
+
+	double calculateAverageTimeTravel(double[] travelTimes){
+		if (travelTimes.length == 0) {return 0;}
+		double sum = 0.0;
+		if (travelTimes.length != 0){
+			for (double i : travelTimes){
+				sum += i;
+			}
+		}
+		return sum/travelTimes.length;
+	}
+
 	/**
 	 * Initializes and adds the adaptive feedback card to the panel.
 	 * <p>

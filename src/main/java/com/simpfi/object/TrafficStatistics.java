@@ -26,6 +26,8 @@ public class TrafficStatistics {
     /** Controller to access vehicle-related traffic data. */
     private VehicleController vc;
 
+    private int lastCongestedEdgeCount = 0;
+
     /** Stores the current speed of each vehicle by vehicle ID. */
     private Map<String, Double> vehicleSpeeds = new HashMap<>();
 
@@ -80,6 +82,26 @@ public class TrafficStatistics {
         }catch (Exception e){
             logger.log(Level.WARNING,"Error updating statistics: ", e);
         }
+
+        lastCongestedEdgeCount = 0;
+
+        for (String eid : edgeVehicleCount.keySet()) {
+            try {
+                int count = edgeVehicleCount.get(eid);
+                if (count == 0) continue;
+
+                double avgSpeed = ec.getMeanSpeed(eid); // may throw Exception
+                if (avgSpeed < 5.0) {
+                    lastCongestedEdgeCount++;
+                }
+            } catch (Exception ex) {
+                logger.log(Level.WARNING, "Failed to get mean speed for edge " + eid, ex);
+            }
+        }
+    }
+
+    public int getLastCongestedEdgeCount(){
+        return lastCongestedEdgeCount;
     }
 
     
