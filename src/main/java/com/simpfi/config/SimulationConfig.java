@@ -22,13 +22,12 @@ public class SimulationConfig {
 
 	/** Timestep (in ms) is the time between two simulation step. */
 	public double TIMESTEP = Constants.DEFAULT_TIMESTEP;
-	
+
 	/** The angle to rotate the map */
 	public double ANGLE = Constants.DEFAULT_ANGLE;
 
 	/** How fast the simulation is running */
 	public double SIMULATION_SPEED = Constants.DEFAULT_SIMULATION_SPEED;
-	
 
 	// I will change it in the future, it should not in this
 	/** The duration ... */
@@ -117,13 +116,14 @@ public class SimulationConfig {
 	public void modifyOffsetY(double change) {
 		OFFSET.setY(OFFSET.getY() + change);
 	}
-	
+
 	/**
 	 * Add a value to the angle
 	 */
 	public void modifyAngle(double change) {
 		ANGLE += change;
 	}
+
 	/**
 	 * Replace scale with a new value.
 	 * 
@@ -155,8 +155,7 @@ public class SimulationConfig {
 	public void changeAngle(double newAngle) {
 		ANGLE = newAngle;
 	}
-	
-	
+
 	/**
 	 * Method used to reset all customed colors to default.
 	 */
@@ -175,26 +174,28 @@ public class SimulationConfig {
 	}
 
 	/**
-	 * Invalidate static layer cache when view changes (zoom/pan).
-	 * Call this after Settings.config.SCALE or OFFSET change.
+	 * Invalidate static layer cache when view changes (zoom/pan). Call this after
+	 * Settings.config.SCALE or OFFSET change.
 	 */
 	public void invalidateStaticLayer() {
 		staticLayerDirty = true;
 	}
 
-	/** Setter for staticLayerDirty.
+	/**
+	 * Setter for staticLayerDirty.
 	 * 
 	 * @param state the state to set to staticLayerDirty
 	 */
-	public void setStaticLayerDirty(boolean state){
+	public void setStaticLayerDirty(boolean state) {
 		staticLayerDirty = state;
 	}
 
-	/** Getter for staticLayerDirty.
+	/**
+	 * Getter for staticLayerDirty.
 	 * 
 	 * @return staticLayerDirty
 	 */
-	public boolean getStaticLayerDirty(){
+	public boolean getStaticLayerDirty() {
 		return staticLayerDirty;
 	}
 }

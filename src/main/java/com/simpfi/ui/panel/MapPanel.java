@@ -22,6 +22,7 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import com.simpfi.App;
 import com.simpfi.config.Settings;
 import com.simpfi.object.Connection;
 import com.simpfi.object.Edge;
@@ -141,13 +142,19 @@ public class MapPanel extends Panel {
 					String.format("Failed to draw the traffic light (%s) in Map Panel!", tl.toString()), e1);
 			}
 		}
-		for (Vehicle v : VehicleController.getVehicles()) {
-			try {
-				drawObject(g2D, v);
-			} catch (Exception e) {
-				logger.log(Level.SEVERE, String.format("Failed to draw the vehicle (%s) in Map Panel!", v.toString()),
-					e);
+
+		App.lock.lock();
+		try {
+			for (Vehicle v : VehicleController.getVehicles()) {
+				try {
+					drawObject(g2D, v);
+				} catch (Exception e) {
+					logger.log(Level.SEVERE,
+						String.format("Failed to draw the vehicle (%s) in Map Panel!", v.toString()), e);
+				}
 			}
+		} finally {
+			App.lock.unlock();
 		}
 
 		// Avoid changing too immediately, because it keep increase the angle

@@ -2,6 +2,7 @@ package com.simpfi;
 
 import java.awt.BorderLayout;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -80,21 +81,22 @@ public class App {
 
 	/** The step. */
 	private static volatile int step = 0;
-	
 
 	/** * ID of the currently selected traffic light, shared across threads. */
 	private static volatile String tlId;
 
-	/** 
-	 * Index of the currently active traffic light phase, shared across threads. 
+	/**
+	 * Index of the currently active traffic light phase, shared across threads.
 	 */
 	private static volatile int currentPhase;
 
-	/** 
-	 * Remaining time (in seconds) for the current traffic light phase, shared across threads. 
+	/**
+	 * Remaining time (in seconds) for the current traffic light phase, shared
+	 * across threads.
 	 */
 	private static volatile Double remaining;
 
+	public static ReentrantLock lock = new ReentrantLock();
 
 	/**
 	 * Main function and starting point of application. Sets up TraCI connection,
@@ -139,18 +141,20 @@ public class App {
 					long start = System.nanoTime();
 
 					doStep(conn);
-					retrieveData(conn);
+
+					lock.lock();
+					try {
+						retrieveData(conn);
+					} finally {
+						lock.unlock();
+					}
+
 					stats.update(step);
-					
 
 					if (programLightPanel.isAdaptiveMode) {
-						trafficLightController.updateTrafficLightByNumberOfVehicle(
-							Settings.network.getTrafficLights()
-						);
+						trafficLightController.updateTrafficLightByNumberOfVehicle(Settings.network.getTrafficLights());
 					} else {
-						trafficLightController.setDefaultTrafficLight(
-							Settings.network.getTrafficLights()
-						);
+						trafficLightController.setDefaultTrafficLight(Settings.network.getTrafficLights());
 					}
 
 					// ===== Data for UI =====
@@ -161,7 +165,8 @@ public class App {
 					step++;
 
 					long sleep = next - System.currentTimeMillis();
-					if (sleep > 0) Thread.sleep(sleep);
+					if (sleep > 0)
+						Thread.sleep(sleep);
 
 				} catch (Exception e) {
 					logger.log(Level.SEVERE, "Simulation thread failed", e);
@@ -173,15 +178,15 @@ public class App {
 	/**
 	 * Data Thread
 	 */
-	private static void startDataThread(TrafficStatistics stats){
-		new Thread (() ->{
+	private static void startDataThread(TrafficStatistics stats) {
+		new Thread(() -> {
 			int lastStep = -1;
 
-			while(true){
-				try{
+			while (true) {
+				try {
 					int currentStep = step;
 
-					if (currentStep == lastStep){
+					if (currentStep == lastStep) {
 						Thread.sleep(5);
 						continue;
 					}
@@ -195,19 +200,20 @@ public class App {
 
 						programLightPanel.updateRemainingTime(tlId, currentPhase, remaining);
 
-						if (currentStep % 10 == 0){
+						if (currentStep % 10 == 0) {
 							mapPanel.updateVehicleStates(currentStep);
 							programLightPanel.showImpactOfTimingChange();
 						}
 
 						mapPanel.repaint();
-						//mapPanel.paintImmediately(0, 0, mapPanel.getWidth(), mapPanel.getHeight());
+
+						// mapPanel.paintImmediately(0, 0, mapPanel.getWidth(), mapPanel.getHeight());
 						long uiEnd = System.nanoTime();
 						logger.log(Level.FINE, "UI frame time (ms): {0}", (uiEnd - uiStart) / 1_000_000.0);
 					});
 
 					Thread.sleep(33);
-				}catch (Exception e){
+				} catch (Exception e) {
 					logger.log(Level.SEVERE, "Data/UI Thread failed", e);
 				}
 			}
@@ -243,9 +249,10 @@ public class App {
 	 * @throws Exception if the connection fails
 	 */
 	private static void retrieveData(SumoConnectionManager sim) throws Exception {
-		// VehicleController.disableAllVehicles();
+		VehicleController.disableAllVehicles();
 
-		for (String vid : vehicleController.getAllVehicleIds()) {
+		List<String> allVehicleIds = vehicleController.getAllVehicleIds();
+		for (String vid : allVehicleIds) {
 			Point pos = vehicleController.getPosition(vid);
 			String edge = vehicleController.getRoadID(vid);
 			double angle = vehicleController.getAngle(vid);
