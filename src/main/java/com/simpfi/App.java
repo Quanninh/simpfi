@@ -118,101 +118,95 @@ public class App {
 			step = 0;
 			long stepMs = (long) (Settings.config.TIMESTEP * 1000);
 
-			// int flag = 0;
 			while (true) {
 				long next = System.currentTimeMillis() + stepMs;
+
 				try {
-					// Test frame time
-					long startTime = System.nanoTime();
+					// ===== Simulation timing =====
+					long simStart = System.nanoTime();
 
-
-					// Simulation step
+					// ===== Simulation step =====
 					doStep(conn);
 					retrieveData(conn);
 					stats.update(step);
 
-					String tlId = programLightPanel.getSelectedTrafficLightID();
-					int currentPhase = trafficLightController.getPhase(tlId);
-					double currentTime = step * Settings.config.TIMESTEP;
-					Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
-
-					final int currentStep = step;
-					// Just for testing update Traffic Light 
-					try {
-						if (programLightPanel.isAdaptiveMode)
-						trafficLightController.updateTrafficLightByNumberOfVehicle(Settings.network.getTrafficLights());
-						else {
-							trafficLightController.setDefaultTrafficLight(Settings.network.getTrafficLights());
-						}
-						
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					// ===== Traffic light logic (SIMULATION THREAD ONLY) =====
+					if (programLightPanel.isAdaptiveMode) {
+						trafficLightController.updateTrafficLightByNumberOfVehicle(
+							Settings.network.getTrafficLights()
+						);
+					} else {
+						trafficLightController.setDefaultTrafficLight(
+							Settings.network.getTrafficLights()
+						);
 					}
 
-					// Update UI on Swing EDT
-					SwingUtilities.invokeLater(() -> {
+					// ===== Data for UI =====
+					final int currentStep = step;
+					final String tlId = programLightPanel.getSelectedTrafficLightID();
+					final int currentPhase = trafficLightController.getPhase(tlId);
+					final double currentTime = currentStep * Settings.config.TIMESTEP;
+					final Double remaining =
+							programLightPanel.showRemainingDuration(tlId, currentTime);
 
-						// Test frame time
+					// ===== UI update (ONE invokeLater ONLY) =====
+					SwingUtilities.invokeLater(() -> {
 						long uiStart = System.nanoTime();
 
-
+						// Statistics
 						statisticsPanel.updatePanel(currentStep);
-						programLightPanel.updateRemainingTime(tlId, currentPhase, remaining);
-						
-						// Just for testing update Traffic Light 
-						try {
-							if (programLightPanel.isAdaptiveMode)
-							trafficLightController.updateTrafficLightByNumberOfVehicle(Settings.network.getTrafficLights());
-							else {
-								trafficLightController.setDefaultTrafficLight(Settings.network.getTrafficLights());
-							}
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							logger.log(Level.SEVERE, "Test update Traffic Light in App.java failed!",e);
+
+						// Traffic light UI
+						programLightPanel.updateRemainingTime(
+							tlId, currentPhase, remaining
+						);
+
+						if (currentStep % 10 == 0) {
+							programLightPanel.showImpactOfTimingChange();
 						}
-						
-						mapPanel.updateVehicleStates(currentStep);
 
-					});
-				
-
-					if (currentStep % 10 == 0) { 
-						SwingUtilities.invokeLater(() -> programLightPanel.showImpactOfTimingChange());
-					}
-
-					SwingUtilities.invokeLater(() -> {
+						// Map
 						injectPanel.setHighlightedRoute();
-						if (step % 10 == 0) mapPanel.updateVehicleStates(currentStep);
+						if (currentStep % 10 == 0) {
+							mapPanel.updateVehicleStates(currentStep);
+						}
 						mapPanel.repaint();
 
-						// Test frame time
 						long uiEnd = System.nanoTime();
-    					logger.log(Level.FINE,"UI frame time (ms): {0}",(uiEnd - uiStart) / 1_000_000.0);
+						logger.log(
+							Level.FINE,
+							"UI frame time (ms): {0}",
+							(uiEnd - uiStart) / 1_000_000.0
+						);
 					});
 
-					// Test frame time
-					long endTime = System.nanoTime();
-					logger.log(Level.FINE,
+					// ===== Simulation timing =====
+					long simEnd = System.nanoTime();
+					logger.log(
+						Level.FINE,
 						"Simulation step total time (ms): {0}",
-						(endTime - startTime) / 1_000_000.0
+						(simEnd - simStart) / 1_000_000.0
 					);
 
+					// ===== Sleep =====
 					long sleep = next - System.currentTimeMillis();
-					if (sleep > 0)
+					if (sleep > 0) {
 						Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
+					}
+
 					step++;
-					
-//					// Just for testing the number of vehicle in specific Lane
-//					if (step % 5 == 0) {
-//						System.out.println(vehicleController.getVehicleNumberInLane("E30_1"));
-//					}
+
 				} catch (Exception e) {
-					logger.log(Level.SEVERE, "Failed to continue the background simulation thread", e);
+					logger.log(
+						Level.SEVERE,
+						"Failed to continue the background simulation thread",
+						e
+					);
 				}
 			}
-		}).start();
+		}, "SimulationThread").start();
 	}
+
 
 	/**
 	 * Do step.

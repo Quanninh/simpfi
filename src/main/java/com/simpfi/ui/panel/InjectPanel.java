@@ -108,10 +108,10 @@ public class InjectPanel extends Panel {
 	//  * Set the highlighted route variable in {@link Settings} to the currently
 	//  * chosen route in the dropdown.
 	//  */
-	// public void setHighlightedRoute() {
-	// 	Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
-	// 			Settings.network.getRoutes());
-	// }
+	public void setHighlightedRoute() {
+		Settings.highlight.HIGHLIGHTED_ROUTE = Route.searchForRoute((String) routeDropdown.getSelectedItem(),
+				Settings.network.getRoutes());
+	}
 
 	/**
 	 * Adds a vehicle to the route.
