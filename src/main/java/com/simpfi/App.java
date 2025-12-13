@@ -81,10 +81,18 @@ public class App {
 	/** The step. */
 	private static volatile int step = 0;
 	
-	private static volatile boolean running = true;
 
+	/** * ID of the currently selected traffic light, shared across threads. */
 	private static volatile String tlId;
+
+	/** 
+	 * Index of the currently active traffic light phase, shared across threads. 
+	 */
 	private static volatile int currentPhase;
+
+	/** 
+	 * Remaining time (in seconds) for the current traffic light phase, shared across threads. 
+	 */
 	private static volatile Double remaining;
 
 
@@ -119,83 +127,7 @@ public class App {
 		});
 	}
 
-	/** Background simulation thread */
-	// private static void startSimulationThread(SumoConnectionManager conn, TrafficStatistics stats) {
-	// 	new Thread(() -> {
-	// 		step = 0;
-	// 		long stepMs = (long) (Settings.config.TIMESTEP * 1000);
-
-	// 		while (true) {
-	// 			long next = System.currentTimeMillis() + stepMs;
-
-	// 			try {
-	// 				// ===== Simulation timing =====
-	// 				long simStart = System.nanoTime();
-
-	// 				// ===== Simulation step =====
-	// 				doStep(conn);
-	// 				retrieveData(conn);
-	// 				stats.update(step);
-
-	// 				// ===== Traffic light logic (SIMULATION THREAD ONLY) =====
-	// 				if (programLightPanel.isAdaptiveMode) {
-	// 					trafficLightController.updateTrafficLightByNumberOfVehicle(Settings.network.getTrafficLights());
-	// 				} else {
-	// 					trafficLightController.setDefaultTrafficLight(Settings.network.getTrafficLights());
-	// 				}
-
-	// 				// ===== Data for UI =====
-	// 				final int currentStep = step;
-	// 				final String tlId = programLightPanel.getSelectedTrafficLightID();
-	// 				final int currentPhase = trafficLightController.getPhase(tlId);
-	// 				final double currentTime = currentStep * Settings.config.TIMESTEP;
-	// 				final Double remaining = programLightPanel.showRemainingDuration(tlId, currentTime);
-
-	// 				// ===== UI update (ONE invokeLater ONLY) =====
-	// 				SwingUtilities.invokeLater(() -> {
-	// 					long uiStart = System.nanoTime();
-
-	// 					// Statistics
-	// 					statisticsPanel.updatePanel(currentStep);
-
-	// 					// Traffic light UI
-	// 					programLightPanel.updateRemainingTime(tlId, currentPhase, remaining);
-
-	// 					if (currentStep % 10 == 0) {
-	// 						programLightPanel.showImpactOfTimingChange();
-	// 					}
-
-	// 					// Map
-	// 					if (currentStep % 10 == 0) {
-	// 						mapPanel.updateVehicleStates(currentStep);
-	// 					}
-
-	// 					// mapPanel.repaint();
-	// 					mapPanel.paintImmediately(0, 0, mapPanel.getWidth(), mapPanel.getHeight());
-
-	// 					long uiEnd = System.nanoTime();
-	// 					logger.log(Level.FINE, "UI frame time (ms): {0}", (uiEnd - uiStart) / 1_000_000.0);
-	// 				});
-
-	// 				// ===== Simulation timing =====
-	// 				long simEnd = System.nanoTime();
-	// 				logger.log(Level.FINE, "Simulation step total time (ms): {0}", (simEnd - simStart) / 1_000_000.0);
-
-	// 				// ===== Sleep =====
-	// 				long sleep = next - System.currentTimeMillis();
-	// 				if (sleep > 0) {
-	// 					Thread.sleep((long) (sleep / Settings.config.SIMULATION_SPEED));
-	// 				}
-
-	// 				step++;
-
-	// 			} catch (Exception e) {
-	// 				logger.log(Level.SEVERE, "Failed to continue the background simulation thread", e);
-	// 			}
-	// 		}
-	// 	}, "SimulationThread").start();
-	// }
-
+	/** Simulation Thread */
 	private static void startSimulationThread(SumoConnectionManager conn, TrafficStatistics stats) {
 		new Thread(() -> {
 			long stepMs = (long) (Settings.config.TIMESTEP * 1000);
@@ -238,7 +170,9 @@ public class App {
 		}, "SimulationThread").start();
 	}
 
-
+	/**
+	 * Data Thread
+	 */
 	private static void startDataThread(TrafficStatistics stats){
 		new Thread (() ->{
 			int lastStep = -1;
