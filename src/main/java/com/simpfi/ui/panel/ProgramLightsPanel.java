@@ -402,6 +402,20 @@ public class ProgramLightsPanel extends Panel {
 	    return phaseUserChoose;
 	}
 
+	/**
+	 * Creates a UI card component containing a title and a scrollable text area.
+	 * <p>
+	 * This card is primarily used to display textual feedback or analysis results
+	 * in a visually grouped and readable format. The text area is wrapped inside
+	 * a scroll pane to support variable-length content.
+	 * </p>
+	 *
+	 * @param title     the title displayed at the top of the card
+	 * @param textArea  the {@link TextArea} used to display feedback text
+	 * @param titleFont the font applied to the card title
+	 * @return a {@link Panel} representing the formatted card
+	 */
+
 	private Panel createCard(String title, TextArea textArea, Font titleFont) {
 		Panel card = new Panel();
 		card.setLayout(new BorderLayout(10, 10));
@@ -427,8 +441,23 @@ public class ProgramLightsPanel extends Panel {
 		return card;
 	}
 
-
-
+	/**
+	 * Computes and displays the impact of traffic light timing changes.
+	 * <p>
+	 * This method collects key performance indicators from
+	 * {@link TrafficStatistics}, including:
+	 * <ul>
+	 *   <li>Average vehicle speed</li>
+	 *   <li>Number of congested edges</li>
+	 *   <li>Average travel time</li>
+	 * </ul>
+	 * The computed values are then forwarded to the UI for display.
+	 * </p>
+	 * <p>
+	 * UI updates are executed on the Swing Event Dispatch Thread (EDT)
+	 * to ensure thread safety.
+	 * </p>
+	 */
 	public void showImpactOfTimingChange(){
 		double avgSpeed = stats.getAverageSpeed();
 		int totalCongestion = stats.getCongestedEdges(10.0).size();
@@ -440,6 +469,22 @@ public class ProgramLightsPanel extends Panel {
 		});
 	}
 
+	/**
+	 * Updates the adaptive feedback text displayed in the feedback card.
+	 * <p>
+	 * This method formats simulation performance metrics into a human-readable
+	 * text block and updates the associated {@link TextArea}.
+	 * </p>
+	 * <p>
+	 * The update is dispatched on the Swing Event Dispatch Thread (EDT)
+	 * to maintain Swing thread safety.
+	 * </p>
+	 *
+	 * @param avgSpeed        the current average vehicle speed
+	 * @param congestedCount  the number of congested edges
+	 * @param avgTravelTime  the average travel time of vehicles
+	 */
+
 	public void updateImpactDisplay(double avgSpeed, int congestedCount, double avgTravelTime) {
 		String feedback =
 			"Impact of Timing Adjustment:\n" +
@@ -449,6 +494,18 @@ public class ProgramLightsPanel extends Panel {
 		    SwingUtilities.invokeLater(() -> textArea.setText(feedback));
 
 	}
+	
+	/**
+	 * Initializes and adds the adaptive feedback card to the panel.
+	 * <p>
+	 * This method creates a non-editable, word-wrapped {@link TextArea},
+	 * embeds it into a formatted card using {@code createCard}, and
+	 * attaches the card to the parent panel.
+	 * </p>
+	 * <p>
+	 * This method should be called once during UI initialization.
+	 * </p>
+	 */
 
 	private void generateFeedbackCard() {
 		textArea = new TextArea(false);
@@ -460,7 +517,4 @@ public class ProgramLightsPanel extends Panel {
 		Panel feedbackCard = createCard("Adaptive Feedback", textArea, titleFont);
 		this.add(feedbackCard);
 	}
-
-
-
 }

@@ -246,16 +246,4 @@ public class StatisticsPanel extends Panel {
 		p.add(label, BorderLayout.SOUTH);
 		return p;
 	}
-
-
-	double calculateAverageTimeTravel(double[] travelTimes){
-		if (travelTimes.length == 0) {return 0;}
-		double sum = 0.0;
-		if (travelTimes.length != 0){
-			for (double i : travelTimes){
-				sum += i;
-			}
-		}
-		return sum/travelTimes.length;
-	}
 }
