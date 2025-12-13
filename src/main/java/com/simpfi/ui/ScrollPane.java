@@ -25,6 +25,13 @@ public class ScrollPane extends JScrollPane {
 		init();
 	}
 
+	public ScrollPane(JComponent view) {
+		setViewportView(view);
+		this.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+		init();
+	}
+
 	private void init() {
 		getVerticalScrollBar().setUnitIncrement(16);
 		setFocusable(false);
