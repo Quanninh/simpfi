@@ -16,6 +16,7 @@ import com.simpfi.ui.Button;
 import com.simpfi.ui.Panel;
 import com.simpfi.ui.ScrollPane;
 import com.simpfi.ui.TextBox;
+import com.simpfi.ui.Dropdown;
 import com.simpfi.object.Vehicle;
 import com.simpfi.ui.Label;
 
@@ -39,15 +40,14 @@ public class InspectPanel extends Panel {
     private Label groupByLabel;
     private DefaultListModel<String> vehicleListModel;
     private JList<String> vehicleList;
-    private Button confirmButton;
     private Button changeModeButton;
     private Button selectAllButton;
     private Button clearButton;
-    private JComboBox<String> groupByDropdown;
+    private Dropdown<String> groupByDropdown;
     private List<TextBox> vehicleTextBoxes;
     private ScrollPane statsScrollPane;
     private List<Label> vehicleStaticLabels;
-
+    private Timer speedUpdateTimer;
 
 
     enum Mode { PanMODE, SelectMODE }
@@ -150,7 +150,7 @@ public class InspectPanel extends Panel {
         buttonPanel.add(groupByLabel);
 
 // GroupBy Dropdown
-        groupByDropdown = new JComboBox<>(new String[]{"None","Vehicle Type", "Color", "Speed", "Route"});
+        groupByDropdown = new Dropdown<>(new String[]{"None","Vehicle Type", "Color", "Speed", "Route"});
         groupByDropdown.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25)); // nur eine Zeile hoch
         groupByDropdown.setAlignmentX(Component.CENTER_ALIGNMENT); // linksbündig
         groupByDropdown.addActionListener(e -> groupVehicles()); //groupVehicles aufrufen
@@ -172,7 +172,8 @@ public class InspectPanel extends Panel {
 
 // Vehicle Type Label
         statsScrollPane.addItem(new Label("Vehicle Type"));
-        Label typeLabel = new Label("");
+        Label typeLabel = new Label("-");
+        typeLabel.setFont(typeLabel.getFont().deriveFont(Font.BOLD));
         statsScrollPane.addItem(typeLabel);
         vehicleStaticLabels.add(typeLabel);
         Panel statsWrapper = new Panel();
@@ -186,10 +187,13 @@ public class InspectPanel extends Panel {
         vehicleStaticLabels.add(colorLabel);
 
 
-// stats-felder initialisieren
-        TextBox speedTextbox = createTextboxWithLabel("Speed", statsScrollPane, 0.0, true, true, "Speed of the vehicle");
-        speedTextbox.setMaximumSize(new Dimension(80, speedTextbox.getPreferredSize().height));
-        vehicleTextBoxes.add(speedTextbox);
+// stats felder initialisieren
+
+// Speed Label
+        statsScrollPane.addItem(new Label("Speed"));
+        Label speedLabel = new Label("0.0");
+        statsScrollPane.addItem(speedLabel);
+        vehicleStaticLabels.add(speedLabel);
 
 // Max Speed Label
         statsScrollPane.addItem(new Label("Max Speed"));
@@ -211,16 +215,9 @@ public class InspectPanel extends Panel {
 
 // Route Label
         statsScrollPane.addItem(new Label("Route"));
-        Label routeLabel = new Label("");
+        Label routeLabel = new Label("n/a");
         statsScrollPane.addItem(routeLabel);
         vehicleStaticLabels.add(routeLabel);
-
-// Confirm Button
-        confirmButton = new Button("Confirm Changes");
-        confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        confirmButton.addActionListener(e -> confirmStats());
-        contentPanel.add(Box.createRigidArea(new Dimension(0,5)));
-        contentPanel.add(confirmButton);
 
         this.add(contentPanel, BorderLayout.CENTER);
 
@@ -252,6 +249,12 @@ public class InspectPanel extends Panel {
                 if (nearest != null) addVehicleToInspect(nearest);
             }
         });
+
+        //update Speed every 500ms
+        speedUpdateTimer = new Timer(500, e -> updateLiveSpeedOnly());
+        speedUpdateTimer.start();
+
+
     }
 
     private void toggleMode() {
@@ -303,8 +306,9 @@ public class InspectPanel extends Panel {
             vehicleListModel.addElement(v.getID());
         }
     }
-
+//jedes mal wenn man auf ein selected vehicle geht
     private void updateStatsFields(int vehicleIndex) {
+
         if (vehicleIndex < 0 || vehicleIndex >= selectedVehicles.size()) return;
         Vehicle v = selectedVehicles.get(vehicleIndex);
 
@@ -317,55 +321,21 @@ public class InspectPanel extends Panel {
             vehicleStaticLabels.get(1).setText("R:" + c.getRed() + " G:" + c.getGreen() + " B:" + c.getBlue());
         }
 
-        // Speed
-        vehicleTextBoxes.get(0).setText(String.format("%.2f", v.getSpeed()));
+        // Speed (Initialwert, danach live vom Timer)
+        vehicleStaticLabels.get(2).setText(String.format("%.2f", v.getSpeed()));
 
         // Max Speed
-        vehicleStaticLabels.get(2).setText(String.format("%.2f", v.getMaxSpeed()));
+        vehicleStaticLabels.get(3).setText(String.format("%.2f", v.getMaxSpeed()));
 
         // Acceleration
-        vehicleStaticLabels.get(3).setText(String.format("%.2f", v.getAcceleration()));
+        vehicleStaticLabels.get(4).setText(String.format("%.2f", v.getAcceleration()));
 
-        // Distance Traveled
-        vehicleStaticLabels.get(4).setText(String.format("%.2f", v.getDistance()));
+        // Distance
+        vehicleStaticLabels.get(5).setText(String.format("%.2f", v.getDistance()));
 
         // Route
-        List<String> edges = v.getRoute();
-        vehicleStaticLabels.get(5).setText(String.join(" -> ", edges));
+        vehicleStaticLabels.get(6).setText(String.join(" -> ", v.getRoute()));
 
-    }
-
-
-    private void confirmStats() {
-        int listIndex = vehicleList.getSelectedIndex();
-        if (listIndex == -1) return;
-
-        String value = vehicleListModel.get(listIndex);
-        if (value.startsWith("---")) {
-            JOptionPane.showMessageDialog(this, "Please select a valid vehicle, not a header.", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        int vehicleIndex = getVehicleIndexFromListIndex(listIndex);
-        Vehicle v = selectedVehicles.get(vehicleIndex);
-        String vehicleID = v.getID();
-
-        try {
-            double newSpeed = Double.parseDouble(vehicleTextBoxes.get(0).getText());
-
-            // Speed set
-            sumoConnectionManager.getConnection().do_job_set(
-                    de.tudresden.sumo.cmd.Vehicle.setSpeed(vehicleID, newSpeed)
-            );
-
-            JOptionPane.showMessageDialog(this, "Vehicle speed updated successfully.", "Info", JOptionPane.INFORMATION_MESSAGE);
-
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Invalid number format!", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Failed to update vehicle in SUMO: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
-        }
     }
 
     //für group by methode
@@ -434,19 +404,6 @@ public class InspectPanel extends Panel {
         }
     }
 
-
-    private TextBox createTextboxWithLabel(String labelText, ScrollPane parent, double defaultValue,
-                                           Boolean mustBeDouble, Boolean mustBePositive, String tooltip) {
-        Label label = new Label(labelText);
-        TextBox textbox = new TextBox(defaultValue, mustBeDouble, mustBePositive);
-        textbox.setToolTipText(tooltip);
-
-        parent.addItem(label);
-        parent.addItem(textbox);
-
-        return textbox;
-    }
-
     //Methode um herauszufinden welche Zeilen die Header sind
     //für Vehicle list
     private int getVehicleIndexFromListIndex(int listIndex) {
@@ -457,6 +414,25 @@ public class InspectPanel extends Panel {
             }
         }
         return count;
+    }
+
+    private void updateLiveSpeedOnly() {
+        int listIndex = vehicleList.getSelectedIndex();
+        if (listIndex == -1) return;
+
+        String value = vehicleListModel.get(listIndex);
+        if (value.startsWith("---")) return;
+
+        int vehicleIndex = getVehicleIndexFromListIndex(listIndex);
+        if (vehicleIndex < 0 || vehicleIndex >= selectedVehicles.size()) return;
+
+        Vehicle v = selectedVehicles.get(vehicleIndex);
+
+        try {
+            double liveSpeed = vehicleController.getSpeed(v.getID());
+            vehicleStaticLabels.get(2).setText(String.format("%.2f", liveSpeed));
+
+        } catch (Exception ex) { }
     }
 
 }
