@@ -11,6 +11,9 @@ import com.simpfi.util.Point;
  */
 public class SimulationConfig {
 
+	/** Mark the change of static components in the map. */
+	private boolean staticLayerDirty = true;
+
 	/** Scale of the map. */
 	public double SCALE = Constants.DEFAULT_SCALE;
 
@@ -157,4 +160,27 @@ public class SimulationConfig {
 		JUNCTION_COLOR = Constants.DEFAULT_JUNCTION_COLOR;
 	}
 
+	/**
+	 * Invalidate static layer cache when view changes (zoom/pan).
+	 * Call this after Settings.config.SCALE or OFFSET change.
+	 */
+	public void invalidateStaticLayer() {
+		staticLayerDirty = true;
+	}
+
+	/** Setter for staticLayerDirty.
+	 * 
+	 * @param state the state to set to staticLayerDirty
+	 */
+	public void setStaticLayerDirty(boolean state){
+		staticLayerDirty = state;
+	}
+
+	/** Getter for staticLayerDirty.
+	 * 
+	 * @return staticLayerDirty
+	 */
+	public boolean getStaticLayerDirty(){
+		return staticLayerDirty;
+	}
 }

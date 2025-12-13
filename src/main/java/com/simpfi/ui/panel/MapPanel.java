@@ -1,16 +1,19 @@
 package com.simpfi.ui.panel;
 
-import java.awt.Polygon;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -49,6 +52,9 @@ public class MapPanel extends Panel {
 		(float) (Settings.config.NORMAL_STROKE_SIZE * Settings.config.SCALE), BasicStroke.CAP_BUTT,
 		BasicStroke.JOIN_ROUND);
 
+	/** Cached static layer (edges, junctions) */
+	private BufferedImage staticLayer = null;
+
 	/**
 	 * Instantiates a new map panel.
 	 */
@@ -69,12 +75,15 @@ public class MapPanel extends Panel {
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setStroke(defaultStroke);
 
-		for (Edge e : Settings.network.getEdges()) {
-			drawObject(g2D, e, Color.BLACK);
+		// Render static layer (edges, junctions) once and cache it
+		if (Settings.config.getStaticLayerDirty()) {
+			renderStaticLayer();
+			Settings.config.setStaticLayerDirty(false);
 		}
 
-		for (Junction j : Settings.network.getJunctions()) {
-			drawObject(g2D, j, Settings.config.JUNCTION_COLOR);
+		// Draw cached static layer
+		if (staticLayer != null) {
+			g2D.drawImage(staticLayer, 0, 0, null);
 		}
 
 		// Draw the highlighted Route in a different color (if any)
@@ -131,6 +140,17 @@ public class MapPanel extends Panel {
 		if (v == null || !v.getIsActive()) {
 			return;
 		}
+
+		// Implement Lazy Drawing: only vehicles within the view are drawn
+		Point position = translateCoords(v.getPosition());
+		// We use getWidth() here only for approximate threshold
+		// If the vehicle is long, consider changing it to length/2
+        int size = (int) (v.getWidth() * Settings.config.SCALE * Settings.config.VEHICLE_UPSCALE);
+        // Skip if vehicle is off-screen
+        if (position.getX() < -size || position.getX() > getWidth() + size ||
+            position.getY() < -size || position.getY() > getHeight() + size) {
+            return;
+        }
 
 		// We don't draw vehicles whose type is filtered out
 		if (v.getType() != null && !v.getType().getFilterFlag()) {
@@ -547,6 +567,31 @@ public class MapPanel extends Panel {
 	}
 
 	/**
+	 * Render static layer (edges, junctions) and cache as BufferedImage.
+	 * This is rendered once per zoom/pan operation.
+	 */
+	private void renderStaticLayer() {
+
+		staticLayer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2D = staticLayer.createGraphics();
+		g2D.setStroke(defaultStroke);
+		g2D.setColor(getBackground());
+		g2D.fillRect(0, 0, getWidth(), getHeight());
+
+		// Draw edges (static, cached)
+		for (Edge e : Settings.network.getEdges()) {
+			drawObject(g2D, e, Color.BLACK);
+		}
+
+		// Draw junctions (static, cached)
+		for (Junction j : Settings.network.getJunctions()) {
+			drawObject(g2D, j, Settings.config.JUNCTION_COLOR);
+		}
+
+		g2D.dispose();
+	}
+
+	/**
 	 * Initialize map control.
 	 */
 	public void initializeMapControl() {
@@ -572,6 +617,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyScale(Settings.config.SCALE_STEP);
+				Settings.config.invalidateStaticLayer();  // Invalidate cache when zoom changes
 			}
 		});
 
@@ -579,6 +625,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyScale(-Settings.config.SCALE_STEP);
+				Settings.config.invalidateStaticLayer();  // Invalidate cache when zoom changes
 			}
 		});
 
@@ -586,6 +633,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyOffsetY(-Settings.config.OFFSET_STEP);
+				Settings.config.invalidateStaticLayer();  // Invalidate cache when pan changes
 			}
 
 		});
@@ -594,6 +642,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyOffsetY(Settings.config.OFFSET_STEP);
+				Settings.config.invalidateStaticLayer();  // Invalidate cache when pan changes
 			}
 		});
 
@@ -601,6 +650,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyOffsetX(Settings.config.OFFSET_STEP);
+				Settings.config.invalidateStaticLayer();  // Invalidate cache when pan changes
 			}
 		});
 
@@ -608,6 +658,7 @@ public class MapPanel extends Panel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings.config.modifyOffsetX(-Settings.config.OFFSET_STEP);
+				Settings.config.invalidateStaticLayer();  // Invalidate cache when pan changes
 			}
 		});
 
@@ -615,6 +666,13 @@ public class MapPanel extends Panel {
 		this.addMouseListener(mouseAction);
 		this.addMouseMotionListener(mouseAction);
 		this.addMouseWheelListener(mouseAction);
+
+		this.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				Settings.config.invalidateStaticLayer(); // Invalidate cache when users resize the frame
+			}
+		});
 	}
 
 }

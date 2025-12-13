@@ -13,6 +13,7 @@ public class Mouse extends MouseAdapter {
 	@Override
 	public void mousePressed(MouseEvent event) {
 		previousPoint = event.getPoint();
+		Settings.config.invalidateStaticLayer();
 	}
 
 	@Override
@@ -27,12 +28,14 @@ public class Mouse extends MouseAdapter {
 		Settings.config.modifyOffsetY(-dy);
 
 		previousPoint = currentPoint;
+		Settings.config.invalidateStaticLayer();
 	}
 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent event) {
 		double rotation = event.getPreciseWheelRotation();
 		Settings.config.modifyScale(-rotation);
+		Settings.config.invalidateStaticLayer();
 	}
 
 }
