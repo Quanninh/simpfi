@@ -2,4 +2,4 @@ target/
 out/
 .classpath
 .project
-.DS_STORE
+.DS_STORElogs/*.log
