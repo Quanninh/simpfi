@@ -56,36 +56,53 @@ public class ProgramLightsPanel extends Panel {
 
 	/** The drop down contain a list of junctions which contain traffic light. */
 	private Dropdown<String> tlJunctionDropDown;
+	
+	/** The drop down contain a list of connection in traffic light. */
 	private Dropdown<String> connectionDropDown;
 	
-	/** The drop down contain a list of connection light. */
+	/** The Dialog show information of specific traffic light. */
 	private InformationPopUp infoDialog;
+	
+	/** The text area for information inside the dialog. */
 	private TextArea infoDialogTextArea;
 	
-	
-	/** The drop down contain a list of all incoming fromLane string. */
+	/** The drop down contain a list of all phase number of traffic light. */
 	private Dropdown<String> phaseDropDown;
 	
-
 	/** The list of all connections. */
 	private String[] allStringConnection;
 	
-	/** The list of all phases. */
+	/** The list of all phases number string. */
 	private String[] allPhaseString;
 
+	/** The user's choose for traffic light junction. */
 	private String userTrafficLightJunctionId = "J0";
+	
+	/** The user's choose for phase. */
 	private int phaseUserChoose = 0;
-	// I am not sure I need to using it, I mean this one can help me make the clean code
+	
+	/** The remaining duration. */
 	private double remainingDuration;
-	private StatisticsPanel sp;
+	
+	private StatisticsPanel sp; // This one is not use ??
 	private TrafficStatistics stats;
 	
+	/** Check the mode is adaptive or not. */
 	public boolean isAdaptiveMode = false;
+	
+	/** Button for user to choose the mode adaptive or static. */
 	private Button changingAdaptiveModeOrStaticMode = null;
+	
+	/** Label for showing the current mode of the traffic. */
 	private Label modeOfTraffic;
+	
 	public TextArea textArea;
 
-
+	/**
+	 *  Instantiates a new program light panel.
+	 * @param conn
+	 * @throws Exception
+	 */
 	public ProgramLightsPanel(SumoConnectionManager conn) throws Exception {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -103,6 +120,7 @@ public class ProgramLightsPanel extends Panel {
 		generateButtons();
 		generateFeedbackCard();
 	}
+	
 
 	public void setStatisticsPanel(StatisticsPanel statisticsPanel){
 		this.sp = statisticsPanel;
@@ -111,11 +129,18 @@ public class ProgramLightsPanel extends Panel {
 	public void setStats(TrafficStatistics stats){
 		this.stats = stats;
 	}
+	
+	/**
+	 * Generate the all drop Down.
+	 * @param allTLJunctionIDs all of the traffic light junction IDs
+	 * @param firstJunctionIDs initial junction ID
+	 * @throws Exception if the TraCI connection fails
+	 */
 
-	private void generateDropdowns(String[] allTLJunctionIDs, String firstJunctionIDs) throws Exception {
+	private void generateDropdowns(String[] allTLJunctionIDs, String firstJunctionID) throws Exception {
 		tlJunctionDropDown = Dropdown.createDropdownWithLabel("Select intersection", allTLJunctionIDs, this);
 
-		phaseDropDown = Dropdown.createDropdownWithLabel("Phase", getAllPhaseString(firstJunctionIDs), this);
+		phaseDropDown = Dropdown.createDropdownWithLabel("Phase", getAllPhaseString(firstJunctionID), this);
 		
 		connectionDropDown = Dropdown.createDropdownWithLabel("All Connection", allStringConnection, this);
 
@@ -124,7 +149,7 @@ public class ProgramLightsPanel extends Panel {
 			// Update highlighted traffic light
 			Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT = TrafficLight
 				.searchforTrafficLight(userTrafficLightJunctionId, Settings.network.getTrafficLights());
-			addAllLaneToDropDown(userTrafficLightJunctionId);
+			addAllConnectionToDropDown(userTrafficLightJunctionId);
 			try {
 				addAllPhaseToDropDown(userTrafficLightJunctionId);
 			} catch (Exception e1) {
@@ -153,6 +178,10 @@ public class ProgramLightsPanel extends Panel {
 			}
 		});
 	}
+	
+	/**
+	 * Create all the buttons
+	 */
 
 	private void generateButtons() {
 		Button showInformationOfTrafficLightButton = new Button("Show Information");
@@ -220,6 +249,10 @@ public class ProgramLightsPanel extends Panel {
 	// 		Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getConnections());
 	// }
 
+	/**
+	 * Get all the traffic light IDs.
+	 * @return all the traffic light IDs
+	 */
 	public String[] getAllTrafficLightJunctionID() {
 		List<TrafficLight> allTrafficLights = Settings.network.getTrafficLights();
 		String[] allTrafficLightJunctionIDs = new String[allTrafficLights.size()];
@@ -229,10 +262,15 @@ public class ProgramLightsPanel extends Panel {
 		}
 		return allTrafficLightJunctionIDs;
 	}
+	/**
+	 * Get all the connection in specific traffic light.
+	 * @param trafficLightJunctionID the id of traffic light junction
+	 * @return all the connection in traffic light
+	 */
 
-	public List<Connection> getAllConnection(String junctionID) {
+	public List<Connection> getAllConnection(String trafficLightJunctionID) {
 		List<TrafficLight> allTrafficLight = Settings.network.getTrafficLights();
-		TrafficLight trafficLight = TrafficLight.searchforTrafficLight(junctionID, allTrafficLight);
+		TrafficLight trafficLight = TrafficLight.searchforTrafficLight(trafficLightJunctionID, allTrafficLight);
 
 		return trafficLight.getConnections();
 	}
@@ -248,7 +286,11 @@ public class ProgramLightsPanel extends Panel {
 	// return allFromLaneID;
 	// }
 
-	// I will delete it in the future
+	/**
+	 * Get all the connection string and show it to the drop down as a string builder.
+	 * @param allConnections list all of connection
+	 * @return All the connection string builder ( From Lane -> To Lane )
+	 */
 	public String[] getAllStringConnection(List<Connection> allConnections) {
 		String[] allStringConnection = new String[allConnections.size()];
 		for (int i = 0; i < allConnections.size(); i++) {
@@ -262,6 +304,12 @@ public class ProgramLightsPanel extends Panel {
 		}
 		return allStringConnection;
 	}
+	/**
+	 * Get all phase's number in traffic light. 
+	 * @param tlId the traffic light ID
+	 * @return all phase's number
+	 * @throws Exception if the TraCI connection fails
+	 */
 
 	public String[] getAllPhaseString(String tlId) throws Exception {
 		SumoTLSProgram program = trafficLightController.getProgramFromTrafficLight(tlId);
@@ -280,9 +328,12 @@ public class ProgramLightsPanel extends Panel {
 		return allPhaseNumber;
 	}
 
-	// Will be change the style in the future
-	public void addAllLaneToDropDown(String JunctionID) {
-		List<Connection> allConnections = getAllConnection(JunctionID);
+	/**
+	 * The action listener to add all the connection to drop down.
+	 * @param trafficLightID traffic light ID
+	 */
+	public void addAllConnectionToDropDown(String trafficLightID) {
+		List<Connection> allConnections = getAllConnection(trafficLightID);
 		allStringConnection = getAllStringConnection(allConnections);
 
 		connectionDropDown.removeAllItems();
@@ -290,15 +341,25 @@ public class ProgramLightsPanel extends Panel {
 			connectionDropDown.addItem(connectionString);
 		}
 	}
+	/**
+	 * The action listener to add all phase to drop down.
+	 * @param trafficLightID traffic light ID
+	 * @throws Exception if the TraCI connection fails
+	 */
 
-	public void addAllPhaseToDropDown(String JunctionID) throws Exception {
-		allPhaseString = this.getAllPhaseString(JunctionID);
+	public void addAllPhaseToDropDown(String trafficLightID) throws Exception {
+		allPhaseString = this.getAllPhaseString(trafficLightID);
 
 		phaseDropDown.removeAllItems();
 		for (String phaseString : allPhaseString) {
 			phaseDropDown.addItem(phaseString);
 		}
 	}
+	/**
+	 * The action listener to show information of traffic light to dialog.
+	 * @param trafficLightID traffic light ID
+	 * @throws Exception if the TraCI connection fails
+	 */
 	
 	public void showInformationTrafficLightToDialog(String trafficLightID) throws Exception {
 
@@ -330,7 +391,7 @@ public class ProgramLightsPanel extends Panel {
 	    for (Connection c : allConnections) {
 	        String fromLaneString = c.getFromLane().getLaneId();
 	        String toLaneString = c.getToLane().getLaneId();
-	        char signal = trafficLightController.getStateofLane(allConnections, fromLaneString, phase);
+	        char signal = trafficLightController.getStateOfLane(allConnections, fromLaneString, phase);
 
 	        sb.append("From: ").append(fromLaneString)
 	          .append(" → To: ").append(toLaneString)
@@ -340,13 +401,22 @@ public class ProgramLightsPanel extends Panel {
 
 	    infoDialogTextArea.setText(sb.toString());
 	}
-
-
-
+	/**
+	 * The listener to apply switch phase.
+	 * @param trafficLightID traffic light ID
+	 * @throws Exception if the TraCI connection fails
+	 */
 
 	public void applySwitchPhaseListener(String trafficLightID) throws Exception {
 		trafficLightController.setPhase(trafficLightID, phaseUserChoose);
 	}
+	/**
+	 * The listener to change the duration.
+	 * @param trafficLightID traffic light ID
+	 * @param phaseNumber the phase number that user want to change
+	 * @param duration the duration that user want to change
+	 * @throws Exception if the TraCI connection fails
+	 */
 
 	public void applyChangeDuration(String trafficLightID, int phaseNumber, double duration) throws Exception {
 		// In the future I will make a class get duration with parameter phaseNumber and trafficLightID
@@ -359,6 +429,9 @@ public class ProgramLightsPanel extends Panel {
 
 		trafficLightController.setCompleteTrafficLight(trafficLightID, program);
 	}
+	/**
+	 * The action listener for changing the mode of the traffic.
+	 */
 	
 	public void actionForChangingMode() {
 		
@@ -375,12 +448,25 @@ public class ProgramLightsPanel extends Panel {
 		}
 	}
 	
+	/**
+	 * Show remain duration in current phase of specific traffic light.
+	 * @param trafficLightID traffic light ID
+	 * @param currentTime the current time
+	 * @return the remain duration
+	 * @throws Exception if the TraCI connection fails
+	 */
 	public Double showRemainingDuration(String trafficLightID, double currentTime) throws Exception {
 		// In the future I will make a class get duration with parameter phaseNumber and trafficLightID
 		double nextSwitch = trafficLightController.getNextSwitch(trafficLightID);
 		return nextSwitch - currentTime;
 	}
 	
+	/**
+	 * Update the remaining duration time of the specific phase of traffic light.
+	 * @param trafficLightID traffic light ID
+	 * @param phaseIndex the phase that we need to update
+	 * @param remainingTime the remaining time
+	 */
 	public void updateRemainingTime(String trafficLightID, int phaseIndex, double remainingTime) {
 		this.remainingDuration = remainingTime;
 		
@@ -393,11 +479,18 @@ public class ProgramLightsPanel extends Panel {
 	    }
 	}
 
-	// Using just for testing the duration in app.java
+	/**
+	 * Get the user selected traffic light ID.
+	 * @return the user traffic light id
+	 */
 	public String getSelectedTrafficLightID() {
 	    return userTrafficLightJunctionId;
 	}
 
+	/**
+	 * get the user selected phase.
+	 * @return phase that user choose
+	 */
 	public int getSelectedPhase() {
 	    return phaseUserChoose;
 	}

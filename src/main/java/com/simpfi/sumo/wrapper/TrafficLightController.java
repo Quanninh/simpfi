@@ -32,7 +32,7 @@ public class TrafficLightController {
 	 */
 	private static Map<String, String> liveTrafficLightStates = new HashMap<>();
 
-	private static SumoTLSProgram prog;
+	/** Vehicle Controller. */
 
 	private VehicleController vehicleController;
 
@@ -46,14 +46,6 @@ public class TrafficLightController {
 		this.connection = conn.getConnection();
 		addConnectionToTrafficLight();
 		vehicleController = new VehicleController(conn);
-	}
-
-	// Dedicated method to install a program
-	public void installProgram(String tlId, Phase[] myPhases) throws Exception {
-		for (Phase p : myPhases) {
-			prog.add(new SumoTLSPhase((int) p.getDuration(), p.getState()));
-		}
-		this.setCompleteTrafficLight(tlId, prog);
 	}
 
 	/**
@@ -79,39 +71,82 @@ public class TrafficLightController {
 	}
 
 	/**
+	 * Return the index of current phase in specific traffic light.
+	 * 
+	 * @param tlID traffic light ID
+	 * @return Index of current phase
+	 * @throws Exception if the TraCI connection fails
+	 */
+	public Integer getPhase(String tlID) throws Exception {
+		return (Integer) connection.do_job_get(Trafficlight.getPhase(tlID));
+	}
+
+	/**
 	 * Sets the duration.
 	 *
 	 * @param tlId     the traffic light ID
-	 * @param duration the duration
+	 * @param duration the duration will need to be set
 	 * @throws Exception if the TraCI connection fails
 	 */
 	public void setDuration(String tlId, double duration) throws Exception {
 		connection.do_job_set(Trafficlight.setPhaseDuration(tlId, duration));
 	}
 
-	public void setCompleteTrafficLight(String tlId, SumoTLSProgram program) throws Exception {
-		connection.do_job_set(Trafficlight.setCompleteRedYellowGreenDefinition(tlId, program));
-	}
+	/**
+	 * Set the index of the current phase to the specific traffic light.
+	 * 
+	 * @param tlID  the traffic light ID
+	 * @param index the index (it is from 0 to the number of phase - 1 )
+	 * @throws Exception if the TraCI connection fails
+	 */
 
 	public void setPhase(String tlID, int index) throws Exception {
 		connection.do_job_set(Trafficlight.setPhase(tlID, index));
 	}
 
-	public double getDuration(String tlId) throws Exception {
-		return (Double) connection.do_job_get(Trafficlight.getPhaseDuration(tlId));
+	/**
+	 * Set completed program for traffic light.
+	 * 
+	 * @param tlId    the traffic light ID
+	 * @param program the program
+	 * @throws Exception if the TraCI connection fails
+	 */
+
+	public void setCompleteTrafficLight(String tlId, SumoTLSProgram program) throws Exception {
+		connection.do_job_set(Trafficlight.setCompleteRedYellowGreenDefinition(tlId, program));
 	}
+
+	/**
+	 * Return the name of the program in the traffic light.
+	 * 
+	 * @param tlId the traffic light ID
+	 * @return the program name
+	 * @throws Exception if the TraCI connection fails
+	 */
 
 	public String getProgramName(String tlId) throws Exception {
 		return (String) connection.do_job_get(Trafficlight.getProgram(tlId));
 	}
 
+	/**
+	 * Get the completed traffic light definition.
+	 * 
+	 * @param tlId the traffic light ID
+	 * @return the complete red yellow green definition
+	 * @throws Exception if the TraCI connection fails
+	 */
 	public SumoTLSController getCompletedTrafficLightDefinition(String tlId) throws Exception {
 		return (SumoTLSController) connection.do_job_get(Trafficlight.getCompleteRedYellowGreenDefinition(tlId));
 	}
 
-	public Integer getPhase(String tlID) throws Exception {
-		return (Integer) connection.do_job_get(Trafficlight.getPhase(tlID));
-	}
+	/**
+	 * Show the time at which a specific traffic light will switch to the next
+	 * phase.
+	 * 
+	 * @param tlId the traffic light ID
+	 * @return the time that a traffic light switches to the next phase
+	 * @throws Exception if the TraCI connection fails
+	 */
 
 	public Double getNextSwitch(String tlID) throws Exception {
 		return (Double) connection.do_job_get(Trafficlight.getNextSwitch(tlID));
@@ -180,8 +215,15 @@ public class TrafficLightController {
 		}
 	}
 
-	/** * Show all the signal of the specific connection */
-	public char getStateofLane(List<Connection> allConnections, String laneId, SumoTLSPhase phase) {
+	/**
+	 * Show signal of the specific connection in traffic light.
+	 * 
+	 * @param allConnections all Connection in specific traffic light
+	 * @param laneId         the Lane ID
+	 * @param phase          the phase
+	 * @return signal of the connection
+	 */
+	public char getStateOfLane(List<Connection> allConnections, String laneId, SumoTLSPhase phase) {
 		String stateofPhase = phase.phasedef;
 
 		for (int i = 0; i < allConnections.size(); i++) {
@@ -193,14 +235,26 @@ public class TrafficLightController {
 		return 0;
 	}
 
-	/** Get the program from the specific traffic light */
+	/**
+	 * Get the program from the specific traffic light.
+	 * 
+	 * @param trafficLightID
+	 * @return the program of the traffic light
+	 * @throws Exception if the TraCI connection fails
+	 */
 	public SumoTLSProgram getProgramFromTrafficLight(String trafficLightID) throws Exception {
 		SumoTLSController trafficLightCompleted = this.getCompletedTrafficLightDefinition(trafficLightID);
 		String programName = this.getProgramName(trafficLightID);
 		return trafficLightCompleted.get(programName);
 	}
 
-	// Update the duration if the number of lane is larger than 3
+	/**
+	 * Update the duration of a traffic light if the number of vehicle of one lane
+	 * go with that traffic light is larger than 3.
+	 * 
+	 * @param trafficLights all of the traffic Light
+	 * @throws Exception if the TraCI connection fails
+	 */
 	public void updateTrafficLightByNumberOfVehicle(List<TrafficLight> trafficLights) throws Exception {
 		for (int i = 0; i < trafficLights.size(); i++) {
 			String trafficLightID = trafficLights.get(i).getJunction().getId();
@@ -228,6 +282,13 @@ public class TrafficLightController {
 			this.setCompleteTrafficLight(trafficLightID, program);
 		}
 	}
+
+	/**
+	 * Set default for traffic light if the user choose static traffic.
+	 * 
+	 * @param trafficLights all of the traffic Light
+	 * @throws Exception if the TraCI connection fails
+	 */
 
 	public void setDefaultTrafficLight(List<TrafficLight> trafficLights) throws Exception {
 		for (int i = 0; i < trafficLights.size(); i++) {
