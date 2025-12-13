@@ -109,12 +109,12 @@ public class TrafficLightController {
 		return (SumoTLSController) connection.do_job_get(Trafficlight.getCompleteRedYellowGreenDefinition(tlId));
 	}
 
-	public Integer getPhase(String tlID) throws Exception {
-		return (Integer) connection.do_job_get(Trafficlight.getPhase(tlID));
+	public Integer getPhase(String tlId) throws Exception {
+		return (Integer) connection.do_job_get(Trafficlight.getPhase(tlId));
 	}
 
-	public Double getNextSwitch(String tlID) throws Exception {
-		return (Double) connection.do_job_get(Trafficlight.getNextSwitch(tlID));
+	public Double getNextSwitch(String tlId) throws Exception {
+		return (Double) connection.do_job_get(Trafficlight.getNextSwitch(tlId));
 	}
 
 	/**
