@@ -120,7 +120,8 @@ public class MapPanel extends Panel {
 					String.format("Failed to draw the traffic light (%s) in Map Panel!", tl.toString()), e1);
 			}
 		}
-		for (Vehicle v : VehicleController.getVehicles()) {
+		List<Vehicle> vehicleList = VehicleController.getVehicles();
+		for (Vehicle v : vehicleList) {
 			try {
 				drawObject(g2D, v);
 			} catch (Exception e) {
