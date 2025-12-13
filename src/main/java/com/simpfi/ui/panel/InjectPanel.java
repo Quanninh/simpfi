@@ -42,11 +42,6 @@ public class InjectPanel extends Panel {
 	private Dropdown<String> modeDropdown;
 
 	private javax.swing.JTextField countField;
-<<<<<<< HEAD
-
-	private final VehicleInjectionController vic;
-=======
->>>>>>> 0ae278d2c0295ad1b568338e123c593d78b41d03
 
 	private final VehicleInjectionController vic;
 

@@ -2028,3 +2028,13 @@ Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
 INFO: Add vehicle v_999 on route r_2 of type bus
 Dec 13, 2025 11:48:12 PM com.simpfi.sumo.wrapper.VehicleController addVehicle
 INFO: Add vehicle v_1000 on route r_5 of type bus
+Dec 13, 2025 11:56:08 PM com.simpfi.App main
+INFO: Application started
+Dec 13, 2025 11:56:08 PM com.simpfi.config.Network <init>
+INFO: Network successfully loaded
+Dec 13, 2025 11:56:13 PM com.simpfi.sumo.wrapper.SumoConnectionManager <init>
+INFO: SUMO launched and TraCI connected.
+Dec 13, 2025 11:56:14 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating textboxes
+Dec 13, 2025 11:56:14 PM com.simpfi.ui.panel.MapViewPanel <init>
+INFO: Generating buttons
