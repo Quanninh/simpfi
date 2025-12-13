@@ -76,59 +76,16 @@ public class MapPanel extends Panel {
 		g2D.setStroke(defaultStroke);
 
 		// Render static layer (edges, junctions) once and cache it
-		if (Settings.config.getStaticLayerDirty()) {
-			renderStaticLayer();
-			Settings.config.setStaticLayerDirty(false);
-		}
+		// if (Settings.config.getStaticLayerDirty()) {
+		renderStaticLayer();
+		Settings.config.setStaticLayerDirty(false);
+		// }
 
 		// Draw cached static layer
 		if (staticLayer != null) {
 			g2D.drawImage(staticLayer, 0, 0, null);
 		}
 
-		// Draw the highlighted Route in a different color (if any)
-		if (Settings.highlight.HIGHLIGHTED_ROUTE != null) {
-			for (Edge e : Settings.highlight.HIGHLIGHTED_ROUTE.getEdges()) {
-				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
-			}
-		}
-
-		// Draw the highlighted Road (filter hover) in a different color (if any)
-		if (Settings.highlight.HIGHLIGHTED_ROAD_FILTER != null) {
-			for (Edge e : Settings.highlight.HIGHLIGHTED_ROAD_FILTER.getEdgesWithSameBaseName()) {
-				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROAD_FILTER_COLOR);
-			}
-		}
-
-		if (Settings.highlight.HIGHLIGHTED_CONNECTION != null) {
-			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getFromLane(),
-				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
-			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getToLane(),
-				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
-		}
-
-		if (Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT != null) {
-			drawObject(g2D, Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getJunction(),
-				Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT_COLOR);
-		}
-
-		for (TrafficLight tl : Settings.network.getTrafficLights()) {
-			try {
-				drawObject(g2D, tl);
-			} catch (Exception e1) {
-				logger.log(Level.SEVERE,
-					String.format("Failed to draw the traffic light (%s) in Map Panel!", tl.toString()), e1);
-			}
-		}
-		List<Vehicle> vehicleList = VehicleController.getVehicles();
-		for (Vehicle v : vehicleList) {
-			try {
-				drawObject(g2D, v);
-			} catch (Exception e) {
-				logger.log(Level.SEVERE, String.format("Failed to draw the vehicle (%s) in Map Panel!", v.toString()),
-					e);
-			}
-		}
 	}
 
 	/**
@@ -137,10 +94,11 @@ public class MapPanel extends Panel {
 	 * @param g the {@link Graphics2D}
 	 * @param v the {@link Vehicle}
 	 */
-	private void drawObject(Graphics2D g, Vehicle v) {
+	private boolean drawObject(Graphics2D g, Vehicle v) {
 		// We don't draw inactive vehicles
 		if (v == null || !v.getIsActive()) {
-			return;
+			System.out.println("ERROR 1" + v.toString());
+			return false;
 		}
 
 		// Implement Lazy Drawing: only vehicles within the view are drawn
@@ -151,26 +109,29 @@ public class MapPanel extends Panel {
 		// Skip if vehicle is off-screen
 		if (position.getX() < -size || position.getX() > getWidth() + size || position.getY() < -size
 			|| position.getY() > getHeight() + size) {
-			return;
+			return true;
 		}
 
 		// We don't draw vehicles whose type is filtered out
 		if (v.getType() != null && !v.getType().getFilterFlag()) {
-			return;
+			System.out.println("ERROR 2");
+			return false;
 		}
 
 		// We don't draw vehicles which run on unselected roads
 		if (v.getRoadID() != null && v.getRoadID().charAt(1) != 'J') {
 			Road road = Settings.network.getRoadFromEdge(v.getEdgeFromRoadID());
 			if (road != null && !road.getFilterFlag()) {
-				return;
+				System.out.println("ERROR 3");
+				return false;
 			}
 		}
 
 		// We don't draw vehicles which are not with the filtered speed range
 		if (v.getSpeed() < Settings.highlight.LOWER_BOUND_LIMIT
 			|| v.getSpeed() > Settings.highlight.UPPER_BOUND_LIMIT) {
-			return;
+			System.out.println("ERROR 4");
+			return false;
 		}
 
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
@@ -314,6 +275,7 @@ public class MapPanel extends Panel {
 		}
 		g2.dispose();
 		loadGraphicsSettings(g, oldSettings);
+		return true;
 	}
 
 	public void updateVehicleStates(int step) {
@@ -567,6 +529,52 @@ public class MapPanel extends Panel {
 		// Draw junctions (static, cached)
 		for (Junction j : Settings.network.getJunctions()) {
 			drawObject(g2D, j, Settings.config.JUNCTION_COLOR);
+		}
+		// Draw the highlighted Route in a different color (if any)
+		if (Settings.highlight.HIGHLIGHTED_ROUTE != null) {
+			for (Edge e : Settings.highlight.HIGHLIGHTED_ROUTE.getEdges()) {
+				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROUTE_COLOR);
+			}
+		}
+
+		// Draw the highlighted Road (filter hover) in a different color (if any)
+		if (Settings.highlight.HIGHLIGHTED_ROAD_FILTER != null) {
+			for (Edge e : Settings.highlight.HIGHLIGHTED_ROAD_FILTER.getEdgesWithSameBaseName()) {
+				drawObject(g2D, e, Settings.config.HIGHLIGHTED_ROAD_FILTER_COLOR);
+			}
+		}
+
+		if (Settings.highlight.HIGHLIGHTED_CONNECTION != null) {
+			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getFromLane(),
+				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+			drawObject(g2D, Settings.highlight.HIGHLIGHTED_CONNECTION.getToLane(),
+				Settings.config.HIGHLIGHTED_CONNECTION_COLOR);
+		}
+
+		if (Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT != null) {
+			drawObject(g2D, Settings.highlight.HIGHLIGHTED_TRAFFIC_LIGHT.getJunction(),
+				Settings.config.HIGHLIGHTED_TRAFFIC_LIGHT_COLOR);
+		}
+
+		for (TrafficLight tl : Settings.network.getTrafficLights()) {
+			try {
+				drawObject(g2D, tl);
+			} catch (Exception e1) {
+				logger.log(Level.SEVERE,
+					String.format("Failed to draw the traffic light (%s) in Map Panel!", tl.toString()), e1);
+			}
+		}
+		List<Vehicle> vehicleList = VehicleController.getVehicles();
+		for (Vehicle v : vehicleList) {
+			try {
+				boolean isVehicleDrawn = drawObject(g2D, v);
+				if (!isVehicleDrawn) {
+					System.out.println("ERROR VEHICLE IS NOT DRAWN");
+				}
+			} catch (Exception e) {
+				logger.log(Level.SEVERE, String.format("Failed to draw the vehicle (%s) in Map Panel!", v.toString()),
+					e);
+			}
 		}
 
 		g2D.dispose();

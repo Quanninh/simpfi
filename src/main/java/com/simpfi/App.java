@@ -163,7 +163,9 @@ public class App {
 						if (currentStep % 10 == 0) {
 							mapPanel.updateVehicleStates(currentStep);
 						}
-						mapPanel.repaint();
+
+						// mapPanel.repaint();
+						mapPanel.paintImmediately(0, 0, mapPanel.getWidth(), mapPanel.getHeight());
 
 						long uiEnd = System.nanoTime();
 						logger.log(Level.FINE, "UI frame time (ms): {0}", (uiEnd - uiStart) / 1_000_000.0);
@@ -217,7 +219,7 @@ public class App {
 	 * @throws Exception if the connection fails
 	 */
 	private static void retrieveData(SumoConnectionManager sim) throws Exception {
-		VehicleController.disableAllVehicles();
+		// VehicleController.disableAllVehicles();
 
 		for (String vid : vehicleController.getAllVehicleIds()) {
 			Point pos = vehicleController.getPosition(vid);
@@ -266,6 +268,7 @@ public class App {
 		inspectPanel = new InspectPanel(conn, mapPanel);
 
 		sidePane = new TabbedPane();
+		mapPanel.setIgnoreRepaint(true);
 
 		sidePane.addTab("Statistics", statisticsPanel);
 		sidePane.addTab("Inject", injectPanel);
