@@ -140,7 +140,22 @@ public class App {
 				try {
 					long start = System.nanoTime();
 
-					doStep(conn);
+					int numberOfSteps = (int) Math.round(Settings.config.SIMULATION_SPEED);
+					numberOfSteps = numberOfSteps <= 1 ? 1 : numberOfSteps;
+
+					for (int i = 0; i < numberOfSteps; i++) {
+						doStep(conn);
+						stats.update(step);
+
+						if (programLightPanel.isAdaptiveMode) {
+							trafficLightController
+								.updateTrafficLightByNumberOfVehicle(Settings.network.getTrafficLights());
+						} else {
+							trafficLightController.setDefaultTrafficLight(Settings.network.getTrafficLights());
+						}
+
+						step++;
+					}
 
 					lock.lock();
 					try {
@@ -149,20 +164,10 @@ public class App {
 						lock.unlock();
 					}
 
-					stats.update(step);
-
-					if (programLightPanel.isAdaptiveMode) {
-						trafficLightController.updateTrafficLightByNumberOfVehicle(Settings.network.getTrafficLights());
-					} else {
-						trafficLightController.setDefaultTrafficLight(Settings.network.getTrafficLights());
-					}
-
 					// ===== Data for UI =====
 					tlId = programLightPanel.getSelectedTrafficLightID();
 					currentPhase = trafficLightController.getPhase(tlId);
 					remaining = programLightPanel.showRemainingDuration(tlId, step * Settings.config.TIMESTEP);
-
-					step++;
 
 					long sleep = next - System.currentTimeMillis();
 					if (sleep > 0)

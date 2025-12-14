@@ -85,17 +85,17 @@ public class MapPanel extends Panel {
 		 * it, when I rotate, it translate the coordinate very weird and not nature, So
 		 * that why, I need to get X, Y and then I rotate
 		 */
-//		 g2D.translate(
-//		 -Settings.config.OFFSET.getX(),
-//		 -Settings.config.OFFSET.getY()
-//		 );
-//		 // We need to take the offset before rotating
-//		
-//		 // It is rotate only the center of the map Point ( 0, 0 ) and it is constant
-//		 // If You want to rotate in other map, just translate the map to another
-//		 // Point you want
-//		
-//		 g2D.rotate(Math.toRadians(Settings.config.ANGLE));
+		// g2D.translate(
+		// -Settings.config.OFFSET.getX(),
+		// -Settings.config.OFFSET.getY()
+		// );
+		// // We need to take the offset before rotating
+		//
+		// // It is rotate only the center of the map Point ( 0, 0 ) and it is constant
+		// // If You want to rotate in other map, just translate the map to another
+		// // Point you want
+		//
+		// g2D.rotate(Math.toRadians(Settings.config.ANGLE));
 
 		// Render static layer (edges, junctions) once and cache it
 		if (Settings.config.getStaticLayerDirty()) {
@@ -537,7 +537,7 @@ public class MapPanel extends Panel {
 			yPoints[i] = (int) p.getY();
 		}
 
-		g.setColor(Settings.config.JUNCTION_COLOR);
+		g.setColor(c);
 		g.setStroke(new BasicStroke((float) (Settings.config.JUNCTION_STROKE_SIZE * Settings.config.SCALE)));
 
 		g.fillPolygon(xPoints, yPoints, size);
