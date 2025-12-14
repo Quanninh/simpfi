@@ -59,16 +59,14 @@ public class InspectPanel extends Panel {
         this.mapPanel = mapPanel;
 
         this.setLayout(new BorderLayout());
-
-        // content
+        //includes listpanel and statswrapper panel
         Panel contentPanel = new Panel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-
-        // Panel für Liste, Buttons und Dropdown
+        // includes buttonpanel and scrollpane(lower box)
         Panel listPanel = new Panel();
         listPanel.setLayout(new BorderLayout());
 
-        // Fahrzeugliste in ScrollPane(oben)
+        // vehicle list in ScrollPane(top)
         vehicleListModel = new DefaultListModel<>();
         vehicleList = new JList<>(vehicleListModel);
         vehicleList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -94,26 +92,25 @@ public class InspectPanel extends Panel {
         scrollPane.setPreferredSize(new Dimension(200, 150));
         listPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Panel rechts für SelectAll, Clear und Dropdown
+        // Panel right for SelectAll, Clear and Dropdown
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
         selectAllButton = new Button("Select All");
         selectAllButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         selectAllButton.addActionListener(e -> {
-            // Liste vorher leeren
+
             selectedVehicles.clear();
             vehicleListModel.clear();
 
-            // all vehicles aus SUMO holen
             List<Vehicle> allVehicles = VehicleController.getVehicles();
             selectedVehicles.addAll(allVehicles);
 
-            // IDs zur JList hinzufügen
+            // add IDs to JList
             for (Vehicle v : allVehicles) {
                 vehicleListModel.addElement(v.getID());
             }
-            // Alle Einträge auswählen
+
             if (!allVehicles.isEmpty()) {
                 vehicleList.setSelectionInterval(0, allVehicles.size() - 1);
             }
@@ -125,7 +122,7 @@ public class InspectPanel extends Panel {
         clearButton = new Button("Clear");
         clearButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         clearButton.addActionListener(e -> {
-            // Select All simulieren
+            // simulate Select All
             selectedVehicles.clear();
             vehicleListModel.clear();
             List<Vehicle> allVehicles = VehicleController.getVehicles();
@@ -144,27 +141,24 @@ public class InspectPanel extends Panel {
         buttonPanel.add(clearButton);
         buttonPanel.add(Box.createRigidArea(new Dimension(0,10)));
 
-// GroupBy Label über dem Dropdown
         groupByLabel = new Label("Group By:");
-        groupByLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // linksbündig
+        groupByLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonPanel.add(groupByLabel);
 
 // GroupBy Dropdown
         groupByDropdown = new Dropdown<>(new String[]{"None","Vehicle Type", "Color", "Speed", "Route"});
-        groupByDropdown.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25)); // nur eine Zeile hoch
-        groupByDropdown.setAlignmentX(Component.CENTER_ALIGNMENT); // linksbündig
-        groupByDropdown.addActionListener(e -> groupVehicles()); //groupVehicles aufrufen
+        groupByDropdown.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+        groupByDropdown.setAlignmentX(Component.CENTER_ALIGNMENT);
+        groupByDropdown.addActionListener(e -> groupVehicles());
         buttonPanel.add(groupByDropdown);
 
-// Abstand nach unten
         buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         listPanel.add(buttonPanel, BorderLayout.EAST);
 
-// Ganzes ListPanel zum Content Panel hinzufügen
         contentPanel.add(listPanel);
 
-// Stats Panel als ScrollPane
+// Stats Panel
         statsScrollPane = new ScrollPane();
         statsScrollPane.setPreferredSize(new Dimension(300, 200));
         vehicleTextBoxes = new ArrayList<>();
@@ -192,7 +186,7 @@ public class InspectPanel extends Panel {
         vehicleStaticLabels.add(colorLabel);
 
 // Speed Label
-        Label headerSpeedLabel = new Label("Speed");
+        Label headerSpeedLabel = new Label("Speed (km/h)");
         headerSpeedLabel.setFont(headerSpeedLabel.getFont().deriveFont(Font.BOLD));
         statsScrollPane.addItem(headerSpeedLabel);
 
@@ -201,7 +195,7 @@ public class InspectPanel extends Panel {
         vehicleStaticLabels.add(speedLabel);
 
 // Max Speed Label
-        Label headerMaxSpeedLabel = new Label("Max Speed");
+        Label headerMaxSpeedLabel = new Label("Max Speed (km/h)");
         headerMaxSpeedLabel.setFont(headerMaxSpeedLabel.getFont().deriveFont(Font.BOLD));
         statsScrollPane.addItem(headerMaxSpeedLabel);
 
@@ -210,7 +204,7 @@ public class InspectPanel extends Panel {
         vehicleStaticLabels.add(maxSpeedLabel);
 
 // Acceleration Label
-        Label headerAccelerationLabel = new Label("Acceleration");
+        Label headerAccelerationLabel = new Label("Acceleration (m/s^2)");
         headerAccelerationLabel.setFont(headerAccelerationLabel.getFont().deriveFont(Font.BOLD));
         statsScrollPane.addItem(headerAccelerationLabel);
 
@@ -219,7 +213,7 @@ public class InspectPanel extends Panel {
         vehicleStaticLabels.add(accelerationLabel);
 
 // Distance Traveled Label
-        Label headerDistanceLabel = new Label("Distance Traveled");
+        Label headerDistanceLabel = new Label("Distance Traveled (meters)");
         headerDistanceLabel.setFont(headerDistanceLabel.getFont().deriveFont(Font.BOLD));
         statsScrollPane.addItem(headerDistanceLabel);
 
@@ -239,7 +233,7 @@ public class InspectPanel extends Panel {
         this.add(contentPanel, BorderLayout.CENTER);
 
 
-        // bottom Panel mit change mode, current mode und instructions
+        // bottom Panel wiht change mode, current mode und instructions
         Panel bottomPanel = new Panel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
 
@@ -255,7 +249,6 @@ public class InspectPanel extends Panel {
 
         this.add(bottomPanel, BorderLayout.SOUTH);
 
-        // MouseListener für Map Clicks
         mapPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -317,7 +310,6 @@ public class InspectPanel extends Panel {
         Vehicle nearest = null;
         double bestDist = Double.MAX_VALUE;
 
-        // Benutze statische Methode getVehicles()
         for (Vehicle v : VehicleController.getVehicles()) {
             double dx = v.getPosition().getX() - x;
             double dy = v.getPosition().getY() - y;
@@ -340,8 +332,7 @@ public class InspectPanel extends Panel {
      * @param v The Vehicle to add
      */
     private void addVehicleToInspect(Vehicle v) {
-        // Prüfen Fahrzeug mit derselben ID schon in der Liste ist
-        //stream anschauen
+        // if vehicle already in list
         boolean alreadyAdded = selectedVehicles.stream()
                 .anyMatch(vehicle -> vehicle.getID().equals(v.getID()));
 
@@ -357,7 +348,6 @@ public class InspectPanel extends Panel {
      *
      * @param vehicleIndex Index of the vehicle in the selectedVehicles list
      */
-//jedes mal wenn man auf ein selected vehicle geht
     private void updateStatsFields(int vehicleIndex) {
 
         if (vehicleIndex < 0 || vehicleIndex >= selectedVehicles.size()) return;
@@ -366,27 +356,20 @@ public class InspectPanel extends Panel {
         // Vehicle Type
         vehicleStaticLabels.get(0).setText(v.getType().getId());
 
-        // Color
         Color c = v.getVehicleColor();
         if (c != null) {
             vehicleStaticLabels.get(1).setText("R:" + c.getRed() + " G:" + c.getGreen() + " B:" + c.getBlue());
         }
 
-        // Speed (Initialwert, danach live vom Timer)
         vehicleStaticLabels.get(2).setText(String.format("%.2f", v.getSpeed()));
 
-        // Max Speed
         vehicleStaticLabels.get(3).setText(String.format("%.2f", v.getMaxSpeed()));
 
-        // Acceleration
         vehicleStaticLabels.get(4).setText(String.format("%.2f", v.getAcceleration()));
 
-        // Distance
         vehicleStaticLabels.get(5).setText(String.format("%.2f", v.getDistance()));
 
-        // Route
         vehicleStaticLabels.get(6).setText(String.join(" -> ", v.getRoute()));
-
     }
 
     /**
@@ -458,10 +441,8 @@ public class InspectPanel extends Panel {
     }
 
     /**
-     *Diese Methode übersetzt die JList-Indizes in die tatsächlichen Fahrzeug-Indizes,
-     * damit Header die Auswahl nicht verschieben.
-     * Translates the given listIndex indexes in the Vehilce-indexes
-     * Only increments count when not header.
+     * Translates the given listIndex indexes in the Vehilce-indexes because of headers.
+     * Only increments count when object not header.
      *
      * @param listIndex JList index
      *
@@ -481,7 +462,6 @@ public class InspectPanel extends Panel {
      * Updates the displayed speed of the selected vehicle in the stats (lower) panel.
      * Called by <code>speedUpdateTimer</> every 500ms.
      *
-     * @exception
      */
     private void updateLiveSpeedOnly() {
         int listIndex = vehicleList.getSelectedIndex();
