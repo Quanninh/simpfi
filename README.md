@@ -27,7 +27,7 @@ There are three main components the team uses for the project: Java, TraaS, and 
 Additionally, the team uses GitHub to create a shared repository for members to submit codes, and Notion to distribute tasks.
 
 ## Architecture diagram
-<img width="1212" height="1604" alt="mile2ClassDia" src="https://github.com/user-attachments/assets/249f2326-816d-41da-a2ab-a36a4fe2f6e9" />
+<img width="1164" height="1222" alt="image" src="https://github.com/user-attachments/assets/5a93a603-cac2-406f-a218-13a620018de0" />
 
 From the diagram, three main layers can be observed: GUI & Visualization, SUMO Integration, and Data. Each layer provides separate methods in order to guarantee modularity and coherence in the system’s design.
 
@@ -49,7 +49,7 @@ storage, which is essential for exporting meaningful statistics. Also, the layer
 ensure the consistency and integrity of data throughout different parts of the system.
 
 ## Class Design
-<img width="1164" height="1222" alt="image" src="https://github.com/user-attachments/assets/5a93a603-cac2-406f-a218-13a620018de0" />
+<img width="1212" height="1604" alt="mile2ClassDia" src="https://github.com/user-attachments/assets/917b50cb-ffe2-491e-9434-b3e5411f837a" />
 
 ### Overview
 Besides core wrapper classes, the team decided to draw the user interface by defining and
