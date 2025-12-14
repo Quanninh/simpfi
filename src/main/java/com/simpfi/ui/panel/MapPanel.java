@@ -167,11 +167,10 @@ public class MapPanel extends Panel {
 	 * @param g the {@link Graphics2D}
 	 * @param v the {@link Vehicle}
 	 */
-	private boolean drawObject(Graphics2D g, Vehicle v) {
+	private void drawObject(Graphics2D g, Vehicle v) {
 		// We don't draw inactive vehicles
 		if (v == null || !v.getIsActive()) {
-			System.out.println("ERROR 1" + v.toString());
-			return false;
+			return;
 		}
 
 		// Implement Lazy Drawing: only vehicles within the view are drawn
@@ -182,29 +181,26 @@ public class MapPanel extends Panel {
 		// Skip if vehicle is off-screen
 		if (position.getX() < -size || position.getX() > getWidth() + size || position.getY() < -size
 			|| position.getY() > getHeight() + size) {
-			return true;
+			return;
 		}
 
 		// We don't draw vehicles whose type is filtered out
 		if (v.getType() != null && !v.getType().getFilterFlag()) {
-			System.out.println("ERROR 2");
-			return false;
+			return;
 		}
 
 		// We don't draw vehicles which run on unselected roads
 		if (v.getRoadID() != null && v.getRoadID().charAt(1) != 'J') {
 			Road road = Settings.network.getRoadFromEdge(v.getEdgeFromRoadID());
 			if (road != null && !road.getFilterFlag()) {
-				System.out.println("ERROR 3");
-				return false;
+				return;
 			}
 		}
 
 		// We don't draw vehicles which are not with the filtered speed range
 		if (v.getSpeed() < Settings.highlight.LOWER_BOUND_LIMIT
 			|| v.getSpeed() > Settings.highlight.UPPER_BOUND_LIMIT) {
-			System.out.println("ERROR 4");
-			return false;
+			return;
 		}
 
 		GraphicsSettings oldSettings = saveCurrentGraphicsSettings(g);
@@ -348,7 +344,6 @@ public class MapPanel extends Panel {
 		}
 		g2.dispose();
 		loadGraphicsSettings(g, oldSettings);
-		return true;
 	}
 
 	public void updateVehicleStates(int step) {

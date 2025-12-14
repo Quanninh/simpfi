@@ -89,7 +89,7 @@ public class Constants {
 	/** Default scale of map so when the program launches the map is centered. */
 	public static final double DEFAULT_SCALE = 2.8;
 	/** Vehicles are drawn bigger than other elements to enhance visibility. */
-	public static final double DEFAULT_VEHICLE_UPSCALE = 2;
+	public static final double DEFAULT_VEHICLE_UPSCALE = 1.15;
 	/** When zooming, how much of scale is changed each time. */
 	public static final double DEFAULT_SCALE_STEP = 0.1;
 	/** The minimal when zooming in the scale */
@@ -99,8 +99,8 @@ public class Constants {
 	public static final Point DEFAULT_OFFSET = new Point(-750, -250);
 	/** When moving map, how much of map is moved each time. */
 	public static final double DEFAULT_OFFSET_STEP = 10;
-	
-	/** Default angle to rotate the map*/
+
+	/** Default angle to rotate the map */
 	public static final double DEFAULT_ANGLE = 0;
 
 	/** Color of the default vehicle. */
