@@ -51,7 +51,6 @@ ensure the consistency and integrity of data throughout different parts of the s
 ## Class Design
 <img width="1164" height="1222" alt="image" src="https://github.com/user-attachments/assets/5a93a603-cac2-406f-a218-13a620018de0" />
 
-
 ### Overview
 Besides core wrapper classes, the team decided to draw the user interface by defining and
 connecting classes such as buttons, panels,... As a result, the number of classes was up to 30,
@@ -60,19 +59,24 @@ in one single class diagram. Therefore, a wrapper class diagram was designed to 
 conciseness and readability.
 
 ### Class Responsibilities
-- `VehicleController`: its main role is to process and retrieve detailed information regarding
-vehicles. To achieve this, the class has a SumoTraciConnection attribute `connection` used to actively
-connect to SUMO so that getters such as `getSpeed()`, `getRoadID()` can be implemented. Additionally, `vehicleCounter` and `vehicleMap` are developed to keep tracks of vehicles number
-and mapping. Furthermore, the class provides several useful methods like `setVehicles()`,
-`addVehicle()` for users to perform vehicle-related operations.
+- `EdgeController`: gets the information of edges and vehicles to calculate meaningful statistics such as average speed on a specific edge.
+- `VehicleInjectionController`: controls different types of injections like batch, batch random or single mode.
+- `VehicleController`:  its main role is to process and retrieve detailed information regarding
+  vehicles. To achieve this, the class has a `SumoTraciConnection` attribute `connection`
+  used to actively connect to SUMO so that getters such as `getSpeed()`, `getRoadID()` can
+  be implemented. Additionally, `vehicleCounter` and `vehicleMap` are developed to keep
+  tracks of vehicles number and mapping. Furthermore, the class provides several useful
+  methods like `addVehicle()` for users to perform vehicle-related operations.
 - `TrafficLightController`: as its name suggests, the class deals with traffic light objects, especially in the real-time scenarios since it has a live traffic light mapping: `liveTrafficLightStates`.
-Similar to `VehicleController`, the class establishes a connection with SUMO using the attribute `connect` and therefore is able to implement getters such as `getIDList()`, `getState()`.
-Besides, `updateTrafficLightState()`, `getLiveTrafficLightStates()` are provided to maintain the logic of SUMO traffic lights in the Simpfi’s map.
-- `SumoConnectionManager`: is the class that creates and manages the TraCI connection between SUMO and the project’s app. This is achieved by passing a XML configuration file to its
-constructor and then the program can initialize the connection by `getConnection()` method and close it safely later using `close()`. Moreover, it provides an important method `doStep()`
-which advances the simulation by one timestep.
-- `App`: is where the main function resides. Particularly, it connects the frontend (`mapPanel`)
-and the backend (`vehicleController` and `trafficLightController`); defines the TraCI connection; and handles the connection loop so that the software can function properly.
+  Similar to `VehicleController`, the class establishes a connection with SUMO using the
+  attribute `connection` and therefore is able to implement getters such as `getIDList()`,
+  `getState()`. Besides, `updateTrafficLightState()`, `getLiveTrafficLightStates()`
+  are provided to maintain the logic of SUMO traffic lights in the Simpfi’s map.
+- `SumoConnectionManager`: is the class that creates and manages the TraCI connection between SUMO and the project’s app. This is achieved by passing a XML configuration file to its constructor and then the program can initialize the connection by
+  `getConnection()` method and close it safely later using `close()`. Moreover, it provides
+  an important method `doStep()` which advances the simulation by one timestep.
+- `App`:  is where the main function resides. Particularly, it connects the frontend (`mapPanel`) and the backend (`vehicleController`, `trafficLightController`, ...); defines the TraCI
+  connection; and handles the connection loop so that the software can function properly.
 
 
 
