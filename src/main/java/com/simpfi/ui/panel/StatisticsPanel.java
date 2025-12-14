@@ -210,6 +210,8 @@ public class StatisticsPanel extends Panel {
 		// Travel Time Distribution
 		if (step % 10 == 0){
 			double[] times = stats.getTravelTimesArray();
+
+			// Add drawing histogram to EDT
 			SwingUtilities.invokeLater(() -> {
 				if (times.length > 0) {
 					HistogramDataset ds = new HistogramDataset();
@@ -222,6 +224,7 @@ public class StatisticsPanel extends Panel {
 			});
 		}
 		
+		// Add drawing line chart and bar chart to EDT
 		SwingUtilities.invokeLater(() -> {
 			speedChartPanel.repaint();
 			densityChartPanel.repaint();

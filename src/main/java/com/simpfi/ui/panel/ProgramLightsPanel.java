@@ -554,7 +554,7 @@ public class ProgramLightsPanel extends Panel {
 	 */
 	public void showImpactOfTimingChange(){
 		double avgSpeed = stats.getAverageSpeed();
-		int totalCongestion = stats.getLastCongestedEdgeCount();
+		int totalCongestion = stats.getCongestedEdges(5.0).size();
 		double avgTravelTime = calculateAverageTimeTravel(stats.getTravelTimesArray());
 
 		SwingUtilities.invokeLater(() -> {
