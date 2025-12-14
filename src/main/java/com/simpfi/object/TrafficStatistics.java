@@ -90,7 +90,7 @@ public class TrafficStatistics {
                 int count = edgeVehicleCount.get(eid);
                 if (count == 0) continue;
 
-                double avgSpeed = ec.getMeanSpeed(eid); // may throw Exception
+                double avgSpeed = ec.getMeanSpeed(eid); 
                 if (avgSpeed < 5.0) {
                     lastCongestedEdgeCount++;
                 }
@@ -100,6 +100,10 @@ public class TrafficStatistics {
         }
     }
 
+    /**
+     * Returns the number of road edges that were detected as congested
+     * during the most recent congestion evaluation.
+     */
     public int getLastCongestedEdgeCount(){
         return lastCongestedEdgeCount;
     }
