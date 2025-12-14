@@ -27,7 +27,7 @@ There are three main components the team uses for the project: Java, TraaS, and 
 Additionally, the team uses GitHub to create a shared repository for members to submit codes, and Notion to distribute tasks.
 
 ## Architecture diagram
-<img width="1164" height="1222" alt="image" src="https://github.com/user-attachments/assets/5a93a603-cac2-406f-a218-13a620018de0" />
+<img width="1256" height="1140" alt="image" src="https://github.com/user-attachments/assets/6d52d6a4-2114-4c9b-9155-29137552aca8" />
 
 From the diagram, three main layers can be observed: GUI & Visualization, SUMO Integration, and Data. Each layer provides separate methods in order to guarantee modularity and coherence in the system’s design.
 
